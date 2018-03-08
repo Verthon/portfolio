@@ -1,0 +1,27 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "personal portfolio",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Verthon/portfolio.git"
+  },
+  "keywords": [
+    "portfolio"
+  ],
+  "author": "Krzysztof Sordyl",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Verthon/portfolio/issues"
+  },
+  "homepage": "https://github.com/Verthon/portfolio#readme",
+  "dependencies": {
+    "browser-sync": "^2.23.6",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.1.0"
+  }
+}
