@@ -23,5 +23,16 @@ gulp.task('serve', ['sass'], function() {
     gulp.watch("/*.html").on('change', browserSync.reload);
 });
 
+gulp.task('fonts', function() {
+    return gulp.src('node_modules/font-awesome/fonts/*')
+      .pipe(gulp.dest('src/assets'))
+  })
+  
+  // Move Font Awesome CSS to src/css
+  gulp.task('fa', function() {
+    return gulp.src('node_modules/font-awesome/css/font-awesome.min.css')
+      .pipe(gulp.dest('src/css'))
+  })
+
 // Default Task
-gulp.task('default', ['serve']);
+gulp.task('default', ['serve', 'fonts']);
