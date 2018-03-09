@@ -1,7 +1,14 @@
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,700");
 html, body, ul, ol {
   padding: 0;
   margin: 0; }
+
+ul {
+  list-style: none; }
+
+a {
+  text-decoration: none;
+  color: inherit; }
 
 img {
   max-width: 100%;
@@ -15,4 +22,47 @@ body {
   background: #22252c;
   color: #ffffff;
   font-size: 16px;
-  font-family: "Open Sans"; }
+  font-family: "Open Sans";
+  width: 100vw;
+  display: flex;
+  flex-direction: column; }
+
+.header-wrapper {
+  background: linear-gradient(to right, #16d395, #19d5cc); }
+
+.site-header {
+  width: 100vw;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 0 15rem;
+  justify-content: center; }
+
+.site-nav {
+  display: flex;
+  margin: 2rem 0;
+  justify-content: space-between;
+  padding: 0 15rem; }
+
+.site-nav i {
+  margin-right: 1rem; }
+
+.hero-heading {
+  font-size: 6rem;
+  font-weight: 300;
+  margin: 0.1rem 0; }
+
+.hero-subheading {
+  font-size: 4.5rem;
+  font-weight: 300;
+  margin: 0; }
+
+.hero-subheading strong {
+  letter-spacing: 0.2rem; }
+
+.hero-description {
+  font-size: 1.75rem;
+  font-weight: 300;
+  margin: 0;
+  padding-bottom: 10rem; }

@@ -7,4 +7,47 @@ body{
   color: $white;
   font-size: 16px;
   font-family: $font;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+.header-wrapper{
+  background: linear-gradient(to right, $light-green, $light-mint);
+}
+.site-header{
+  width: 100vw;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: $g-padding;
+  justify-content: center;
+}
+.site-nav{
+  display: flex;
+  margin: 2rem 0;
+  justify-content: space-between;
+  padding: $g-padding;
+}
+.site-nav i{
+  margin-right: 1rem;
+}
+.hero-heading{
+  font-size: 6rem;
+  font-weight: 300;
+  margin: 0.1rem 0;
+}
+.hero-subheading{
+  font-size: 4.5rem;
+  font-weight: 300;
+  margin: 0;
+}
+.hero-subheading strong{
+  letter-spacing: 0.2rem;
+}
+.hero-description{
+  font-size: 1.75rem;
+  font-weight: 300;
+  margin: 0;
+  padding-bottom: 10rem;
 }
