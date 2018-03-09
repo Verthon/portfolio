@@ -1,0 +1,9 @@
+@import 'variables';
+@import 'reset';
+@import 'mixins.scss';
+
+body{
+  background: $main-bg;
+  color: $white;
+  font-size: 16px;
+}
