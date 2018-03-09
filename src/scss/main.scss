@@ -22,25 +22,48 @@ body{
   flex-wrap: wrap;
   padding: $g-padding;
   justify-content: center;
+  @include mQ($mobile){
+    padding: 0 1rem;
+    margin: 1rem 0;
+    height: 55vh;
+  }
 }
 .site-nav{
   display: flex;
   margin: 2rem 0;
   justify-content: space-between;
   padding: $g-padding;
+  @include mQ($mobile){
+    margin: 1rem 0;
+    padding: 0 1rem;
+  }
 }
 .site-nav i{
   margin-right: 1rem;
+  @include mQ($mobile){
+    margin-right: 0.5rem;
+  }
+}
+.site-nav a{
+  @include mQ($ipad){
+    font-size: 1rem;
+  }
 }
 .hero-heading{
   font-size: 6rem;
   font-weight: 300;
   margin: 0.1rem 0;
+  @include mQ($mobile){
+    font-size: 2.75rem;
+  }
 }
 .hero-subheading{
   font-size: 4.5rem;
   font-weight: 300;
   margin: 0;
+  @include mQ($mobile){
+    font-size: 1.80rem;
+  }
 }
 .hero-subheading strong{
   letter-spacing: 0.2rem;
@@ -50,4 +73,8 @@ body{
   font-weight: 300;
   margin: 0;
   padding-bottom: 10rem;
+  @include mQ($mobile){
+    padding-bottom: 1rem;
+    font-size: 1.35rem;
+  }
 }
