@@ -24,18 +24,18 @@ body{
   justify-content: center;
   @include mQ($medium){
     padding: 0 8rem;
-    height: 55vh;
+    height: 50vh;
     margin: 2rem 0;
   }
   @include mQ($ipad){
     padding: 0 4rem;
-    height: 55vh;
+    height: 50vh;
     margin: 1rem 0;
   }
   @include mQ($mobile){
     padding: 0 2rem;
     margin: 1rem 0;
-    height: 55vh;
+    height: 45vh;
   }
 }
 .site-nav{
@@ -70,7 +70,7 @@ body{
   }
 }
 .hero-heading{
-  font-size: 6rem;
+  font-size: 5.5rem;
   font-weight: 300;
   margin: 0.1rem 0;
   @include mQ($medium){
@@ -84,7 +84,7 @@ body{
   }
 }
 .hero-subheading{
-  font-size: 4.5rem;
+  font-size: 4.25rem;
   font-weight: 300;
   margin: 0;
   @include mQ($medium){
@@ -124,10 +124,10 @@ body{
   align-self: center;
   background: $white;
   color: $light-green;
-  padding: 0.5rem 1rem;
-  font-size: 1.1rem;
   border-radius: 0.2rem;
   font-family: 'Open Sans';
+  padding: 0.75rem 1.75rem;
+  font-size: 1.35rem;
   @include mQ($medium){
     padding: 0.75rem 1.25rem;
     font-size: 1.25rem;
@@ -136,4 +136,11 @@ body{
     padding: 0.75rem 1.25rem;
     font-size: 1.25rem;
   }
+  @include mQ($mobile){
+    padding: 0.5rem 1rem;
+    font-size: 1.1rem;
+  }
+}
+.btn-my-work:hover{
+  cursor: pointer;
 }

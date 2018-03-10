@@ -10,6 +10,9 @@ a {
   text-decoration: none;
   color: inherit; }
 
+button:focus {
+  outline: none; }
+
 img {
   max-width: 100%;
   height: auto;
@@ -41,18 +44,18 @@ body {
   @media screen and (max-width: 1250px) {
     .site-header {
       padding: 0 8rem;
-      height: 55vh;
+      height: 50vh;
       margin: 2rem 0; } }
   @media screen and (max-width: 768px) {
     .site-header {
       padding: 0 4rem;
-      height: 55vh;
+      height: 50vh;
       margin: 1rem 0; } }
   @media screen and (max-width: 500px) {
     .site-header {
       padding: 0 2rem;
       margin: 1rem 0;
-      height: 55vh; } }
+      height: 45vh; } }
 
 .site-nav {
   display: flex;
@@ -86,7 +89,7 @@ body {
       font-size: 1.5rem; } }
 
 .hero-heading {
-  font-size: 6rem;
+  font-size: 5.5rem;
   font-weight: 300;
   margin: 0.1rem 0; }
   @media screen and (max-width: 1250px) {
@@ -100,7 +103,7 @@ body {
       font-size: 2.75rem; } }
 
 .hero-subheading {
-  font-size: 4.5rem;
+  font-size: 4.25rem;
   font-weight: 300;
   margin: 0; }
   @media screen and (max-width: 1250px) {
@@ -140,10 +143,10 @@ body {
   align-self: center;
   background: #ffffff;
   color: #16d395;
-  padding: 0.5rem 1rem;
-  font-size: 1.1rem;
   border-radius: 0.2rem;
-  font-family: 'Open Sans'; }
+  font-family: 'Open Sans';
+  padding: 0.75rem 1.75rem;
+  font-size: 1.35rem; }
   @media screen and (max-width: 1250px) {
     .btn-my-work {
       padding: 0.75rem 1.25rem;
@@ -152,3 +155,10 @@ body {
     .btn-my-work {
       padding: 0.75rem 1.25rem;
       font-size: 1.25rem; } }
+  @media screen and (max-width: 500px) {
+    .btn-my-work {
+      padding: 0.5rem 1rem;
+      font-size: 1.1rem; } }
+
+.btn-my-work:hover {
+  cursor: pointer; }
