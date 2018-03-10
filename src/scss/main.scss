@@ -133,7 +133,7 @@ body{
     font-size: 1.25rem;
   }
   @include mQ($ipad){
-    padding: 0.75rem 1.25rem;
+    padding: 0.75rem 1.55rem;
     font-size: 1.25rem;
   }
   @include mQ($mobile){
@@ -143,4 +143,14 @@ body{
 }
 .btn-my-work:hover{
   cursor: pointer;
+  text-decoration: underline;
+}
+.section{
+  width: 100vw;
+}
+.section-heading{
+  text-transform: uppercase;
+  text-align: center;
+  color: $light-mint;
+  font-size: 3rem;
 }
