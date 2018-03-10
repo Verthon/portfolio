@@ -23,12 +23,12 @@ body{
   padding: $g-padding;
   justify-content: center;
   @include mQ($medium){
-    padding: 0 2rem;
+    padding: 0 8rem;
     height: 55vh;
     margin: 2rem 0;
   }
   @include mQ($ipad){
-    padding: 0 2rem;
+    padding: 0 4rem;
     height: 55vh;
     margin: 1rem 0;
   }
@@ -45,7 +45,11 @@ body{
   padding: $g-padding;
   @include mQ($medium){
     margin: 2rem 0;
-    padding: 0 2rem;
+    padding: 0 8rem;
+  }
+  @include mQ($ipad){
+    margin: 2rem 0;
+    padding: 0 4rem;
   }
   @include mQ($mobile){
     margin: 1rem 0;
@@ -106,12 +110,30 @@ body{
     font-size: 2rem;
   }
   @include mQ($ipad){
-    padding-bottom: 2rem;
     font-size: 1.5rem;
+    padding: 0.5rem 0 6rem 0;
   }
   @include mQ($mobile){
     padding-bottom: 0;
-    padding: 0.5rem 0;
+    padding: 0.5rem 0 4rem 0;
+    font-size: 1.25rem;
+  }
+}
+.btn-my-work{
+  border: 0.05rem solid $white;
+  align-self: center;
+  background: $white;
+  color: $light-green;
+  padding: 0.5rem 1rem;
+  font-size: 1.1rem;
+  border-radius: 0.2rem;
+  font-family: 'Open Sans';
+  @include mQ($medium){
+    padding: 0.75rem 1.25rem;
+    font-size: 1.25rem;
+  }
+  @include mQ($ipad){
+    padding: 0.75rem 1.25rem;
     font-size: 1.25rem;
   }
 }

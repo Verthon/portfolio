@@ -40,12 +40,12 @@ body {
   justify-content: center; }
   @media screen and (max-width: 1250px) {
     .site-header {
-      padding: 0 2rem;
+      padding: 0 8rem;
       height: 55vh;
       margin: 2rem 0; } }
   @media screen and (max-width: 768px) {
     .site-header {
-      padding: 0 2rem;
+      padding: 0 4rem;
       height: 55vh;
       margin: 1rem 0; } }
   @media screen and (max-width: 500px) {
@@ -62,7 +62,11 @@ body {
   @media screen and (max-width: 1250px) {
     .site-nav {
       margin: 2rem 0;
-      padding: 0 2rem; } }
+      padding: 0 8rem; } }
+  @media screen and (max-width: 768px) {
+    .site-nav {
+      margin: 2rem 0;
+      padding: 0 4rem; } }
   @media screen and (max-width: 500px) {
     .site-nav {
       margin: 1rem 0;
@@ -123,10 +127,28 @@ body {
       font-size: 2rem; } }
   @media screen and (max-width: 768px) {
     .hero-description {
-      padding-bottom: 2rem;
-      font-size: 1.5rem; } }
+      font-size: 1.5rem;
+      padding: 0.5rem 0 6rem 0; } }
   @media screen and (max-width: 500px) {
     .hero-description {
       padding-bottom: 0;
-      padding: 0.5rem 0;
+      padding: 0.5rem 0 4rem 0;
+      font-size: 1.25rem; } }
+
+.btn-my-work {
+  border: 0.05rem solid #ffffff;
+  align-self: center;
+  background: #ffffff;
+  color: #16d395;
+  padding: 0.5rem 1rem;
+  font-size: 1.1rem;
+  border-radius: 0.2rem;
+  font-family: 'Open Sans'; }
+  @media screen and (max-width: 1250px) {
+    .btn-my-work {
+      padding: 0.75rem 1.25rem;
+      font-size: 1.25rem; } }
+  @media screen and (max-width: 768px) {
+    .btn-my-work {
+      padding: 0.75rem 1.25rem;
       font-size: 1.25rem; } }
