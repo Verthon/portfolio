@@ -65,7 +65,7 @@ body{
   }
   @include mQ($mobile){
     margin-right: 0.5rem;
-    font-size: 1.5rem;
+    font-size: 1.35rem;
   }
 }
 .hero-heading{
@@ -127,6 +127,7 @@ body{
   font-family: 'Open Sans';
   padding: 0.75rem 1.75rem;
   font-size: 1.35rem;
+  display:none;
   @include mQ($medium){
     padding: 0.75rem 1.25rem;
     font-size: 1.25rem;
@@ -146,12 +147,33 @@ body{
 }
 .section{
   padding: 2rem 4rem;
+  @include mQ($mobile){
+    padding: 2rem;
+  }
 }
 .section-heading{
   text-transform: uppercase;
   text-align: center;
   color: $light-mint;
   font-size: 3rem;
+  @include mQ($medium){
+    font-size: 2.5rem;
+  }
+  @include mQ($ipad){
+    font-size: 2.25rem;
+  }
+  @include mQ($mobile){
+    font-size: 1.75rem;
+  }
+}
+.about p{
+  padding: 2rem 0;
+  @include mQ($ipad){
+    font-size: 1.35rem;
+  }
+  @include mQ($mobile){
+    font-size: 1rem;
+  }
 }
 
 .site-footer{
