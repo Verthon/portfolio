@@ -128,10 +128,13 @@ body {
       font-size: 2.25rem; } }
   @media screen and (max-width: 500px) {
     .hero-subheading {
-      font-size: 1.80rem; } }
+      font-size: 1.75rem; } }
 
 .hero-subheading strong {
   letter-spacing: 0.2rem; }
+  @media screen and (max-width: 500px) {
+    .hero-subheading strong {
+      letter-spacing: 0.1rem; } }
 
 .hero-description {
   font-size: 1.75rem;

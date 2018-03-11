@@ -93,11 +93,14 @@ body{
     font-size: 2.25rem;
   }
   @include mQ($mobile){
-    font-size: 1.80rem;
+    font-size: 1.75rem;
   }
 }
 .hero-subheading strong{
   letter-spacing: 0.2rem;
+  @include mQ($mobile){
+    letter-spacing: 0.1rem;
+  }
 }
 .hero-description{
   font-size: 1.75rem;
