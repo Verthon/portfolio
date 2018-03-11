@@ -4,8 +4,18 @@ html, body, ul, ol {
   margin: 0;
   box-sizing: border-box; }
 
+body {
+  display: flex;
+  flex-wrap: wrap; }
+
 ul {
-  list-style: none; }
+  list-style: none;
+  padding: 0;
+  margin: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0; }
 
 a {
   text-decoration: none;
@@ -21,6 +31,10 @@ img {
 
 body * {
   box-sizing: border-box; }
+
+textarea {
+  padding: 0;
+  border: 0; }
 
 body {
   background: #22252c;
@@ -55,8 +69,7 @@ body {
   @media screen and (max-width: 500px) {
     .site-header {
       padding: 0 2rem;
-      margin: 1rem 0;
-      height: 45vh; } }
+      margin: 1rem 0; } }
 
 .site-nav {
   display: flex;
@@ -136,7 +149,7 @@ body {
   @media screen and (max-width: 500px) {
     .hero-description {
       padding-bottom: 0;
-      padding: 0.5rem 0 4rem 0;
+      padding: 0.5rem 0 2.5rem 0;
       font-size: 1.25rem; } }
 
 .btn-my-work {
@@ -163,13 +176,24 @@ body {
 
 .btn-my-work:hover {
   cursor: pointer;
-  text-decoration: underline; }
+  box-shadow: 0px 0px 2rem #eeeeee; }
 
 .section {
-  width: 100vw; }
+  padding: 2rem 4rem; }
 
 .section-heading {
   text-transform: uppercase;
   text-align: center;
   color: #19d5cc;
   font-size: 3rem; }
+
+.site-footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+  .site-footer .footer-socials {
+    padding: 1rem; }
+    .site-footer .footer-socials a i {
+      margin: 1rem;
+      font-size: 1.5rem; }

@@ -1,5 +1,5 @@
-@import 'variables';
 @import 'reset';
+@import 'variables';
 @import 'mixins.scss';
 
 body{
@@ -35,7 +35,6 @@ body{
   @include mQ($mobile){
     padding: 0 2rem;
     margin: 1rem 0;
-    height: 45vh;
   }
 }
 .site-nav{
@@ -115,7 +114,7 @@ body{
   }
   @include mQ($mobile){
     padding-bottom: 0;
-    padding: 0.5rem 0 4rem 0;
+    padding: 0.5rem 0 2.5rem 0;
     font-size: 1.25rem;
   }
 }
@@ -143,14 +142,30 @@ body{
 }
 .btn-my-work:hover{
   cursor: pointer;
-  text-decoration: underline;
+  box-shadow: 0px 0px 2rem $light;
 }
 .section{
-  width: 100vw;
+  padding: 2rem 4rem;
 }
 .section-heading{
   text-transform: uppercase;
   text-align: center;
   color: $light-mint;
   font-size: 3rem;
+}
+
+.site-footer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .footer-socials{
+    padding: 1rem;
+
+    a i{
+      margin: 1rem;
+      font-size: 1.5rem;
+    }
+  }
 }
