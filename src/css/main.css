@@ -2,7 +2,8 @@
 html, body, ul, ol {
   padding: 0;
   margin: 0;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  overflow: auto; }
 
 body {
   display: flex;
@@ -32,9 +33,10 @@ img {
 body * {
   box-sizing: border-box; }
 
-textarea {
+textarea, input {
   padding: 0;
-  border: 0; }
+  border: 0;
+  font-family: inherit; }
 
 body {
   background: #22252c;
@@ -46,7 +48,9 @@ body {
   flex-direction: column; }
 
 .header-wrapper {
-  background: linear-gradient(to right, #16d395, #19d5cc); }
+  background-image: linear-gradient(to right, rgba(22, 211, 149, 0.9), rgba(25, 213, 204, 0.9)), url("../assets/laptop.jpg");
+  background-size: cover;
+  background-position: center; }
 
 .site-header {
   width: 100vw;
@@ -159,12 +163,13 @@ body {
   border: 0.05rem solid #ffffff;
   align-self: center;
   background: #ffffff;
-  color: #16d395;
+  color: rgba(22, 211, 149, 0.9);
   border-radius: 0.2rem;
   font-family: 'Open Sans';
   padding: 0.75rem 1.75rem;
   font-size: 1.35rem;
-  display: none; }
+  display: none;
+  font-weight: bold; }
   @media screen and (max-width: 1250px) {
     .btn-my-work {
       padding: 0.75rem 1.25rem;
@@ -191,8 +196,9 @@ body {
 .section-heading {
   text-transform: uppercase;
   text-align: center;
-  color: #19d5cc;
-  font-size: 3rem; }
+  color: rgba(25, 213, 204, 0.9);
+  font-size: 3rem;
+  margin: 2.5rem 0; }
   @media screen and (max-width: 1250px) {
     .section-heading {
       font-size: 2.5rem; } }
@@ -203,13 +209,19 @@ body {
     .section-heading {
       font-size: 1.75rem; } }
 
-.about p {
-  padding: 2rem 0; }
+.about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; }
+
+.section p {
+  max-width: 70vw; }
   @media screen and (max-width: 768px) {
-    .about p {
+    .section p {
       font-size: 1.35rem; } }
   @media screen and (max-width: 500px) {
-    .about p {
+    .section p {
       font-size: 1rem; } }
 
 .site-footer {
