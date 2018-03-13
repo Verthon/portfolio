@@ -22,7 +22,7 @@ a {
   text-decoration: none;
   color: inherit; }
 
-button:focus {
+textarea:focus, input:focus, button:focus {
   outline: none; }
 
 img {
@@ -36,7 +36,8 @@ body * {
 textarea, input {
   padding: 0;
   border: 0;
-  font-family: inherit; }
+  font-family: inherit;
+  background: inherit; }
 
 body {
   background: #22252c;
@@ -226,6 +227,32 @@ body {
 
 .skills i {
   font-size: 4rem; }
+
+.contact {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  align-content: center; }
+  .contact textarea, .contact input {
+    border-bottom: 0.1rem solid rgba(25, 213, 204, 0.9);
+    color: #eeeeee;
+    font-size: 1rem; }
+  .contact .send {
+    display: flex;
+    border: 0.05rem solid rgba(25, 213, 204, 0.9);
+    background: transparent;
+    color: rgba(25, 213, 204, 0.9);
+    padding: 0.5rem 3rem;
+    font-size: 0.9rem;
+    font-family: 'Open Sans';
+    text-transform: uppercase;
+    justify-self: center; }
+  .contact .send:hover {
+    color: #22252c;
+    background: rgba(25, 213, 204, 0.9);
+    cursor: pointer;
+    border: 0.05rem solid #22252c; }
 
 .site-footer {
   display: flex;

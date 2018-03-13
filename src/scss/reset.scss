@@ -21,7 +21,7 @@ a{
   text-decoration: none;
   color: inherit;
 }
-button:focus{
+textarea:focus, input:focus, button:focus{
   outline: none;
 }
 img{
@@ -36,4 +36,5 @@ textarea, input{
   padding: 0;
   border: 0;
   font-family: inherit;
+  background: inherit; 
 }

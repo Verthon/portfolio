@@ -48,10 +48,13 @@
   <section class="section contact">
     <h1 class="section-heading">Contact</h1>
     <form action="">
-      <label for="name-input" aria-hidden="true">Name</label>
-      <input type="text" name="name-input">
-      <input type="email" name="email-input" id="">
-      <textarea name="message" id="" cols="30" rows="10" placeholder="Message"></textarea>
+      <label for="name-input" hidden="true">Name</label>
+      <input type="text" name="name-input" required id="name-input" placeholder="Name">
+      <label for="name-input" hidden="true">Email</label>
+      <input type="email" name="email-input" required id="email-input" placeholder="Email">
+      <label for="message" hidden="true">message</label>
+      <textarea name="message"  required id="message" cols="30" rows="10" placeholder="Message" placeholder="Message"></textarea>
+      <button class="send" type="submit">send</button>
     </form>
   </section>
  

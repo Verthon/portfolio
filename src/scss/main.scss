@@ -195,6 +195,36 @@ body{
   }
 }
 
+.contact{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  textarea, input{
+    border-bottom: 0.1rem solid $light-mint;
+    color: $light;
+    font-size: 1rem;
+  }
+  .send{
+    display: flex;
+    border: 0.05rem solid $light-mint;
+    background: transparent;
+    color: $light-mint;
+    padding: 0.5rem 3rem;
+    font-size: 0.9rem;
+    font-family: 'Open Sans';
+    text-transform: uppercase;
+    justify-self: center;
+  }
+  .send:hover{
+    color: $main-bg;
+    background: $light-mint;
+    cursor: pointer;
+    border: 0.05rem solid $main-bg;
+  }
+}
+
 .site-footer{
   display: flex;
   flex-direction: column;
