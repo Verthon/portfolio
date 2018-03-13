@@ -177,8 +177,8 @@ body {
       font-size: 1.25rem; } }
   @media screen and (max-width: 768px) {
     .btn-my-work {
-      padding: 0.75rem 1.55rem;
-      font-size: 1.25rem; } }
+      padding: 1rem 1.75rem;
+      font-size: 1.35rem; } }
   @media screen and (max-width: 500px) {
     .btn-my-work {
       padding: 0.5rem 1rem;
@@ -223,7 +223,8 @@ body {
       font-size: 1.35rem; } }
   @media screen and (max-width: 500px) {
     .section p {
-      font-size: 1rem; } }
+      font-size: 1rem;
+      max-width: 80vw; } }
 
 .skills i {
   font-size: 4rem; }
@@ -238,10 +239,14 @@ body {
     margin-top: 5rem;
     display: flex;
     flex-direction: column;
-    width: 70%; }
+    width: 70vw; }
     @media screen and (max-width: 768px) {
       .contact form {
         margin-top: 3rem; } }
+    @media screen and (max-width: 500px) {
+      .contact form {
+        width: 80vw;
+        margin-top: 2rem; } }
   .contact textarea, .contact input {
     border-bottom: 0.1rem solid rgba(25, 213, 204, 0.9);
     color: #eeeeee;
@@ -258,6 +263,10 @@ body {
     text-transform: uppercase;
     align-self: center;
     margin-top: 4rem; }
+    @media screen and (max-width: 500px) {
+      .contact .send {
+        padding: 0.5rem 3rem;
+        margin-top: 2rem; } }
   .contact .send:hover {
     color: #22252c;
     background: rgba(25, 213, 204, 0.9);

@@ -139,8 +139,8 @@ body{
     font-size: 1.25rem;
   }
   @include mQ($ipad){
-    padding: 0.75rem 1.55rem;
-    font-size: 1.25rem;
+    padding: 1rem 1.75rem;
+    font-size: 1.35rem;
   }
   @include mQ($mobile){
     padding: 0.5rem 1rem;
@@ -186,6 +186,7 @@ body{
   }
   @include mQ($mobile){
     font-size: 1rem;
+    max-width: 80vw;
   }
 }
 
@@ -205,9 +206,13 @@ body{
     margin-top: 5rem;
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 70vw;
     @include mQ($ipad){
       margin-top: 3rem;
+    }
+    @include mQ($mobile){
+      width: 80vw;
+      margin-top: 2rem;
     }
   }
   textarea, input{
@@ -227,6 +232,10 @@ body{
     text-transform: uppercase;
     align-self: center;
     margin-top: 4rem;
+    @include mQ($mobile){
+      padding: 0.5rem 3rem;
+      margin-top: 2rem;
+    }
   }
   .send:hover{
     color: $main-bg;
