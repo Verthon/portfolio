@@ -227,7 +227,21 @@ body {
       max-width: 80vw; } }
 
 .skills i {
-  font-size: 4rem; }
+  font-size: 10rem; }
+  @media screen and (max-width: 1250px) {
+    .skills i {
+      font-size: 8rem; } }
+
+.skills .row {
+  display: flex;
+  flex-wrap: wrap; }
+  .skills .row .skills-technology {
+    display: flex;
+    margin: 2rem 0;
+    justify-content: center; }
+    @media screen and (max-width: 768px) {
+      .skills .row .skills-technology {
+        flex-basis: 50%; } }
 
 .contact {
   display: flex;

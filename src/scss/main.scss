@@ -192,7 +192,22 @@ body{
 
 .skills{
   i{
-    font-size: 4rem;
+    font-size: 10rem;
+    @include mQ($medium){
+      font-size: 8rem;
+    }
+  }
+  .row{
+    display: flex;
+    flex-wrap: wrap;
+    .skills-technology{
+      display: flex;
+      margin: 2rem 0;
+      justify-content: center;
+      @include mQ($ipad){
+        flex-basis: 50%;
+      }
+    }
   }
 }
 
