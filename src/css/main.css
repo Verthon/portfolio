@@ -231,6 +231,9 @@ body {
   @media screen and (max-width: 1250px) {
     .skills i {
       font-size: 8rem; } }
+  @media screen and (max-width: 500px) {
+    .skills i {
+      font-size: 4.5rem; } }
 
 .skills .row {
   display: flex;
@@ -238,10 +241,23 @@ body {
   .skills .row .skills-technology {
     display: flex;
     margin: 2rem 0;
-    justify-content: center; }
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 1.4rem; }
+    @media screen and (max-width: 1250px) {
+      .skills .row .skills-technology {
+        flex-basis: 33%;
+        font-size: 1.5rem; } }
     @media screen and (max-width: 768px) {
       .skills .row .skills-technology {
         flex-basis: 50%; } }
+    @media screen and (max-width: 500px) {
+      .skills .row .skills-technology {
+        flex-basis: 50%;
+        font-size: 1.3rem; } }
+    .skills .row .skills-technology span {
+      margin: 2rem 0; }
 
 .contact {
   display: flex;

@@ -24,16 +24,19 @@ body{
   flex-wrap: wrap;
   padding: $g-padding;
   justify-content: center;
+
   @include mQ($medium){
     padding: 0 8rem;
     height: 50vh;
     margin: 2rem 0;
   }
+
   @include mQ($ipad){
     padding: 0 4rem;
     height: 50vh;
     margin: 1rem 0;
   }
+
   @include mQ($mobile){
     padding: 0 2rem;
     margin: 1rem 0;
@@ -44,14 +47,17 @@ body{
   margin: 2rem 0;
   justify-content: space-between;
   padding: $g-padding;
+
   @include mQ($medium){
     margin: 2rem 0;
     padding: 0 8rem;
   }
+
   @include mQ($ipad){
     margin: 2rem 0;
     padding: 0 4rem;
   }
+  
   @include mQ($mobile){
     margin: 1rem 0;
     padding: 0 1rem;
@@ -59,12 +65,15 @@ body{
 }
 .site-nav i{
   margin-right: 1rem;
+
   @include mQ($medium){
     font-size: 2rem;
   }
+
   @include mQ($ipad){
     font-size: 1.75rem;
   }
+
   @include mQ($mobile){
     margin-right: 0.5rem;
     font-size: 1.35rem;
@@ -74,12 +83,15 @@ body{
   font-size: 5.5rem;
   font-weight: 300;
   margin: 0.1rem 0;
+
   @include mQ($medium){
     font-size: 3.5rem;
   }
+
   @include mQ($ipad){
     font-size: 3rem;
   }
+
   @include mQ($mobile){
     font-size: 2.75rem;
   }
@@ -88,18 +100,22 @@ body{
   font-size: 4.25rem;
   font-weight: 300;
   margin: 0;
+
   @include mQ($medium){
     font-size: 3rem;
   }
+
   @include mQ($ipad){
     font-size: 2.25rem;
   }
+
   @include mQ($mobile){
     font-size: 1.75rem;
   }
 }
 .hero-subheading strong{
   letter-spacing: 0.2rem;
+
   @include mQ($mobile){
     letter-spacing: 0.1rem;
   }
@@ -110,18 +126,22 @@ body{
   margin: 0;
   padding-bottom: 10rem;
   color: $light;
+
   @include mQ($medium){
     font-size: 2rem;
   }
+
   @include mQ($ipad){
     font-size: 1.5rem;
     padding: 0.5rem 0 6rem 0;
   }
+
   @include mQ($mobile){
     padding-bottom: 0;
     padding: 0.5rem 0 2.5rem 0;
     font-size: 1.25rem;
   }
+
 }
 .btn-my-work{
   border: 0.05rem solid $white;
@@ -134,14 +154,17 @@ body{
   font-size: 1.35rem;
   display:none;
   font-weight: bold;
+
   @include mQ($medium){
     padding: 0.75rem 1.25rem;
     font-size: 1.25rem;
   }
+
   @include mQ($ipad){
     padding: 1rem 1.75rem;
     font-size: 1.35rem;
   }
+
   @include mQ($mobile){
     padding: 0.5rem 1rem;
     font-size: 1.1rem;
@@ -153,6 +176,7 @@ body{
 }
 .section{
   padding: 2rem 4rem;
+
   @include mQ($mobile){
     padding: 2rem;
   }
@@ -163,12 +187,15 @@ body{
   color: $light-mint;
   font-size: 3rem;
   margin: 2.5rem 0;
+
   @include mQ($medium){
     font-size: 2.5rem;
   }
+
   @include mQ($ipad){
     font-size: 2.25rem;
   }
+
   @include mQ($mobile){
     font-size: 1.75rem;
   }
@@ -181,9 +208,11 @@ body{
 }
 .section p{
   max-width: 70vw;
+
   @include mQ($ipad){
     font-size: 1.35rem;
   }
+
   @include mQ($mobile){
     font-size: 1rem;
     max-width: 80vw;
@@ -193,20 +222,46 @@ body{
 .skills{
   i{
     font-size: 10rem;
+
     @include mQ($medium){
       font-size: 8rem;
     }
+
+    @include mQ($mobile){
+      font-size: 4.5rem;
+    }
+
   }
   .row{
     display: flex;
     flex-wrap: wrap;
+
     .skills-technology{
       display: flex;
       margin: 2rem 0;
       justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      font-size: 1.4rem;
+
+      @include mQ($medium){
+        flex-basis: 33%;
+        font-size: 1.5rem;
+      }
+
       @include mQ($ipad){
         flex-basis: 50%;
       }
+
+      @include mQ($mobile){
+        flex-basis: 50%;
+        font-size: 1.3rem;
+      }
+
+      span{
+        margin: 2rem 0;
+      }
+
     }
   }
 }
