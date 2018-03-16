@@ -40,6 +40,9 @@ body{
     padding: 0 2rem;
     margin: 1rem 0;
   }
+  a{
+    align-self: center;
+  }
 }
 .site-nav{
   display: flex;
@@ -149,7 +152,6 @@ body{
 
 .btn-my-work{
   border: 0.05rem solid $white;
-  align-self: center;
   background: $white;
   color: $light-green;
   border-radius: 0.2rem;

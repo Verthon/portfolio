@@ -74,6 +74,8 @@ body {
     .site-header {
       padding: 0 2rem;
       margin: 1rem 0; } }
+  .site-header a {
+    align-self: center; }
 
 .site-nav {
   display: flex;
@@ -179,7 +181,6 @@ body {
 
 .btn-my-work {
   border: 0.05rem solid #ffffff;
-  align-self: center;
   background: #ffffff;
   color: rgba(22, 211, 149, 0.9);
   border-radius: 0.2rem;
