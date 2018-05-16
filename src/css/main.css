@@ -159,7 +159,8 @@ body {
     .hero-description {
       padding-bottom: 0;
       padding: 0.5rem 0 2.5rem 0;
-      font-size: 1.25rem; } }
+      font-size: 1.25rem;
+      text-shadow: 0 0 2px #ffffff; } }
 
 @-webkit-keyframes fadeIn {
   from {
