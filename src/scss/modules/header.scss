@@ -1,0 +1,35 @@
+.header-wrapper{
+  background-image: $gradient;
+  background-size: cover; 
+  background-position: center;
+}
+.site-header{
+  width: 100vw;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: $g-padding;
+  justify-content: center;
+
+  @include mQ($medium){
+    padding: 0 8rem;
+    height: 50vh;
+    margin: 2rem 0;
+  }
+
+  @include mQ($ipad){
+    padding: 0 4rem;
+    height: 50vh;
+    margin: 1rem 0;
+  }
+
+  @include mQ($mobile){
+    padding: 0 2rem;
+    margin: 1rem 0;
+  }
+  a{
+    align-self: center;
+  }
+}
+
