@@ -215,6 +215,24 @@ textarea, input {
   cursor: pointer;
   box-shadow: 0px 0px 2rem #eeeeee; }
 
+.about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #3c414d;
+  padding: 2rem 0; }
+
+.about .about-description {
+  width: 50vw;
+  line-height: 1.5;
+  font-weight: 300;
+  font-size: 1.35rem; }
+  @media screen and (max-width: 768px) {
+    .about .about-description {
+      width: auto;
+      font-size: 1.1rem; } }
+
 body {
   background: #22252c;
   color: #ffffff;
@@ -244,12 +262,6 @@ body {
   @media screen and (max-width: 500px) {
     .section-heading {
       font-size: 1.75rem; } }
-
-.about {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; }
 
 .section p {
   max-width: 70vw; }

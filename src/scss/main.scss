@@ -4,6 +4,7 @@
 @import 'modules/header.scss';
 @import 'modules/nav.scss';
 @import 'modules/hero.scss';
+@import 'modules/about.scss';
 
 body{
   background: $main-bg;
@@ -38,12 +39,6 @@ body{
   @include mQ($mobile){
     font-size: 1.75rem;
   }
-}
-.about{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 .section p{
   max-width: 70vw;
