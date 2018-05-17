@@ -2,6 +2,7 @@
 @import 'variables';
 @import 'mixins.scss';
 @import 'modules/header.scss';
+@import 'modules/nav.scss';
 @import 'modules/hero.scss';
 
 body{
@@ -11,44 +12,6 @@ body{
   font-family: $font;
   display: flex;
   flex-direction: column;
-}
-
-.site-nav{
-  display: flex;
-  margin: 2rem 0;
-  justify-content: space-between;
-  padding: $g-padding;
-
-  @include mQ($medium){
-    margin: 2rem 0;
-    padding: 0 8rem;
-  }
-
-  @include mQ($ipad){
-    margin: 2rem 0;
-    padding: 0 4rem;
-  }
-  
-  @include mQ($mobile){
-    margin: 1rem 0;
-    padding: 0 1rem;
-  }
-}
-.site-nav i{
-  margin-right: 1rem;
-
-  @include mQ($medium){
-    font-size: 2rem;
-  }
-
-  @include mQ($ipad){
-    font-size: 1.75rem;
-  }
-
-  @include mQ($mobile){
-    margin-right: 0.5rem;
-    font-size: 1.35rem;
-  }
 }
 .section{
   padding: 2rem 4rem;
