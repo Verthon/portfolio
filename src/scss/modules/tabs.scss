@@ -1,0 +1,39 @@
+.tab-header{
+  list-style: none;
+  display: flex;
+}
+.tab-header-title{
+  margin: 0.5rem;
+}
+.tab-header-item{
+  padding: 1rem 3rem;
+  margin: 1rem;
+  background: $tab-header;
+  color: $light;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  line-height: 1.6;
+}
+.tab-header-item:hover{
+  cursor: pointer;
+  color: #fff;
+  background: $gradient;
+}
+.tab-content{
+  display: flex;
+  width: 100%;
+}
+.tab-content-item{
+  display: none;
+  padding: 1rem;
+  margin: 0 1rem;
+  color: $main-bg;
+  width: 100%;
+  height: 20rem;
+}
+.active{
+  display: flex;
+  background: $tab-content;
+}

@@ -1,10 +1,23 @@
+
 const btn = document.querySelector('.btn-my-work');
 document.addEventListener('load', () => {
   btn.style.opacity = "1";
 });
 
-const menu = document.querySelector('#menu');
-menu.addEventListener('click', () => {
-  const menu = document.querySelector('.menu-container');
-  menu.classList.toggle('menu-container-mobile');
+const tabsHeader = document.querySelectorAll('.tab-header-item');
+
+const tabsContent = document.querySelectorAll('.tab-content-item');
+
+const show = (i) =>{
+  tabsContent.forEach((tab) => {
+    tab.classList.remove('active');
+  });
+  tabsContent[i].classList.add('active');
+}
+
+tabsHeader.forEach((item, i) => {
+  item.addEventListener('click', () =>{
+    show(i);
+  });
 });
+show(0);
