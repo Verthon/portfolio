@@ -1,38 +1,85 @@
+//import { rename } from 'fs';
 
-const gulp        = require('gulp');
-const browserSync = require('browser-sync').create();
-const sass        = require('gulp-sass');
+const gulp = require('gulp');
+const sass = require('gulp-sass');
+const autoprefixer = require('gulp-autoprefixer');
+const rename = require('gulp-rename');
+const sourcemaps = require('gulp-sourcemaps');
 
-// Compile Sass & Inject Into Browser
-gulp.task('sass', function() {
-    return gulp.src(['src/scss/*.scss'])
-        .pipe(sass())
-        .pipe(gulp.dest("src/css"))
-        .pipe(browserSync.stream());
+const browserify = require('browserify');
+const babelify = require('babelify');
+const source = require('vinyl-source-stream');
+const uglify = require('gulp-uglify');
+const buffer = require('vinyl-buffer');
+const browsersync = require('browser-sync').create();
+const reload = browsersync.reload;
+
+const htmlWatch = '**/*.html';
+const styleSrc = 'src/scss/style.scss';
+const styleDist = './dist/css/';
+const styleWatch = 'src/scss/**/*.scss';
+
+const jsSrc = 'main.js';
+const jsFolder = 'src/js/';
+const jsDist = './dist/js/';
+const jsWatch = 'src/js/**/*.js';
+const jsFiles = [jsSrc];
+
+
+gulp.task('browser-sync', () => {
+  browsersync.init({
+    server: {
+      injectChanges: true,
+      baseDir: "./"
+    }
+  });
 });
 
 
-// Watch Sass & Serve
-gulp.task('serve', ['sass'], function() {
-    browserSync.init({
-        server: "./src",
-
-    });
-
-    gulp.watch(['src/scss/*.scss'], ['sass']);
-    gulp.watch("/*.html").on('change', browserSync.reload);
+gulp.task('style', () => {
+  gulp.src(styleSrc)
+      .pipe(sourcemaps.init())
+      //return gulp.src(styleSrc)
+      .pipe(sass()
+      .on('error', sass.logError))     
+      .pipe(autoprefixer({
+        browsers: ['last 2 versions'],
+        cascade: false
+      }))
+      .pipe(rename({suffix: '.min'}))
+      .pipe(sourcemaps.write('./'))
+      .pipe(gulp.dest(styleDist))
+      .pipe(browsersync.stream());
 });
 
-gulp.task('fonts', function() {
-    return gulp.src('node_modules/font-awesome/fonts/*')
-      .pipe(gulp.dest('src/assets'))
-  })
-  
-  // Move Font Awesome CSS to src/css
-  gulp.task('fa', function() {
-    return gulp.src('node_modules/font-awesome/css/font-awesome.min.css')
-      .pipe(gulp.dest('src/css'))
-  })
+gulp.task('js', () =>{
+ jsFiles.map((entry) => {
 
-// Default Task
-gulp.task('default', ['serve', 'fonts']);
+  return browserify({
+    entries: [jsFolder + entry]    
+  })
+  .transform(babelify, {presets: ['env']})
+  .bundle()
+  .pipe(source(entry))
+  .pipe(rename({extname: '.min.js'}))
+  .pipe(buffer())
+  .pipe(sourcemaps.init({loadMaps: true}))
+  .pipe(uglify())
+  .pipe(sourcemaps.write('./'))
+  .pipe(gulp.dest(jsDist))
+  .pipe(browsersync.stream());
+ });
+});
+
+gulp.task('html', () =>{
+  gulp.src(htmlSource)
+    .pipe(browsersync.stream());
+});
+
+gulp.task('default', ['style', 'js']);
+
+gulp.task('watch', ['default', 'browser-sync'], () => {
+  gulp.watch(styleWatch, ['style', reload]);
+  gulp.watch(jsWatch, ['js', reload]);
+  gulp.watch(htmlWatch, reload);
+});

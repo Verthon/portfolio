@@ -1,30 +1,35 @@
 {
-  "name": "portfolio",
+  "name": "static-site-gulp-kit",
   "version": "1.0.0",
-  "description": "personal portfolio",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "gulp"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Verthon/portfolio.git"
-  },
-  "keywords": [
-    "portfolio"
-  ],
-  "author": "Krzysztof Sordyl",
+  "author": "Jurr",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Verthon/portfolio/issues"
-  },
-  "homepage": "https://github.com/Verthon/portfolio#readme",
-  "dependencies": {
-    "animate.css": "^3.6.1",
-    "browser-sync": "^2.23.6",
-    "font-awesome": "^4.7.0",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.6.1",
+    "babelify": "^8.0.0",
+    "browser-sync": "^2.24.3",
+    "browserify": "^16.2.0",
     "gulp": "^3.9.1",
-    "gulp-sass": "^3.1.0",
-    "open-sans-fontface": "^1.4.0"
+    "gulp-autoprefixer": "^5.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^4.0.1",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-uglify": "^3.0.0",
+    "uglify-js": "^3.3.23",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0"
+  },
+  "dependencies": {
+    "node-sass": "^4.9.0"
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ]
   }
 }

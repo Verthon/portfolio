@@ -2,11 +2,15 @@
 html, body, ul, ol {
   padding: 0;
   margin: 0;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   overflow: auto; }
 
 body {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap; }
 
 ul {
@@ -31,6 +35,7 @@ img {
   display: block; }
 
 body * {
+  -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
 textarea, input {
@@ -40,17 +45,26 @@ textarea, input {
   background: inherit; }
 
 .header-wrapper {
-  background-image: linear-gradient(to right, rgba(22, 211, 149, 0.9), rgba(25, 213, 204, 0.9)), url("../assets/laptop.jpg");
+  background-image: -webkit-gradient(linear, left top, right top, from(rgba(22, 211, 149, 0.9)), to(rgba(25, 213, 204, 0.9))), url("/dist/assets/laptop.jpg");
+  background-image: linear-gradient(to right, rgba(22, 211, 149, 0.9), rgba(25, 213, 204, 0.9)), url("/dist/assets/laptop.jpg");
   background-size: cover;
   background-position: center; }
 
 .site-header {
   width: 100vw;
   height: 60vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   padding: 0 15rem;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center; }
   @media screen and (max-width: 1250px) {
     .site-header {
@@ -67,11 +81,16 @@ textarea, input {
       padding: 0 2rem;
       margin: 1rem 0; } }
   .site-header a {
+    -ms-flex-item-align: center;
     align-self: center; }
 
 .site-nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   margin: 2rem 0;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
   padding: 0 15rem;
   position: relative; }
@@ -164,12 +183,6 @@ textarea, input {
   to {
     opacity: 1; } }
 
-@-moz-keyframes fadeIn {
-  from {
-    opacity: 0; }
-  to {
-    opacity: 1; } }
-
 @keyframes fadeIn {
   from {
     opacity: 0; }
@@ -189,14 +202,11 @@ textarea, input {
   /* make things invisible upon start */
   -webkit-animation: fadeIn ease-in 1;
   /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
-  -moz-animation: fadeIn ease-in 1;
   animation: fadeIn ease-in 1;
   -webkit-animation-fill-mode: forwards;
   /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
-  -moz-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
   -webkit-animation-duration: 1s;
-  -moz-animation-duration: 1s;
   animation-duration: 1s; }
   @media screen and (max-width: 1250px) {
     .btn-my-work {
@@ -213,12 +223,22 @@ textarea, input {
 
 .btn-my-work:hover {
   cursor: pointer;
+  -webkit-box-shadow: 0px 0px 2rem #eeeeee;
   box-shadow: 0px 0px 2rem #eeeeee; }
 
 .about {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
   background: #3c414d;
   padding: 2rem 0; }
@@ -238,7 +258,12 @@ body {
   color: #ffffff;
   font-size: 16px;
   font-family: "Open Sans";
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column; }
 
 .section {
@@ -283,39 +308,70 @@ body {
       font-size: 4.5rem; } }
 
 .skills .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap; }
   .skills .row .skills-technology {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     margin: 2rem 0;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     font-size: 1.4rem;
+    -ms-flex-preferred-size: 33%;
     flex-basis: 33%; }
     @media screen and (max-width: 1250px) {
       .skills .row .skills-technology {
+        -ms-flex-preferred-size: 33%;
         flex-basis: 33%;
         font-size: 1.5rem; } }
     @media screen and (max-width: 768px) {
       .skills .row .skills-technology {
+        -ms-flex-preferred-size: 50%;
         flex-basis: 50%; } }
     @media screen and (max-width: 500px) {
       .skills .row .skills-technology {
+        -ms-flex-preferred-size: 50%;
         flex-basis: 50%;
         font-size: 1.3rem; } }
     .skills .row .skills-technology span {
       margin: 2rem 0; }
 
 .contact {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -ms-flex-line-pack: center;
   align-content: center; }
   .contact form {
     margin-top: 5rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     width: 70vw; }
     @media screen and (max-width: 768px) {
@@ -331,6 +387,8 @@ body {
     font-size: 1rem;
     padding: 1rem 0; }
   .contact .send {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     border: 0.05rem solid rgba(25, 213, 204, 0.9);
     background: transparent;
@@ -339,6 +397,7 @@ body {
     font-size: 1rem;
     font-family: 'Open Sans';
     text-transform: uppercase;
+    -ms-flex-item-align: center;
     align-self: center;
     margin-top: 4rem; }
     @media screen and (max-width: 500px) {
@@ -352,12 +411,23 @@ body {
     border: 0.05rem solid #22252c; }
 
 .site-footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center; }
   .site-footer .footer-socials {
     padding: 1rem; }
     .site-footer .footer-socials a i {
       margin: 1rem;
       font-size: 1.5rem; }
+
+/*# sourceMappingURL=style.min.css.map */
