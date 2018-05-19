@@ -257,6 +257,45 @@ textarea, input {
   -webkit-box-shadow: 0px 0px 2rem #eeeeee;
   box-shadow: 0px 0px 2rem #eeeeee; }
 
+.section {
+  padding: 2rem 4rem; }
+  @media screen and (max-width: 500px) {
+    .section {
+      padding: 2rem; } }
+
+.section-heading {
+  text-transform: uppercase;
+  text-align: center;
+  color: rgba(25, 213, 204, 0.9);
+  font-size: 3rem;
+  margin: 2.5rem 0; }
+  @media screen and (max-width: 1250px) {
+    .section-heading {
+      font-size: 2.5rem; } }
+  @media screen and (max-width: 768px) {
+    .section-heading {
+      font-size: 2.25rem; } }
+  @media screen and (max-width: 500px) {
+    .section-heading {
+      font-size: 1.75rem; } }
+
+.section p {
+  max-width: 70vw; }
+  @media screen and (max-width: 768px) {
+    .section p {
+      font-size: 1.35rem; } }
+  @media screen and (max-width: 500px) {
+    .section p {
+      font-size: 1rem;
+      max-width: 80vw; } }
+
+.section-quote {
+  font-style: italic; }
+
+.section-quote-author {
+  font-style: normal;
+  font-weight: bold; }
+
 .about {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -289,6 +328,9 @@ textarea, input {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex; }
+  @media screen and (max-width: 768px) {
+    .tab-header {
+      display: block; } }
 
 .tab-header-title {
   margin: 0.5rem; }
@@ -298,9 +340,6 @@ textarea, input {
   margin: 1rem;
   background: #2d313a;
   color: #eeeeee;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
@@ -311,13 +350,17 @@ textarea, input {
   -webkit-box-flex: 1;
   -ms-flex: 1;
   flex: 1;
-  line-height: 1.6; }
+  line-height: 1.6;
+  width: auto; }
 
 .tab-header-item:hover {
   cursor: pointer;
   color: #fff;
   background: -webkit-gradient(linear, left top, right top, from(rgba(22, 211, 149, 0.9)), to(rgba(25, 213, 204, 0.9))), url("/dist/assets/laptop.jpg");
   background: linear-gradient(to right, rgba(22, 211, 149, 0.9), rgba(25, 213, 204, 0.9)), url("/dist/assets/laptop.jpg"); }
+
+.tab-header .tab-header-content {
+  max-width: 100%; }
 
 .tab-content {
   display: -webkit-box;
@@ -338,6 +381,34 @@ textarea, input {
   display: -ms-flexbox;
   display: flex;
   background: #e9eaee; }
+  @media screen and (max-width: 768px) {
+    .active {
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+      height: auto; } }
+
+/* tab columns */
+.tab-column {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  padding: 0rem 2rem; }
+
+.tab-content-heading {
+  padding: 1rem 0;
+  font-size: 1.5rem; }
+  @media screen and (max-width: 768px) {
+    .tab-content-heading {
+      font-size: 1.35rem; } }
+  @media screen and (max-width: 500px) {
+    .tab-content-heading {
+      font-size: 1.2rem; } }
+
+.tab-list {
+  list-style: square; }
+
+.tab-item {
+  margin: 0.7rem 0; }
 
 body {
   background: #22252c;
@@ -351,38 +422,6 @@ body {
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column; }
-
-.section {
-  padding: 2rem 4rem; }
-  @media screen and (max-width: 500px) {
-    .section {
-      padding: 2rem; } }
-
-.section-heading {
-  text-transform: uppercase;
-  text-align: center;
-  color: rgba(25, 213, 204, 0.9);
-  font-size: 3rem;
-  margin: 2.5rem 0; }
-  @media screen and (max-width: 1250px) {
-    .section-heading {
-      font-size: 2.5rem; } }
-  @media screen and (max-width: 768px) {
-    .section-heading {
-      font-size: 2.25rem; } }
-  @media screen and (max-width: 500px) {
-    .section-heading {
-      font-size: 1.75rem; } }
-
-.section p {
-  max-width: 70vw; }
-  @media screen and (max-width: 768px) {
-    .section p {
-      font-size: 1.35rem; } }
-  @media screen and (max-width: 500px) {
-    .section p {
-      font-size: 1rem;
-      max-width: 80vw; } }
 
 .skills i {
   font-size: 8rem; }

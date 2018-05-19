@@ -4,6 +4,7 @@
 @import 'modules/header.scss';
 @import 'modules/nav.scss';
 @import 'modules/hero.scss';
+@import 'modules/section.scss';
 @import 'modules/about.scss';
 @import 'modules/tabs.scss';
 
@@ -14,44 +15,6 @@ body{
   font-family: $font;
   display: flex;
   flex-direction: column;
-}
-.section{
-  padding: 2rem 4rem;
-
-  @include mQ($mobile){
-    padding: 2rem;
-  }
-}
-.section-heading{
-  text-transform: uppercase;
-  text-align: center;
-  color: $light-mint;
-  font-size: 3rem;
-  margin: 2.5rem 0;
-
-  @include mQ($medium){
-    font-size: 2.5rem;
-  }
-
-  @include mQ($ipad){
-    font-size: 2.25rem;
-  }
-
-  @include mQ($mobile){
-    font-size: 1.75rem;
-  }
-}
-.section p{
-  max-width: 70vw;
-
-  @include mQ($ipad){
-    font-size: 1.35rem;
-  }
-
-  @include mQ($mobile){
-    font-size: 1rem;
-    max-width: 80vw;
-  }
 }
 
 .skills{

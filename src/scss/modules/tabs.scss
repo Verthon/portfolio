@@ -1,6 +1,9 @@
 .tab-header{
   list-style: none;
   display: flex;
+  @include mQ($ipad){
+    display: block;
+  }
 }
 .tab-header-title{
   margin: 0.5rem;
@@ -10,16 +13,19 @@
   margin: 1rem;
   background: $tab-header;
   color: $light;
-  display: flex;
   flex-direction: column;
   align-items: center;
   flex: 1;
   line-height: 1.6;
+  width: auto;
 }
 .tab-header-item:hover{
   cursor: pointer;
   color: #fff;
   background: $gradient;
+}
+.tab-header .tab-header-content{
+  max-width: 100%;
 }
 .tab-content{
   display: flex;
@@ -36,4 +42,33 @@
 .active{
   display: flex;
   background: $tab-content;
+  @include mQ($ipad){
+    flex-wrap: wrap;
+    height: auto;
+  }
+}
+
+/* tab columns */
+.tab-column{
+  flex: 1;
+  padding: 0rem 2rem;
+}
+
+.tab-content-heading{
+  padding: 1rem 0;
+  font-size: 1.5rem;
+  @include mQ($ipad){
+    font-size: 1.35rem;
+  }
+  @include mQ($mobile){
+    font-size: 1.2rem;
+  }
+}
+
+.tab-list{
+  list-style: square;
+}
+
+.tab-item{
+  margin: 0.7rem 0;
 }

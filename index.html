@@ -9,7 +9,7 @@
   <link rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
   <link rel="stylesheet" href="dist/css/style.min.css">
-  <title>Portfolio</title>
+  <title>Krzysztof Sordyl Web Developer</title>
 </head>
 <body>
   <div class="header-wrapper">
@@ -41,8 +41,11 @@
         I keep learning web development technologies every day, to provide better software.
     </p>
   </section>
-  <section class="section skills animated fadeInUp">
+  <section id="skills" class="section skills animated fadeInUp">
     <h1 class="section-heading">Skills</h1>
+    <blockquote class="section-quote">Try to learn something about everything and everything about something.
+      <footer class="section-quote-author">Thomas Huxley</footer>
+    </blockquote>
     <div class="row">
         <ul class="tab-header">
             <li class="tab-header-item" data-tab="frontend">
@@ -54,27 +57,77 @@
               <h2 class="tab-header-title">Backend</h2>
               <p class="tab-header-content">Basic understanding of PHP and MYSQL.Basic understanding of OOP PHP and relation databases model</p>
             </li>
-            <li class="tab-header-item" data-tab="tools">
-              <h2 class="tab-header-title">Other tools</h2>
-              <p class="tab-header-content">Other tools used in my projects. </p>
-            </li>
+              <li class="tab-header-item" data-tab="tools">
+                <h2 class="tab-header-title">Other tools</h2>
+                <p class="tab-header-content">Other tools used in my projects. </p>
+              </li>
           </ul>
-          <article class="tab-content">
+          <article id="frontend" class="tab-content">
             <div class="tab-content-item active">
-              <h3>HTML CSS JS</h3>
-              
+              <div class="tab-column">
+                <h3 class="tab-content-heading">HTML & CSS</h3>
+                <ul class="tab-list">
+                  <li class="tab-item">HTML5 standard</li>
+                  <li class="tab-item">CSS3</li>
+                  <li class="tab-item">Methodology: BEM</li>
+                  <li class="tab-item">Responsive Web Design</li>
+                  <li class="tab-item">Sass preprocessor</li>
+                  <li class="tab-item">SEO optimizing</li>
+                </ul>
+              </div>
+              <div class="tab-column">
+                <h3 class="tab-content-heading">JavaScript</h3>
+                <ul class="tab-list">
+                  <li class="tab-item">JavaScript ES6</li>
+                  <li class="tab-item">jQuery</li>
+                  <li class="tab-item">Currently learning React.js</li>
+                  <li class="tab-item">Expirience with API</li>
+                </ul>
+              </div>
+              <div class="tab-column">
+                <h3 class="tab-content-heading">Tools and CMS</h3>
+                <ul class="tab-list">
+                  <li class="tab-item">expirience with Wordpress CMS</li>
+                  <li class="tab-item">Gulp.js, Node Package Managment</li>
+                  <li class="tab-item">git (commits, branches, pulls)</li>
+                </ul>
+              </div>             
             </div>
-            <div class="tab-content-item">
-              <h3>PHP MYSQL</h3>
+            <div id="backend" class="tab-content-item">
+              <div class="tab-column">
+                <h3 class="tab-content-heading">Backend programming languages</h3>
+                <ul class="tab-list">
+                  <li class="tab-item">Basics of server side programming</li>
+                  <li class="tab-item">Basics of PHP 7</li>
+                  <li class="tab-item">POST and GET requests</li>
+                  <li class="tab-item">Basic understangind MVC pattern</li>
+                </ul>
+              </div>
+              <div class="tab-column">
+                <h3 class="tab-content-heading">Databases</h3>
+                <ul class="tab-list">
+                  <li class="tab-item">Basics of relational databases</li>
+                  <li class="tab-item">Basics of MySQL</li>
+                  <li class="tab-item">Currently learning about noSql databases</li>
+                </ul>
+              </div>
             </div>
-            <div class="tab-content-item">
-              <h3>Linux</h3>
+            <div id="other" class="tab-content-item">
+              <div class="tab-column">
+                <h3 class="tab-content-heading">Databases</h3>
+                <ul class="tab-list">
+                  <li class="tab-item">Basics of relational databases</li>
+                  <li class="tab-item">Basics of MySQL</li>
+                  <li class="tab-item">Currently learning about noSql databases</li>
+                </ul>
+              </div>
             </div>
           </article>
     </div>
   </section>
   <section id="projects" class="section projects animated fadeInUp">
     <h1 class="section-heading">Projects</h1>
+    <p class="section-description">What i have worked on so far</p>
   </section>
   <section class="section contact">
     <h1 class="section-heading">Contact</h1>
@@ -92,7 +145,6 @@
   <footer class="site-footer">
     <div class="footer-socials">
       <a href="https://github.com/Verthon" target="_blank"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a>
-      <a href="#" target="_blank"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a>
     </div>
     <p>Krzysztof Sordyl portfolio 2018 &copy;</p>
   </footer>
