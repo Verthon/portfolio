@@ -93,7 +93,10 @@ textarea, input {
   -ms-flex-pack: justify;
   justify-content: space-between;
   padding: 0 15rem;
-  position: relative; }
+  position: relative;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start; }
   @media screen and (max-width: 1250px) {
     .site-nav {
       margin: 2rem 0;
@@ -120,8 +123,36 @@ textarea, input {
       margin-right: 0.5rem;
       font-size: 1.35rem; } }
 
-.menu-container {
+.menu-icon {
   display: none; }
+  @media screen and (max-width: 768px) {
+    .menu-icon {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex; } }
+
+.menu-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+  @media screen and (max-width: 768px) {
+    .menu-container {
+      display: none; } }
+
+.menu-ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+
+.menu-item {
+  margin: 0 1rem; }
+
+.menu-item a {
+  font-size: 1.1rem; }
+
+.menu-item:hover {
+  text-decoration: underline;
+  text-shadow: 0 0 10px #eeeeee; }
 
 .hero-heading {
   font-size: 5.5rem;

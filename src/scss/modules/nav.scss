@@ -4,6 +4,7 @@
   justify-content: space-between;
   padding: $g-padding;
   position: relative;
+  align-items: flex-start;
 
   @include mQ($medium){
     margin: 2rem 0;
@@ -37,6 +38,35 @@
   }
 }
 
-.menu-container{
+.menu-icon{
   display: none;
+
+  @include mQ($ipad){
+    display: flex;
+  }
+}
+
+.menu-container{
+  display: flex;
+
+  @include mQ($ipad){
+    display: none;
+  }
+}
+
+.menu-ul{
+  display: flex;
+}
+
+.menu-item{
+  margin: 0 1rem;
+}
+
+.menu-item a{
+  font-size: 1.1rem;
+}
+
+.menu-item:hover{
+  text-decoration: underline;
+  text-shadow: 0 0 10px $light;
 }
