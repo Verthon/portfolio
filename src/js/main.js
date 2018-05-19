@@ -12,7 +12,7 @@ const show = (i) =>{
   tabsContent.forEach((tab) => {
     tab.classList.remove('active');
   });
-  tabsContent[i].classList.add('active');
+  tabsContent[i].classList.add('active', 'animated', 'fadeIn');
 }
 
 tabsHeader.forEach((item, i) => {
