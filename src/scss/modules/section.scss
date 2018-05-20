@@ -10,7 +10,7 @@
   text-align: center;
   color: $light-mint;
   font-size: 3rem;
-  margin: 2.5rem 0;
+  margin: 2.5rem 0 5rem 0;
 
   @include mQ($medium){
     font-size: 2.5rem;
@@ -24,8 +24,13 @@
     font-size: 1.75rem;
   }
 }
+
+.section-description{
+  text-align: center;
+  font-size: 1.15rem;
+  font-weight: lighter;
+}
 .section p{
-  max-width: 70vw;
 
   @include mQ($ipad){
     font-size: 1.35rem;
@@ -33,15 +38,18 @@
 
   @include mQ($mobile){
     font-size: 1rem;
-    max-width: 80vw;
   }
 }
 
 .section-quote{
   font-style: italic;
+  margin: 3rem 1rem;
+  text-align: center;
+  line-height: 1.5;
 }
 
 .section-quote-author{
   font-style: normal;
   font-weight: bold;
+  margin-top: 1rem;
 }

@@ -9,6 +9,7 @@
   <link rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
   <link rel="stylesheet" href="dist/css/style.min.css">
+  <link href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABILAAASCwAAAAAAAAAAAAAAAAAvAAAAKgAAAC0AAAAxAAAAKAAAADIAAAAbAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALwAAADIAAAAuAAAAJgAAADAAAAAvAAAAJQAAAB8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABIAAADhAAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAAAAAswAAAFsAAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAAK0AAACqAAAAAAAAAFcAAAC3AAAAAAAAAAAAAAAAAAAAqgAAAK0AAAAUAAAAAAAAAAAAAAAAAAAARgAAAOMAAACMAAAABwAAAAAAAAAKAAAA7AAAABgAAAAAAAAAAAAAAAcAAACMAAAA4wAAAEYAAAAAAAAAkAAAAOEAAABCAAAAAAAAAAAAAAAAAAAAAAAAAJ4AAABwAAAAAAAAAAAAAAAAAAAAAAAAAEIAAADhAAAAkAAAAKQAAADcAAAAQgAAAAAAAAAAAAAAAAAAAAAAAABCAAAAzAAAAAAAAAAAAAAAAAAAAAAAAABCAAAA3AAAAKQAAAAAAAAASgAAAN8AAACbAAAAEQAAAAAAAAAAAAAAAgAAAOIAAAAqAAAAAAAAABEAAACbAAAA3wAAAEoAAAAAAAAAAAAAAAAAAAAOAAAAkwAAALUAAAAAAAAAAAAAAAAAAACJAAAAhQAAAAAAAAC1AAAAkwAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeAAAAAAAAAAAAAAAAAAAALgAAAN8AAAACAAAAHgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAACrAAAAKQAAAAAAAAAAAAAAAAAAAAAAAAAAAP8AAAD/AAD//wAA//8AAP//AAD//wAA+P8AAOTnAADE4wAAhGEAAB54AAAeOAAABiAAAMcjAAD3DwAA/x8AAA==" rel="icon" type="image/x-icon">
   <title>Krzysztof Sordyl Web Developer</title>
 </head>
 <body>
@@ -16,7 +17,6 @@
     <nav class="site-nav">
       <div class="site-nav--socials">
         <a href="https://github.com/Verthon" target="_blank"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a>
-        <a href="https://www.linkedin.com/in/krzysztof-sordyl-98149b160/" target="_blank"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a>
       </div>
       <i id="menu" class="fa fa-bars fa-lg menu-icon"></i>
       <div id="menu-container" class="menu-container">
@@ -67,8 +67,8 @@
               <div class="tab-column">
                 <h3 class="tab-content-heading">HTML & CSS</h3>
                 <ul class="tab-list">
-                  <li class="tab-item">HTML5 standard</li>
-                  <li class="tab-item">CSS3</li>
+                  <li class="tab-item">HTML5 & CSS3 standards</li>
+                  <li class="tab-item">Bootstrap 3 & 4</li>
                   <li class="tab-item">Methodology: BEM</li>
                   <li class="tab-item">Responsive Web Design</li>
                   <li class="tab-item">Sass preprocessor</li>
@@ -114,11 +114,13 @@
             </div>
             <div id="other" class="tab-content-item">
               <div class="tab-column">
-                <h3 class="tab-content-heading">Databases</h3>
+                <h3 class="tab-content-heading">Other tools</h3>
                 <ul class="tab-list">
-                  <li class="tab-item">Basics of relational databases</li>
-                  <li class="tab-item">Basics of MySQL</li>
-                  <li class="tab-item">Currently learning about noSql databases</li>
+                  <li class="tab-item">Familiar with Windows and Linux</li>
+                  <li class="tab-item">Visual Studio Code and Sublime Text</li>
+                  <li class="tab-item">Basics of Linux and Windows terminals</li>
+                  <li class="tab-item">Github</li>
+                  <li class="tab-item">PHPMyAdmin</li>
                 </ul>
               </div>
             </div>
@@ -126,11 +128,23 @@
     </div>
   </section>
   <section id="projects" class="section projects animated fadeInUp">
-    <h1 class="section-heading">Projects</h1>
-    <p class="section-description">What i have worked on so far</p>
+    <h1 class="section-heading section-heading--projects">Projects</h1>
+    <p class="section-description">What I have worked on so far</p>
+    <div class="project-container">
+      <img class="project-image" src="/dist/assets/HeyU.png" alt="HeyU website screenshot">
+      <article class="project-info">
+        <h2 class="project-title">HeyU Website</h2>
+        <p class="project-description">Responsive website based on flexbox. PSD to HTML</p>
+        <button class="project-btn">HTML5</button>
+        <button class="project-btn">CSS3</button>
+        <button class="project-btn">JavaScript</button>
+        <a href="https://github.com/Verthon/HeyU-Website" target="_blank"><button id="github-btn" class="project-btn"><i class="fa fa-github fa-lg" aria-hidden="true"></i></button></a>
+        <a href="https://verthon.github.io/HeyU-Website/" target="_blank"><button class="project-btn project-btn--link">view site</button></a>
+      </article>
+    </div>
   </section>
   <section class="section contact">
-    <h1 class="section-heading">Contact</h1>
+    <!--<h1 class="section-heading">Contact</h1>
     <form action="">
       <label for="name-input" hidden="true">Name</label>
       <input type="text" name="name-input" required id="name-input" placeholder="Name">
@@ -139,7 +153,8 @@
       <label for="message" hidden="true">message</label>
       <textarea name="message"  required id="message" cols="30" rows="10" placeholder="Message" placeholder="Message"></textarea>
       <button class="send" type="submit">send</button>
-    </form>
+    </form>-->
+    <button class="contact-btn">email me</button>
   </section>
  
   <footer class="site-footer">

@@ -1,0 +1,95 @@
+.projects{
+  background: $tab-content;
+  color: $sec-bg;
+}
+
+.section-heading--projects{
+  color: $main-bg;
+  margin: 2.5rem 0 0.5rem 0;
+}
+
+.project-container{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: auto;
+  margin: 5rem auto;
+  padding: 5rem 0;
+  background: $white;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+  max-width: 1100px;
+
+  @include mQ($ipad){
+    padding: 2.5rem 0;
+    display: block;
+  }
+}
+
+.project-image{
+  max-width: 600px;
+
+  @include mQ($ipad){
+    max-width: 100%;
+  }
+}
+
+.project-info{
+  padding: 0 2rem;
+}
+
+.project-title{
+  @include mQ($ipad){
+    margin: 3rem 0;
+  }
+}
+
+.project-description{
+  margin: 1rem 0 5rem 0;
+
+  @include mQ($ipad){
+    margin: 3rem 0;
+  }
+
+}
+
+.project-btn{
+  padding: 0.5rem 1rem;
+  border: 0;
+  font-size: 1rem;
+  background: $main-bg;
+  color: $light;
+  @include mQ($ipad){
+    padding: 0.75rem 1.25rem;
+    font-size: 1.25rem;
+  }
+  @include mQ($mobile){
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+}
+
+#github-btn:hover{
+  cursor: pointer;
+}
+
+.project-btn:hover{
+  cursor: pointer;
+}
+
+.project-btn--link{
+  display: block;
+  padding: 1rem 1.5rem;
+  margin: 2rem 0;
+  background: $light-green;
+  text-transform: uppercase;
+  color: $white;
+  @include mQ($ipad){
+    padding: 1rem 1.5rem;
+    display: block;
+    margin: 1rem 0;
+  }
+  @include mQ($mobile){
+    padding: 0.75rem 1.25rem;
+    margin: 0.5rem 0;
+  }
+}

@@ -42,6 +42,7 @@
 .active{
   display: flex;
   background: $tab-content;
+  margin-bottom: 5rem;
   @include mQ($ipad){
     flex-wrap: wrap;
     height: auto;

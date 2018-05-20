@@ -268,7 +268,7 @@ textarea, input {
   text-align: center;
   color: rgba(25, 213, 204, 0.9);
   font-size: 3rem;
-  margin: 2.5rem 0; }
+  margin: 2.5rem 0 5rem 0; }
   @media screen and (max-width: 1250px) {
     .section-heading {
       font-size: 2.5rem; } }
@@ -279,22 +279,29 @@ textarea, input {
     .section-heading {
       font-size: 1.75rem; } }
 
-.section p {
-  max-width: 70vw; }
-  @media screen and (max-width: 768px) {
-    .section p {
-      font-size: 1.35rem; } }
-  @media screen and (max-width: 500px) {
-    .section p {
-      font-size: 1rem;
-      max-width: 80vw; } }
+.section-description {
+  text-align: center;
+  font-size: 1.15rem;
+  font-weight: lighter; }
+
+@media screen and (max-width: 768px) {
+  .section p {
+    font-size: 1.35rem; } }
+
+@media screen and (max-width: 500px) {
+  .section p {
+    font-size: 1rem; } }
 
 .section-quote {
-  font-style: italic; }
+  font-style: italic;
+  margin: 3rem 1rem;
+  text-align: center;
+  line-height: 1.5; }
 
 .section-quote-author {
   font-style: normal;
-  font-weight: bold; }
+  font-weight: bold;
+  margin-top: 1rem; }
 
 .about {
   display: -webkit-box;
@@ -321,7 +328,12 @@ textarea, input {
   @media screen and (max-width: 768px) {
     .about .about-description {
       width: auto;
-      font-size: 1.1rem; } }
+      font-size: 1.25rem;
+      padding: 1rem 2rem; } }
+  @media screen and (max-width: 500px) {
+    .about .about-description {
+      font-size: 1rem;
+      padding: 0.5rem 1rem; } }
 
 .tab-header {
   list-style: none;
@@ -380,7 +392,8 @@ textarea, input {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background: #e9eaee; }
+  background: #e9eaee;
+  margin-bottom: 5rem; }
   @media screen and (max-width: 768px) {
     .active {
       -ms-flex-wrap: wrap;
@@ -409,6 +422,93 @@ textarea, input {
 
 .tab-item {
   margin: 0.7rem 0; }
+
+.projects {
+  background: #e9eaee;
+  color: #313741; }
+
+.section-heading--projects {
+  color: #22252c;
+  margin: 2.5rem 0 0.5rem 0; }
+
+.project-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  height: auto;
+  margin: 5rem auto;
+  padding: 5rem 0;
+  background: #ffffff;
+  -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+  max-width: 1100px; }
+  @media screen and (max-width: 768px) {
+    .project-container {
+      padding: 2.5rem 0;
+      display: block; } }
+
+.project-image {
+  max-width: 600px; }
+  @media screen and (max-width: 768px) {
+    .project-image {
+      max-width: 100%; } }
+
+.project-info {
+  padding: 0 2rem; }
+
+@media screen and (max-width: 768px) {
+  .project-title {
+    margin: 3rem 0; } }
+
+.project-description {
+  margin: 1rem 0 5rem 0; }
+  @media screen and (max-width: 768px) {
+    .project-description {
+      margin: 3rem 0; } }
+
+.project-btn {
+  padding: 0.5rem 1rem;
+  border: 0;
+  font-size: 1rem;
+  background: #22252c;
+  color: #eeeeee; }
+  @media screen and (max-width: 768px) {
+    .project-btn {
+      padding: 0.75rem 1.25rem;
+      font-size: 1.25rem; } }
+  @media screen and (max-width: 500px) {
+    .project-btn {
+      padding: 0.5rem 1rem;
+      font-size: 1rem; } }
+
+#github-btn:hover {
+  cursor: pointer; }
+
+.project-btn:hover {
+  cursor: pointer; }
+
+.project-btn--link {
+  display: block;
+  padding: 1rem 1.5rem;
+  margin: 2rem 0;
+  background: rgba(22, 211, 149, 0.9);
+  text-transform: uppercase;
+  color: #ffffff; }
+  @media screen and (max-width: 768px) {
+    .project-btn--link {
+      padding: 1rem 1.5rem;
+      display: block;
+      margin: 1rem 0; } }
+  @media screen and (max-width: 500px) {
+    .project-btn--link {
+      padding: 0.75rem 1.25rem;
+      margin: 0.5rem 0; } }
 
 body {
   background: #22252c;
