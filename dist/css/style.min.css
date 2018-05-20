@@ -485,7 +485,8 @@ textarea, input {
   @media screen and (max-width: 500px) {
     .project-btn {
       padding: 0.5rem 1rem;
-      font-size: 1rem; } }
+      font-size: 1rem;
+      margin: 0.15rem 0; } }
 
 #github-btn:hover {
   cursor: pointer; }
