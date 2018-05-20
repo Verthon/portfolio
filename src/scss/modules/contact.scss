@@ -1,0 +1,16 @@
+.contact-btn{
+  padding: 1rem 2rem;
+  color: $light;
+  background: linear-gradient(to right, $light-green, $light-mint);
+  border: 0;
+  font-size: 1.25rem;
+}
+.section-heading--contact{
+  margin: 2.5rem 0 0 0;
+}
+.contact-btn:hover{
+  cursor: pointer;
+}
+.section-description--contact{
+  margin: 0.5rem 0 3rem 0;
+}
