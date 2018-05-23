@@ -4,6 +4,12 @@ document.addEventListener('load', () => {
   btn.style.opacity = "1";
 });
 
+const menu = document.querySelector('#menu');
+menu.addEventListener('click', () => {
+  const ul = document.querySelector('#menu-ul');
+  ul.style.display = (ul.style.display == 'flex') ? 'none' : 'flex';
+});
+
 const tabsHeader = document.querySelectorAll('.tab-header-item');
 
 const tabsContent = document.querySelectorAll('.tab-content-item');

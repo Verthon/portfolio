@@ -12,13 +12,16 @@
   }
 
   @include mQ($ipad){
+    position: relative;
     margin: 2rem 0;
-    padding: 0 4rem;
+    padding: 0;
   }
   
   @include mQ($mobile){
     margin: 1rem 0;
-    padding: 0 1rem;
+    padding: 0;
+    align-items: center;
+
   }
 }
 .site-nav i{
@@ -30,6 +33,7 @@
 
   @include mQ($ipad){
     font-size: 1.75rem;
+    padding: 0 2rem;
   }
 
   @include mQ($mobile){
@@ -46,24 +50,43 @@
   }
 }
 
-.menu-container{
+.menu-ul{
   display: flex;
 
   @include mQ($ipad){
     display: none;
+    position: absolute;
+    background: $about-bg;
+    width: 100%;
+    transform: translateY(10%);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    height: 45vh;
+    top: 0;
+  }
+  @include mQ($mobile){
+    transform: translateY(13%);
   }
 }
 
-.menu-ul{
-  display: flex;
-}
 
 .menu-item{
   margin: 0 1rem;
+  @include mQ($ipad){
+    margin: 2.5rem;
+  }
+  @include mQ($mobile){
+    margin: 1.25rem;
+  }
 }
 
 .menu-item a{
   font-size: 1.1rem;
+  @include mQ($ipad){
+    font-size: 1.4rem;
+  }
 }
 
 .menu-item:hover{
