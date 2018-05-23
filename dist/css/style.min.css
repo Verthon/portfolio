@@ -45,8 +45,8 @@ textarea, input {
   background: inherit; }
 
 .header-wrapper {
-  background-image: -webkit-gradient(linear, left top, right top, from(rgba(22, 211, 149, 0.9)), to(rgba(25, 213, 204, 0.9))), url("/dist/assets/laptop.jpg");
-  background-image: linear-gradient(to right, rgba(22, 211, 149, 0.9), rgba(25, 213, 204, 0.9)), url("dist/assets/laptop.jpg");
+  background-image: -webkit-gradient(linear, left top, right top, from(rgba(22, 211, 149, 0.9)), to(rgba(25, 213, 204, 0.9))), url("../assets/laptop.jpg");
+  background-image: linear-gradient(to right, rgba(22, 211, 149, 0.9), rgba(25, 213, 204, 0.9)), url("../assets/laptop.jpg");
   background-size: cover;
   background-position: center; }
 
