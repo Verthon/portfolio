@@ -1,5 +1,6 @@
 .section{
   padding: 2rem 4rem;
+  background: $main-bg;
 
   @include mQ($mobile){
     padding: 2rem;

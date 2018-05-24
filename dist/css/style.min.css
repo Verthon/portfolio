@@ -293,7 +293,8 @@ textarea, input {
   box-shadow: 0px 0px 2rem #eeeeee; }
 
 .section {
-  padding: 2rem 4rem; }
+  padding: 2rem 4rem;
+  background: #22252c; }
   @media screen and (max-width: 500px) {
     .section {
       padding: 2rem; } }
@@ -563,8 +564,11 @@ textarea, input {
 .section-description--contact {
   margin: 0.5rem 0 3rem 0; }
 
+.site-footer {
+  background: #22252c; }
+
 body {
-  background: #22252c;
+  background: #ffffff;
   color: #ffffff;
   font-size: 16px;
   font-family: "Open Sans";
@@ -574,7 +578,9 @@ body {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
-  flex-direction: column; }
+  flex-direction: column;
+  max-width: 1920px;
+  margin: 0 auto; }
 
 .skills i {
   font-size: 8rem; }
