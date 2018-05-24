@@ -23,6 +23,9 @@
     padding: 2.5rem 0;
     display: block;
   }
+  @include mQ($mobile){
+    padding: 0 0 1rem 0;
+  }
 }
 
 .project-image{
@@ -41,6 +44,9 @@
   @include mQ($ipad){
     margin: 3rem 0;
   }
+  @include mQ($mobile){
+    margin: 1rem 0;
+  }
 }
 
 .project-description{
@@ -48,6 +54,10 @@
 
   @include mQ($ipad){
     margin: 3rem 0;
+  }
+
+  @include mQ($mobile){
+    margin: 1rem 0;
   }
 
 }

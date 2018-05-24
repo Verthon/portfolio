@@ -488,6 +488,9 @@ textarea, input {
     .project-container {
       padding: 2.5rem 0;
       display: block; } }
+  @media screen and (max-width: 500px) {
+    .project-container {
+      padding: 0 0 1rem 0; } }
 
 .project-image {
   max-width: 600px; }
@@ -502,11 +505,18 @@ textarea, input {
   .project-title {
     margin: 3rem 0; } }
 
+@media screen and (max-width: 500px) {
+  .project-title {
+    margin: 1rem 0; } }
+
 .project-description {
   margin: 1rem 0 5rem 0; }
   @media screen and (max-width: 768px) {
     .project-description {
       margin: 3rem 0; } }
+  @media screen and (max-width: 500px) {
+    .project-description {
+      margin: 1rem 0; } }
 
 .project-btn {
   padding: 0.5rem 1rem;
