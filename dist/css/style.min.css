@@ -293,7 +293,8 @@ textarea, input {
   box-shadow: 0px 0px 2rem #eeeeee; }
 
 .section {
-  padding: 2rem 4rem; }
+  padding: 2rem 4rem;
+  background: #22252c; }
   @media screen and (max-width: 500px) {
     .section {
       padding: 2rem; } }
@@ -487,6 +488,19 @@ textarea, input {
     .project-container {
       padding: 2.5rem 0;
       display: block; } }
+  @media screen and (max-width: 500px) {
+    .project-container {
+      padding: 0 0 1rem 0; } }
+
+.project-container:last-child {
+  padding: 5rem 1.6rem; }
+  @media screen and (max-width: 768px) {
+    .project-container:last-child {
+      padding: 2.5rem 0;
+      display: block; } }
+  @media screen and (max-width: 500px) {
+    .project-container:last-child {
+      padding: 0 0 1rem 0; } }
 
 .project-image {
   max-width: 600px; }
@@ -501,11 +515,18 @@ textarea, input {
   .project-title {
     margin: 3rem 0; } }
 
+@media screen and (max-width: 500px) {
+  .project-title {
+    margin: 1rem 0; } }
+
 .project-description {
   margin: 1rem 0 5rem 0; }
   @media screen and (max-width: 768px) {
     .project-description {
       margin: 3rem 0; } }
+  @media screen and (max-width: 500px) {
+    .project-description {
+      margin: 1rem 0; } }
 
 .project-btn {
   padding: 0.5rem 1rem;
@@ -522,6 +543,8 @@ textarea, input {
       padding: 0.5rem 1rem;
       font-size: 1rem;
       margin: 0.15rem 0; } }
+  .project-btn--sources {
+    margin: 1rem 0; }
 
 #github-btn:hover {
   cursor: pointer; }
@@ -546,6 +569,34 @@ textarea, input {
       padding: 0.75rem 1.25rem;
       margin: 0.5rem 0; } }
 
+.project-sources {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: auto;
+  margin: 5rem auto;
+  padding: 5rem 0;
+  background: #ffffff;
+  -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+  max-width: 1100px; }
+  @media screen and (max-width: 768px) {
+    .project-sources {
+      padding: 2.5rem 0; } }
+  @media screen and (max-width: 500px) {
+    .project-sources {
+      padding: 0 0 1rem 0; } }
+
 .contact-btn {
   padding: 1rem 2rem;
   color: #eeeeee;
@@ -563,8 +614,11 @@ textarea, input {
 .section-description--contact {
   margin: 0.5rem 0 3rem 0; }
 
+.site-footer {
+  background: #22252c; }
+
 body {
-  background: #22252c;
+  background: #ffffff;
   color: #ffffff;
   font-size: 16px;
   font-family: "Open Sans";
@@ -574,7 +628,9 @@ body {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
-  flex-direction: column; }
+  flex-direction: column;
+  max-width: 1920px;
+  margin: 0 auto; }
 
 .skills i {
   font-size: 8rem; }
