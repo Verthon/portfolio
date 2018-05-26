@@ -65,10 +65,16 @@
     z-index: 1;
     height: 45vh;
     top: 0;
+    animation: menufade 0.75s;
   }
   @include mQ($mobile){
     transform: translateY(13%);
   }
+}
+
+@keyframes menufade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 
