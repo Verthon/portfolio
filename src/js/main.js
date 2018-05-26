@@ -1,3 +1,9 @@
+import AOS from 'aos';
+
+AOS.init({
+  duration: 800,
+});
+
 
 const btn = document.querySelector('.btn-my-work');
 document.addEventListener('load', () => {
