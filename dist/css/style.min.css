@@ -164,11 +164,25 @@ textarea, input {
       align-items: center;
       z-index: 1;
       height: 45vh;
-      top: 0; } }
+      top: 0;
+      -webkit-animation: menufade 0.75s;
+      animation: menufade 0.75s; } }
   @media screen and (max-width: 500px) {
     .menu-ul {
       -webkit-transform: translateY(13%);
       transform: translateY(13%); } }
+
+@-webkit-keyframes menufade {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@keyframes menufade {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
 
 .menu-item {
   margin: 0 1rem; }
