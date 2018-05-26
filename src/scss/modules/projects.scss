@@ -79,6 +79,7 @@
   font-size: 1rem;
   background: $main-bg;
   color: $light;
+  margin: 0.1rem 0;
   @include mQ($ipad){
     padding: 0.75rem 1.25rem;
     font-size: 1.25rem;
@@ -92,6 +93,23 @@
   &--sources{
     margin: 1rem 0;
   }
+  &--link{
+    display: block;
+    padding: 1rem 1.5rem;
+    margin: 2rem 0;
+    background: $light-green;
+    text-transform: uppercase;
+    color: $main-bg;
+    @include mQ($ipad){
+      padding: 1rem 1.5rem;
+      display: block;
+      margin: 1rem 0;
+    }
+    @include mQ($mobile){
+      padding: 0.75rem 1.25rem;
+      margin: 0.5rem 0;
+    }
+  }
 }
 
 #github-btn:hover{
@@ -103,21 +121,7 @@
 }
 
 .project-btn--link{
-  display: block;
-  padding: 1rem 1.5rem;
-  margin: 2rem 0;
-  background: $light-green;
-  text-transform: uppercase;
-  color: $white;
-  @include mQ($ipad){
-    padding: 1rem 1.5rem;
-    display: block;
-    margin: 1rem 0;
-  }
-  @include mQ($mobile){
-    padding: 0.75rem 1.25rem;
-    margin: 0.5rem 0;
-  }
+  
 }
 
 .project-sources{
