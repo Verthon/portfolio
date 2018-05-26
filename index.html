@@ -4,13 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+  <link rel="stylesheet" href="https://cdn.rawgit.com/michalsnik/aos/2.0.4/dist/aos.css">
   <link rel="stylesheet" href="dist/css/style.min.css">
   <link href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABILAAASCwAAAAAAAAAAAAAAAAAvAAAAKgAAAC0AAAAxAAAAKAAAADIAAAAbAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALwAAADIAAAAuAAAAJgAAADAAAAAvAAAAJQAAAB8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABIAAADhAAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAAAAAswAAAFsAAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAAK0AAACqAAAAAAAAAFcAAAC3AAAAAAAAAAAAAAAAAAAAqgAAAK0AAAAUAAAAAAAAAAAAAAAAAAAARgAAAOMAAACMAAAABwAAAAAAAAAKAAAA7AAAABgAAAAAAAAAAAAAAAcAAACMAAAA4wAAAEYAAAAAAAAAkAAAAOEAAABCAAAAAAAAAAAAAAAAAAAAAAAAAJ4AAABwAAAAAAAAAAAAAAAAAAAAAAAAAEIAAADhAAAAkAAAAKQAAADcAAAAQgAAAAAAAAAAAAAAAAAAAAAAAABCAAAAzAAAAAAAAAAAAAAAAAAAAAAAAABCAAAA3AAAAKQAAAAAAAAASgAAAN8AAACbAAAAEQAAAAAAAAAAAAAAAgAAAOIAAAAqAAAAAAAAABEAAACbAAAA3wAAAEoAAAAAAAAAAAAAAAAAAAAOAAAAkwAAALUAAAAAAAAAAAAAAAAAAACJAAAAhQAAAAAAAAC1AAAAkwAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeAAAAAAAAAAAAAAAAAAAALgAAAN8AAAACAAAAHgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAACrAAAAKQAAAAAAAAAAAAAAAAAAAAAAAAAAAP8AAAD/AAD//wAA//8AAP//AAD//wAA+P8AAOTnAADE4wAAhGEAAB54AAAeOAAABiAAAMcjAAD3DwAA/x8AAA==" rel="icon" type="image/x-icon">
   <title>Krzysztof Sordyl Web Developer</title>
+  <meta name="description" content="Welcome, my name is Krzysztof Sordyl web developer living in Bielsko-Biała, Poland. I'm creating solid, modern and well-designed websites">
 </head>
 <body>
   <div class="header-wrapper">
@@ -26,42 +25,42 @@
         <li class="menu-item"><a href="#contantc">contact</a></li>
       </ul>
     </nav>
-    <header class="site-header animated bounceInDown">
+    <header class="site-header" data-aos="zoom-in">
       <h1 class="hero-heading">Welcome!</h1>
       <h2 class="hero-subheading">I'm <strong>Krzysztof Sordyl</strong></h2>
       <p class="hero-description">Web Developer</p>
       <a href="#projects"><button class="btn-my-work">View my work</button></a>
     </header>
   </div>
-  <section class="section about animated fadeInUp">
+  <section class="section about">
     <p class="about-description">I'am self taught web developer living in Bielsko-Biała, Poland.
         I build websites. I specialize in frontend development HTML5, CSS3, modern Javascript.
         I keep learning web development technologies every day, to provide better software.
     </p>
   </section>
-  <section id="skills" class="section skills animated fadeInUp">
+  <section id="skills" class="section skills">
     <h1 class="section-heading">Skills</h1>
     <blockquote class="section-quote">Try to learn something about everything and everything about something.
       <footer class="section-quote-author">Thomas Huxley</footer>
     </blockquote>
     <div class="row">
         <ul class="tab-header">
-            <li class="tab-header-item" data-tab="frontend">
+            <li class="tab-header-item" data-tab="frontend" data-aos="fade-down">
               <h2 class="tab-header-title">Frontend</h2>
               <p class="tab-header-content">Building responsive pages based on photoshop projects.
               SEO optimalization. Creating Wordpress based websites.</p>
             </li>
-            <li class="tab-header-item" data-tab="backend">
+            <li class="tab-header-item" data-tab="backend" data-aos="fade-down">
               <h2 class="tab-header-title">Backend</h2>
               <p class="tab-header-content">Basic understanding of PHP and MYSQL.</p>
             </li>
-              <li class="tab-header-item" data-tab="tools">
+              <li class="tab-header-item" data-tab="tools" data-aos="fade-down">
                 <h2 class="tab-header-title">Other tools</h2>
                 <p class="tab-header-content">Other tools used in my projects. </p>
               </li>
           </ul>
           <article id="frontend" class="tab-content">
-            <div class="tab-content-item active">
+            <div class="tab-content-item active" data-aos="fade-up">
               <div class="tab-column">
                 <h3 class="tab-content-heading">HTML & CSS</h3>
                 <ul class="tab-list">
@@ -91,7 +90,7 @@
                 </ul>
               </div>             
             </div>
-            <div id="backend" class="tab-content-item">
+            <div id="backend" class="tab-content-item" data-aos="fade-up">
               <div class="tab-column">
                 <h3 class="tab-content-heading">Backend programming languages</h3>
                 <ul class="tab-list">
@@ -110,7 +109,7 @@
                 </ul>
               </div>
             </div>
-            <div id="other" class="tab-content-item">
+            <div id="other" class="tab-content-item" data-aos="fade-up">
               <div class="tab-column">
                 <h3 class="tab-content-heading">Other tools</h3>
                 <ul class="tab-list">
@@ -125,11 +124,11 @@
           </article>
     </div>
   </section>
-  <section id="projects" class="section projects animated fadeInUp">
+  <section id="projects" class="section projects">
     <h1 class="section-heading section-heading--projects">Projects</h1>
     <p class="section-description">What I have worked on so far</p>
 
-    <div class="project-container">
+    <div class="project-container" data-aos="slide-right">
       <img class="project-image" src="dist/assets/HeyU.png" alt="HeyU website screenshot">
       <article class="project-info">
         <h2 class="project-title">HeyU website</h2>
@@ -142,7 +141,7 @@
       </article>
     </div>
 
-    <div class="project-container">
+    <div class="project-container" data-aos="slide-left">
       <img class="project-image" src="dist/assets/resto.jpeg" alt="Resto website screenshot">
       <article class="project-info">
         <h2 class="project-title">Restaurant website</h2>
@@ -151,15 +150,15 @@
         <button class="project-btn">CSS3</button>
         <button class="project-btn">Bootstrap4</button>
         <button class="project-btn">JavaScript</button>
-        <a href="https://github.com/Verthon/restaurant-site" target="_blank"><button id="github-btn" class="project-btn"><i class="fa fa-github fa-lg" aria-hidden="true"></i></button></a>
+        <a href="https://github.com/Verthon/restaurant-site" target="_blank"><button id="github-btn" class="project-btn" aria-label="Link to github account"><i class="fa fa-github fa-lg" aria-hidden="true"></i></button></a>
         <a href="https://verthon.github.io/restaurant-site/" target="_blank"><button class="project-btn project-btn--link">view site</button></a>
       </article>
     </div>
     <div class="project-sources">
       <h2 class="project-title">Rest of my projects</h2>
       <p class="project-description">projects sources(Github and Codepen)</p>
-      <a href="https://github.com/Verthon" target="_blank"><button id="github-btn" class="project-btn project-btn--sources"><i class="fa fa-github fa-lg" aria-hidden="true"></i></button></a>
-      <a href="https://codepen.io/Verthon" target="_blank"><button id="codepen-btn" class="project-btn project-btn--sources"><i class="fa fa-codepen fa-lg" aria-hidden="true"></i></button></a>
+      <a data-aos="flip-up" href="https://github.com/Verthon" target="_blank"><button id="github-btn" class="project-btn project-btn--sources"><i class="fa fa-github fa-lg" aria-hidden="true"></i></button></a>
+      <a data-aos="flip-up" href="https://codepen.io/Verthon" target="_blank"><button id="codepen-btn" class="project-btn project-btn--sources"><i class="fa fa-codepen fa-lg" aria-hidden="true"></i></button></a>
     </div>
   </section>
   <section class="section contact">

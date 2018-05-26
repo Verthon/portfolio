@@ -423,18 +423,35 @@ textarea, input {
   color: #22252c;
   width: 100%;
   height: auto; }
+  @media screen and (max-width: 500px) {
+    .tab-content-item {
+      padding: 0.1rem; } }
 
 .active {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   background: #e9eaee;
-  margin-bottom: 5rem; }
+  margin-bottom: 5rem;
+  -webkit-animation: activefade 2s;
+  animation: activefade 2s; }
   @media screen and (max-width: 768px) {
     .active {
       -ms-flex-wrap: wrap;
       flex-wrap: wrap;
       height: auto; } }
+
+@-webkit-keyframes activefade {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@keyframes activefade {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
 
 /* tab columns */
 .tab-column {
@@ -458,6 +475,9 @@ textarea, input {
 
 .tab-item {
   margin: 0.7rem 0; }
+  @media screen and (max-width: 500px) {
+    .tab-item {
+      margin: 0.35rem; } }
 
 .projects {
   background: #e9eaee;
@@ -533,7 +553,8 @@ textarea, input {
   border: 0;
   font-size: 1rem;
   background: #22252c;
-  color: #eeeeee; }
+  color: #eeeeee;
+  margin: 0.1rem 0; }
   @media screen and (max-width: 768px) {
     .project-btn {
       padding: 0.75rem 1.25rem;
@@ -545,29 +566,28 @@ textarea, input {
       margin: 0.15rem 0; } }
   .project-btn--sources {
     margin: 1rem 0; }
+  .project-btn--link {
+    display: block;
+    padding: 1rem 1.5rem;
+    margin: 2rem 0;
+    background: rgba(22, 211, 149, 0.9);
+    text-transform: uppercase;
+    color: #22252c; }
+    @media screen and (max-width: 768px) {
+      .project-btn--link {
+        padding: 1rem 1.5rem;
+        display: block;
+        margin: 1rem 0; } }
+    @media screen and (max-width: 500px) {
+      .project-btn--link {
+        padding: 0.75rem 1.25rem;
+        margin: 0.5rem 0; } }
 
 #github-btn:hover {
   cursor: pointer; }
 
 .project-btn:hover {
   cursor: pointer; }
-
-.project-btn--link {
-  display: block;
-  padding: 1rem 1.5rem;
-  margin: 2rem 0;
-  background: rgba(22, 211, 149, 0.9);
-  text-transform: uppercase;
-  color: #ffffff; }
-  @media screen and (max-width: 768px) {
-    .project-btn--link {
-      padding: 1rem 1.5rem;
-      display: block;
-      margin: 1rem 0; } }
-  @media screen and (max-width: 500px) {
-    .project-btn--link {
-      padding: 0.75rem 1.25rem;
-      margin: 0.5rem 0; } }
 
 .project-sources {
   display: -webkit-box;
