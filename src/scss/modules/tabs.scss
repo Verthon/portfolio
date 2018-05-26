@@ -38,15 +38,24 @@
   color: $main-bg;
   width: 100%;
   height: auto;
+  @include mQ($mobile){
+    padding: 0.1rem;
+  }
 }
 .active{
   display: flex;
   background: $tab-content;
   margin-bottom: 5rem;
+  animation: activefade 2s;
   @include mQ($ipad){
     flex-wrap: wrap;
     height: auto;
   }
+}
+
+@keyframes activefade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 /* tab columns */
@@ -72,4 +81,7 @@
 
 .tab-item{
   margin: 0.7rem 0;
+  @include mQ($mobile){
+    margin: 0.35rem
+  }
 }

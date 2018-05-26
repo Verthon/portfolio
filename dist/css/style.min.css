@@ -423,18 +423,35 @@ textarea, input {
   color: #22252c;
   width: 100%;
   height: auto; }
+  @media screen and (max-width: 500px) {
+    .tab-content-item {
+      padding: 0.1rem; } }
 
 .active {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   background: #e9eaee;
-  margin-bottom: 5rem; }
+  margin-bottom: 5rem;
+  -webkit-animation: activefade 2s;
+  animation: activefade 2s; }
   @media screen and (max-width: 768px) {
     .active {
       -ms-flex-wrap: wrap;
       flex-wrap: wrap;
       height: auto; } }
+
+@-webkit-keyframes activefade {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@keyframes activefade {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
 
 /* tab columns */
 .tab-column {
@@ -458,6 +475,9 @@ textarea, input {
 
 .tab-item {
   margin: 0.7rem 0; }
+  @media screen and (max-width: 500px) {
+    .tab-item {
+      margin: 0.35rem; } }
 
 .projects {
   background: #e9eaee;
