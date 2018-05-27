@@ -526,14 +526,14 @@ textarea, input {
     .project-container {
       padding: 0 0 1rem 0; } }
 
-.project-container:last-child {
+.project-container.last {
   padding: 5rem 1.6rem; }
   @media screen and (max-width: 768px) {
-    .project-container:last-child {
+    .project-container.last {
       padding: 2.5rem 0;
       display: block; } }
   @media screen and (max-width: 500px) {
-    .project-container:last-child {
+    .project-container.last {
       padding: 0 0 1rem 0; } }
 
 .project-image {
