@@ -28,7 +28,7 @@
   }
 }
 
-.project-container:last-child{
+.project-container.last{
   padding: 5rem 1.6rem;
   @include mQ($ipad){
     padding: 2.5rem 0;
