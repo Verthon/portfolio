@@ -20,6 +20,12 @@ body{
   flex-direction: column;
   max-width: 1920px;
   margin: 0 auto;
+  overflow-x: hidden;
+
+  @include mQ($ipad){
+    max-width: 100%;
+    
+  }
 }
 
 .skills{
