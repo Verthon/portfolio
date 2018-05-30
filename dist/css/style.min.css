@@ -188,7 +188,7 @@ textarea, input {
   margin: 0 1rem; }
   @media screen and (max-width: 768px) {
     .menu-item {
-      margin: 2.5rem; } }
+      margin: 1.75rem; } }
   @media screen and (max-width: 500px) {
     .menu-item {
       margin: 1.25rem; } }
@@ -379,11 +379,11 @@ textarea, input {
     .about .about-description {
       width: auto;
       font-size: 1.25rem;
-      padding: 1rem 2rem; } }
+      padding: 1rem 4rem; } }
   @media screen and (max-width: 500px) {
     .about .about-description {
       font-size: 1rem;
-      padding: 0.5rem 1rem; } }
+      padding: 0.5rem 2rem; } }
 
 .tab-header {
   list-style: none;
@@ -537,10 +537,12 @@ textarea, input {
       padding: 0 0 1rem 0; } }
 
 .project-image {
-  max-width: 600px; }
+  max-width: 600px;
+  padding: 0 2rem; }
   @media screen and (max-width: 768px) {
     .project-image {
-      max-width: 100%; } }
+      max-width: 100%;
+      padding: 0; } }
 
 .project-info {
   padding: 0 2rem; }

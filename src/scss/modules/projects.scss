@@ -41,9 +41,11 @@
 
 .project-image{
   max-width: 600px;
+  padding: 0 2rem;
 
   @include mQ($ipad){
     max-width: 100%;
+    padding: 0;
   }
 }
 
