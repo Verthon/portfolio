@@ -1,23 +1,26 @@
 import AOS from 'aos';
+//import menu from './modules/menu'
 
 AOS.init({
   duration: 800,
 });
 
-
+// Animation of btn-my-work
 const btn = document.querySelector('.btn-my-work');
 document.addEventListener('load', () => {
   btn.style.opacity = "1";
 });
 
+// Responsive menu hamburger
 const menu = document.querySelector('#menu');
 menu.addEventListener('click', () => {
-  const ul = document.querySelector('#menu-ul');
-  ul.style.display = (ul.style.display == 'flex') ? 'none' : 'flex';
+  const menu = document.querySelector('.menu-container');
+  menu.classList.toggle('menu-container-mobile');
 });
 
-const tabsHeader = document.querySelectorAll('.tab-header-item');
+// Tabbed content
 
+const tabsHeader = document.querySelectorAll('.tab-header-item');
 const tabsContent = document.querySelectorAll('.tab-content-item');
 
 const show = (i) =>{
@@ -33,3 +36,10 @@ tabsHeader.forEach((item, i) => {
   });
 });
 show(0);
+
+// Scroll to exact tab
+
+const frontend = document.querySelector("[data-tab='frontend']");
+frontend.addEventListener('click', () => {
+  
+});

@@ -547,16 +547,20 @@ textarea, input {
 .project-info {
   padding: 0 2rem; }
 
-@media screen and (max-width: 768px) {
-  .project-title {
-    margin: 3rem 0; } }
-
-@media screen and (max-width: 500px) {
-  .project-title {
-    margin: 1rem 0; } }
+.project-title {
+  font-size: 2rem; }
+  @media screen and (max-width: 768px) {
+    .project-title {
+      margin: 3rem 0; } }
+  @media screen and (max-width: 500px) {
+    .project-title {
+      margin: 1rem 0;
+      font-size: 1.5rem; } }
 
 .project-description {
   margin: 1rem 0 5rem 0; }
+  .project-description--sources {
+    margin: 0.5 0 5rem 0; }
   @media screen and (max-width: 768px) {
     .project-description {
       margin: 3rem 0; } }
@@ -621,7 +625,7 @@ textarea, input {
   align-items: center;
   height: auto;
   margin: 5rem auto;
-  padding: 5rem 0;
+  padding: 1rem 0;
   background: #ffffff;
   -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);

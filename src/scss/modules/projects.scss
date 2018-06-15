@@ -54,16 +54,22 @@
 }
 
 .project-title{
+  font-size: 2rem;
   @include mQ($ipad){
     margin: 3rem 0;
   }
   @include mQ($mobile){
     margin: 1rem 0;
+    font-size: 1.5rem;
   }
 }
 
 .project-description{
   margin: 1rem 0 5rem 0;
+
+  &--sources{
+    margin: 0.5 0 5rem 0;
+  }
 
   @include mQ($ipad){
     margin: 3rem 0;
@@ -133,7 +139,7 @@
   align-items: center;
   height: auto;
   margin: 5rem auto;
-  padding: 5rem 0;
+  padding: 1rem 0;
   background: $white;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
   max-width: 1100px;
