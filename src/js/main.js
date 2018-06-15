@@ -38,8 +38,21 @@ tabsHeader.forEach((item, i) => {
 show(0);
 
 // Scroll to exact tab
+const frontend = document.querySelector('.tab-header-item[data-tab="frontend"]');
+const backend = document.querySelector('.tab-header-item[data-tab="backend');
+const other = document.querySelector('.tab-header-item[data-tab="other"]');
+const frontendTab = document.querySelector('#frontend');
+const backendTab = document.querySelector('#backend');
+const otherTab = document.querySelector('#other');
 
-const frontend = document.querySelector("[data-tab='frontend']");
 frontend.addEventListener('click', () => {
-  
+  frontendTab.scrollIntoView({alignToTop: true, behavior: "smooth"});
+});
+
+backend.addEventListener('click', () => {
+  backendTab.scrollIntoView({alignToTop: true, behavior: "smooth"});
+});
+
+other.addEventListener('click', () => {
+  otherTab.scrollIntoView({alignToTop: true, behavior: "smooth"});
 });
