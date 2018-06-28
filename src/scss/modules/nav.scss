@@ -80,8 +80,10 @@
 
 .menu-item{
   margin: 0 1rem;
+  font-size: 1.1rem;
   @include mQ($ipad){
     margin: 1.75rem;
+    font-size: 1.4rem;
   }
   @include mQ($mobile){
     margin: 1.25rem;
@@ -98,4 +100,5 @@
 .menu-item:hover{
   text-decoration: underline;
   text-shadow: 0 0 10px $light;
+  cursor: pointer;
 }
