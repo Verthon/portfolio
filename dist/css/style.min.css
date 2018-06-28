@@ -185,10 +185,12 @@ textarea, input {
     opacity: 1; } }
 
 .menu-item {
-  margin: 0 1rem; }
+  margin: 0 1rem;
+  font-size: 1.1rem; }
   @media screen and (max-width: 768px) {
     .menu-item {
-      margin: 1.75rem; } }
+      margin: 1.75rem;
+      font-size: 1.4rem; } }
   @media screen and (max-width: 500px) {
     .menu-item {
       margin: 1.25rem; } }
@@ -201,7 +203,8 @@ textarea, input {
 
 .menu-item:hover {
   text-decoration: underline;
-  text-shadow: 0 0 10px #eeeeee; }
+  text-shadow: 0 0 10px #eeeeee;
+  cursor: pointer; }
 
 .hero-heading {
   font-size: 5.5rem;
