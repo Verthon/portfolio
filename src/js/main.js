@@ -2,7 +2,7 @@ import AOS from 'aos';
 //import menu from './modules/menu'
 
 AOS.init({
-  duration: 1500,
+  duration: 1100,
 });
 
 // Animation of btn-my-work
@@ -14,8 +14,8 @@ document.addEventListener('load', () => {
 // Responsive menu hamburger
 const menu = document.querySelector('#menu');
 menu.addEventListener('click', () => {
-  const menu = document.querySelector('.menu-container');
-  menu.classList.toggle('menu-container-mobile');
+  const menu = document.querySelector('.menu-ul');
+  menu.classList.toggle('menu-ul-mobile');
 });
 
 //Menu scroll to element

@@ -184,6 +184,44 @@ textarea, input {
   to {
     opacity: 1; } }
 
+.menu-ul.menu-ul-mobile {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+  @media screen and (max-width: 768px) {
+    .menu-ul.menu-ul-mobile {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      position: absolute;
+      background: #3c414d;
+      width: 100%;
+      -webkit-transform: translateY(10%);
+      transform: translateY(10%);
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      z-index: 1;
+      height: 45vh;
+      top: 0;
+      -webkit-animation: menufade 0.75s;
+      animation: menufade 0.75s; } }
+  @media screen and (max-width: 500px) {
+    .menu-ul.menu-ul-mobile {
+      -webkit-transform: translateY(13%);
+      transform: translateY(13%);
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      height: 50vh; } }
+
 .menu-item {
   margin: 0 1rem;
   font-size: 1.1rem; }
