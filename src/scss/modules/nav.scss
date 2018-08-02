@@ -105,6 +105,7 @@
 .menu-item{
   margin: 0 1rem;
   font-size: 1.1rem;
+  font-weight: bold;
   @include mQ($ipad){
     margin: 1.75rem;
     font-size: 1.4rem;
