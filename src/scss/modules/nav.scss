@@ -109,6 +109,7 @@
   @include mQ($ipad){
     margin: 1.75rem;
     font-size: 1.4rem;
+    font-weight: 400;
   }
   @include mQ($mobile){
     margin: 1.25rem;

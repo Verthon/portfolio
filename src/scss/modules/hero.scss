@@ -32,19 +32,12 @@
     font-size: 1.75rem;
   }
 }
-.hero-subheading strong{
-  letter-spacing: 0.2rem;
-
-  @include mQ($mobile){
-    letter-spacing: 0.1rem;
-  }
-}
 .hero-description{
-  font-size: 1.75rem;
+  font-size: 2.5rem;
   font-weight: 300;
   margin: 0;
   padding-bottom: 10rem;
-  color: $light;
+  color: $white;
 
   @include mQ($medium){
     font-size: 2rem;
