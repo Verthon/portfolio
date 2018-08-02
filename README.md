@@ -1,9 +1,12 @@
 # Portfolio
 
+My first personal portfolio
 - https://verthon.github.io/portfolio/
 
-## Creating first personal portfolio
-- using Animate.css
-- using Sass,
+## Technologies used
+- Animate on Scroll JavaScript Library
+- Sass,
 - ES6 JavaScript,
-- using Gulp.js
+- Gulp.js
+- HTML
+- npm
