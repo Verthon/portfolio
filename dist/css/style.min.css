@@ -246,6 +246,9 @@ textarea, input {
   text-shadow: 0 0 10px #eeeeee;
   cursor: pointer; }
 
+i:hover {
+  cursor: pointer; }
+
 .hero-heading {
   font-size: 5.5rem;
   font-weight: 300;
