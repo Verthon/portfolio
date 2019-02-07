@@ -50,9 +50,13 @@ const tabsContent = document.querySelectorAll('.tab-content-item');
 
 const show = (i) =>{
   tabsContent.forEach((tab) => {
-    tab.classList.remove('active');
+    tab.classList.remove('active-tab');
   });
-  tabsContent[i].classList.add('active', 'animated', 'fadeIn');
+  tabsHeader.forEach((tab) => {
+    tab.classList.remove('active-header');
+  });
+  tabsContent[i].classList.add('active-tab', 'animated', 'fadeIn');
+  tabsHeader[i].classList.add('active-header');
 }
 
 tabsHeader.forEach((item, i) => {
@@ -70,14 +74,17 @@ const frontendTab = document.querySelector('#frontend');
 const backendTab = document.querySelector('#backend');
 const otherTab = document.querySelector('#other');
 
-frontend.addEventListener('click', () => {
-  frontendTab.scrollIntoView({alignToTop: true, behavior: "smooth"});
-});
+if(window.innerWidth < 769){
+  frontend.addEventListener('click', () => {
+    frontendTab.scrollIntoView({alignToTop: true, behavior: "smooth"});
+  });
+  
+  backend.addEventListener('click', () => {
+    backendTab.scrollIntoView({alignToTop: true, behavior: "smooth"});
+  });
+  
+  other.addEventListener('click', () => {
+    otherTab.scrollIntoView({alignToTop: true, behavior: "smooth"});
+  });
+}
 
-backend.addEventListener('click', () => {
-  backendTab.scrollIntoView({alignToTop: true, behavior: "smooth"});
-});
-
-other.addEventListener('click', () => {
-  otherTab.scrollIntoView({alignToTop: true, behavior: "smooth"});
-});

@@ -19,6 +19,10 @@
   line-height: 1.6;
   width: auto;
 }
+.active-header{
+  color: #fff;
+  background: $gradient;
+}
 .tab-header-item:hover{
   cursor: pointer;
   color: #fff;
@@ -42,7 +46,7 @@
     padding: 0.1rem;
   }
 }
-.active{
+.active-tab{
   display: flex;
   background: $tab-content;
   margin-bottom: 5rem;
