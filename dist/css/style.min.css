@@ -312,7 +312,7 @@ i:hover {
 .btn-my-work {
   border: 0.05rem solid #ffffff;
   background: #ffffff;
-  color: rgba(22, 211, 149, 0.9);
+  color: #3c414d;
   border-radius: 0.2rem;
   font-family: 'Open Sans';
   padding: 1rem 3rem;
@@ -455,6 +455,11 @@ i:hover {
   line-height: 1.6;
   width: auto; }
 
+.active-header {
+  color: #fff;
+  background: -webkit-gradient(linear, left top, right top, from(rgba(22, 211, 149, 0.9)), to(rgba(25, 213, 204, 0.9))), url("../assets/laptop.jpg");
+  background: linear-gradient(to right, rgba(22, 211, 149, 0.9), rgba(25, 213, 204, 0.9)), url("../assets/laptop.jpg"); }
+
 .tab-header-item:hover {
   cursor: pointer;
   color: #fff;
@@ -481,7 +486,7 @@ i:hover {
     .tab-content-item {
       padding: 0.1rem; } }
 
-.active {
+.active-tab {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -490,7 +495,7 @@ i:hover {
   -webkit-animation: activefade 2s;
   animation: activefade 2s; }
   @media screen and (max-width: 768px) {
-    .active {
+    .active-tab {
       -ms-flex-wrap: wrap;
       flex-wrap: wrap;
       height: auto; } }
