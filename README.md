@@ -1,13 +1,13 @@
 # Portfolio
 
 My first personal portfolio
-- https://verthon.github.io/portfolio/
+- https://sordyl.me
 
 ## Technologies used
 - Animate on Scroll JavaScript Library
-- Sass,
+- Scss,
 - ES6 JavaScript,
 - Gulp.js
-- HTML
+- HTML5
 - npm
 - SVG Background from https://www.svgbackgrounds.com/

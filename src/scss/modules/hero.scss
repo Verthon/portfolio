@@ -71,6 +71,7 @@
   font-size: 1.35rem;
   opacity: 0;
   font-weight: bold;
+  margin: 0 auto 5rem auto;
 
 /* make things invisible upon start */
   -webkit-animation:fadeIn ease-in 1;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
@@ -88,6 +89,7 @@
   @include mQ($medium){
     padding: 0.75rem 1.25rem;
     font-size: 1.25rem;
+    margin: 0 auto;
   }
 
   @include mQ($ipad){

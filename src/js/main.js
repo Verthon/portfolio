@@ -43,6 +43,10 @@ menuContact.addEventListener('click', () => {
   contact.scrollIntoView({alignToTop: true, behavior: "smooth"});
 });
 
+const btnProjects = document.querySelector('#btn-projects');
+btnProjects.addEventListener('click', () => {
+  projects.scrollIntoView({alignToTop: true, behavior: "smooth", block:"start"});
+});
 // Tabbed content
 
 const tabsHeader = document.querySelectorAll('.tab-header-item');
