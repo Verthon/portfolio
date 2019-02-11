@@ -65,7 +65,7 @@
     z-index: 1;
     height: 45vh;
     top: 0;
-    animation: menufade 0.75s;
+    animation: menufade 0.5s;
   }
   @include mQ($mobile){
     transform: translateY(13%);

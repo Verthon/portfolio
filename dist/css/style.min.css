@@ -165,8 +165,8 @@ textarea, input {
       z-index: 1;
       height: 45vh;
       top: 0;
-      -webkit-animation: menufade 0.75s;
-      animation: menufade 0.75s; } }
+      -webkit-animation: menufade 0.5s;
+      animation: menufade 0.5s; } }
   @media screen and (max-width: 500px) {
     .menu-ul {
       -webkit-transform: translateY(13%);
@@ -683,6 +683,8 @@ i:hover {
   @media screen and (max-width: 500px) {
     .project-sources {
       padding: 0 0 1rem 0; } }
+  .project-sources__description {
+    text-align: center; }
 
 .contact-btn {
   padding: 1rem 2rem;
@@ -703,6 +705,10 @@ i:hover {
 
 .site-footer {
   background: #22252c; }
+  .site-footer__text {
+    padding: 1rem 2rem; }
+    .site-footer__text--color {
+      color: rgba(22, 211, 149, 0.9); }
 
 body {
   background: #ffffff;
