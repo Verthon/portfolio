@@ -10,9 +10,12 @@ $sec-bg: #313741;
 $about-bg: #3c414d;
 $tab-header: #2d313a;
 $tab-content: #e9eaee;
+
+//devices
 $ipad: 900px;
 $mobile: 500px;
-$medium: 1250px;
+$medium: 1280px;
+
 $gradient: linear-gradient(to right, $light-green, $light-mint),url('../assets/laptop.jpg');
 
 $font: 'Open Sans';

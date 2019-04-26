@@ -67,7 +67,7 @@ textarea, input {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center; }
-  @media screen and (max-width: 1250px) {
+  @media screen and (max-width: 1280px) {
     .site-header {
       padding: 0 8rem;
       height: 50vh;
@@ -101,7 +101,7 @@ textarea, input {
   -webkit-box-align: start;
   -ms-flex-align: start;
   align-items: flex-start; }
-  @media screen and (max-width: 1250px) {
+  @media screen and (max-width: 1280px) {
     .site-nav {
       margin: 2rem 0;
       padding: 0 8rem; } }
@@ -120,7 +120,7 @@ textarea, input {
 
 .site-nav i {
   margin-right: 1rem; }
-  @media screen and (max-width: 1250px) {
+  @media screen and (max-width: 1280px) {
     .site-nav i {
       font-size: 2rem; } }
   @media screen and (max-width: 900px) {
@@ -253,7 +253,7 @@ i:hover {
   font-size: 5.5rem;
   font-weight: 300;
   margin: 0.1rem 0; }
-  @media screen and (max-width: 1250px) {
+  @media screen and (max-width: 1280px) {
     .hero-heading {
       font-size: 3.5rem; } }
   @media screen and (max-width: 900px) {
@@ -267,7 +267,7 @@ i:hover {
   font-size: 4.25rem;
   font-weight: 300;
   margin: 0; }
-  @media screen and (max-width: 1250px) {
+  @media screen and (max-width: 1280px) {
     .hero-subheading {
       font-size: 3rem; } }
   @media screen and (max-width: 900px) {
@@ -283,7 +283,7 @@ i:hover {
   margin: 0;
   padding-bottom: 10rem;
   color: #ffffff; }
-  @media screen and (max-width: 1250px) {
+  @media screen and (max-width: 1280px) {
     .hero-description {
       font-size: 2rem; } }
   @media screen and (max-width: 900px) {
@@ -329,7 +329,7 @@ i:hover {
   animation-fill-mode: forwards;
   -webkit-animation-duration: 1s;
   animation-duration: 1s; }
-  @media screen and (max-width: 1250px) {
+  @media screen and (max-width: 1280px) {
     .btn-my-work {
       padding: 0.75rem 1.25rem;
       font-size: 1.25rem;
@@ -349,11 +349,14 @@ i:hover {
   box-shadow: 0px 0px 2rem #eeeeee; }
 
 .section {
-  padding: 2rem 4rem;
+  padding: 2rem 14rem;
   background: #22252c; }
+  @media screen and (max-width: 900px) {
+    .section {
+      padding: 2rem 4rem; } }
   @media screen and (max-width: 500px) {
     .section {
-      padding: 2rem; } }
+      padding: 2rem 1rem; } }
 
 .section-heading {
   text-transform: uppercase;
@@ -361,7 +364,7 @@ i:hover {
   color: rgba(25, 213, 204, 0.9);
   font-size: 3rem;
   margin: 2.5rem 0 5rem 0; }
-  @media screen and (max-width: 1250px) {
+  @media screen and (max-width: 1280px) {
     .section-heading {
       font-size: 2.5rem; } }
   @media screen and (max-width: 900px) {
@@ -456,6 +459,9 @@ i:hover {
   flex: 1;
   line-height: 1.6;
   width: auto; }
+  @media screen and (max-width: 500px) {
+    .tab-header-item {
+      padding: 1rem; } }
 
 .active-header {
   color: #fff;
@@ -520,6 +526,9 @@ i:hover {
   -ms-flex: 1;
   flex: 1;
   padding: 0rem 2rem; }
+  @media screen and (max-width: 500px) {
+    .tab-column {
+      padding: 0rem 1rem; } }
 
 .tab-content-heading {
   padding: 1rem 0;
@@ -731,7 +740,7 @@ body {
 
 .skills i {
   font-size: 8rem; }
-  @media screen and (max-width: 1250px) {
+  @media screen and (max-width: 1280px) {
     .skills i {
       font-size: 8rem; } }
   @media screen and (max-width: 500px) {
@@ -762,7 +771,7 @@ body {
     font-size: 1.4rem;
     -ms-flex-preferred-size: 33%;
     flex-basis: 33%; }
-    @media screen and (max-width: 1250px) {
+    @media screen and (max-width: 1280px) {
       .skills .row .skills-technology {
         -ms-flex-preferred-size: 33%;
         flex-basis: 33%;

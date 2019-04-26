@@ -18,6 +18,10 @@
   flex: 1;
   line-height: 1.6;
   width: auto;
+
+  @include mQ($mobile){
+    padding: 1rem;
+  }
 }
 .active-header{
   color: #fff;
@@ -66,6 +70,10 @@
 .tab-column{
   flex: 1;
   padding: 0rem 2rem;
+
+  @include mQ($mobile){
+    padding: 0rem 1rem;
+  }
 }
 
 .tab-content-heading{
