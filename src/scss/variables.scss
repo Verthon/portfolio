@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700');
 
 $light-green: rgba(22, 211, 149, 0.9);
-$light-mint: rgba(25, 213, 204, 0.9);
+$light-mint: rgba(63, 224, 216, 0.9);
+$light-green-hex: #16d395;
+$light-mint-hex: #3fe0d8; 
 $white: #ffffff;
 $light: #eeeeee;
 $black: #000000;
@@ -15,6 +17,9 @@ $tab-content: #e9eaee;
 $ipad: 900px;
 $mobile: 500px;
 $medium: 1280px;
+
+//container fluid
+$medium-fl: 1460px;
 
 $gradient: linear-gradient(to right, $light-green, $light-mint),url('../assets/laptop.jpg');
 
