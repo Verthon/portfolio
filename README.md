@@ -10,4 +10,4 @@ My first personal portfolio
 - Gulp.js
 - HTML5
 - npm
-- SVG Background from https://www.svgbackgrounds.com/
+- SVG Background from https://loading.io
