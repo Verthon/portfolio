@@ -7,7 +7,7 @@
   color: $black;
 
   @include mQ($ipad){
-    height: 60vh;
+    height: 80vh;
   }
 }
 .site-header{

@@ -69,7 +69,7 @@ textarea, input {
   color: #000000; }
   @media screen and (max-width: 900px) {
     .header-wrapper {
-      height: 60vh; } }
+      height: 80vh; } }
 
 .site-header {
   margin: 7rem auto;
@@ -363,8 +363,8 @@ i:hover {
 
 .btn-my-work:hover {
   cursor: pointer;
-  -webkit-box-shadow: 0px 0px 2rem #eeeeee;
-  box-shadow: 0px 0px 2rem #eeeeee; }
+  -webkit-box-shadow: 0px 0px 0.1rem #000000;
+  box-shadow: 0px 0px 0.1rem #000000; }
 
 .section {
   padding: 2rem 14rem;
@@ -458,7 +458,7 @@ i:hover {
       display: block; } }
 
 .tab-header-title {
-  margin: 0.5rem; }
+  margin: 0.5rem 0; }
 
 .tab-header-item {
   padding: 1rem 3rem;
@@ -546,10 +546,13 @@ i:hover {
   padding: 0rem 2rem; }
   @media screen and (max-width: 500px) {
     .tab-column {
+      -webkit-box-flex: 100%;
+      -ms-flex: 100%;
+      flex: 100%;
       padding: 0rem 1rem; } }
 
 .tab-content-heading {
-  padding: 1rem 0;
+  padding: 0;
   font-size: 1.5rem; }
   @media screen and (max-width: 900px) {
     .tab-content-heading {
@@ -588,7 +591,7 @@ i:hover {
   align-items: flex-start;
   height: auto;
   margin: 5rem auto;
-  padding: 5rem 0;
+  padding: 3rem 0;
   background: #ffffff;
   -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
@@ -602,7 +605,7 @@ i:hover {
       padding: 0 0 1rem 0; } }
 
 .project-container.last {
-  padding: 5rem 1.6rem; }
+  padding: 3rem 1.6rem; }
   @media screen and (max-width: 900px) {
     .project-container.last {
       padding: 2.5rem 0;
@@ -633,6 +636,7 @@ i:hover {
       font-size: 1.5rem; } }
 
 .project-description {
+  line-height: 1.5;
   margin: 1rem 0 5rem 0; }
   .project-description--sources {
     margin: 0.5 0 5rem 0; }
@@ -663,7 +667,7 @@ i:hover {
     margin: 1rem 0; }
   .project-btn--link {
     display: block;
-    padding: 1rem 1.5rem;
+    padding: 0.75rem 1rem;
     margin: 2rem 0;
     background: rgba(22, 211, 149, 0.9);
     text-transform: uppercase;
