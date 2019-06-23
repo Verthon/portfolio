@@ -83,7 +83,7 @@
   @include mQ($ipad){
     display: flex;
     position: absolute;
-    background: $about-bg;
+    background: $tab-content;
     width: 100%;
     transform: translateY(10%);
     flex-direction: column;
@@ -105,7 +105,6 @@
 .menu-item{
   margin: 0 1rem;
   font-size: 1.1rem;
-  font-weight: bold;
   @include mQ($ipad){
     margin: 1.75rem;
     font-size: 1.4rem;

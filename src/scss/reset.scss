@@ -38,3 +38,9 @@ textarea, input{
   font-family: inherit;
   background: inherit; 
 }
+
+@font-face{
+  font-family: 'Basier Circle Regular';
+  src: url("../../dist/fonts/basiercircle-regular-webfont.woff2") format("woff2"),
+       url("../../dist/fonts/basiercircle-regular-webfont.woff") format("woff");
+}

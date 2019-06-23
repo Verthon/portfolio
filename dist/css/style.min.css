@@ -44,6 +44,10 @@ textarea, input {
   font-family: inherit;
   background: inherit; }
 
+@font-face {
+  font-family: 'Basier Circle Regular';
+  src: url("../../dist/fonts/basiercircle-regular-webfont.woff2") format("woff2"), url("../../dist/fonts/basiercircle-regular-webfont.woff") format("woff"); }
+
 .container {
   max-width: 1280px; }
 
@@ -63,6 +67,9 @@ textarea, input {
   -ms-flex-direction: column;
   flex-direction: column;
   color: #000000; }
+  @media screen and (max-width: 900px) {
+    .header-wrapper {
+      height: 60vh; } }
 
 .site-header {
   margin: 7rem auto;
@@ -86,11 +93,11 @@ textarea, input {
     .site-header {
       padding: 0 4rem;
       height: 50vh;
-      margin: 1rem 0; } }
+      margin: 3rem 0; } }
   @media screen and (max-width: 500px) {
     .site-header {
       padding: 0 2rem;
-      margin: 1rem 0; } }
+      margin: 4rem 0; } }
   .site-header a {
     margin: 0 auto;
     margin-bottom: 5rem; }
@@ -204,7 +211,7 @@ textarea, input {
       display: -ms-flexbox;
       display: flex;
       position: absolute;
-      background: #3c414d;
+      background: #e9eaee;
       width: 100%;
       -webkit-transform: translateY(10%);
       transform: translateY(10%);
@@ -234,8 +241,7 @@ textarea, input {
 
 .menu-item {
   margin: 0 1rem;
-  font-size: 1.1rem;
-  font-weight: bold; }
+  font-size: 1.1rem; }
   @media screen and (max-width: 900px) {
     .menu-item {
       margin: 1.75rem;
@@ -287,6 +293,9 @@ i:hover {
     .hero-subheading {
       font-size: 1.75rem; } }
 
+.hero__highlight {
+  font-weight: bold; }
+
 .hero-description {
   font-size: 2.5rem;
   font-weight: 300;
@@ -298,7 +307,7 @@ i:hover {
   @media screen and (max-width: 900px) {
     .hero-description {
       font-size: 1.5rem;
-      padding: 0.5rem 0 6rem 0; } }
+      padding: 0.5rem 0 4rem 0; } }
   @media screen and (max-width: 500px) {
     .hero-description {
       padding-bottom: 0;
@@ -323,10 +332,9 @@ i:hover {
   color: #ffffff;
   border-radius: 0.2rem;
   font-family: 'Open Sans';
-  padding: 0.75rem 2rem;
+  padding: 0.75rem 1.25rem;
   font-size: 1.35rem;
   opacity: 0;
-  font-weight: bold;
   margin: 5rem 0;
   -ms-flex-item-align: start;
   align-self: flex-start;
@@ -346,7 +354,7 @@ i:hover {
       margin: 0; } }
   @media screen and (max-width: 900px) {
     .btn-my-work {
-      padding: 1rem 1.75rem;
+      padding: 0.5rem 1rem;
       font-size: 1.35rem; } }
   @media screen and (max-width: 500px) {
     .btn-my-work {
@@ -422,7 +430,7 @@ i:hover {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  background: #3c414d;
+  background: #5f636e;
   padding: 2rem 0; }
 
 .about .about-description {
