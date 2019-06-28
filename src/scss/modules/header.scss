@@ -2,12 +2,12 @@
   background-image: url('../../../dist/assets/hero.svg'); 
   background-size: cover;
   background-repeat: no-repeat;
-  height: 70vh;
+  min-height: 70vh;
   @include flexColumn;
   color: $black;
 
   @include mQ($ipad){
-    height: 80vh;
+    min-height: 80vh;
   }
 }
 .site-header{

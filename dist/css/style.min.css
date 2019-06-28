@@ -58,7 +58,7 @@ textarea, input {
   background-image: url("../../../dist/assets/hero.svg");
   background-size: cover;
   background-repeat: no-repeat;
-  height: 70vh;
+  min-height: 70vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -69,7 +69,7 @@ textarea, input {
   color: #000000; }
   @media screen and (max-width: 900px) {
     .header-wrapper {
-      height: 80vh; } }
+      min-height: 80vh; } }
 
 .site-header {
   margin: 7rem auto;
