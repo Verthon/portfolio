@@ -6,6 +6,10 @@
   position: relative;
   align-items: flex-start;
 
+  @include mQ($HiDPILaptop){
+    padding: 0 10rem;
+  }
+
   @include mQ($medium){
     margin: 2rem 0;
     padding: 0 8rem;
@@ -28,7 +32,7 @@
   margin-right: 1rem;
 
   @include mQ($medium){
-    font-size: 2rem;
+    font-size: 1.1rem;
   }
 
   @include mQ($ipad){

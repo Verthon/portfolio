@@ -50,6 +50,9 @@ textarea, input {
 
 .container {
   max-width: 1280px; }
+  @media screen and (max-width: 1440px) {
+    .container {
+      max-width: 1140px; } }
 
 .container-fluid {
   max-width: 1460px; }
@@ -67,9 +70,13 @@ textarea, input {
   -ms-flex-direction: column;
   flex-direction: column;
   color: #000000; }
+  @media screen and (max-width: 1440px) {
+    .header-wrapper {
+      background-size: auto; } }
   @media screen and (max-width: 900px) {
     .header-wrapper {
-      min-height: 80vh; } }
+      min-height: 80vh;
+      background-size: cover; } }
 
 .site-header {
   margin: 7rem auto;
@@ -118,6 +125,9 @@ textarea, input {
   -webkit-box-align: start;
   -ms-flex-align: start;
   align-items: flex-start; }
+  @media screen and (max-width: 1440px) {
+    .site-nav {
+      padding: 0 10rem; } }
   @media screen and (max-width: 1280px) {
     .site-nav {
       margin: 2rem 0;
@@ -139,7 +149,7 @@ textarea, input {
   margin-right: 1rem; }
   @media screen and (max-width: 1280px) {
     .site-nav i {
-      font-size: 2rem; } }
+      font-size: 1.1rem; } }
   @media screen and (max-width: 900px) {
     .site-nav i {
       font-size: 1.75rem;
@@ -349,9 +359,10 @@ i:hover {
   animation-duration: 1s; }
   @media screen and (max-width: 1280px) {
     .btn-my-work {
-      padding: 0.75rem 1.25rem;
+      margin: 2rem 0;
+      padding: 0.5rem 1rem;
       font-size: 1.25rem;
-      margin: 0; } }
+      margin: 3rem 0; } }
   @media screen and (max-width: 900px) {
     .btn-my-work {
       padding: 0.5rem 1rem;
@@ -622,8 +633,15 @@ i:hover {
       max-width: 100%;
       padding: 0; } }
 
-.project-info {
+.project {
   padding: 0 2rem; }
+  .project__footer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center; }
 
 .project-title {
   font-size: 2rem; }
@@ -667,20 +685,17 @@ i:hover {
     margin: 1rem 0; }
   .project-btn--link {
     display: block;
-    padding: 0.75rem 1rem;
     margin: 2rem 0;
     background: rgba(22, 211, 149, 0.9);
-    text-transform: uppercase;
+    text-transform: capitalize;
     color: #22252c; }
     @media screen and (max-width: 900px) {
       .project-btn--link {
-        padding: 1rem 1.5rem;
         display: block;
         margin: 1rem 0; } }
     @media screen and (max-width: 500px) {
       .project-btn--link {
-        padding: 0.75rem 1.25rem;
-        margin: 0.5rem 0; } }
+        margin: 0.5rem; } }
 
 #github-btn:hover {
   cursor: pointer; }

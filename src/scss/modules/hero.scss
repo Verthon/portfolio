@@ -89,9 +89,10 @@
   animation-duration:1s;
 
   @include mQ($medium){
-    padding: 0.75rem 1.25rem;
+    margin: 2rem 0;
+    padding: 0.5rem 1rem;
     font-size: 1.25rem;
-    margin: 0;
+    margin: 3rem 0;
   }
 
   @include mQ($ipad){

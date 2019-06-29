@@ -6,8 +6,13 @@
   @include flexColumn;
   color: $black;
 
+  @include mQ($HiDPILaptop){
+    background-size: auto;
+  }
+
   @include mQ($ipad){
     min-height: 80vh;
+    background-size: cover;
   }
 }
 .site-header{
