@@ -1,5 +1,5 @@
 @mixin mQ($arg){
-  @media screen and (max-width: $arg){
+  @media (max-width: $arg){
     @content;
   } 
 }

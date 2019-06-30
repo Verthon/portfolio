@@ -88,11 +88,14 @@
   -moz-animation-duration:1s;
   animation-duration:1s;
 
+  @include mQ($iphoneSE){
+    margin: 0;
+  }
+
   @include mQ($medium){
     margin: 2rem 0;
     padding: 0.5rem 1rem;
     font-size: 1.25rem;
-    margin: 3rem 0;
   }
 
   @include mQ($ipad){

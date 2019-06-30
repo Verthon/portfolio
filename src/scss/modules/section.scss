@@ -7,8 +7,13 @@
   }
 
   @include mQ($mobile){
+    padding: 2rem 2rem;
+  }
+
+  @include mQ($iphoneSE){
     padding: 2rem 1rem;
   }
+
 }
 .section-heading{
   text-transform: uppercase;

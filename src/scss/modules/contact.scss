@@ -1,9 +1,13 @@
 .contact-btn{
-  padding: 1rem 2rem;
-  color: $light;
+  padding: 0.5rem 1.5rem;
+  color: $white;
   background: linear-gradient(to right, $light-green, $light-mint);
   border: 0;
   font-size: 1.25rem;
+
+  @include mQ($mobile){
+    
+  }
 }
 .section-heading--contact{
   margin: 2.5rem 0 0 0;

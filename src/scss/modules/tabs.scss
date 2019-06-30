@@ -21,6 +21,7 @@
 
   @include mQ($mobile){
     padding: 1rem;
+    margin: 1rem 0;
   }
 }
 .active-header{
@@ -48,6 +49,7 @@
   height: auto;
   @include mQ($mobile){
     padding: 0.1rem;
+    margin: 0;
   }
 }
 .active-tab{
@@ -84,7 +86,6 @@
     font-size: 1.35rem;
   }
   @include mQ($mobile){
-    padding: 1rem 0 0 0;
     font-size: 1.2rem;
   }
 }

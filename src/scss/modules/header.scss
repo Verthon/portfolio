@@ -38,6 +38,11 @@
     padding: 0 2rem;
     margin: 4rem 0;
   }
+
+  @include mQ($iphoneSE){
+    padding: 0 1.5rem;
+  }
+
   a{
     margin: 0 auto;
     margin-bottom: 5rem;

@@ -52,9 +52,21 @@
 .project{
   padding: 0 2rem;
 
+  @include mQ($mobile){
+    padding: 0 1rem;
+  }
+
   &__footer{
     display: flex;
     align-items: center;
+    margin: 1rem 0;
+    i{
+      font-size: 1.5rem;
+    }
+
+    @include mQ($mobile){
+      margin: .25rem 0;
+    }
   }
 }
 
@@ -109,7 +121,6 @@
   }
   &--link{
     display: block;
-    margin: 2rem 0;
     background: $light-green;
     text-transform: capitalize;
     color: $main-bg;
@@ -120,6 +131,9 @@
     @include mQ($mobile){
       margin: 0.5rem;
     }
+  }
+  &--source{
+    margin: 0 0.5rem 0 0;
   }
 }
 
@@ -151,7 +165,7 @@
     padding: 2.5rem 0;
   }
   @include mQ($mobile){
-    padding: 0 0 1rem 0;
+    padding: 1rem;
   }
 
   &__description{
