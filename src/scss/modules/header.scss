@@ -29,9 +29,14 @@
   }
 
   @include mQ($ipad){
+    justify-content: center;
     padding: 0 4rem;
     height: 50vh;
     margin: 3rem 0;
+  }
+
+  @include mQ($nexus){
+    justify-content: center;
   }
 
   @include mQ($mobile){

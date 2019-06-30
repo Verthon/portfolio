@@ -23,6 +23,11 @@
     padding: 2.5rem 0;
     display: block;
   }
+
+  @include mQ($nexus){
+    padding: 0 0 2rem 0;
+  }
+
   @include mQ($mobile){
     padding: 0 0 1rem 0;
   }
@@ -73,8 +78,13 @@
 .project-title{
   font-size: 2rem;
   @include mQ($ipad){
-    margin: 3rem 0;
+    margin: 1rem 0;
   }
+
+  @include mQ($nexus){
+    margin: 1.5rem 0;
+  }
+
   @include mQ($mobile){
     margin: 1rem 0;
     font-size: 1.5rem;
@@ -93,6 +103,10 @@
     margin: 3rem 0;
   }
 
+  @include mQ($nexus){
+    margin: 2rem 0;
+  }
+
   @include mQ($mobile){
     margin: 1rem 0;
   }
@@ -107,8 +121,8 @@
   color: $light;
   margin: 0.1rem 0;
   @include mQ($ipad){
-    padding: 0.75rem 1.25rem;
-    font-size: 1.25rem;
+    padding: 0.5rem 1rem;
+    font-size: 1.1rem;
   }
   @include mQ($mobile){
     padding: 0.5rem 1rem;

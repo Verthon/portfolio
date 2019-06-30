@@ -98,9 +98,17 @@ textarea, input {
       margin: 2rem 0; } }
   @media (max-width: 900px) {
     .site-header {
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
       padding: 0 4rem;
       height: 50vh;
       margin: 3rem 0; } }
+  @media (max-width: 600px) {
+    .site-header {
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center; } }
   @media (max-width: 500px) {
     .site-header {
       padding: 0 2rem;
@@ -420,6 +428,10 @@ i:hover {
   .section p {
     font-size: 1.35rem; } }
 
+@media (max-width: 600px) {
+  .section p {
+    font-size: 1.1rem; } }
+
 @media (max-width: 500px) {
   .section p {
     font-size: 1rem; } }
@@ -620,6 +632,9 @@ i:hover {
     .project-container {
       padding: 2.5rem 0;
       display: block; } }
+  @media (max-width: 600px) {
+    .project-container {
+      padding: 0 0 2rem 0; } }
   @media (max-width: 500px) {
     .project-container {
       padding: 0 0 1rem 0; } }
@@ -665,7 +680,10 @@ i:hover {
   font-size: 2rem; }
   @media (max-width: 900px) {
     .project-title {
-      margin: 3rem 0; } }
+      margin: 1rem 0; } }
+  @media (max-width: 600px) {
+    .project-title {
+      margin: 1.5rem 0; } }
   @media (max-width: 500px) {
     .project-title {
       margin: 1rem 0;
@@ -679,6 +697,9 @@ i:hover {
   @media (max-width: 900px) {
     .project-description {
       margin: 3rem 0; } }
+  @media (max-width: 600px) {
+    .project-description {
+      margin: 2rem 0; } }
   @media (max-width: 500px) {
     .project-description {
       margin: 1rem 0; } }
@@ -692,8 +713,8 @@ i:hover {
   margin: 0.1rem 0; }
   @media (max-width: 900px) {
     .project-btn {
-      padding: 0.75rem 1.25rem;
-      font-size: 1.25rem; } }
+      padding: 0.5rem 1rem;
+      font-size: 1.1rem; } }
   @media (max-width: 500px) {
     .project-btn {
       padding: 0.5rem 1rem;
