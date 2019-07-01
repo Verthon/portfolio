@@ -4,6 +4,10 @@
   @include mQ($HiDPILaptop){
     max-width: $xxl;
   }
+
+  @include mQ($medium){
+    max-width: $md;
+  }
 }
 
 .container-fluid{

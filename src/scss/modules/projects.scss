@@ -14,21 +14,30 @@
   align-items: flex-start;
   height: auto;
   margin: 5rem auto;
-  padding: 3rem 0;
+  padding: 5rem 0;
   background: $white;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
   max-width: 1100px;
 
+  @include mQ($medium){
+    max-width: 800px;
+    @include flexColumn;
+    padding: 0 0 2.5rem 0;
+  }
+
   @include mQ($ipad){
-    padding: 2.5rem 0;
+    @include flexColumn;
+    padding: 0 0 2.5rem 0;
     display: block;
   }
 
   @include mQ($nexus){
+    @include flexColumn;
     padding: 0 0 2rem 0;
   }
 
   @include mQ($mobile){
+    @include flexColumn;
     padding: 0 0 1rem 0;
   }
 }
@@ -48,7 +57,7 @@
   max-width: 600px;
   padding: 0 2rem;
 
-  @include mQ($ipad){
+  @include mQ($medium){
     max-width: 100%;
     padding: 0;
   }
@@ -155,12 +164,12 @@
   cursor: pointer;
 }
 
-.project-btn:hover{
+.project-btn--sources:hover{
   cursor: pointer;
 }
 
-.project-btn--link{
-  
+.project-btn--link:hover{
+  cursor: pointer;
 }
 
 .project-sources{

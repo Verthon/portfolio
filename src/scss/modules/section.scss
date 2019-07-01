@@ -2,6 +2,10 @@
   padding: 2rem 14rem;
   background: $main-bg;
 
+  @include mQ($medium){
+    padding: 2rem 5rem;
+  }
+
   @include mQ($ipad){
     padding: 2rem 4rem;
   }
