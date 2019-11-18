@@ -1,20 +1,30 @@
 import React from 'react'
-import { Link } from 'gatsby'
 
 import Layout from '../components/layout'
-import Image from '../components/image'
-import SEO from '../components/seo'
+import Skills from '../components/Skills'
+import Projects from '../components/Projects'
+import Contact from '../components/Contact'
+import Footer from '../components/Footer'
+import Seo from '../components/Seo'
 
 const IndexPage = () => (
   <Layout>
-    <SEO title='Home' />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: '300px', marginBottom: '1.45rem' }}>
-      <Image />
-    </div>
-    <Link to='/page-2/'>Go to page 2</Link>
+    <Seo
+      title='Krzysztof Sordyl Frontend Developer'
+      description='Welcome, my name is Krzysztof Sordyl frontend developer living in Bielsko-Biała, Poland. I"m creating solid, modern and well-designed websites. React enthusiast. Software, programming Bielsko-Biała'
+    />
+    <section id='about' class='section about'>
+      <p class='about-description'>
+        I am a web developer living in Bielsko-Biała, Poland. I build websites,
+        particularly, I specialize in frontend development HTML5, SCSS, modern
+        JavaScript. Currently learning more about React, Redux and Node.js. I'm
+        looking for first job in IT or intern.
+      </p>
+    </section>
+    <Skills />
+    <Projects />
+    <Contact email='christopher.sordyl@gmail.com' />
+    <Footer />
   </Layout>
 )
 
