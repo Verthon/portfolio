@@ -1,0 +1,108 @@
+.tab-header{
+  list-style: none;
+  display: flex;
+  @include mQ($ipad){
+    display: block;
+  }
+}
+.tab-header-title{
+  margin: 0.5rem 0;
+}
+.tab-header-item{
+  padding: 1rem 3rem;
+  margin: 1rem;
+  background: $tab-header;
+  color: $light;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  line-height: 1.6;
+  width: auto;
+
+  @include mQ($medium){
+    padding: 1rem 1.5rem;
+  }
+
+  @include mQ($mobile){
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+}
+.active-header{
+  color: #fff;
+  background: $gradient;
+}
+.tab-header-item:hover{
+  cursor: pointer;
+  color: #fff;
+  background: $gradient;
+}
+.tab-header .tab-header-content{
+  max-width: 100%;
+}
+.tab-content{
+  display: flex;
+  width: 100%;
+}
+.tab-content-item{
+  display: none;
+  padding: 1rem;
+  margin: 0 1rem;
+  color: $main-bg;
+  width: 100%;
+  height: auto;
+  @include mQ($mobile){
+    padding: 0.1rem;
+    margin: 0;
+  }
+}
+.active-tab{
+  display: flex;
+  background: $tab-content;
+  margin-bottom: 5rem;
+  animation: activefade 2s;
+  @include mQ($ipad){
+    flex-wrap: wrap;
+    height: auto;
+  }
+}
+
+@keyframes activefade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* tab columns */
+.tab-column{
+  flex: 1;
+  padding: 0rem 2rem;
+
+  @include mQ($mobile){
+    flex: 100%;
+    padding: 0rem 1rem;
+  }
+}
+
+.tab-content-heading{
+  padding: 0;
+  font-size: 1.5rem;
+
+  @include mQ($ipad){
+    font-size: 1.35rem;
+  }
+  @include mQ($mobile){
+    font-size: 1.2rem;
+  }
+}
+
+.tab-list{
+  list-style: square;
+}
+
+.tab-item{
+  margin: 0.7rem 0;
+
+  @include mQ($mobile){
+    margin: 0.35rem
+  }
+}

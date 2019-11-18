@@ -1,0 +1,73 @@
+.section{
+  padding: 2rem 14rem;
+  background: $main-bg;
+
+  @include mQ($medium){
+    padding: 2rem 5rem;
+  }
+
+  @include mQ($ipad){
+    padding: 2rem 4rem;
+  }
+
+  @include mQ($mobile){
+    padding: 2rem 2rem;
+  }
+
+  @include mQ($iphoneSE){
+    padding: 2rem 1rem;
+  }
+
+}
+.section-heading{
+  text-transform: uppercase;
+  text-align: center;
+  color: $light-mint;
+  font-size: 3rem;
+  margin: 2.5rem 0 5rem 0;
+
+  @include mQ($medium){
+    font-size: 2.5rem;
+  }
+
+  @include mQ($ipad){
+    font-size: 2.25rem;
+  }
+
+  @include mQ($mobile){
+    font-size: 1.75rem;
+  }
+}
+
+.section-description{
+  text-align: center;
+  font-size: 1.15rem;
+  font-weight: lighter;
+}
+.section p{
+
+  @include mQ($ipad){
+    font-size: 1.35rem;
+  }
+
+  @include mQ($nexus){
+    font-size: 1.1rem;
+  }
+
+  @include mQ($mobile){
+    font-size: 1rem;
+  }
+}
+
+.section-quote{
+  font-style: italic;
+  margin: 3rem 1rem;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.section-quote-author{
+  font-style: normal;
+  font-weight: bold;
+  margin-top: 1rem;
+}

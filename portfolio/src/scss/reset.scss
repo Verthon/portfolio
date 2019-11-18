@@ -1,0 +1,46 @@
+html, body, ul, ol{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  overflow: auto;
+}
+body{
+  display: flex;
+  flex-wrap: wrap;
+}
+ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+h1,h2,h3,h4,h5,h6{
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+}
+a{
+  text-decoration: none;
+  color: inherit;
+}
+textarea:focus, input:focus, button:focus{
+  outline: none;
+}
+img{
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+body *{
+  box-sizing: border-box;
+}
+textarea, input{
+  padding: 0;
+  border: 0;
+  font-family: inherit;
+  background: inherit; 
+}
+
+// @font-face{
+//   font-family: 'Basier Circle Regular';
+//   src: url("../../dist/fonts/basiercircle-regular-webfont.woff2") format("woff2"),
+//        url("../../dist/fonts/basiercircle-regular-webfont.woff") format("woff");
+// }

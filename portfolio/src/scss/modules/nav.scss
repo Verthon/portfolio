@@ -1,0 +1,134 @@
+.site-nav{
+  display: flex;
+  margin: 2rem 0;
+  justify-content: space-between;
+  padding: $g-padding;
+  position: relative;
+  align-items: flex-start;
+
+  @include mQ($HiDPILaptop){
+    padding: 0 10rem;
+  }
+
+  @include mQ($medium){
+    margin: 2rem 0;
+    padding: 0 8rem;
+  }
+
+  @include mQ($ipad){
+    position: relative;
+    margin: 2rem 0;
+    padding: 0;
+  }
+  
+  @include mQ($mobile){
+    margin: 1rem 0;
+    padding: 0;
+    align-items: center;
+
+  }
+}
+.site-nav i{
+  margin-right: 1rem;
+
+  @include mQ($medium){
+    font-size: 1.1rem;
+  }
+
+  @include mQ($ipad){
+    font-size: 1.75rem;
+    padding: 0 2rem;
+  }
+
+  @include mQ($mobile){
+    margin-right: 0.5rem;
+    font-size: 1.35rem;
+  }
+}
+
+.menu-icon{
+  display: none;
+
+  @include mQ($ipad){
+    display: flex;
+  }
+}
+
+.menu-ul{
+  display: flex;
+
+  @include mQ($ipad){
+    display: none;
+    position: absolute;
+    background: $about-bg;
+    width: 100%;
+    transform: translateY(10%);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    height: 45vh;
+    top: 0;
+    animation: menufade 0.5s;
+  }
+  @include mQ($mobile){
+    transform: translateY(13%);
+  }
+}
+
+@keyframes menufade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.menu-ul.menu-ul-mobile{
+  display: flex;
+
+  @include mQ($ipad){
+    display: flex;
+    position: absolute;
+    background: $tab-content;
+    width: 100%;
+    transform: translateY(10%);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    height: 45vh;
+    top: 0;
+    animation: menufade 0.75s;
+  }
+  @include mQ($mobile){
+    transform: translateY(13%);
+    display: flex;
+    height: 50vh;
+  }
+}
+
+
+.menu-item{
+  margin: 0 1rem;
+  font-size: 1.1rem;
+  @include mQ($ipad){
+    margin: 1.75rem;
+    font-size: 1.4rem;
+    font-weight: 400;
+  }
+  @include mQ($mobile){
+    margin: 1.25rem;
+  }
+}
+
+.menu-item a{
+  font-size: 1.1rem;
+  @include mQ($ipad){
+    font-size: 1.4rem;
+  }
+}
+
+.menu-item:hover{
+  text-decoration: underline;
+  text-shadow: 0 0 10px $light;
+  cursor: pointer;
+}
+i:hover{cursor: pointer;}
