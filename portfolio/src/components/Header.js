@@ -1,11 +1,10 @@
-import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
 import React from 'react'
 import Nav from './Nav'
 
 const Header = () => (
   <div className='header-wrapper'>
-    <Nav />
+    <Nav links={['skills', 'about', 'projects', 'contact']} />
     <header class='site-header container'>
       <h1 class='hero-heading' data-aos='zoom-in'>
         Welcome!
@@ -19,7 +18,7 @@ const Header = () => (
       <button
         id='btn-projects'
         class='btn-my-work'
-        data-aos-delay='500'
+        data-aos-delay='750'
         data-aos='flip-up'
       >
         My projects

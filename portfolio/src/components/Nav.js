@@ -1,38 +1,40 @@
-import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
 import React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
+import NavItem from './NavItem'
 
-const Nav = ({ siteTitle }) => (
-  <nav class='site-nav'>
-    <div class='site-nav--socials'>
-      <Link href='https://github.com/Verthon' target='_blank' rel='noopener'>
-        <i class='fa fa-github fa-lg' aria-label='Verthon GitHub profile' />
-      </Link>
-      <Link
+const Nav = ({ links }) => (
+  <nav className='site-nav'>
+    <div className='site-nav--socials'>
+      <a
+        href='https://github.com/Verthon'
+        target='_blank'
+        rel='noopener noreferrer'
+      >
+        <FontAwesomeIcon
+          icon={faGithub}
+          size='lg'
+          aria-label='Verthon GitHub profile'
+        />
+      </a>
+      <a
         href='https://www.linkedin.com/in/krzysztof-sordyl/'
         target='_blank'
-        rel='noopener'
+        rel='noopener noreferrer'
       >
-        <i
-          class='fa fa-linkedin fa-lg'
+        <FontAwesomeIcon
+          icon={faLinkedin}
+          size='lg'
           aria-label='Krzysztof Sordyl linkedin profile'
         />
-      </Link>
+      </a>
     </div>
-    <i id='menu' class='fa fa-bars fa-lg menu-icon' />
-    <ul id='menu-ul' class='menu-ul'>
-      <li id='menu-skills' class='menu-item'>
-        skills
-      </li>
-      <li id='menu-about' class='menu-item'>
-        about
-      </li>
-      <li id='menu-projects' class='menu-item'>
-        projects
-      </li>
-      <li id='menu-contact' class='menu-item'>
-        contact
-      </li>
+    <i id='menu' className='fa fa-bars fa-lg menu-icon' />
+    <ul id='menu-ul' className='menu-ul'>
+      {links.map(link => (
+        <NavItem key={link} id={link} name={link} />
+      ))}
     </ul>
   </nav>
 )

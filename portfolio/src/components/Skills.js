@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import Nav from './Nav'
 
 const Skills = () => (
   <section id='skills' class='section skills'>

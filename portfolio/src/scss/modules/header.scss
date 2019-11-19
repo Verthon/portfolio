@@ -20,7 +20,6 @@
   width: 100%;
   height: auto;
   flex-wrap: wrap;
-  @include flexColumn;
 
   @include mQ($medium){
     padding: 0 8rem;
@@ -42,10 +41,14 @@
   @include mQ($mobile){
     padding: 0 2rem;
     margin: 4rem 0;
+    @include flexColumn;
   }
 
   @include mQ($iphoneSE){
     padding: 0 1.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
   }
 
   a{

@@ -1,18 +1,22 @@
-<!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
-<p align="center">
-  <a href="https://www.gatsbyjs.org">
-    <img alt="Gatsby" src="https://www.gatsbyjs.org/monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby's default starter
-</h1>
+# My portfolio
 
-Kick off your project with this default boilerplate. This starter ships with the main Gatsby configuration files you might need to get up and running blazing fast with the blazing fast app generator for React.
+My first personal portfolio
+- https://sordyl.me
 
-_Have another more specific idea? You may want to check out our vibrant collection of [official and community-created starters](https://www.gatsbyjs.org/docs/gatsby-starters/)._
 
-## 🚀 Quick start
+## Table of contents
+* [Technologies](#technologies)
+* [Setup](#setup)
+* [Used packages and tools](#used-packages-and-tools)
+* [Work in progress](#work-in-progress)
+
+## Technologies
+- Gatsby.js
+- Scss,
+- ES6 JavaScript,
+- SVG Background from https://loading.io
+
+## 🚀 Setup
 
 1.  **Create a Gatsby site.**
 

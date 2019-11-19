@@ -1,21 +1,21 @@
 const tabs = () => {
-  const tabsHeader = document.querySelectorAll('.tab-header-item');
+  const tabsHeader = document.querySelectorAll('.tab-header-item')
 
-  const tabsContent = document.querySelectorAll('.tab-content-item');
+  const tabsContent = document.querySelectorAll('.tab-content-item')
 
-  const show = (i) =>{
+  const show = (i) => {
     tabsContent.forEach((tab) => {
-      tab.classList.remove('active');
-    });
-    tabsContent[i].classList.add('active');
-}
+      tab.classList.remove('active')
+    })
+    tabsContent[i].classList.add('active')
+  }
 
   tabsHeader.forEach((item, i) => {
-    item.addEventListener('click', () =>{
-      show(i);
-    });
-  });
-  show(0);
+    item.addEventListener('click', () => {
+      show(i)
+    })
+  })
+  show(0)
 }
 
-export default tabs;
+export default tabs
