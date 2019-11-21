@@ -1,19 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Contact = ({ email }) => {
+const Contact = React.forwardRef(({ email }, ref) => {
   return (
-    <section id='contact' class='section contact'>
-      <h1 class='section-heading section-heading--contact'>Contact</h1>
-      <p class='section-description section-description--contact'>
+    <section ref={ref} id='contact' className='section contact'>
+      <h1 className='section-heading section-heading--contact'>Contact</h1>
+      <p className='section-description section-description--contact'>
         Feel free to contact me
       </p>
-      <p class='section-description section-description--contact'>
+      <p className='section-description section-description--contact'>
         {email}
       </p>
       <a href={`mailto:${email}`}>
         <button
-          class='contact-btn'
+          className='contact-btn'
           data-aos='zoom-in'
           aria-label='Link to email christopher.sordyl@gmail.com'
         >
@@ -22,7 +22,7 @@ const Contact = ({ email }) => {
       </a>
     </section>
   )
-}
+})
 
 Contact.propTypes = {
   email: PropTypes.string

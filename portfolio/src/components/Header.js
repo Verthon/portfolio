@@ -2,24 +2,25 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import Nav from './Nav'
 
-const Header = () => (
+const Header = ({ scroll }) => (
   <div className='header-wrapper'>
-    <Nav links={['skills', 'about', 'projects', 'contact']} />
-    <header class='site-header container'>
-      <h1 class='hero-heading' data-aos='zoom-in'>
+    <Nav links={['skills', 'projects', 'contact']} />
+    <header className='site-header container'>
+      <h1 className='hero-heading' data-aos='zoom-in'>
         Welcome!
       </h1>
-      <h2 class='hero-subheading' data-aos='zoom-in'>
-        I'm <strong class='hero__highlight'>Krzysztof Sordyl</strong>
+      <h2 className='hero-subheading' data-aos='zoom-in'>
+        I'm <strong className='hero__highlight'>Krzysztof Sordyl</strong>
       </h2>
-      <p class='hero-description' data-aos='zoom-in'>
+      <p className='hero-description' data-aos='zoom-in'>
         Frontend Developer
       </p>
       <button
         id='btn-projects'
-        class='btn-my-work'
+        className='btn-my-work'
         data-aos-delay='750'
         data-aos='flip-up'
+        onClick={scroll}
       >
         My projects
       </button>

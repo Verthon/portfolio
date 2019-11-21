@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import NavItem from './NavItem'
 
@@ -16,6 +17,7 @@ const Nav = ({ links }) => (
           icon={faGithub}
           size='lg'
           aria-label='Verthon GitHub profile'
+          color='black'
         />
       </a>
       <a
@@ -27,10 +29,11 @@ const Nav = ({ links }) => (
           icon={faLinkedin}
           size='lg'
           aria-label='Krzysztof Sordyl linkedin profile'
+          color='black'
         />
       </a>
     </div>
-    <i id='menu' className='fa fa-bars fa-lg menu-icon' />
+    <button className='menu-icon'><FontAwesomeIcon icon={faBars} size='lg' aria-hidden='true' color='black' /></button>
     <ul id='menu-ul' className='menu-ul'>
       {links.map(link => (
         <NavItem key={link} id={link} name={link} />

@@ -28,6 +28,7 @@
 
   }
 }
+
 .site-nav svg{
   margin-right: 1rem;
 
@@ -38,20 +39,37 @@
   @include mQ($ipad){
     font-size: 1.75rem;
     padding: 0 2rem;
+    color: $tab-header;
   }
 
   @include mQ($mobile){
     margin-right: 0.5rem;
     font-size: 1.35rem;
+    color: $tab-header;
+    fill: $black;
+  }
+}
+
+.site-nav svg path{
+  @include mQ($ipad) {
+    color: $black;
+    fill: $black;
   }
 }
 
 .menu-icon{
   display: none;
-
   @include mQ($ipad){
     display: flex;
+    border: none;
+    color: $tab-header;
+    background-color: transparent
   }
+}
+
+.menu-icon svg path{
+  color: $black;
+  fill: $black;
 }
 
 .menu-ul{
@@ -119,8 +137,9 @@
   }
 }
 
-.menu-item a{
+.menu-item svg{
   font-size: 1.1rem;
+  color: $black;
   @include mQ($ipad){
     font-size: 1.4rem;
   }

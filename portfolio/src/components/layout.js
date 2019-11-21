@@ -11,7 +11,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 
 import Header from './Header'
 
-const Layout = ({ children }) => {
+const Layout = ({ children, scrollFunction }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -24,14 +24,15 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <Header siteTitle={data.site.siteMetadata.title} />
+      <Header scroll={scrollFunction} siteTitle={data.site.siteMetadata.title} />
       {children}
     </>
   )
 }
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
+  scrollFunction: PropTypes.func
 }
 
 export default Layout
