@@ -5,7 +5,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import NavItem from './NavItem'
 
-const Nav = ({ links }) => (
+const Nav = ({ links, scroll }) => (
   <nav className='site-nav'>
     <div className='site-nav--socials'>
       <a
@@ -36,14 +36,15 @@ const Nav = ({ links }) => (
     <button className='menu-icon'><FontAwesomeIcon icon={faBars} size='lg' aria-hidden='true' color='black' /></button>
     <ul id='menu-ul' className='menu-ul'>
       {links.map(link => (
-        <NavItem key={link} id={link} name={link} />
+        <NavItem key={link} id={link} name={link} handleClick={scroll} />
       ))}
     </ul>
   </nav>
 )
 
 Nav.propTypes = {
-  siteTitle: PropTypes.string
+  links: PropTypes.array,
+  scroll: PropTypes.func
 }
 
 Nav.defaultProps = {

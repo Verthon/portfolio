@@ -4,14 +4,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub, faCodepen } from '@fortawesome/free-brands-svg-icons'
 import Project from './Project'
 
-const Projects = React.forwardRef(({ projects }, ref) => {
+const Projects = React.forwardRef((props, ref) => {
   return (
     <section ref={ref} id='projects' className='section projects'>
       <h1 className='section-heading section-heading--projects'>Projects</h1>
       <p className='section-description'>
         This is what I have worked on so far
       </p>
-      {projects.map(project => (
+      {props.projects.map(project => (
         <Project
           key={project.name}
           name={project.name}

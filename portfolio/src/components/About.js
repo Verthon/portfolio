@@ -1,8 +1,8 @@
 import React from 'react'
 
-const About = React.forwardRef((props, ref) => {
+const About = props => {
   return (
-    <section ref={ref} className='section about'>
+    <section className='section about'>
       <p className='about-description'>
         I am a web developer living in Bielsko-Biała, Poland. I build websites,
         particularly, I specialize in frontend development HTML5, SCSS, modern
@@ -11,6 +11,6 @@ const About = React.forwardRef((props, ref) => {
       </p>
     </section>
   )
-})
+}
 
 export default About

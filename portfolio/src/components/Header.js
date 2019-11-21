@@ -4,7 +4,7 @@ import Nav from './Nav'
 
 const Header = ({ scroll }) => (
   <div className='header-wrapper'>
-    <Nav links={['skills', 'projects', 'contact']} />
+    <Nav links={['skills', 'projects', 'contact']} scroll={scroll} />
     <header className='site-header container'>
       <h1 className='hero-heading' data-aos='zoom-in'>
         Welcome!
@@ -20,7 +20,7 @@ const Header = ({ scroll }) => (
         className='btn-my-work'
         data-aos-delay='750'
         data-aos='flip-up'
-        onClick={scroll}
+        onClick={() => scroll('skills')}
       >
         My projects
       </button>
@@ -29,11 +29,7 @@ const Header = ({ scroll }) => (
 )
 
 Header.propTypes = {
-  siteTitle: PropTypes.string
-}
-
-Header.defaultProps = {
-  siteTitle: ''
+  scroll: PropTypes.func
 }
 
 export default Header

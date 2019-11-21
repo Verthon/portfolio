@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import Tabs from './Tabs'
 
-const Skills = React.forwardRef(() => {
+const Skills = React.forwardRef((props, ref) => {
   const headers = [
     {
       name: 'Frontend',
@@ -88,7 +88,7 @@ const Skills = React.forwardRef(() => {
     ]
   ]
   return (
-    <section id='skills' className='section skills'>
+    <section ref={ref} id='skills' className='section skills'>
       <h1 className='section-heading'>Skills</h1>
       <blockquote className='section-quote'>
         "Try to learn something about everything and everything about

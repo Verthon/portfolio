@@ -22,7 +22,6 @@ import heyUSm from "../images/HeyU-sm.png"
 class IndexPage extends Component {
   constructor() {
     super()
-    this.aboutSection = React.createRef()
     this.skillsSection = React.createRef()
     this.projectsSection = React.createRef()
     this.contactSection = React.createRef()
@@ -66,18 +65,33 @@ class IndexPage extends Component {
     })
   }
 
-  scrollToComponent = (component) => {
-    switch(component){
-      case 'about':
-        this.aboutSection.current.scrollIntoView({ alignToTop: true, behavior: 'smooth' })
+  scrollToComponent = component => {
+    switch (component) {
+      case "skills":
+        this.skillsSection.current.scrollIntoView({
+          alignToTop: true,
+          behavior: "smooth",
+        })
         break
-      case 'skills': 
-        this.skillsSection.current.scrollIntoView({ alignToTop: true, behavior: 'smooth' })
+      case "projects":
+        this.projectsSection.current.scrollIntoView({
+          alignToTop: true,
+          behavior: "smooth",
+        })
         break
-      default: 
-        break    
+      case "contact":
+        this.contactSection.current.scrollIntoView({
+          alignToTop: true,
+          behavior: "smooth",
+        })
+        break
+      default:
+        this.skillsSection.current.scrollIntoView({
+          alignToTop: true,
+          behavior: "smooth",
+        })
+        break
     }
-      
   }
 
   render() {
@@ -87,7 +101,7 @@ class IndexPage extends Component {
           title="Krzysztof Sordyl Frontend Developer"
           description='Welcome, my name is Krzysztof Sordyl frontend developer living in Bielsko-Biała, Poland. I"m creating solid, modern and well-designed websites. React enthusiast. Software, programming Bielsko-Biała'
         />
-        <About ref={this.aboutSection} />
+        <About />
         <Skills ref={this.skillsSection} />
         <Projects ref={this.projectsSection} projects={this.projects} />
         <Contact

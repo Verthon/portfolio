@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Contact = React.forwardRef(({ email }, ref) => {
+const Contact = React.forwardRef((props, ref) => {
   return (
     <section ref={ref} id='contact' className='section contact'>
       <h1 className='section-heading section-heading--contact'>Contact</h1>
@@ -9,9 +9,9 @@ const Contact = React.forwardRef(({ email }, ref) => {
         Feel free to contact me
       </p>
       <p className='section-description section-description--contact'>
-        {email}
+        {props.email}
       </p>
-      <a href={`mailto:${email}`}>
+      <a href={`mailto:${props.email}`}>
         <button
           className='contact-btn'
           data-aos='zoom-in'
