@@ -1,18 +1,51 @@
-import React from "react"
-import TabHeader from "./TabHeader"
-import TabContent from "./TabContent"
+import React from 'react'
+import TabHeader from './TabHeader'
+import TabContent from './TabContent'
 
 class Tabs extends React.Component {
   constructor() {
     super()
+    this.mobile = 769
+    this.frontendTab = React.createRef()
+    this.backendTab = React.createRef()
+    this.toolsTab = React.createRef()
     this.state = {
-      activeTab: "frontend",
+      activeTab: 'frontend'
+    }
+  }
+
+  
+
+  scrollToContent = content => {
+    content.current.scrollIntoView({
+      alignToTop: true,
+      behavior: 'smooth'
+    })
+  }
+
+  getCurrentTab = type => {
+    switch (type) {
+      case 'frontend':
+        this.scrollToContent(this.frontendTab)
+        break
+      case 'backend':
+        this.scrollToContent(this.backendTab)
+        break
+      case 'tools':
+        this.scrollToContent(this.toolsTab)
+        break
+      default:
+        break
     }
   }
 
   handleHeaderChange = e => {
-    const type = e.currentTarget.getAttribute("data-tab")
-    this.setState({ activeTab: type })
+    const header = e.currentTarget.getAttribute('data-tab')
+    this.setState({ activeTab: header }, () => {
+      if (window.innerWidth < this.mobile) {
+        this.getCurrentTab(header)
+      }
+    })
   }
 
   render() {
@@ -34,7 +67,7 @@ class Tabs extends React.Component {
               <TabHeader
                 key={header.name}
                 data={header}
-                activeHeader={""}
+                activeHeader={''}
                 handleClick={this.handleHeaderChange}
               />
             )
@@ -43,10 +76,11 @@ class Tabs extends React.Component {
         <article className="tab-content">
           <div
             id="frontend"
+            ref={this.frontendTab}
             className={
-              activeTab === "frontend"
+              activeTab === 'frontend'
                 ? contentCssActiveClass
-                : "tab-content-item"
+                : 'tab-content-item'
             }
           >
             {content[0].map(column => (
@@ -55,10 +89,11 @@ class Tabs extends React.Component {
           </div>
           <div
             id="backend"
+            ref={this.backendTab}
             className={
-              activeTab === "backend"
+              activeTab === 'backend'
                 ? contentCssActiveClass
-                : "tab-content-item"
+                : 'tab-content-item'
             }
           >
             {content[1].map(column => (
@@ -67,8 +102,9 @@ class Tabs extends React.Component {
           </div>
           <div
             id="tools"
+            ref={this.toolsTab}
             className={
-              activeTab === "tools" ? contentCssActiveClass : "tab-content-item"
+              activeTab === 'tools' ? contentCssActiveClass : 'tab-content-item'
             }
           >
             {content[2].map(column => (
