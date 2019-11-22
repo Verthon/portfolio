@@ -1,27 +1,27 @@
-import React from "react";
-import TabHeader from "./TabHeader";
-import TabContent from "./TabContent";
+import React from "react"
+import TabHeader from "./TabHeader"
+import TabContent from "./TabContent"
 
 class Tabs extends React.Component {
   constructor() {
-    super();
+    super()
     this.state = {
-      activeTab: "frontend"
-    };
+      activeTab: "frontend",
+    }
   }
 
   handleHeaderChange = e => {
-    const type = e.currentTarget.getAttribute("data-tab");
-    this.setState({ activeTab: type });
-  };
+    const type = e.currentTarget.getAttribute("data-tab")
+    this.setState({ activeTab: type })
+  }
 
   render() {
-    const { headers, content } = this.props;
-    const { activeTab } = this.state;
-    const contentCssActiveClass = `tab-content-item active-tab animated fadeIn`;
+    const { headers, content } = this.props
+    const { activeTab } = this.state
+    const contentCssActiveClass = `tab-content-item active-tab animated fadeIn`
     return (
       <div className="row">
-        <ul className="tab-header" data-aos='fade-down'>
+        <ul className="tab-header" data-aos="fade-down">
           {headers.map(header =>
             activeTab === header.tab ? (
               <TabHeader
@@ -34,7 +34,7 @@ class Tabs extends React.Component {
               <TabHeader
                 key={header.name}
                 data={header}
-                activeHeader={''}
+                activeHeader={""}
                 handleClick={this.handleHeaderChange}
               />
             )
@@ -48,7 +48,6 @@ class Tabs extends React.Component {
                 ? contentCssActiveClass
                 : "tab-content-item"
             }
-            // data-aos="fade-up"
           >
             {content[0].map(column => (
               <TabContent key={column.title} item={column} />
@@ -61,7 +60,6 @@ class Tabs extends React.Component {
                 ? contentCssActiveClass
                 : "tab-content-item"
             }
-            // data-aos="fade-up"
           >
             {content[1].map(column => (
               <TabContent key={column.title} item={column} />
@@ -72,7 +70,6 @@ class Tabs extends React.Component {
             className={
               activeTab === "tools" ? contentCssActiveClass : "tab-content-item"
             }
-            // data-aos="fade-up"
           >
             {content[2].map(column => (
               <TabContent key={column.title} item={column} />
@@ -80,8 +77,8 @@ class Tabs extends React.Component {
           </div>
         </article>
       </div>
-    );
+    )
   }
 }
 
-export default Tabs;
+export default Tabs

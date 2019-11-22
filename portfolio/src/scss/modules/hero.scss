@@ -1,5 +1,5 @@
 .hero-heading {
-  font-size: 4.5rem;
+  font-size: 4rem;
   font-weight: 300;
   margin: 0.1rem 0;
 
@@ -12,7 +12,7 @@
   }
 
   @include mQ($mobile) {
-    font-size: 2.75rem;
+    font-size: 2.25rem;
   }
 }
 .hero-subheading {

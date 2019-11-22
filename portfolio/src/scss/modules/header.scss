@@ -23,14 +23,12 @@
 
   @include mQ($medium){
     padding: 0 8rem;
-    height: 50vh;
     margin: 2rem 0;
   }
 
   @include mQ($ipad){
     justify-content: center;
     padding: 0 4rem;
-    height: 50vh;
     margin: 3rem 0;
   }
 
