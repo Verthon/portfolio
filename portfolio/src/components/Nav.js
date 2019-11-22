@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import NavItem from './NavItem'
 
@@ -38,7 +38,7 @@ const Nav = ({ links, scroll }) => {
       </div>
       <button className='menu-icon'>
         <FontAwesomeIcon
-          icon={faBars}
+          icon={show ? faTimes : faBars}
           size='lg'
           aria-hidden='true'
           color='black'
