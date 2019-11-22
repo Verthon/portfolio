@@ -32,8 +32,8 @@ $xxl: 1140px;
 //container fluid
 $medium-fl: 1460px;
 
-$gradient: linear-gradient(to right, $light-green, $light-mint),url('../assets/laptop.jpg');
+$gradient: linear-gradient(to right, $light-green, $light-mint);
 
-$font: 'Open Sans';
-$font-dec: 'Basier Circle Regular';
+$font: 'Open Sans', sans-serif;
+//$font-dec: 'Basier Circle Regular';
 $g-padding: 0 15rem;

@@ -1,4 +1,13 @@
-.site-nav{
+@keyframes menufade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.site-nav {
   display: flex;
   margin: 2rem 0;
   justify-content: space-between;
@@ -6,63 +15,60 @@
   position: relative;
   align-items: flex-start;
 
-  @include mQ($HiDPILaptop){
+  @include mQ($HiDPILaptop) {
     padding: 0 10rem;
   }
 
-  @include mQ($medium){
+  @include mQ($medium) {
     margin: 2rem 0;
     padding: 0 8rem;
   }
 
-  @include mQ($ipad){
+  @include mQ($ipad) {
     position: relative;
     margin: 2rem 0;
     padding: 0;
   }
-  
-  @include mQ($mobile){
-    margin: 1rem 0;
+
+  @include mQ($mobile) {
+    margin: 1.5rem;
     padding: 0;
     align-items: center;
-
-  }
-}
-.site-nav i{
-  margin-right: 1rem;
-
-  @include mQ($medium){
-    font-size: 1.1rem;
   }
 
-  @include mQ($ipad){
-    font-size: 1.75rem;
-    padding: 0 2rem;
-  }
-
-  @include mQ($mobile){
-    margin-right: 0.5rem;
-    font-size: 1.35rem;
-  }
-}
-
-.menu-icon{
-  display: none;
-
-  @include mQ($ipad){
+  &--socials {
     display: flex;
+    flex-basis: 5%;
+    justify-content: space-between;
+
+    @include mQ($ipad) {
+      flex-basis: 25%;
+    }
   }
 }
 
-.menu-ul{
+.menu-icon {
+  display: none;
+  @include mQ($ipad) {
+    font-size: 1rem;
+    display: flex;
+    border: none;
+    color: $tab-header;
+    background-color: transparent;
+    cursor: pointer;
+    animation: menufade 0.5s;
+  }
+}
+
+.menu-ul {
   display: flex;
 
-  @include mQ($ipad){
+  @include mQ($ipad) {
     display: none;
     position: absolute;
     background: $about-bg;
     width: 100%;
-    transform: translateY(10%);
+    transform: translateY(20%);
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -71,20 +77,15 @@
     top: 0;
     animation: menufade 0.5s;
   }
-  @include mQ($mobile){
+  @include mQ($mobile) {
     transform: translateY(13%);
   }
 }
 
-@keyframes menufade {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-.menu-ul.menu-ul-mobile{
+.menu-ul-mobile {
   display: flex;
 
-  @include mQ($ipad){
+  @include mQ($ipad) {
     display: flex;
     position: absolute;
     background: $tab-content;
@@ -98,37 +99,42 @@
     top: 0;
     animation: menufade 0.75s;
   }
-  @include mQ($mobile){
-    transform: translateY(13%);
+  @include mQ($mobile) {
     display: flex;
-    height: 50vh;
+    width: 100vw;
+    height: 40vh;
+    transform: translateY(20%);
+    left: -24px;
   }
 }
 
-
-.menu-item{
+.menu-item {
   margin: 0 1rem;
   font-size: 1.1rem;
-  @include mQ($ipad){
+  cursor: pointer;
+  @include mQ($ipad) {
     margin: 1.75rem;
     font-size: 1.4rem;
     font-weight: 400;
   }
-  @include mQ($mobile){
+  @include mQ($mobile) {
     margin: 1.25rem;
   }
 }
 
-.menu-item a{
+.menu-item svg {
   font-size: 1.1rem;
-  @include mQ($ipad){
+  color: $black;
+  @include mQ($ipad) {
     font-size: 1.4rem;
   }
 }
 
-.menu-item:hover{
+.menu-item:hover {
   text-decoration: underline;
   text-shadow: 0 0 10px $light;
   cursor: pointer;
 }
-i:hover{cursor: pointer;}
+i:hover {
+  cursor: pointer;
+}

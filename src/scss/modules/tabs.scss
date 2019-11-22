@@ -29,13 +29,13 @@
   }
 }
 .active-header{
-  color: #fff;
+  color: $tab-header;
   background: $gradient;
 }
 .tab-header-item:hover{
   cursor: pointer;
-  color: #fff;
   background: $gradient;
+  color: $tab-header;
 }
 .tab-header .tab-header-content{
   max-width: 100%;
