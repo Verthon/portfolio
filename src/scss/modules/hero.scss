@@ -1,0 +1,133 @@
+.hero-heading {
+  font-size: 4rem;
+  font-weight: 300;
+  margin: 0.1rem 0;
+
+  @include mQ($medium) {
+    font-size: 3.5rem;
+  }
+
+  @include mQ($ipad) {
+    font-size: 3rem;
+  }
+
+  @include mQ($mobile) {
+    font-size: 2.25rem;
+  }
+}
+.hero-subheading {
+  font-size: 3.25rem;
+  font-weight: 300;
+  margin: 0;
+
+  @include mQ($medium) {
+    font-size: 3rem;
+  }
+
+  @include mQ($ipad) {
+    font-size: 2.25rem;
+  }
+
+  @include mQ($mobile) {
+    font-size: 1.75rem;
+  }
+}
+.hero__highlight {
+  font-weight: bold;
+}
+.hero-description {
+  font-size: 2rem;
+  font-weight: 300;
+  margin: 0;
+  color: $black;
+
+  @include mQ($medium) {
+    font-size: 2rem;
+  }
+
+  @include mQ($ipad) {
+    font-size: 1.5rem;
+    padding: 0.5rem 0 4rem 0;
+  }
+
+  @include mQ($mobile) {
+    padding-bottom: 0;
+    padding: 0.5rem 0 2.5rem 0;
+    font-size: 1.25rem;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.btn-my-work {
+  border: 0.05rem solid $black;
+  background: $main-bg;
+  color: $white;
+  border-radius: 0.1rem;
+  font-family: "Open Sans";
+  padding: 0.5rem 2rem;
+  font-size: 1.35rem;
+  opacity: 0;
+  margin: 5rem 0;
+  align-self: flex-start;
+
+  /* make things invisible upon start */
+  -webkit-animation: fadeIn ease-in 1; /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+  -moz-animation: fadeIn ease-in 1;
+  animation: fadeIn ease-in 1;
+
+  -webkit-animation-fill-mode: forwards; /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+  -moz-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+
+  -webkit-animation-duration: 1s;
+  -moz-animation-duration: 1s;
+  animation-duration: 1s;
+
+  @include mQ($iphoneSE) {
+    margin: 0;
+  }
+
+  @include mQ($medium) {
+    margin: 2rem 0;
+    padding: 0.5rem 1.5rem;
+    font-size: 1.25rem;
+  }
+
+  @include mQ($ipad) {
+    padding: 0.5rem 1.25rem;
+    font-size: 1.35rem;
+  }
+
+  @include mQ($mobile) {
+    padding: 0.5rem 1.5rem;
+    font-size: 1.1rem;
+  }
+}
+.btn-my-work:hover {
+  cursor: pointer;
+  box-shadow: 0px 0px 0.1rem $black;
+}

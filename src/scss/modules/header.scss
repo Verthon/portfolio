@@ -1,0 +1,62 @@
+
+.header-wrapper{
+  background-image: url('/hero.svg'); 
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 70vh;
+  @include flexColumn;
+  color: $black;
+
+  @include mQ($HiDPILaptop){
+    background-size: auto;
+  }
+
+  @include mQ($ipad){
+    min-height: 80vh;
+    background-size: cover;
+  }
+}
+.site-header{
+  margin: 7rem auto;
+  width: 100%;
+  height: auto;
+  flex-wrap: wrap;
+
+  @include mQ($medium){
+    padding: 0 8rem;
+    margin: 2rem 0;
+  }
+
+  @include mQ($ipad){
+    justify-content: center;
+    padding: 0 4rem;
+    margin: 3rem 0;
+  }
+
+  @include mQ($nexus){
+    justify-content: center;
+  }
+
+  @include mQ($mobile){
+    padding: 0 2rem;
+    margin: 4rem 0;
+    @include flexColumn;
+  }
+
+  @include mQ($iphoneSE){
+    padding: 0 1.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
+  a{
+    margin: 0 auto;
+    margin-bottom: 5rem;
+
+    @include mQ($ipad){
+      margin-bottom: 0;
+    }
+  }
+}
+

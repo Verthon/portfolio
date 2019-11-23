@@ -1,0 +1,140 @@
+@keyframes menufade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.site-nav {
+  display: flex;
+  margin: 2rem 0;
+  justify-content: space-between;
+  padding: $g-padding;
+  position: relative;
+  align-items: flex-start;
+
+  @include mQ($HiDPILaptop) {
+    padding: 0 10rem;
+  }
+
+  @include mQ($medium) {
+    margin: 2rem 0;
+    padding: 0 8rem;
+  }
+
+  @include mQ($ipad) {
+    position: relative;
+    margin: 2rem 0;
+    padding: 0;
+  }
+
+  @include mQ($mobile) {
+    margin: 1.5rem;
+    padding: 0;
+    align-items: center;
+  }
+
+  &--socials {
+    display: flex;
+    flex-basis: 5%;
+    justify-content: space-between;
+
+    @include mQ($ipad) {
+      flex-basis: 25%;
+    }
+  }
+}
+
+.menu-icon {
+  display: none;
+  @include mQ($ipad) {
+    font-size: 1rem;
+    display: flex;
+    border: none;
+    color: $tab-header;
+    background-color: transparent;
+    cursor: pointer;
+    animation: menufade 0.5s;
+  }
+}
+
+.menu-ul {
+  display: flex;
+
+  @include mQ($ipad) {
+    display: none;
+    position: absolute;
+    background: $about-bg;
+    width: 100%;
+    transform: translateY(20%);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    height: 45vh;
+    top: 0;
+    animation: menufade 0.5s;
+  }
+  @include mQ($mobile) {
+    transform: translateY(13%);
+  }
+}
+
+.menu-ul-mobile {
+  display: flex;
+
+  @include mQ($ipad) {
+    display: flex;
+    position: absolute;
+    background: $tab-content;
+    width: 100%;
+    transform: translateY(10%);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    height: 45vh;
+    top: 0;
+    animation: menufade 0.75s;
+  }
+  @include mQ($mobile) {
+    display: flex;
+    width: 100vw;
+    height: 40vh;
+    transform: translateY(20%);
+    left: -24px;
+  }
+}
+
+.menu-item {
+  margin: 0 1rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  @include mQ($ipad) {
+    margin: 1.75rem;
+    font-size: 1.4rem;
+    font-weight: 400;
+  }
+  @include mQ($mobile) {
+    margin: 1.25rem;
+  }
+}
+
+.menu-item svg {
+  font-size: 1.1rem;
+  color: $black;
+  @include mQ($ipad) {
+    font-size: 1.4rem;
+  }
+}
+
+.menu-item:hover {
+  text-decoration: underline;
+  text-shadow: 0 0 10px $light;
+  cursor: pointer;
+}
+i:hover {
+  cursor: pointer;
+}
