@@ -1,0 +1,15 @@
+.container{
+  max-width: $medium;
+
+  @include mQ($HiDPILaptop){
+    max-width: $xxl;
+  }
+
+  @include mQ($medium){
+    max-width: $md;
+  }
+}
+
+.container-fluid{
+  max-width: $medium-fl;
+}

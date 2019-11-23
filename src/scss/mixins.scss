@@ -1,0 +1,10 @@
+@mixin mQ($arg){
+  @media (max-width: $arg){
+    @content;
+  } 
+}
+
+@mixin flexColumn() {
+  display: flex;
+  flex-direction: column;
+}
