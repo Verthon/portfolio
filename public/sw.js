@@ -11,14 +11,14 @@
  * See https://goo.gl/2aRDsh
  */
 
-importScripts("workbox-v4.3.1/workbox-sw.js");
-workbox.setConfig({modulePathPrefix: "workbox-v4.3.1"});
+importScripts('workbox-v4.3.1/workbox-sw.js')
+workbox.setConfig({ modulePathPrefix: 'workbox-v4.3.1' })
 
-workbox.core.setCacheNameDetails({prefix: "gatsby-plugin-offline"});
+workbox.core.setCacheNameDetails({ prefix: 'gatsby-plugin-offline' })
 
-workbox.core.skipWaiting();
+workbox.core.skipWaiting()
 
-workbox.core.clientsClaim();
+workbox.core.clientsClaim()
 
 /**
  * The workboxSW.precacheAndRoute() method efficiently caches and responds to
@@ -27,36 +27,36 @@ workbox.core.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-7aa77a4a7ebd47dc258f.js"
+    url: 'webpack-runtime-7aa77a4a7ebd47dc258f.js'
   },
   {
-    "url": "commons-5d80883fa8b073be838e.js"
+    url: 'commons-5d80883fa8b073be838e.js'
   },
   {
-    "url": "app-f091f5ac6beb3a70173a.js"
+    url: 'app-f091f5ac6beb3a70173a.js'
   },
   {
-    "url": "component---node-modules-gatsby-plugin-offline-app-shell-js-568c113b24a9e8ed8db8.js"
+    url: 'component---node-modules-gatsby-plugin-offline-app-shell-js-568c113b24a9e8ed8db8.js'
   },
   {
-    "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "aaf0eecc13671adab75a1f1b3f5b3a9e"
+    url: 'offline-plugin-app-shell-fallback/index.html',
+    revision: 'aaf0eecc13671adab75a1f1b3f5b3a9e'
   },
   {
-    "url": "manifest.webmanifest",
-    "revision": "cf8dcd320a8c6a7f20cc802374036e49"
+    url: 'manifest.webmanifest',
+    revision: 'cf8dcd320a8c6a7f20cc802374036e49'
   }
-].concat(self.__precacheManifest || []);
-workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
+].concat(self.__precacheManifest || [])
+workbox.precaching.precacheAndRoute(self.__precacheManifest, {})
 
-workbox.routing.registerRoute(/(\.js$|\.css$|static\/)/, new workbox.strategies.CacheFirst(), 'GET');
-workbox.routing.registerRoute(/^https?:.*\page-data\/.*\/page-data\.json/, new workbox.strategies.StaleWhileRevalidate(), 'GET');
-workbox.routing.registerRoute(/^https?:.*\.(png|jpg|jpeg|webp|svg|gif|tiff|js|woff|woff2|json|css)$/, new workbox.strategies.StaleWhileRevalidate(), 'GET');
-workbox.routing.registerRoute(/^https?:\/\/fonts\.googleapis\.com\/css/, new workbox.strategies.StaleWhileRevalidate(), 'GET');
+workbox.routing.registerRoute(/(\.js$|\.css$|static\/)/, new workbox.strategies.CacheFirst(), 'GET')
+workbox.routing.registerRoute(/^https?:.*\page-data\/.*\/page-data\.json/, new workbox.strategies.StaleWhileRevalidate(), 'GET')
+workbox.routing.registerRoute(/^https?:.*\.(png|jpg|jpeg|webp|svg|gif|tiff|js|woff|woff2|json|css)$/, new workbox.strategies.StaleWhileRevalidate(), 'GET')
+workbox.routing.registerRoute(/^https?:\/\/fonts\.googleapis\.com\/css/, new workbox.strategies.StaleWhileRevalidate(), 'GET')
 
 /* global importScripts, workbox, idbKeyval */
 
-importScripts(`idb-keyval-iife.min.js`)
+importScripts('idb-keyval-iife.min.js')
 
 const { NavigationRoute } = workbox.routing
 
@@ -79,23 +79,23 @@ const MessageAPI = {
 
   disableOfflineShell: () => {
     offlineShellEnabled = false
-  },
+  }
 }
 
-self.addEventListener(`message`, event => {
+self.addEventListener('message', event => {
   const { gatsbyApi: api } = event.data
   if (api) MessageAPI[api](event, event.data)
 })
 
-function handleAPIRequest({ event }) {
+function handleAPIRequest ({ event }) {
   const { pathname } = new URL(event.request.url)
 
   const params = pathname.match(/:(.+)/)[1]
   const data = {}
 
-  if (params.indexOf(`=`) !== -1) {
-    params.split(`&`).forEach(param => {
-      const [key, val] = param.split(`=`)
+  if (params.indexOf('=') !== -1) {
+    params.split('&').forEach(param => {
+      const [key, val] = param.split('=')
       data[key] = val
     })
   } else {
@@ -113,8 +113,8 @@ function handleAPIRequest({ event }) {
   return new Response(null, {
     status: 302,
     headers: {
-      Location: lastNavigationRequest,
-    },
+      Location: lastNavigationRequest
+    }
   })
 }
 
@@ -132,12 +132,12 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
   lastNavigationRequest = event.request.url
 
   let { pathname } = new URL(event.request.url)
-  pathname = pathname.replace(new RegExp(`^`), ``)
+  pathname = pathname.replace(new RegExp('^'), '')
 
   // Check for resources + the app bundle
   // The latter may not exist if the SW is updating to a new version
   const resources = await idbKeyval.get(`resources:${pathname}`)
-  if (!resources || !(await caches.match(`/app-f091f5ac6beb3a70173a.js`))) {
+  if (!resources || !(await caches.match('/app-f091f5ac6beb3a70173a.js'))) {
     return await fetch(event.request)
   }
 
@@ -150,7 +150,7 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
     }
   }
 
-  const offlineShell = `/offline-plugin-app-shell-fallback/index.html`
+  const offlineShell = '/offline-plugin-app-shell-fallback/index.html'
   const offlineShellWithKey = workbox.precaching.getCacheKeyForURL(offlineShell)
   return await caches.match(offlineShellWithKey)
 })

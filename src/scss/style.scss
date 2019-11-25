@@ -11,12 +11,13 @@
 @import 'modules/projects.scss';
 @import 'modules/contact.scss';
 @import 'modules/footer.scss';
+@import 'modules/404.scss';
 
 body{
   background: $white;
   color: $white;
   font-size: 16px;
-  font-family: $font;
+  font-family: $font, sans-serif;
   display: flex;
   flex-direction: column;
   max-width: 1920px;

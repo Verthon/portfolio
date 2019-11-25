@@ -1,0 +1,36 @@
+.not-found {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  flex-direction: column;
+  color: $black;
+
+  @include mQ($ipad) {
+    margin: 2rem;
+  }
+
+  &__image {
+    display: flex;
+  }
+
+  &__title {
+    @include mQ($mobile) {
+      font-size: 2rem;
+    }
+  }
+
+  &__text {
+  }
+
+  &__btn {
+    border: 0;
+    background: $gradient;
+    color: $tab-header;
+    border-radius: 0.1rem;
+    font-family: 'Open Sans';
+    padding: 0.5rem 2rem;
+    font-size: 1.35rem;
+    margin: 2rem 0;
+    cursor: pointer;
+  }
+}

@@ -75,7 +75,6 @@ class Tabs extends React.Component {
         </ul>
         <article className="tab-content">
           <div
-            id="frontend"
             ref={this.frontendTab}
             className={
               activeTab === 'frontend'
@@ -88,7 +87,6 @@ class Tabs extends React.Component {
             ))}
           </div>
           <div
-            id="backend"
             ref={this.backendTab}
             className={
               activeTab === 'backend'
@@ -101,7 +99,6 @@ class Tabs extends React.Component {
             ))}
           </div>
           <div
-            id="tools"
             ref={this.toolsTab}
             className={
               activeTab === 'tools' ? contentCssActiveClass : 'tab-content-item'

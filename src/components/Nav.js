@@ -36,7 +36,11 @@ const Nav = ({ links, scroll }) => {
           />
         </a>
       </div>
-      <button className='menu-icon'>
+      <button
+        className='menu-icon'
+        aria-label='menu button'
+        aria-haspopup='true'
+      >
         <FontAwesomeIcon
           icon={show ? faTimes : faBars}
           size='lg'
@@ -47,7 +51,7 @@ const Nav = ({ links, scroll }) => {
       </button>
       <ul id='menu-ul' className={menuCssClass}>
         {links.map(link => (
-          <NavItem key={link} id={link} name={link} handleClick={scroll} />
+          <NavItem key={link} name={link} handleClick={scroll} />
         ))}
       </ul>
     </nav>
