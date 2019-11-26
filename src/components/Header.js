@@ -20,7 +20,7 @@ const Header = ({ scroll }) => (
         className='btn-my-work'
         data-aos-delay='750'
         data-aos='flip-up'
-        onClick={() => scroll('skills')}
+        onClick={() => scroll('projects')}
       >
         My projects
       </button>

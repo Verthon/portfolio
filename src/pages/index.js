@@ -32,8 +32,8 @@ class IndexPage extends Component {
         technologies: ["React", "Sass", "Firestore"],
         description:
           "Fully responsive, serverless, progressive web app for small restaurants, with integrated simple booking system and basic administration tools for staff.",
-        github: "https:/github.com/Verthon/restaurant-app",
-        live: "https:/alkinoos-taverna.netlify.com/",
+        github: "https://github.com/Verthon/restaurant-app",
+        live: "https://alkinoos-taverna.netlify.com/",
         animation: "slide-right",
       },
       {
@@ -42,8 +42,8 @@ class IndexPage extends Component {
         technologies: ["React", "Styled components", "Firestore"],
         description:
           "Responsive App based on React.js library for event management. Within Eventoo you can create your own events.",
-        github: "https:/github.com/Verthon/event-app",
-        live: "https:/eventooo.netlify.com/",
+        github: "https://github.com/Verthon/event-app",
+        live: "https://eventooo.netlify.com/",
         animation: "slide-left",
       },
       {
@@ -52,8 +52,8 @@ class IndexPage extends Component {
         technologies: ["Gatsby", "Sass", "Netlify"],
         description:
           "Responsive, mobile first webiste based on Gatsby.js. PSD to HTML",
-        github: "https:/github.com/Verthon/HeyU-Website",
-        live: "https:/heyu-website.netlify.com/",
+        github: "https://github.com/Verthon/HeyU-Website",
+        live: "https://heyu-website.netlify.com/",
         animation: "slide-right",
       },
     ]
