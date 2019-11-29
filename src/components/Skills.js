@@ -89,7 +89,7 @@ const Skills = React.forwardRef((props, ref) => {
   ]
   return (
     <section ref={ref} id='skills' className='section skills'>
-      <h1 className='section-heading'>Skills</h1>
+      <h2 className='section-heading'>Skills</h2>
       <blockquote className='section-quote'>
         "Try to learn something about everything and everything about
         something."

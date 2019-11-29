@@ -29,23 +29,24 @@ const Project = ({
           </button>
         ))}
         <footer className='project__footer'>
-          <a href={github} target='_blank' rel='noopener noreferrer'>
-            <button
-              id='github-btn'
-              className='project-btn project-btn--source'
-              aria-label='Link to Verthon GitHub profile'
-            >
-              Source{' '}
-              <FontAwesomeIcon icon={faGithub} size='lg' aria-hidden='true' />
-            </button>
+          <a
+            className='project-btn project-btn--source'
+            href={github}
+            target='_blank'
+            rel='noopener noreferrer'
+            aria-label='Link to Verthon GitHub profile'
+          >
+            Source{' '}
+            <FontAwesomeIcon icon={faGithub} size='lg' aria-hidden='true' />
           </a>
-          <a href={live} target='_blank' rel='noopener noreferrer'>
-            <button
-              className='project-btn project-btn--link'
-              aria-label='Link to live version'
-            >
-              view app <FontAwesomeIcon icon={faExternalLinkAlt} size='lg' />
-            </button>
+          <a
+            className='project-btn project-btn--link'
+            href={live}
+            target='_blank'
+            rel='noopener noreferrer'
+            aria-label='Link to live version'
+          >
+            view app <FontAwesomeIcon icon={faExternalLinkAlt} size='lg' />
           </a>
         </footer>
       </article>
