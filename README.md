@@ -14,6 +14,7 @@ My first personal portfolio
 - Scss,
 - ES6 JavaScript,
 - SVG Background from https://loading.io
+- Contionious deployment with Netlify
 
 ## 🚀 Setup
 

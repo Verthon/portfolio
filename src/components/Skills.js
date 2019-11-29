@@ -89,13 +89,15 @@ const Skills = React.forwardRef((props, ref) => {
   ]
   return (
     <section ref={ref} id='skills' className='section skills'>
-      <h2 className='section-heading'>Skills</h2>
-      <blockquote className='section-quote'>
-        "Try to learn something about everything and everything about
-        something."
-        <footer className='section-quote-author'>Thomas Huxley</footer>
-      </blockquote>
-      <Tabs headers={headers} content={content} />
+      <div className='container'>
+        <h2 className='section-heading'>Skills</h2>
+        <blockquote className='section-quote'>
+          "Try to learn something about everything and everything about
+          something."
+          <footer className='section-quote-author'>Thomas Huxley</footer>
+        </blockquote>
+        <Tabs headers={headers} content={content} />
+      </div>
     </section>
   )
 })

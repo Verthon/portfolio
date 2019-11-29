@@ -9,7 +9,7 @@
   margin: 0.5rem 0;
 }
 .tab-header-item{
-  padding: 1rem 3rem;
+  padding: 1rem 1.5rem;
   margin: 1rem;
   background: $tab-header;
   color: $light;
@@ -18,10 +18,6 @@
   flex: 1;
   line-height: 1.6;
   width: auto;
-
-  @include mQ($medium){
-    padding: 1rem 1.5rem;
-  }
 
   @include mQ($mobile){
     padding: 1rem;

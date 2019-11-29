@@ -1,15 +1,23 @@
-.container{
+.container {
   max-width: $medium;
+  margin: auto;
+  padding: 0 2rem;
 
-  @include mQ($HiDPILaptop){
+  @include mQ($HiDPILaptop) {
     max-width: $xxl;
   }
 
-  @include mQ($medium){
+  @include mQ($medium) {
     max-width: $md;
+  }
+  @include mQ($bp-small) {
+    max-width: 540px;
+  }
+  @include mQ($iphoneSE) {
+    padding: 0 1rem;
   }
 }
 
-.container-fluid{
+.container-fluid {
   max-width: $medium-fl;
 }

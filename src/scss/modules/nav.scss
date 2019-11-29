@@ -9,20 +9,11 @@
 
 .site-nav {
   display: flex;
-  margin: 2rem 0;
+  margin: 2rem auto;
   justify-content: space-between;
-  padding: $g-padding;
   position: relative;
   align-items: flex-start;
-
-  @include mQ($HiDPILaptop) {
-    padding: 0 10rem;
-  }
-
-  @include mQ($medium) {
-    margin: 2rem 0;
-    padding: 0 8rem;
-  }
+  width: 100%;
 
   @include mQ($ipad) {
     position: relative;
@@ -30,10 +21,11 @@
     padding: 0;
   }
 
-  @include mQ($mobile) {
+  @include mQ($bp-small) {
     margin: 1.5rem;
     padding: 0;
     align-items: center;
+    width: auto;
   }
 
   &--socials {

@@ -15,7 +15,7 @@ $tab-content: #e9eaee;
 $venus-mist: #5f636e;
 
 //devices
-$iphoneSE: 320px;
+
 $phablet: 400px;
 $mobile: 500px;
 $nexus: 600px;
@@ -24,6 +24,13 @@ $medium: 1280px;
 $HiDPILaptop: 1440px;
 
 //breakpoints
+$iphoneSE: 320px;
+$bp-xsmall: 34rem; // 544px
+$bp-small: 48rem; // 768px
+$bp-medium: 64rem; // 1024px
+$bp-large: 85.375rem; // 1366px
+$bp-xlarge: 120rem; // 1920px
+$bp-xxlarge: 165.625rem; // 2560px
 $xs: 540px;
 $md: 720px;
 $lg: 960px;
