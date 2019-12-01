@@ -7,7 +7,7 @@ const Header = ({ scroll }) => (
     <div className="container">
       <Nav links={['skills', 'projects', 'contact']} scroll={scroll} />
     </div>
-    <div className="container">
+    <div className="container container--header">
       <header className='site-header'>
         <h2 className='hero-heading' data-aos='zoom-in'>
           Welcome!

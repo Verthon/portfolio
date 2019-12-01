@@ -32,6 +32,10 @@
     flex-direction: row;
     max-width: 1100px;
   }
+
+  @include mQ($bp-xxlarge) {
+    max-width: $bp-xlarge;
+  }
 }
 
 .project-container.last {
@@ -52,6 +56,9 @@
   @include mQ($bp-medium) {
     max-width: 600px;
     padding: 0 2rem;
+  }
+  @include mQ($bp-xxlarge) {
+    max-width: 50%;
   }
 }
 
@@ -84,6 +91,10 @@
   @include mQ($ipad) {
     margin: 1rem 0;
   }
+  @include mQ($bp-xxlarge) {
+    font-size: 3.25rem;
+    margin: 0;
+  }
 }
 
 .project-description {
@@ -97,9 +108,8 @@
   @include mQ($bp-medium) {
     margin: 1rem 0 5rem 0;
   }
-
-  @include mQ($nexus) {
-    margin: 2rem 0;
+  @include mQ($bp-xxlarge) {
+    margin: 2rem 0 4rem 0;
   }
 }
 
@@ -117,6 +127,11 @@
     font-size: 1.1rem;
   }
 
+  @include mQ($bp-xxlarge) {
+    padding: 1rem 2rem;
+    font-size: 2rem;
+  }
+
   &--sources {
     margin: 1rem 0;
   }
@@ -130,13 +145,16 @@
       display: block;
       margin: 1rem 0;
     }
-    @include mQ($mobile) {
-      margin: 0;
+    @include mQ($bp-xxlarge) {
+      padding: 1rem 2rem;
     }
   }
   &--source {
     padding: 0.5rem 1rem;
     margin: 0 0.5rem 0 0;
+    @include mQ($bp-xxlarge) {
+      padding: 1rem 2rem;
+    }
   }
 }
 
@@ -172,6 +190,10 @@
     padding: 5rem 0;
     align-items: center;
     max-width: 1100px;
+  }
+
+  @include mQ($bp-xxlarge) {
+    max-width: $bp-xlarge;
   }
 
   &__description {

@@ -25,5 +25,9 @@
     @include mQ($bp-large) {
       font-size: 1.35rem;
     }
+    @include mQ($bp-xxlarge) {
+      font-size: 2.25rem;
+      width: 30%;
+    }
   }
 }

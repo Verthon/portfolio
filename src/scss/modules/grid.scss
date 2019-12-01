@@ -16,6 +16,16 @@
     max-width: 1200px;
     margin: 0 auto;
   }
+
+  @include mQ($bp-xxlarge) {
+    max-width: $bp-xlarge;
+  }
+
+  &--header {
+    @include mQ($bp-xxlarge) {
+      margin: auto;
+    }
+  }
 }
 
 .container-fluid {

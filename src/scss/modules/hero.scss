@@ -8,6 +8,9 @@
   @include mQ($bp-large) {
     font-size: 3.5rem;
   }
+  @include mQ($bp-xxlarge) {
+    font-size: 7rem;
+  }
 }
 .hero-subheading {
   font-size: 1.75rem;
@@ -24,6 +27,10 @@
 
   @include mQ($bp-large) {
     font-size: 3.25rem;
+  }
+
+  @include mQ($bp-xxlarge) {
+    font-size: 6.5rem;
   }
 }
 .hero__highlight {
@@ -43,6 +50,10 @@
 
   @include mQ($bp-medium) {
     font-size: 2rem;
+  }
+
+  @include mQ($bp-xxlarge) {
+    font-size: 4rem;
   }
 }
 
@@ -116,6 +127,13 @@
     font-size: 1.35rem;
     opacity: 0;
     margin: 1rem 0;
+  }
+
+  @include mQ($bp-xxlarge) {
+    padding: 1rem 4rem;
+    font-size: 2.7rem;
+    opacity: 0;
+    margin: 4rem 0;
   }
 }
 .btn-my-work:hover {

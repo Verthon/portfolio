@@ -17,5 +17,10 @@
     @include mQ($bp-xsmall) {
       width: 25%;
     }
+
+    @include mQ($bp-xxlarge) {
+      margin: 2rem 0;
+      width: 15%;
+    }
   }
 }

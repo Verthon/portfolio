@@ -20,14 +20,27 @@
       font-size: 3rem;
     }
 
+    @include mQ($bp-xxlarge) {
+      font-size: 5.5rem;
+      margin: 5rem 0 10rem 0;
+    }
+
 
     &--projects {
       color: $main-bg;
       margin: 2.5rem 0 0.5rem 0;
+
+      @include mQ($bp-xxlarge) {
+        margin: 5rem 0 1rem 0;
+      }
     }
 
     &--contact {
       margin: 2.5rem 0 0 0;
+
+      @include mQ($bp-xxlarge) {
+        margin: 5rem 0 0 0;
+      }
     }
   }
 
@@ -51,6 +64,10 @@
 
     @include mQ($bp-small) {
       font-size: 1.25rem;
+    }
+
+    @include mQ($bp-xxlarge) {
+      font-size: 2.5rem;
     }
   }
 

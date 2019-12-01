@@ -5,8 +5,9 @@
   border: 0;
   font-size: 1.25rem;
 
-  @include mQ($mobile){
-    
+  @include mQ($bp-xxlarge) {
+    padding: 1rem 2.5rem;
+    font-size: 2.5rem;
   }
 }
 .section-heading--contact{

@@ -33,6 +33,10 @@
     @include mQ($bp-xsmall) {
       flex-basis: 10%;
     }
+
+    @include mQ($bp-xxlarge) {
+      font-size: 2rem;
+    }
   }
 }
 
@@ -115,6 +119,10 @@
   @include mQ($bp-small) {
     margin: 0 1rem;
     font-size: 1.1rem;
+  }
+
+  @include mQ($bp-xxlarge) {
+    font-size: 2rem;
   }
 
 }
