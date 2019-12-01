@@ -1,20 +1,20 @@
 .container {
-  max-width: $medium;
-  margin: auto;
-  padding: 0 2rem;
-
-  @include mQ($HiDPILaptop) {
-    max-width: $xxl;
-  }
-
-  @include mQ($medium) {
-    max-width: $md;
+  padding: 0 1rem;
+  @include mQ($bp-xxsmall) {
+    padding: 0 2rem;
   }
   @include mQ($bp-small) {
-    max-width: 540px;
+    width: 100%;
+    // margin: auto;
+    padding: 0 4rem;
   }
-  @include mQ($iphoneSE) {
-    padding: 0 1rem;
+  @include mQ($bp-medium) {
+    padding: 0 6rem;
+  }
+  @include mQ($bp-large) {
+    padding: 0;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 }
 

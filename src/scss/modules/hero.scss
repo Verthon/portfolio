@@ -1,59 +1,48 @@
 .hero-heading {
-  font-size: 4rem;
+  font-size: 2rem;
   font-weight: 300;
   margin: 0.1rem 0;
-
-  @include mQ($medium) {
-    font-size: 3.5rem;
-  }
-
-  @include mQ($ipad) {
+  @include mQ($bp-small) {
     font-size: 3rem;
   }
-
-  @include mQ($mobile) {
-    font-size: 2.25rem;
+  @include mQ($bp-large) {
+    font-size: 3.5rem;
   }
 }
 .hero-subheading {
-  font-size: 3.25rem;
+  font-size: 1.75rem;
   font-weight: 300;
   margin: 0;
 
-  @include mQ($medium) {
-    font-size: 3rem;
-  }
-
-  @include mQ($ipad) {
+  @include mQ($bp-small) {
     font-size: 2.25rem;
   }
 
-  @include mQ($mobile) {
-    font-size: 1.75rem;
+  @include mQ($bp-medium) {
+    font-size: 3rem;
+  }
+
+  @include mQ($bp-large) {
+    font-size: 3.25rem;
   }
 }
 .hero__highlight {
   font-weight: bold;
 }
 .hero-description {
-  font-size: 2rem;
+  padding-bottom: 0;
+  padding: 0.5rem 0 2.5rem 0;
+  font-size: 1.25rem;
   font-weight: 300;
   margin: 0;
   color: $black;
-
-  @include mQ($medium) {
-    font-size: 2rem;
-  }
-
-  @include mQ($ipad) {
+  @include mQ($bp-small) {
     font-size: 1.5rem;
     padding: 0.5rem 0 4rem 0;
   }
 
-  @include mQ($mobile) {
-    padding-bottom: 0;
-    padding: 0.5rem 0 2.5rem 0;
-    font-size: 1.25rem;
+  @include mQ($bp-medium) {
+    font-size: 2rem;
   }
 }
 
@@ -83,16 +72,20 @@
 }
 
 .btn-my-work {
+  align-self: flex-start;
   border: 0.05rem solid $black;
   background: $main-bg;
   color: $white;
   border-radius: 0.1rem;
-  font-family: "Open Sans";
-  padding: 0.5rem 2rem;
-  font-size: 1.35rem;
-  opacity: 0;
-  margin: 5rem 0;
-  align-self: flex-start;
+  font-family: 'Open Sans';
+  padding: 0.5rem 1.5rem;
+  font-size: 1.1rem;
+  margin: 1rem 0;
+  // padding: 0.5rem 2rem;
+  // font-size: 1.35rem;
+  // opacity: 0;
+  // margin: 5rem 0;
+  // align-self: flex-start;
 
   /* make things invisible upon start */
   -webkit-animation: fadeIn ease-in 1; /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
@@ -107,24 +100,22 @@
   -moz-animation-duration: 1s;
   animation-duration: 1s;
 
-  @include mQ($iphoneSE) {
-    margin: 0;
+  @include mQ($bp-small) {
+    padding: 0.5rem 1.25rem;
+    font-size: 1.35rem;
   }
 
-  @include mQ($medium) {
+  @include mQ($bp-medium) {
     margin: 2rem 0;
     padding: 0.5rem 1.5rem;
     font-size: 1.25rem;
   }
 
-  @include mQ($ipad) {
-    padding: 0.5rem 1.25rem;
+  @include mQ($bp-large) {
+    padding: 0.5rem 2rem;
     font-size: 1.35rem;
-  }
-
-  @include mQ($mobile) {
-    padding: 0.5rem 1.5rem;
-    font-size: 1.1rem;
+    opacity: 0;
+    margin: 1rem 0;
   }
 }
 .btn-my-work:hover {

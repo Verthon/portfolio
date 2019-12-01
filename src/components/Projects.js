@@ -7,9 +7,9 @@ import Project from './Project'
 const Projects = React.forwardRef((props, ref) => {
   return (
     <section ref={ref} id='projects' className='section projects'>
-      <div className="container">
-        <h2 className='section-heading section-heading--projects'>Projects</h2>
-        <p className='section-description'>
+      <div className='container'>
+        <h2 className='section__heading section__heading--projects'>Projects</h2>
+        <p className='section__description'>
           This is what I have worked on so far
         </p>
         {props.projects.map(project => (

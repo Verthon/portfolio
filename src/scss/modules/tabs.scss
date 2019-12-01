@@ -1,27 +1,46 @@
 .tab-header{
   list-style: none;
-  display: flex;
+  display: block;
   @include mQ($ipad){
-    display: block;
+    display: flex;
   }
+
+  &__title {
+    margin: 0;
+
+    @include mQ($bp-medium) {
+      margin: 0.5rem 0;
+    }
+  }
+
+  &__content {
+    max-width: 100%;
+    margin: 0.5rem 0;
+  }
+
+  &__item {
+
+  }
+
+
 }
 .tab-header-title{
-  margin: 0.5rem 0;
+  
 }
 .tab-header-item{
-  padding: 1rem 1.5rem;
-  margin: 1rem;
+  margin: 1rem 0;
+  padding: 1rem;
   background: $tab-header;
   color: $light;
   flex-direction: column;
   align-items: center;
   flex: 1;
-  line-height: 1.6;
   width: auto;
 
-  @include mQ($mobile){
-    padding: 1rem;
-    margin: 1rem 0;
+  @include mQ($bp-medium) {
+    margin: 1rem;
+    line-height: 1.6;
+    padding: 1rem 1.5rem;
   }
 }
 .active-header{
@@ -33,32 +52,34 @@
   background: $gradient;
   color: $tab-header;
 }
-.tab-header .tab-header-content{
-  max-width: 100%;
-}
 .tab-content{
   display: flex;
   width: 100%;
 }
 .tab-content-item{
   display: none;
-  padding: 1rem;
-  margin: 0 1rem;
+  padding: 0.1rem;
+  margin: 0;
   color: $main-bg;
   width: 100%;
   height: auto;
+  @include mQ($ipad) {
+    width: 100%;
+    padding: 1rem;
+    margin: 0 1rem;
+  }
   @include mQ($mobile){
-    padding: 0.1rem;
-    margin: 0;
+    
   }
 }
 .active-tab{
   display: flex;
+  flex-wrap: wrap;
   background: $tab-content;
-  margin-bottom: 5rem;
   animation: activefade 2s;
   @include mQ($ipad){
-    flex-wrap: wrap;
+    margin-bottom: 5rem;
+    flex-wrap: nowrap;
     height: auto;
   }
 }
@@ -70,24 +91,21 @@
 
 /* tab columns */
 .tab-column{
-  flex: 1;
-  padding: 0rem 2rem;
+  flex: 100%;
+  padding: 0rem 1rem;
 
-  @include mQ($mobile){
-    flex: 100%;
-    padding: 0rem 1rem;
+  @include mQ($bp-medium){
+    flex: 1;
+    padding: 0rem 2rem;
   }
 }
 
 .tab-content-heading{
   padding: 0;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 
   @include mQ($ipad){
-    font-size: 1.35rem;
-  }
-  @include mQ($mobile){
-    font-size: 1.2rem;
+    font-size: 1.5rem;
   }
 }
 
@@ -96,9 +114,9 @@
 }
 
 .tab-item{
-  margin: 0.7rem 0;
+  margin: 0.35rem;
 
-  @include mQ($mobile){
-    margin: 0.35rem
+  @include mQ($ipad){
+    margin: 0.7rem 0;
   }
 }

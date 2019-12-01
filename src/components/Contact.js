@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 const Contact = React.forwardRef((props, ref) => {
   return (
     <section ref={ref} id='contact' className='section contact'>
-      <h2 className='section-heading section-heading--contact'>Contact</h2>
+      <h2 className='section__heading section__heading--contact'>Contact</h2>
       <p className='section-description section-description--contact'>
         Feel free to contact me
       </p>

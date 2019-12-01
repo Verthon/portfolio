@@ -1,16 +1,18 @@
 import React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 
 const Footer = () => {
   return (
     <footer className='site-footer'>
-      <div className='footer-socials'>
+      <div className='site-footer__socials'>
         <a
           href='https://github.com/Verthon'
           target='_blank'
           rel='noopener noreferrer'
           aria-label='Link to Verthon GitHub profile'
         >
-          <i className='fa fa-github fa-lg' aria-hidden='true' />
+          <FontAwesomeIcon icon={faGithub} size='lg' aria-hidden='true' />
         </a>
         <a
           href='https://www.linkedin.com/in/krzysztof-sordyl/'
@@ -18,7 +20,7 @@ const Footer = () => {
           rel='noopener noreferrer'
           aria-label='Krzysztof Sordyl linkedin profile'
         >
-          <i className='fa fa-linkedin fa-lg' aria-hidden='true' />
+          <FontAwesomeIcon icon={faLinkedin} size='lg' aria-hidden='true' />
         </a>
       </div>
       <p className='site-footer__text'>

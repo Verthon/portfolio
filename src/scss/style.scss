@@ -16,15 +16,15 @@
 body {
   background: $white;
   color: $white;
-  font-size: 16px;
+  font-size: $base-font-size;
   font-family: $font, sans-serif;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
   overflow-x: hidden;
 
-  @include mQ($ipad) {
-    max-width: 100%;
+  @include mQ($bp-xxlarge) {
+    font-size: $base-font-size * 2;
   }
 }
 

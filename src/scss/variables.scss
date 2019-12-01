@@ -25,7 +25,8 @@ $HiDPILaptop: 1440px;
 
 //breakpoints
 $iphoneSE: 320px;
-$bp-xsmall: 34rem; // 544px
+$bp-xxsmall: 21.875rem; // 350px
+$bp-xsmall: 32rem; // 512px
 $bp-small: 48rem; // 768px
 $bp-medium: 64rem; // 1024px
 $bp-large: 85.375rem; // 1366px
@@ -42,5 +43,6 @@ $medium-fl: 1460px;
 $gradient: linear-gradient(to right, $light-green, $light-mint);
 
 $font: 'Open Sans', sans-serif;
+$base-font-size: 1rem;
 //$font-dec: 'Basier Circle Regular';
 $g-padding: 0 15rem;

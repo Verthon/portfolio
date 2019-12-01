@@ -9,7 +9,7 @@ const Nav = ({ links, scroll }) => {
   const [show, handleMenuVisibility] = useState(false)
   const menuCssClass = show ? 'menu-ul-mobile' : 'menu-ul'
   return (
-    <nav className='site-nav container'>
+    <nav className='site-nav'>
       <div className='site-nav--socials'>
         <a
           href='https://github.com/Verthon'

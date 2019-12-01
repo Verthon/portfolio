@@ -1,178 +1,158 @@
-.projects{
+.projects {
   background: $tab-content;
   color: $sec-bg;
 }
 
-.section-heading--projects{
+.section-heading--projects {
   color: $main-bg;
   margin: 2.5rem 0 0.5rem 0;
 }
 
-.project-container{
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  height: auto;
-  margin: 5rem auto;
-  padding: 5rem 0;
+.project-container {
+  @include flexColumn;
+  padding: 0 0 1rem 0;
   background: $white;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
-  max-width: 1100px;
+  margin: 5rem auto;
 
-  @include mQ($medium){
-    max-width: 800px;
-    @include flexColumn;
-    padding: 0 0 2.5rem 0;
+  @include mQ($bp-xsmall) {
+    max-width: 75%;
   }
 
-  @include mQ($ipad){
-    @include flexColumn;
-    padding: 0 0 2.5rem 0;
-    display: block;
+  @include mQ($bp-medium) {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: auto;
+    padding: 5rem 0;
+    max-width: 600px;
   }
 
-  @include mQ($nexus){
-    @include flexColumn;
-    padding: 0 0 2rem 0;
-  }
-
-  @include mQ($mobile){
-    @include flexColumn;
-    padding: 0 0 1rem 0;
+  @include mQ($bp-large) {
+    flex-direction: row;
+    max-width: 1100px;
   }
 }
 
-.project-container.last{
+.project-container.last {
   padding: 3rem 1.6rem;
-  @include mQ($ipad){
+  @include mQ($ipad) {
     padding: 2.5rem 0;
     display: block;
   }
-  @include mQ($mobile){
+  @include mQ($mobile) {
     padding: 0 0 1rem 0;
   }
 }
 
-.project-image{
-  max-width: 600px;
-  padding: 0 2rem;
+.project-image {
+  max-width: 100%;
+  padding: 0;
 
-  @include mQ($medium){
-    max-width: 100%;
-    padding: 0;
+  @include mQ($bp-medium) {
+    max-width: 600px;
+    padding: 0 2rem;
   }
 }
 
-.project{
-  padding: 0 2rem;
+.project {
+  padding: 0 1rem;
 
-  @include mQ($mobile){
-    padding: 0 1rem;
+  @include mQ($bp-medium) {
+    padding: 0 2rem;
   }
 
-  &__footer{
+  &__footer {
     display: flex;
     align-items: center;
-    margin: 1rem 0;
-    i{
+    margin: 0.25rem 0;
+    i {
       font-size: 1.5rem;
     }
 
-    @include mQ($mobile){
-      margin: .25rem 0;
+    @include mQ($bp-medium) {
+      margin: 1rem 0;
     }
   }
 }
 
-.project-title{
-  font-size: 2rem;
-  @include mQ($ipad){
-    margin: 1rem 0;
+.project-title {
+  font-size: 1.5rem;
+  @include mQ($bp-medium) {
+    font-size: 2rem;
   }
-
-  @include mQ($nexus){
-    margin: 1.5rem 0;
-  }
-
-  @include mQ($mobile){
+  @include mQ($ipad) {
     margin: 1rem 0;
-    font-size: 1.5rem;
   }
 }
 
-.project-description{
+.project-description {
   line-height: 1.5;
-  margin: 1rem 0 5rem 0;
+  margin: 1rem 0;
 
-  &--sources{
-    margin: 0.5 0 5rem 0;
+  &--sources {
+    margin: 1rem 0;
   }
 
-  @include mQ($ipad){
-    margin: 3rem 0;
+  @include mQ($bp-medium) {
+    margin: 1rem 0 5rem 0;
   }
 
-  @include mQ($nexus){
+  @include mQ($nexus) {
     margin: 2rem 0;
   }
-
-  @include mQ($mobile){
-    margin: 1rem 0;
-  }
-
 }
 
-.project-btn{
-  padding: 0.5rem 1rem;
+.project-btn {
+  padding: 0.25rem .75rem;
   border: 0;
   font-size: 1rem;
   background: $main-bg;
   color: $light;
+  margin: 0.15rem 0.1rem;
   margin: 0.1rem;
-  @include mQ($ipad){
+
+  @include mQ($bp-medium) {
     padding: 0.5rem 1rem;
     font-size: 1.1rem;
   }
-  @include mQ($mobile){
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    margin: 0.15rem 0.1rem;
-  }
 
-  &--sources{
+  &--sources {
     margin: 1rem 0;
   }
-  &--link{
+  &--link {
     display: block;
     background: $light-green;
     text-transform: capitalize;
     color: $main-bg;
-    @include mQ($ipad){
+    padding: 0.5rem 1rem;
+    @include mQ($ipad) {
       display: block;
       margin: 1rem 0;
     }
-    @include mQ($mobile){
+    @include mQ($mobile) {
       margin: 0;
     }
   }
-  &--source{
+  &--source {
+    padding: 0.5rem 1rem;
     margin: 0 0.5rem 0 0;
   }
 }
 
-#github-btn:hover{
+#github-btn:hover {
   cursor: pointer;
 }
 
-.project-btn--sources:hover{
+.project-btn--sources:hover {
   cursor: pointer;
 }
 
-.project-btn--link:hover{
+.project-btn--link:hover {
   cursor: pointer;
 }
 
-.project-sources{
+.project-sources {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -182,16 +162,20 @@
   padding: 1rem 0;
   background: $white;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
-  max-width: 1100px;
+  
 
-  @include mQ($ipad){
-    padding: 2.5rem 0;
-  }
-  @include mQ($mobile){
-    padding: 1rem;
+  @include mQ($bp-small) {
+    max-width: 75%;
   }
 
-  &__description{
+  @include mQ($bp-large) {
+    padding: 5rem 0;
+    align-items: center;
+    max-width: 1100px;
+  }
+
+  &__description {
     text-align: center;
+    max-width: 70%;
   }
 }

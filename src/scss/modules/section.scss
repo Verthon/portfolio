@@ -1,55 +1,70 @@
 .section {
   padding: 2rem 0;
   background: $main-bg;
-}
-.section-heading {
-  text-transform: uppercase;
-  text-align: center;
-  color: $light-mint;
-  font-size: 3rem;
-  margin: 2.5rem 0 5rem 0;
+  display: flex;
+  justify-content: center;
 
-  @include mQ($medium) {
-    font-size: 2.5rem;
-  }
-
-  @include mQ($ipad) {
-    font-size: 2.25rem;
-  }
-
-  @include mQ($mobile) {
+  &__heading {
+    text-transform: uppercase;
+    text-align: center;
+    color: $light-mint;
     font-size: 1.75rem;
-  }
-}
+    margin: 2.5rem 0 5rem 0;
 
-.section-description {
-  text-align: center;
-  font-size: 1.15rem;
-  font-weight: lighter;
-}
-.section p {
-  @include mQ($ipad) {
-    font-size: 1.35rem;
+
+    @include mQ($bp-small) {
+      font-size: 2.25rem;
+    }
+
+    @include mQ($bp-medium) {
+      font-size: 3rem;
+    }
+
+
+    &--projects {
+      color: $main-bg;
+      margin: 2.5rem 0 0.5rem 0;
+    }
+
+    &--contact {
+      margin: 2.5rem 0 0 0;
+    }
   }
 
-  @include mQ($nexus) {
-    font-size: 1.1rem;
+  &__quote {
+    font-style: italic;
+    margin: 3rem 1rem;
+    text-align: center;
+    line-height: 1.5;
   }
 
-  @include mQ($mobile) {
+  &__quote-author {
+    font-style: normal;
+    font-weight: bold;
+    margin-top: 1rem;
+  }
+
+  &__description {
+    text-align: center;
     font-size: 1rem;
+    font-weight: lighter;
+
+    @include mQ($bp-small) {
+      font-size: 1.25rem;
+    }
   }
-}
 
-.section-quote {
-  font-style: italic;
-  margin: 3rem 1rem;
-  text-align: center;
-  line-height: 1.5;
-}
+  &--skills {
+    @include mQ($bp-xsmall) {
+      padding: 2rem 2rem;
+    }
 
-.section-quote-author {
-  font-style: normal;
-  font-weight: bold;
-  margin-top: 1rem;
+    @include mQ($bp-small) {
+      padding: 2rem 4rem;
+    }
+
+    @include mQ($bp-medium) {
+      padding: 2rem 0;
+    }
+  }
 }

@@ -9,113 +9,114 @@
 
 .site-nav {
   display: flex;
-  margin: 2rem auto;
+  margin: 1.5rem 0;
+  padding: 0;
+  align-items: center;
+  width: auto;
   justify-content: space-between;
   position: relative;
-  align-items: flex-start;
-  width: 100%;
-
-  @include mQ($ipad) {
-    position: relative;
-    margin: 2rem;
-    padding: 0;
-  }
 
   @include mQ($bp-small) {
-    margin: 1.5rem;
-    padding: 0;
+    margin: 1.5rem 0;
+    justify-content: space-between;
+    position: relative;
     align-items: center;
-    width: auto;
+    width: 100%;
   }
 
   &--socials {
     display: flex;
-    flex-basis: 5%;
     justify-content: space-between;
+    flex-basis: 25%;
+    font-size: 1rem;
 
-    @include mQ($ipad) {
+    @include mQ($bp-xsmall) {
       flex-basis: 10%;
-    }
-
-    @include mQ($mobile) {
-      flex-basis: 25%;
     }
   }
 }
 
 .menu-icon {
-  display: none;
+  font-size: 1rem;
+  display: flex;
+  border: none;
+  color: $tab-header;
+  background-color: transparent;
+  cursor: pointer;
+  animation: menufade 0.5s;
+
   @include mQ($ipad) {
-    font-size: 1rem;
-    display: flex;
-    border: none;
-    color: $tab-header;
-    background-color: transparent;
-    cursor: pointer;
-    animation: menufade 0.5s;
+    display: none;
   }
 }
 
 .menu-ul {
-  display: flex;
-
-  @include mQ($ipad) {
-    display: none;
-    position: absolute;
-    background: $about-bg;
-    width: 100%;
-    transform: translateY(20%);
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 1;
-    height: 45vh;
-    top: 0;
-    animation: menufade 0.5s;
+  display: none;
+  position: absolute;
+  background: $about-bg;
+  width: 100%;
+  transform: translateY(20%);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  height: 45vh;
+  top: 0;
+  animation: menufade 0.5s;
+  transform: translateY(13%);
+  @include mQ($bp-medium) {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    height: auto;
+    width: auto;
+    z-index: inherit;
+    background: transparent;
+    transform: translateY(0);
   }
   @include mQ($mobile) {
-    transform: translateY(13%);
   }
 }
 
 .menu-ul-mobile {
   display: flex;
+  position: absolute;
+  background: $tab-content;
+  width: 100vw;
+  left: -1rem;
+  transform: translateY(16%);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  height: 45vh;
+  top: 0;
+  animation: menufade 0.75s;
 
-  @include mQ($ipad) {
-    display: flex;
-    position: absolute;
-    background: $tab-content;
-    width: 100%;
-    transform: translateY(10%);
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 1;
-    height: 45vh;
-    top: 0;
-    animation: menufade 0.75s;
+  @include mQ($bp-xxsmall){
+    left: -2rem;
   }
-  @include mQ($mobile) {
-    display: flex;
-    width: 100vw;
-    height: 40vh;
-    transform: translateY(20%);
-    left: -24px;
+
+  @include mQ($bp-small) {
+    left: -4rem;
+    transform: translateY(10%);
+  }
+
+  @include mQ($bp-medium) {
+    display: none;
   }
 }
 
 .menu-item {
-  margin: 0 1rem;
-  font-size: 1.1rem;
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin: 1.25rem;
   cursor: pointer;
-  @include mQ($ipad) {
-    margin: 1.75rem;
-    font-size: 1.4rem;
-    font-weight: 400;
+  @include mQ($bp-small) {
+    margin: 0 1rem;
+    font-size: 1.1rem;
   }
-  @include mQ($mobile) {
-    margin: 1.25rem;
-  }
+
 }
 
 .menu-item svg {

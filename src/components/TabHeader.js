@@ -8,8 +8,8 @@ const TabHeader = ({ data, activeHeader, handleClick }) => {
       data-tab={data.tab}
       onClick={handleClick}
     >
-      <h2 className='tab-header-title'>{data.name}</h2>
-      <p className='tab-header-content'>{data.description}</p>
+      <h2 className='tab-header__title'>{data.name}</h2>
+      <p className='tab-header__content'>{data.description}</p>
     </li>
   )
 }

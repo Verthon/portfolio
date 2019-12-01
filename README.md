@@ -1,20 +1,20 @@
-# My portfolio
+# 🔥🔥🔥 My portfolio
 
-My first personal portfolio
+My first mobile-first personal portfolio
 - https://sordyl.me
 
 
-## Table of contents
+## 💡 Table of contents
 * [Technologies](#technologies)
 * [Setup](#setup)
 * [Work in progress](#work-in-progress)
 
-## Technologies
+## 🔥 Technologies
 - Gatsby.js
 - Scss,
 - ES6 JavaScript,
 - SVG Background from https://loading.io
-- Contionious deployment with Netlify
+- Continuous deployment with Netlify
 
 ## 🚀 Setup
 
