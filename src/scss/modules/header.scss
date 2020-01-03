@@ -11,6 +11,10 @@
     min-height: 70vh;
     background-size: cover;
   }
+
+  @include mQ($bp-large) {
+    min-height: 80vh;
+  }
 }
 .site-header {
   padding: 0;
