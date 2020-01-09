@@ -1,12 +1,23 @@
 import React from 'react'
+import { useStaticQuery, graphql } from 'gatsby'
 
-const About = props => {
+const About = () => {
+  const data = useStaticQuery(
+    graphql`
+      query {
+        site {
+          siteMetadata {
+            bio
+          }
+        }
+      }
+    `
+  )
+
   return (
-    <section className='section about'>
-      <p className='container about__description'>
-        I am a developer living in Bielsko-Biała, Poland. I build websites and web apps
-        particularly, I specialize in frontend development React.js, SCSS, modern
-        JavaScript. Currently learning Typescript, PostgreSQL and Node.js.
+    <section className="section about">
+      <p className="container about__description">
+        {data.site.siteMetadata.bio}
       </p>
     </section>
   )

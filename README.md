@@ -11,6 +11,7 @@ My first mobile-first personal portfolio
 
 ## 🔥 Technologies
 - Gatsby.js
+- GraphQL
 - Scss,
 - ES6 JavaScript,
 - SVG Background from https://loading.io

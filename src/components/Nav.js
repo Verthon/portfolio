@@ -4,15 +4,30 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import NavItem from './NavItem'
+import { useStaticQuery, graphql } from 'gatsby'
 
 const Nav = ({ links, scroll }) => {
+
+  const data = useStaticQuery(
+    graphql`
+      query {
+        site {
+          siteMetadata {
+            linkedin
+            github
+          }
+        }
+      }
+    `
+  )
+
   const [show, handleMenuVisibility] = useState(false)
   const menuCssClass = show ? 'menu-ul-mobile' : 'menu-ul'
   return (
     <nav className='site-nav'>
       <div className='site-nav--socials'>
         <a
-          href='https://github.com/Verthon'
+          href={data.site.siteMetadata.github}
           target='_blank'
           rel='noopener noreferrer'
         >
@@ -24,7 +39,7 @@ const Nav = ({ links, scroll }) => {
           />
         </a>
         <a
-          href='https://www.linkedin.com/in/krzysztof-sordyl/'
+          href={data.site.siteMetadata.linkedin}
           target='_blank'
           rel='noopener noreferrer'
         >

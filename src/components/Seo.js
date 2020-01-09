@@ -19,6 +19,7 @@ function Seo ({ description, lang, meta, title }) {
             title
             description
             author
+            twitterSlug
           }
         }
       }
@@ -34,11 +35,11 @@ function Seo ({ description, lang, meta, title }) {
         lang
       }}
       title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
+      titleTemplate={`${site.siteMetadata.title}`}
       meta={[
         {
           name: 'description',
-          content: metaDescription
+          content: site.siteMetadata.description
         },
         {
           property: 'og:title',
@@ -46,7 +47,7 @@ function Seo ({ description, lang, meta, title }) {
         },
         {
           property: 'og:description',
-          content: metaDescription
+          content: site.siteMetadata.description
         },
         {
           property: 'og:type',
@@ -58,15 +59,15 @@ function Seo ({ description, lang, meta, title }) {
         },
         {
           name: 'twitter:creator',
-          content: site.siteMetadata.author
+          content: site.siteMetadata.twitterSlug
         },
         {
           name: 'twitter:title',
-          content: title
+          content: site.siteMetadata.title
         },
         {
           name: 'twitter:description',
-          content: metaDescription
+          content: site.siteMetadata.description
         }
       ].concat(meta)}
     />
