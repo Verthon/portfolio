@@ -6,18 +6,19 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
 const Project = ({
   name,
-  images,
+  image,
   description,
   technologies,
   github,
   live,
   animation
 }) => {
+
   return (
     <div className='project-container' data-aos={animation}>
       <img
         className='project-image'
-        srcSet={`${images[0]} 1024w, ${images[1]} 768w, ${images[2]} 300w`}
+        srcSet={image}
         alt='Event app screenshot'
       />
       <article className='project'>
@@ -56,7 +57,7 @@ const Project = ({
 
 Project.propTypes = {
   name: PropTypes.string,
-  images: PropTypes.array,
+  image: PropTypes.string,
   description: PropTypes.string,
   technologies: PropTypes.array,
   github: PropTypes.string,
@@ -65,3 +66,4 @@ Project.propTypes = {
 }
 
 export default Project
+

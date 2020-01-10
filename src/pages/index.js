@@ -9,15 +9,6 @@ import Projects from "../components/Projects"
 import Contact from "../components/Contact"
 import Footer from "../components/Footer"
 import Seo from "../components/Seo"
-import eventAppSm from "../images/event-app-sm.png"
-import eventAppMd from "../images/event-app-md.png"
-import eventApp from "../images/event-app.png"
-import alkinoosMd from "../images/resto-md.jpg"
-import alkinoosSm from "../images/resto-sm.jpg"
-import alkinoos from "../images/resto.jpeg"
-import heyU from "../images/HeyU.png"
-import heyUMd from "../images/HeyU-md.png"
-import heyUSm from "../images/HeyU-sm.png"
 
 class IndexPage extends Component {
   constructor() {
@@ -28,7 +19,6 @@ class IndexPage extends Component {
     this.projects = [
       {
         name: "Alkinoos Taverna",
-        images: [alkinoos, alkinoosMd, alkinoosSm],
         technologies: ["React", "Sass", "Firestore"],
         description:
           "Fully responsive, serverless, progressive web app for small restaurants, with integrated simple booking system and basic administration tools for staff.",
@@ -38,7 +28,6 @@ class IndexPage extends Component {
       },
       {
         name: "Eventoo",
-        images: [eventApp, eventAppMd, eventAppSm],
         technologies: ["React", "Styled components", "Firestore"],
         description:
           "Responsive App based on React.js library for event management. Within Eventoo you can create your own events.",
@@ -48,7 +37,6 @@ class IndexPage extends Component {
       },
       {
         name: "HeyU website",
-        images: [heyU, heyUMd, heyUSm],
         technologies: ["Gatsby", "Sass", "Netlify"],
         description:
           "Responsive, mobile first webiste based on Gatsby.js. PSD to HTML",

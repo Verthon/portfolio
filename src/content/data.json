@@ -1,0 +1,134 @@
+{
+  "headers": [
+    {
+      "name": "Frontend",
+      "description": "Building responsive websites and web apps based on design projects. SEO optimalization. Creating React based frontend.",
+      "tab": "frontend"
+    },
+    {
+      "name": "Backend",
+      "description": "Hands on experience server side programming. Basic understanding of Node.js and relational databases.",
+      "tab": "backend"
+    },
+    {
+      "name": "Other tools",
+      "description": "Rest of the tools used in my projects",
+      "tab": "tools"
+    }
+  ],
+  "content": [
+    [
+      {
+        "title": "HTML & CSS",
+        "tech": [
+          "HTML5, CSS3, Sass",
+          "Bootstrap 3 & 4",
+          "Methodology: BEM",
+          "Responsive Web Design"
+        ]
+      },
+      {
+        "title": "JavaScript",
+        "tech": [
+          "Solid knowledge of JavaScript ES6, React.js",
+          "Familiar with Redux",
+          "Basic understanding of OOP and functional programming",
+          "Experience with AJAX and API integration"
+        ]
+      },
+      {
+        "title": "Tools and CMS",
+        "tech": [
+          "Experience with Wordpress CMS",
+          "Hands on experience with Gatsby",
+          "Gulp.js, npm, webpack, eslint",
+          "Familiar with GIT version control system"
+        ]
+      }
+    ],
+    [
+      {
+        "title": "Backend",
+        "tech": [
+          "Hands on experience server side programming",
+          "Basics of Node.js and Express.js",
+          "Knowledge about HTTP and REST",
+          "Basic understanding about MVC pattern"
+        ]
+      },
+      {
+        "title": "Databases",
+        "tech": [
+          "Basics of SQL relational databases",
+          "Familiar with Firestore and MongoDB",
+          "Currently learning more about SQL"
+        ]
+      },
+      {
+        "title": "Tools",
+        "tech": [
+          "PHPMYAdmin",
+          "Basics of socket.io",
+          "Postman"
+        ]
+      }
+    ],
+    [
+      {
+        "title": "Services",
+        "tech": [
+          "JS Bin",
+          "Codepen",
+          "GitHub",
+          "Netlify"
+        ]
+      },
+      {
+        "title": "Programs",
+        "tech": [
+          "AdobeXD basics",
+          "VSCode",
+          "Trello"
+        ]
+      }
+    ]
+  ],
+  "projects": [
+    {
+      "name": "Alkinoos Taverna",
+      "technologies": [
+        "React",
+        "Sass",
+        "Firestore"
+      ],
+      "description": "Fully responsive, serverless, progressive web app for small restaurants, with integrated simple booking system and basic administration tools for staff.",
+      "github": "https://github.com/Verthon/restaurant-app",
+      "live": "https://alkinoos-taverna.netlify.com/",
+      "animation": "slide-right"
+    },
+    {
+      "name": "Eventoo",
+      "technologies": [
+        "React",
+        "Styled components",
+        "Firestore"
+      ],
+      "description": "Responsive App based on React.js library for event management. Within Eventoo you can create your own events.",
+      "github": "https://github.com/Verthon/event-app",
+      "live": "https://eventooo.netlify.com/",
+      "animation": "slide-left"
+    },
+    {
+      "name": "HeyU website",
+      "technologies": [
+        "Gatsby",
+        "Sass",
+        "Netlify"
+      ],
+      "description": "Responsive, mobile first webiste based on Gatsby.js. PSD to HTML",
+      "github": "https://github.com/Verthon/HeyU-Website",
+      "live": "https://heyu-website.netlify.com/",
+      "animation": "slide-right"
+    }
+  ]
+}
