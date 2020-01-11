@@ -9,7 +9,10 @@ import JSONData from '../content/data.json'
 const Projects = React.forwardRef((props, ref) => {
   const data = useStaticQuery(graphql`
     query getAllImages {
-      allFile(filter: { relativeDirectory: { eq: "projects" } }) {
+      allFile(
+        filter: { relativeDirectory: { eq: "projects" } }
+        sort: { fields: base }
+      ) {
         edges {
           node {
             base
@@ -24,7 +27,9 @@ const Projects = React.forwardRef((props, ref) => {
     }
   `)
 
-  const projectsImages = data.allFile.edges.map(element => element.node.childImageSharp.fluid.srcSet)
+  const projectsImages = data.allFile.edges.map(
+    element => element.node.childImageSharp.fluid.srcSet
+  )
   return (
     <section ref={ref} id="projects" className="section projects">
       <div className="container">
