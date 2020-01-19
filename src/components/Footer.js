@@ -39,7 +39,7 @@ const Footer = () => {
         </a>
       </div>
       <p className="site-footer__text">
-        {data.site.siteMetadata.author} portfolio 2019 ©{' '}
+        {data.site.siteMetadata.author} portfolio {new Date().getFullYear()} ©{' '}
         <a href="https://loading.io/" target="_blank" rel="noopener noreferrer">
           Background by:{' '}
           <span className="site-footer__text--color">loading.io</span>
