@@ -7,7 +7,7 @@ module.exports = {
       'Welcome, my name is Krzysztof Sordyl frontend developer living in Bielsko-Biała, Poland. I"m creating solid, modern and well-designed websites. React enthusiast. Software, programming Bielsko-Biała',
     author: 'Krzysztof Sordyl',
     bio:
-      'I am a developer living in Bielsko-Biała, Poland. I build websites and web apps particularly, I specialize in frontend development React.js, SCSS, modern JavaScript. Currently learning Typescript, PostgreSQL and Node.js.',
+      'I am a developer living in Bielsko-Biała, Poland. I build websites and web apps particularly, I specialize in frontend development React.js, SCSS, modern JavaScript. Currently learning Typescript, Ionic and Redux.',
     twitterSlug: '@chsordyl',
     position: 'Frontend Developer',
     about:
