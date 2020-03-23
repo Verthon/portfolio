@@ -34,6 +34,10 @@
       flex-basis: 10%;
     }
 
+    @include mQ($bp-medium) {
+      flex-basis: 5%;
+    }
+
     @include mQ($bp-xxlarge) {
       font-size: 2rem;
     }

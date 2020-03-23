@@ -14,6 +14,7 @@
 
   @include mQ($bp-large) {
     min-height: 80vh;
+    background-size: 140%;
   }
 }
 .site-header {

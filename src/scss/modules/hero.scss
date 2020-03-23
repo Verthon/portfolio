@@ -1,15 +1,15 @@
 .hero-heading {
-  font-size: 2rem;
+  font-size: 1rem;
   font-weight: 300;
   margin: 0.1rem 0;
   @include mQ($bp-small) {
-    font-size: 3rem;
+    font-size: 1.1rem;
   }
   @include mQ($bp-large) {
-    font-size: 3.5rem;
+    font-size: 1.1rem;
   }
   @include mQ($bp-xxlarge) {
-    font-size: 7rem;
+    font-size: 2.2rem;
   }
 }
 .hero-subheading {
@@ -34,18 +34,19 @@
   }
 }
 .hero__highlight {
-  font-weight: bold;
+  font-weight: 800;
+  letter-spacing: 1px;
 }
 .hero-description {
   padding-bottom: 0;
-  padding: 0.5rem 0 2.5rem 0;
+  padding: 0.5rem 0 1.5rem 0;
   font-size: 1.25rem;
   font-weight: 300;
   margin: 0;
   color: $black;
   @include mQ($bp-small) {
     font-size: 1.5rem;
-    padding: 0.5rem 0 4rem 0;
+    padding: 0.5rem 0 2rem 0;
   }
 
   @include mQ($bp-medium) {
@@ -90,7 +91,7 @@
   border-radius: 0.1rem;
   font-family: 'Open Sans';
   padding: 0.5rem 1.5rem;
-  font-size: 1.1rem;
+  font-size: 1rem;
   margin: 1rem 0;
   // padding: 0.5rem 2rem;
   // font-size: 1.35rem;
@@ -123,8 +124,8 @@
   }
 
   @include mQ($bp-large) {
-    padding: 0.5rem 2rem;
-    font-size: 1.35rem;
+    padding: 0.625rem 2.5rem;
+    font-size: 1rem;
     opacity: 0;
     margin: 1rem 0;
   }

@@ -25,7 +25,7 @@ const Header = ({ scroll }) => {
       <div className="container container--header">
         <header className="site-header">
           <h2 className="hero-heading" data-aos="zoom-in">
-            Welcome!
+            Hello 👋 Welcome to my portfolio!
           </h2>
           <h1 className="hero-subheading" data-aos="zoom-in">
             I'm{' '}
