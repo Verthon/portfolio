@@ -54,7 +54,7 @@ const Projects = React.forwardRef((props, ref) => {
         <div className="project-sources">
           <h2 className="project-title">Rest of my projects</h2>
           <p className="project-sources__description">
-            Other projects are hosted on Github and Codepen
+            Other projects are hosted on my Github account and Codepen.
           </p>
           <a
             data-aos="flip-up"
