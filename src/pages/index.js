@@ -39,7 +39,7 @@ class IndexPage extends Component {
         name: "HeyU website",
         technologies: ["Gatsby", "Sass", "Netlify"],
         description:
-          "Responsive, mobile first webiste based on Gatsby.js. PSD to HTML",
+          "Responsive, mobile first website based on Gatsby.js. PSD to HTML",
         github: "https://github.com/Verthon/HeyU-Website",
         live: "https://heyu-website.netlify.com/",
         animation: "slide-right",

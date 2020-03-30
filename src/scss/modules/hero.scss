@@ -90,6 +90,7 @@
   color: $white;
   border-radius: 0.1rem;
   font-family: 'Open Sans';
+  font-weight: 400;
   padding: 0.5rem 1.5rem;
   font-size: 1rem;
   margin: 1rem 0;
@@ -125,7 +126,7 @@
 
   @include mQ($bp-large) {
     padding: 0.625rem 2.5rem;
-    font-size: 1rem;
+    font-size: 1.1rem;
     opacity: 0;
     margin: 1rem 0;
   }

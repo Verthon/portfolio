@@ -15,7 +15,7 @@ const Project = ({
 }) => {
 
   return (
-    <div className='project-container' data-aos={animation}>
+    <div className='project-container' data-aos={animation} data-aos-duration="1000">
       <img
         className='project-image'
         srcSet={image}
@@ -38,7 +38,7 @@ const Project = ({
             aria-label='Link to Verthon GitHub profile'
           >
             Source{' '}
-            <FontAwesomeIcon icon={faGithub} size='lg' aria-hidden='true' />
+            <FontAwesomeIcon icon={faGithub} aria-hidden='true' />
           </a>
           <a
             className='project-btn project-btn--link'
@@ -47,7 +47,7 @@ const Project = ({
             rel='noopener noreferrer'
             aria-label='Link to live version'
           >
-            view app <FontAwesomeIcon icon={faExternalLinkAlt} size='lg' />
+            view app <FontAwesomeIcon icon={faExternalLinkAlt} />
           </a>
         </footer>
       </article>
