@@ -1,21 +1,25 @@
-.contact-btn{
+.contact-btn {
   padding: 0.5rem 1.5rem;
   color: $tab-header;
   background: linear-gradient(to right, $light-green, $light-mint);
   border: 0;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
+  border-radius: 2px;
 
   @include mQ($bp-xxlarge) {
     padding: 1rem 2.5rem;
     font-size: 2.5rem;
   }
 }
-.section-heading--contact{
+.section-heading--contact {
   margin: 2.5rem 0 0 0;
 }
-.contact-btn:hover{
+.contact-btn:hover {
   cursor: pointer;
 }
-.section-description--contact{
-  margin: 0.5rem 0 3rem 0;
+.section-description--contact {
+  margin: 0.5rem 0 0 0;
+}
+.section-description--email {
+  margin: 1rem 0 3rem 0;
 }

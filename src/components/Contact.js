@@ -20,7 +20,7 @@ const Contact = React.forwardRef((props, ref) => {
       <p className='section-description section-description--contact'>
         Feel free to contact me
       </p>
-      <p className='section-description section-description--contact'>
+      <p className='section-description section-description--email'>
         {data.site.siteMetadata.email}
       </p>
       <a

@@ -4,7 +4,7 @@
 }
 
 .section-heading--projects {
-  color: $main-bg;
+  color: #2f4858;
   margin: 2.5rem 0 0.5rem 0;
 }
 
@@ -85,11 +85,13 @@
 
 .project-title {
   font-size: 1.5rem;
+  margin: 1rem 0 0.5rem 0;
+  color: #2f4858;
   @include mQ($bp-medium) {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
   @include mQ($ipad) {
-    margin: 0;
+    margin:  0 0 0.5rem 0;
   }
   @include mQ($bp-xxlarge) {
     font-size: 3.25rem;
@@ -99,7 +101,8 @@
 
 .project-description {
   line-height: 1.5;
-  margin: 1rem 0;
+  margin: 0.5rem 0 1rem 0;
+  color: #505050;
 
   &--sources {
     margin: 1rem 0;
@@ -107,7 +110,6 @@
 
   @include mQ($bp-medium) {
     max-width: 85%;
-    margin: 1rem 0 2rem 0;
   }
   @include mQ($bp-xxlarge) {
     margin: 2rem 0 4rem 0;
@@ -115,12 +117,12 @@
 }
 
 .project-btn {
-  padding: 0.25rem .75rem;
+  padding: 0.25rem .5rem;
   border: 0;
-  font-size: 1rem;
-  background: hsl(0%, 0, 93.33);
-  color: hsl(0%, 0, 30.98);
-  margin: 0.15rem 0.15rem 0.15rem 0;
+  font-size: 0.875rem;
+  background:  	hsl(0, 0%, 97%);
+  color: hsl(0,0%,31.4%);
+  margin: 0.15rem 0.25rem 0.15rem 0;
   font-family: $font;
   font-weight: 400;
   border-radius: 2px;
@@ -130,29 +132,42 @@
   }
 
   &--source {
-    margin: 0.25rem 0.5rem 0 0;
-    padding: 0.6rem 1.5rem;
-    background: $main-bg;
-    color: $light; 
+    margin: 0 0.5rem 0 0;
+    padding: 0.5rem 1rem;
+    background: #2f4858;
+    color: $light;
+    font-size: 1rem;
+    @include mQ($ipad) {
+      margin: 0.25rem 0.5rem 0 0;
+      padding: 0.6rem 1.5rem;
+    }
     @include mQ($bp-xxlarge) {
       padding: 1rem 2rem;
     }
   }
   &--sources {
-    padding: 0.6rem 1.5rem;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
     margin: 1rem 0;
-    background: $main-bg;
+    background: #2f4858;
     color: $light;
+
+    @include mQ($ipad) {
+      padding: 0.6rem 1.5rem;
+    }
   }
   &--link {
     display: block;
     background: $light-green;
     text-transform: capitalize;
-    color: $main-bg;
-    padding: 0.6rem 1.5rem;
+    color: #2f4858;
+    padding: 0.5rem 1rem;
+    margin: 0 0 0 0;
+    font-size: 1rem;
     @include mQ($ipad) {
       display: block;
       margin: 0.25rem 0 0 0;
+      padding: 0.6rem 1.5rem;
     }
     @include mQ($bp-xxlarge) {
       padding: 1rem 2rem;
@@ -199,7 +214,7 @@
   }
 
   &__description {
-    text-align: center;
+    text-align: left;
     max-width: 70%;
   }
 }

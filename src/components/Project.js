@@ -23,12 +23,12 @@ const Project = ({
       />
       <article className='project'>
         <h2 className='project-title'>{name}</h2>
-        <p className='project-description'>{description}</p>
         {technologies.map(technology => (
           <button key={technology} className='project-btn'>
             {technology}
           </button>
         ))}
+        <p className='project-description'>{description}</p>
         <footer className='project__footer'>
           <a
             className='project-btn project-btn--source'

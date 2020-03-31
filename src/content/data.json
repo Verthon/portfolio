@@ -125,7 +125,7 @@
         "GraphQL",
         "Netlify"
       ],
-      "description": "Responsive, mobile first website based on Gatsby.js. PSD to HTML",
+      "description": "Responsive, mobile first website based on Gatsby.js. Website has been rated over 90 in Google Lighthouse in 4 different categories: Performance, Accessibility, Best practicies and SEO.",
       "github": "https://github.com/Verthon/HeyU-Website",
       "live": "https://heyu-website.netlify.com/",
       "animation": "slide-right"

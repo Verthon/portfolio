@@ -51,34 +51,6 @@ const Projects = React.forwardRef((props, ref) => {
             animation={project.animation}
           />
         ))}
-        <div className="project-sources">
-          <h2 className="project-title">Rest of my projects</h2>
-          <p className="project-sources__description">
-            Other projects are hosted on my Github account and Codepen.
-          </p>
-          <a
-            data-aos="flip-up"
-            href="https://github.com/Verthon"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="project-btn project-btn--sources"
-            aria-label="Link to Verthon GitHub profile"
-          >
-            GitHub{' '}
-            <FontAwesomeIcon icon={faGithub} size="lg" aria-hidden="true" />
-          </a>
-          <a
-            data-aos="flip-up"
-            href="https://codepen.io/Verthon"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="project-btn project-btn--sources"
-            aria-label="Link to codepen account"
-          >
-            Codepen{' '}
-            <FontAwesomeIcon icon={faCodepen} size="lg" aria-hidden="true" />
-          </a>
-        </div>
       </div>
     </section>
   )

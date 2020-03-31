@@ -7,6 +7,7 @@
 
   &__title {
     margin: 0;
+    font-size: 1.25rem;
 
     @include mQ($bp-medium) {
       margin: 0.5rem 0;
@@ -58,15 +59,15 @@
 }
 .tab-content-item{
   display: none;
-  padding: 0.1rem;
+  padding: 1rem 0;
   margin: 0;
   color: $main-bg;
   width: 100%;
   height: auto;
   @include mQ($ipad) {
     width: 100%;
-    padding: 1rem;
     margin: 0 1rem;
+    padding: 1rem;
   }
   @include mQ($mobile){
     
@@ -105,7 +106,8 @@
   font-size: 1.2rem;
 
   @include mQ($ipad){
-    font-size: 1.5rem;
+    font-size: 1.25rem;
+    margin: 0.5rem 0 .5rem 0;
   }
 
   @include mQ($bp-xxlarge) {
