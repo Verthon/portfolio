@@ -1,144 +1,105 @@
-.hero-heading {
-  font-size: 1rem;
-  font-weight: 300;
-  margin: 0.1rem 0;
-  @include mQ($bp-small) {
-    font-size: 1.1rem;
-  }
-  @include mQ($bp-large) {
-    font-size: 1.1rem;
-  }
-  @include mQ($bp-xxlarge) {
-    font-size: 2.2rem;
-  }
-}
-.hero-subheading {
-  font-size: 1.75rem;
-  font-weight: 300;
-  margin: 0;
-
-  @include mQ($bp-small) {
-    font-size: 2.25rem;
+.hero {
+  &__welcome {
+    font-size: 1rem;
+    font-weight: 300;
+    margin: 0.1rem 0;
+    @include mQ($bp-small) {
+      font-size: 1.1rem;
+    }
+    @include mQ($bp-large) {
+      font-size: 1.1rem;
+    }
+    @include mQ($bp-xxlarge) {
+      font-size: 2.2rem;
+    }
   }
 
-  @include mQ($bp-medium) {
-    font-size: 3rem;
+  &__name {
+    font-size: 1.75rem;
+    font-weight: 300;
+    margin: 0 0 1rem 0;
+
+    @include mQ($bp-small) {
+      font-size: 2.25rem;
+    }
+
+    @include mQ($bp-medium) {
+      font-size: 3rem;
+    }
+
+    @include mQ($bp-large) {
+      margin: 0.5rem 0 1rem 0;
+      font-size: 3.25rem;
+    }
+
+    @include mQ($bp-xxlarge) {
+      font-size: 6.5rem;
+    }
   }
 
-  @include mQ($bp-large) {
-    font-size: 3.25rem;
+  &__highlight {
+    font-weight: 800;
+    letter-spacing: 1px;
   }
 
-  @include mQ($bp-xxlarge) {
-    font-size: 6.5rem;
-  }
-}
-.hero__highlight {
-  font-weight: 800;
-  letter-spacing: 1px;
-}
-.hero-description {
-  padding-bottom: 0;
-  padding: 0.5rem 0 1.5rem 0;
-  font-size: 1.25rem;
-  font-weight: 300;
-  margin: 0;
-  color: $black;
-  @include mQ($bp-small) {
-    font-size: 1.5rem;
-    padding: 0.5rem 0 2rem 0;
+  &__description {
+    max-width: 90%;
+    line-height: 1.5;
+    margin: 0.5rem 0 0.5rem 0;
+    font-size: 1rem;
+    font-weight: 300;
+    color: $color-dark-2;
+    @include mQ($bp-small) {
+      margin: 0.5rem 0 2rem 0;
+    }
+
+    @include mQ($bp-medium) {
+      max-width: 500px;
+      font-size: 1.1rem;
+      padding: 0;
+      margin: 0 0 1rem 0;
+    }
+
+    @include mQ($bp-xxlarge) {
+      font-size: 2rem;
+    }
   }
 
-  @include mQ($bp-medium) {
-    font-size: 2rem;
-  }
-
-  @include mQ($bp-xxlarge) {
-    font-size: 4rem;
-  }
-}
-
-@-webkit-keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@-moz-keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.btn-my-work {
-  align-self: flex-start;
-  background: #2f4858;
-  border: 0;
-  color: $white;
-  border-radius: 0.1rem;
-  font-family: 'Open Sans';
-  font-weight: 400;
-  padding: 0.5rem 1.5rem;
-  font-size: 1rem;
-  margin: 1rem 0;
-  // padding: 0.5rem 2rem;
-  // font-size: 1.35rem;
-  // opacity: 0;
-  // margin: 5rem 0;
-  // align-self: flex-start;
-
-  /* make things invisible upon start */
-  -webkit-animation: fadeIn ease-in 1; /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
-  -moz-animation: fadeIn ease-in 1;
-  animation: fadeIn ease-in 1;
-
-  -webkit-animation-fill-mode: forwards; /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
-  -moz-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-
-  -webkit-animation-duration: 1s;
-  -moz-animation-duration: 1s;
-  animation-duration: 1s;
-
-  @include mQ($bp-small) {
-    padding: 0.5rem 1.25rem;
-    font-size: 1.35rem;
-  }
-
-  @include mQ($bp-medium) {
-    margin: 2rem 0;
+  &__btn {
+    font-family: $font;
+    align-self: flex-start;
+    background: $color-primary;
+    border: 0;
+    color: $color-dark;
+    font-weight: normal;
+    border-radius: 0.1rem;
     padding: 0.5rem 1.5rem;
-    font-size: 1.25rem;
+    font-size: 1rem;
+    margin: 3rem 0;
+    box-shadow: $default-shadow;
+  
+    @include mQ($bp-small) {
+      padding: 0.5rem 1.25rem;
+      font-size: 1.35rem;
+    }
+  
+    @include mQ($bp-medium) {
+      margin: 2rem 0;
+      padding: 0.5rem 1.5rem;
+      font-size: 1.25rem;
+    }
+  
+    @include mQ($bp-large) {
+      padding: 0.75rem 2.5rem;
+      font-size: 1.1rem;
+      margin: 2rem 0;
+    }
+  
+    @include mQ($bp-xxlarge) {
+      padding: 1rem 4rem;
+      font-size: 2.7rem;
+      margin: 4rem 0;
+    }
+    &:hover {cursor: pointer}
   }
-
-  @include mQ($bp-large) {
-    padding: 0.625rem 2.5rem;
-    font-size: 1.1rem;
-    opacity: 0;
-    margin: 1rem 0;
-  }
-
-  @include mQ($bp-xxlarge) {
-    padding: 1rem 4rem;
-    font-size: 2.7rem;
-    opacity: 0;
-    margin: 4rem 0;
-  }
-}
-.btn-my-work:hover {
-  cursor: pointer;
-  box-shadow: 0px 0px 0.1rem $black;
 }

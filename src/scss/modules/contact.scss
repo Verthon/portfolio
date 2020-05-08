@@ -1,16 +1,86 @@
-.contact-btn {
-  padding: 0.5rem 1.5rem;
-  color: $tab-header;
-  background: linear-gradient(to right, $light-green, $light-mint);
-  border: 0;
-  font-size: 1.1rem;
-  border-radius: 2px;
+.contact {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  background: $color-secondary;
 
-  @include mQ($bp-xxlarge) {
-    padding: 1rem 2.5rem;
-    font-size: 2.5rem;
+  &__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @include mQ($bp-large) {
+      margin: 1rem 0 0rem 0;
+      background-color: $white;
+      padding: 1rem 3rem;
+      max-width: 600px;
+      border-radius: 2px;
+    }
+  }
+
+  &__about {
+    flex: 1;
+  }
+
+  &__info {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include mQ($bp-large) {
+      background: $white;
+    }
+  }
+
+  &__btn {
+    padding: $button-mobile;
+    color: $color-dark;
+    background: $color-primary;
+    border: 0;
+    font-size: $font-size-regular;
+    border-radius: $default-radius;
+    box-shadow: $default-shadow;
+    text-transform: capitalize;
+
+    @include mQ($bp-large) {
+      padding: $button-desktop;
+    }
+
+    @include mQ($bp-xxlarge) {
+      padding: $button-4k;
+      font-size: 2.5rem;
+    }
+
+    & svg {
+      margin: 0 0 0 0.5rem;
+    }
+  }
+
+  &__description {
+    line-height: 1.5;
+    margin: 1rem auto 0 auto;
+    max-width: 75%;
+    color: $color-dark-1;
+
+    @include mQ($bp-large) {
+      max-width: 90%;
+    }
+  }
+
+  &__email {
+    margin: 2rem 0 2rem 0;
+    &__icon {
+      padding: 0.25rem 0.5rem;
+      margin: 0 0.5rem 0 0;
+      border-radius: $default-radius;
+      background: $color-secondary-2;
+    }
   }
 }
+
 .section-heading--contact {
   margin: 2.5rem 0 0 0;
 }

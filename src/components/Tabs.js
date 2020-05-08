@@ -31,9 +31,6 @@ class Tabs extends React.Component {
       case 'backend':
         this.scrollToContent(this.backendTab)
         break
-      case 'tools':
-        this.scrollToContent(this.toolsTab)
-        break
       default:
         break
     }
@@ -60,7 +57,7 @@ class Tabs extends React.Component {
               <TabHeader
                 key={header.name}
                 data={header}
-                activeHeader="active-header"
+                activeHeader="tab-header--active"
                 handleClick={this.handleHeaderChange}
               />
             ) : (
@@ -95,16 +92,6 @@ class Tabs extends React.Component {
             }
           >
             {content[1].map(column => (
-              <TabContent key={column.title} item={column} />
-            ))}
-          </div>
-          <div
-            ref={this.toolsTab}
-            className={
-              activeTab === 'tools' ? contentCssActiveClass : 'tab-content-item'
-            }
-          >
-            {content[2].map(column => (
               <TabContent key={column.title} item={column} />
             ))}
           </div>

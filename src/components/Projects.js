@@ -1,7 +1,5 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGithub, faCodepen } from '@fortawesome/free-brands-svg-icons'
 import { useStaticQuery, graphql } from 'gatsby'
 import Project from './Project'
 import JSONData from '../content/data.json'
@@ -33,11 +31,11 @@ const Projects = React.forwardRef((props, ref) => {
   return (
     <section ref={ref} id="projects" className="section projects">
       <div className="container">
-        <h2 className="section__heading section__heading--projects">
+        <h2 className="section__heading">
           Projects
         </h2>
         <p className="section__description">
-          This is what I have worked on so far
+          This is what I have worked on so far.
         </p>
         {JSONData.projects.map((project, index) => (
           <Project

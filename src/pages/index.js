@@ -3,7 +3,6 @@ import AOS from "aos"
 import "aos/dist/aos.css"
 
 import Layout from "../components/layout"
-import About from "../components/About"
 import Skills from "../components/Skills"
 import Projects from "../components/Projects"
 import Contact from "../components/Contact"
@@ -89,7 +88,6 @@ class IndexPage extends Component {
           title="Krzysztof Sordyl Frontend Developer"
           description='Welcome, my name is Krzysztof Sordyl frontend developer living in Bielsko-Biała, Poland. I"m creating solid, modern and well-designed websites. React enthusiast. Software, programming Bielsko-Biała'
         />
-        <About />
         <Skills ref={this.skillsSection} />
         <Projects ref={this.projectsSection} projects={this.projects} />
         <Contact

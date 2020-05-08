@@ -9,11 +9,6 @@
       "name": "Backend",
       "description": "Hands on experience server side programming. Basic understanding of Node.js and relational databases.",
       "tab": "backend"
-    },
-    {
-      "name": "Other tools",
-      "description": "Rest of the tools used in my projects",
-      "tab": "tools"
     }
   ],
   "content": [
@@ -22,38 +17,34 @@
         "title": "HTML & CSS",
         "tech": [
           "HTML5, CSS3, Sass",
-          "Bootstrap 3 & 4",
+          "Eye for the detail",
           "Methodology: BEM",
-          "Responsive Web Design"
+          "Experience with responsive design and browser compatibility",
+          "Hands on experience with Wordpress CMS"
         ]
       },
       {
         "title": "JavaScript",
         "tech": [
-          "Solid knowledge of JavaScript ES6, React.js",
-          "Familiar with Redux",
-          "Basic understanding of OOP and functional programming",
-          "Experience with AJAX and API integration"
-        ]
-      },
-      {
-        "title": "Tools and CMS",
-        "tech": [
-          "Experience with Wordpress CMS",
+          "Solid knowledge of JavaScript ES6+",
+          "Familiar with React.js and Redux Toolkit",
+          "Basic understanding of functional programming",
+          "Working experience with SPAs based on Rest APIs",
           "Hands on experience with Gatsby",
-          "Gulp.js, npm, webpack, eslint",
-          "Familiar with GIT version control system"
+          "Familiar with GIT version control system",
+          "Gulp.js, npm, webpack, eslint"
         ]
       }
     ],
     [
       {
-        "title": "Backend",
+        "title": "Node.js",
         "tech": [
           "Hands on experience server side programming",
           "Basics of Node.js and Express.js",
           "Knowledge about HTTP and REST",
-          "Basic understanding about MVC pattern"
+          "Basic understanding about MVC pattern",
+          "Hands on experience with Postman"
         ]
       },
       {
@@ -62,33 +53,6 @@
           "Basics of SQL relational databases",
           "Familiar with Firestore and MongoDB",
           "Currently learning more about SQL"
-        ]
-      },
-      {
-        "title": "Tools",
-        "tech": [
-          "PHPMYAdmin",
-          "Basics of socket.io",
-          "Postman"
-        ]
-      }
-    ],
-    [
-      {
-        "title": "Services",
-        "tech": [
-          "JS Bin",
-          "Codepen",
-          "GitHub",
-          "Netlify"
-        ]
-      },
-      {
-        "title": "Programs",
-        "tech": [
-          "AdobeXD basics",
-          "VSCode",
-          "Trello"
         ]
       }
     ]
@@ -101,7 +65,7 @@
         "Sass",
         "Firestore"
       ],
-      "description": "Fully responsive, serverless, progressive web app for small restaurants, with integrated simple booking system and basic administration tools for the restaurant staff.",
+      "description": "Responsive, progressive web app for small restaurants, with integrated simple booking system and basic administration tools for the staff.",
       "github": "https://github.com/Verthon/restaurant-app",
       "live": "https://alkinoos-taverna.netlify.com/",
       "animation": "slide-right"
@@ -109,13 +73,13 @@
     {
       "name": "Eventoo",
       "technologies": [
-        "React",
-        "Styled components",
+        "Ionic 4",
+        "Redux Toolkit",
         "Firestore"
       ],
-      "description": "Responsive App based on React.js library for event management. Within Eventoo you can create your own events.",
+      "description": "Mobile application for event management. Within Eventoo you can create and administer your own events.",
       "github": "https://github.com/Verthon/event-app",
-      "live": "https://eventooo.netlify.com/",
+      "live": "https://eventooo.netlify.app/",
       "animation": "slide-left"
     },
     {
@@ -125,7 +89,7 @@
         "GraphQL",
         "Netlify"
       ],
-      "description": "Responsive, mobile first website based on Gatsby.js. Website has been rated over 90 in Google Lighthouse in 4 different categories: Performance, Accessibility, Best practicies and SEO.",
+      "description": "Mobile first website based on Gatsby.js. Rated over 90 in Google Lighthouse in 4 different categories: performance, accessibility, best practicies and SEO.",
       "github": "https://github.com/Verthon/HeyU-Website",
       "live": "https://heyu-website.netlify.com/",
       "animation": "slide-right"

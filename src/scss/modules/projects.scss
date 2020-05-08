@@ -1,19 +1,15 @@
 .projects {
-  background: $tab-content;
-  color: $sec-bg;
+  background: hsl(176.8, 43.9%, 86.5%);
+  color: $color-dark-1;
 }
 
-.section-heading--projects {
-  color: #2f4858;
-  margin: 2.5rem 0 0.5rem 0;
-}
-
-.project-container {
+.project {
   @include flexColumn;
-  padding: 0 0 1rem 0;
+  padding: 1rem 1rem 1rem 1rem;
   background: $white;
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
-  margin: 5rem auto;
+  box-shadow: $project-shadow;
+  margin: 3rem auto;
+  border-radius: $default-radius;
 
   @include mQ($bp-xsmall) {
     max-width: 75%;
@@ -25,7 +21,7 @@
     align-items: flex-start;
     height: auto;
     padding: 5rem 0;
-    max-width: 600px;
+    max-width: $project-image-width;
   }
 
   @include mQ($bp-large) {
@@ -36,37 +32,73 @@
   @include mQ($bp-xxlarge) {
     max-width: $bp-xlarge;
   }
-}
 
-.project-container.last {
-  padding: 3rem 1.6rem;
-  @include mQ($ipad) {
-    padding: 2.5rem 0;
-    display: block;
+  &__image {
+    max-width: 100%;
+    padding: 0;
+
+    @include mQ($bp-medium) {
+      max-width: 600px;
+      padding: 0 2rem;
+    }
+    @include mQ($bp-xxlarge) {
+      max-width: 50%;
+    }
   }
-  @include mQ($mobile) {
-    padding: 0 0 1rem 0;
+
+  &__content {
+    @include mQ($bp-medium) {
+      padding: 0 2rem;
+    }
   }
-}
 
-.project-image {
-  max-width: 100%;
-  padding: 0;
-
-  @include mQ($bp-medium) {
-    max-width: 600px;
-    padding: 0 2rem;
+  &__title {
+    font-size: 1.5rem;
+    margin: 1rem 0 0.5rem 0;
+    color: $color-dark-1;
+    @include mQ($bp-medium) {
+      font-size: 1.75rem;
+    }
+    @include mQ($ipad) {
+      margin: 0 0 0.5rem 0;
+    }
+    @include mQ($bp-xxlarge) {
+      font-size: 3.25rem;
+      margin: 0;
+    }
   }
-  @include mQ($bp-xxlarge) {
-    max-width: 50%;
+
+  &__tag {
+    padding: 0.25rem 0.5rem;
+    border: 0;
+    font-size: 0.875rem;
+    background: $color-light-gray-1;
+    color: $color-dark-2;
+    margin: 0.15rem 0.25rem 0.15rem 0;
+    font-family: $font;
+    font-weight: 400;
+    border-radius: $default-radius;
+
+    @include mQ($bp-xxlarge) {
+      font-size: 2rem;
+    }
   }
-}
 
-.project {
-  padding: 0 1rem;
+  &__description {
+    line-height: 1.5;
+    margin: 1rem 0 1rem 0;
+    color: $color-dark-2;
 
-  @include mQ($bp-medium) {
-    padding: 0 2rem;
+    &--sources {
+      margin: 1rem 0;
+    }
+
+    @include mQ($bp-medium) {
+      max-width: 85%;
+    }
+    @include mQ($bp-xxlarge) {
+      margin: 2rem 0 4rem 0;
+    }
   }
 
   &__footer {
@@ -81,140 +113,43 @@
       margin: 0;
     }
   }
-}
 
-.project-title {
-  font-size: 1.5rem;
-  margin: 1rem 0 0.5rem 0;
-  color: #2f4858;
-  @include mQ($bp-medium) {
-    font-size: 1.75rem;
-  }
-  @include mQ($ipad) {
-    margin:  0 0 0.5rem 0;
-  }
-  @include mQ($bp-xxlarge) {
-    font-size: 3.25rem;
-    margin: 0;
-  }
-}
-
-.project-description {
-  line-height: 1.5;
-  margin: 0.5rem 0 1rem 0;
-  color: #505050;
-
-  &--sources {
-    margin: 1rem 0;
-  }
-
-  @include mQ($bp-medium) {
-    max-width: 85%;
-  }
-  @include mQ($bp-xxlarge) {
-    margin: 2rem 0 4rem 0;
-  }
-}
-
-.project-btn {
-  padding: 0.25rem .5rem;
-  border: 0;
-  font-size: 0.875rem;
-  background:  	hsl(0, 0%, 97%);
-  color: hsl(0,0%,31.4%);
-  margin: 0.15rem 0.25rem 0.15rem 0;
-  font-family: $font;
-  font-weight: 400;
-  border-radius: 2px;
-
-  @include mQ($bp-xxlarge) {
-    font-size: 2rem;
-  }
-
-  &--source {
+  &__btn {
     margin: 0 0.5rem 0 0;
-    padding: 0.5rem 1rem;
-    background: #2f4858;
-    color: $light;
-    font-size: 1rem;
+    padding: $button-mobile;
+    background: $color-gray-1;
+    color: $color-dark-1;
+    font-size: $font-size-regular;
+    box-shadow: $default-shadow;
     @include mQ($ipad) {
       margin: 0.25rem 0.5rem 0 0;
-      padding: 0.6rem 1.5rem;
+      padding: $button-desktop;
     }
     @include mQ($bp-xxlarge) {
-      padding: 1rem 2rem;
+      padding: $button-4k;
     }
-  }
-  &--sources {
-    font-size: 1rem;
-    padding: 0.5rem 1rem;
-    margin: 1rem 0;
-    background: #2f4858;
-    color: $light;
 
-    @include mQ($ipad) {
-      padding: 0.6rem 1.5rem;
+    & :hover {
+      cursor: pointer;
     }
-  }
-  &--link {
-    display: block;
-    background: $light-green;
-    text-transform: capitalize;
-    color: #2f4858;
-    padding: 0.5rem 1rem;
-    margin: 0 0 0 0;
-    font-size: 1rem;
-    @include mQ($ipad) {
+
+    &--link {
       display: block;
-      margin: 0.25rem 0 0 0;
-      padding: 0.6rem 1.5rem;
+      background: $color-primary;
+      text-transform: capitalize;
+      color: $color-dark-1;
+      padding: 0.5rem 1rem;
+      margin: 0 0 0 0;
+      font-size: $font-size-regular;
+      box-shadow: $default-shadow;
+      @include mQ($ipad) {
+        display: block;
+        margin: 0.25rem 0 0 0;
+        padding: 0.6rem 1.5rem;
+      }
+      @include mQ($bp-xxlarge) {
+        padding: 1rem 2rem;
+      }
     }
-    @include mQ($bp-xxlarge) {
-      padding: 1rem 2rem;
-    }
-  }
-}
-
-#github-btn:hover {
-  cursor: pointer;
-}
-
-.project-btn--sources:hover {
-  cursor: pointer;
-}
-
-.project-btn--link:hover {
-  cursor: pointer;
-}
-
-.project-sources {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: auto;
-  margin: 5rem auto;
-  padding: 1rem 0;
-  background: $white;
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
-  
-
-  @include mQ($bp-small) {
-    max-width: 75%;
-  }
-
-  @include mQ($bp-large) {
-    padding: 5rem 0;
-    align-items: center;
-    max-width: 1100px;
-  }
-
-  @include mQ($bp-xxlarge) {
-    max-width: $bp-xlarge;
-  }
-
-  &__description {
-    text-align: left;
-    max-width: 70%;
   }
 }

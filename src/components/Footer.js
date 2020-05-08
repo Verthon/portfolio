@@ -20,6 +20,9 @@ const Footer = () => {
 
   return (
     <footer className="site-footer">
+      <p className="site-footer__text">
+        {data.site.siteMetadata.author} portfolio {new Date().getFullYear()} ©{' '}
+      </p>
       <div className="site-footer__socials">
         <a
           href={data.site.siteMetadata.github}
@@ -38,13 +41,6 @@ const Footer = () => {
           <FontAwesomeIcon icon={faLinkedin} size="lg" aria-hidden="true" />
         </a>
       </div>
-      <p className="site-footer__text">
-        {data.site.siteMetadata.author} portfolio {new Date().getFullYear()} ©{' '}
-        <a href="https://loading.io/" target="_blank" rel="noopener noreferrer">
-          Background by:{' '}
-          <span className="site-footer__text--color">loading.io</span>
-        </a>
-      </p>
     </footer>
   )
 }

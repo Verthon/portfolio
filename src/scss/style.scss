@@ -6,7 +6,6 @@
 @import 'modules/nav.scss';
 @import 'modules/hero.scss';
 @import 'modules/section.scss';
-@import 'modules/about.scss';
 @import 'modules/tabs.scss';
 @import 'modules/projects.scss';
 @import 'modules/contact.scss';
@@ -15,7 +14,7 @@
 
 body {
   background: $white;
-  color: $white;
+  color: $color-dark;
   font-size: $base-font-size;
   font-family: $font, sans-serif;
   display: flex;
@@ -70,72 +69,6 @@ body {
       span {
         margin: 2rem 0;
       }
-    }
-  }
-}
-
-.contact {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  align-content: center;
-  form {
-    margin-top: 5rem;
-    display: flex;
-    flex-direction: column;
-    width: 70vw;
-    @include mQ($ipad) {
-      margin-top: 3rem;
-    }
-    @include mQ($mobile) {
-      width: 80vw;
-      margin-top: 2rem;
-    }
-  }
-  textarea,
-  input {
-    border-bottom: 0.1rem solid $light-mint;
-    color: $light;
-    font-size: 1rem;
-    padding: 1rem 0;
-  }
-  .send {
-    display: flex;
-    border: 0.05rem solid $light-mint;
-    background: transparent;
-    color: $light-mint;
-    padding: 0.75rem 4rem;
-    font-size: 1rem;
-    font-family: $font;
-    text-transform: uppercase;
-    align-self: center;
-    margin-top: 4rem;
-    @include mQ($mobile) {
-      padding: 0.5rem 3rem;
-      margin-top: 2rem;
-    }
-  }
-  .send:hover {
-    color: $main-bg;
-    background: $light-mint;
-    cursor: pointer;
-    border: 0.05rem solid $main-bg;
-  }
-}
-
-.site-footer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  .footer-socials {
-    padding: 1rem;
-
-    a i {
-      margin: 1rem;
-      font-size: 1.5rem;
     }
   }
 }

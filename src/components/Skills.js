@@ -20,12 +20,12 @@ const Skills = React.forwardRef((props, ref) => {
     `
   )
   return (
-    <section ref={ref} id="skills" className="section section--skills">
-      <div className="container">
+    <section ref={ref} id="skills" className="section">
+      <div className="container container--skills">
         <h2 className="section__heading">Skills</h2>
         <blockquote className="section__quote">
           "{data.site.siteMetadata.quote.content}"
-          <footer className="section__quote-author">
+          <footer className="section__quote__author">
             {data.site.siteMetadata.quote.author}
           </footer>
         </blockquote>

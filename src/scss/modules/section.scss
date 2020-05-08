@@ -1,66 +1,48 @@
 .section {
   padding: 2rem 0;
-  background: $main-bg;
+  background: $color-gray;
   display: flex;
   justify-content: center;
 
   &__heading {
     text-transform: uppercase;
     text-align: center;
-    color: $light-mint;
+    color: $color-dark;
     font-size: 1.75rem;
-    margin: 2.5rem 0 5rem 0;
+    margin: 2rem 0 .5rem 0;
 
 
     @include mQ($bp-small) {
-      font-size: 2.25rem;
+      font-size: 2rem;
     }
 
     @include mQ($bp-medium) {
-      font-size: 3rem;
+      font-size: 2.25rem;
     }
 
     @include mQ($bp-xxlarge) {
-      font-size: 5.5rem;
+      font-size: 4rem;
       margin: 5rem 0 10rem 0;
-    }
-
-
-    &--projects {
-      color: $main-bg;
-      margin: 2.5rem 0 0.5rem 0;
-
-      @include mQ($bp-xxlarge) {
-        margin: 5rem 0 1rem 0;
-      }
-    }
-
-    &--contact {
-      margin: 2.5rem 0 0 0;
-
-      @include mQ($bp-xxlarge) {
-        margin: 5rem 0 0 0;
-      }
     }
   }
 
   &__quote {
     font-style: italic;
-    margin: 3rem 1rem;
+    margin: 1rem auto 3rem auto;
     text-align: center;
     line-height: 1.5;
-  }
 
-  &__quote-author {
-    font-style: normal;
-    font-weight: bold;
-    margin-top: 1rem;
+    &__author {
+      font-style: normal;
+      font-weight: 800;
+      margin: 0.5rem 0 0 0;
+    }
   }
 
   &__description {
     text-align: center;
-    font-size: 1rem;
-    font-weight: lighter;
+    font-size: $font-size-regular;
+    color: $color-dark-1;
 
     @include mQ($bp-small) {
       font-size: 1.25rem;

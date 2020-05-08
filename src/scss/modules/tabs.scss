@@ -1,13 +1,46 @@
-.tab-header{
+.tab-header {
   list-style: none;
   display: block;
-  @include mQ($ipad){
+  @include mQ($ipad) {
     display: flex;
+  }
+
+  &__item {
+    margin: 1rem 0;
+    padding: 1rem;
+    background: $color-gray-1;
+    color: $color-dark;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    width: auto;
+
+    @include mQ($bp-medium) {
+      margin: 1rem;
+      line-height: 1.6;
+      padding: 1rem 1.5rem;
+    }
+
+    @include mQ($bp-xxlarge) {
+      padding: 2rem 3rem;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background: $color-primary;
+      color: $color-dark;
+    }
+  }
+
+  &--active {
+    color: $color-dark;
+    //background: $gradient;
+    background: $color-primary;
   }
 
   &__title {
     margin: 0;
-    font-size: 1.25rem;
+    font-size: $font-size-title-2;
 
     @include mQ($bp-medium) {
       margin: 0.5rem 0;
@@ -17,51 +50,19 @@
   &__content {
     max-width: 100%;
     margin: 0.5rem 0;
-  }
-
-  &__item {
-
-  }
-
-}
-.tab-header-item{
-  margin: 1rem 0;
-  padding: 1rem;
-  background: $tab-header;
-  color: $light;
-  flex-direction: column;
-  align-items: center;
-  flex: 1;
-  width: auto;
-
-  @include mQ($bp-medium) {
-    margin: 1rem;
-    line-height: 1.6;
-    padding: 1rem 1.5rem;
-  }
-
-  @include mQ($bp-xxlarge) {
-    padding: 2rem 3rem;
+    color: $color-dark-2;
   }
 }
-.active-header{
-  color: $tab-header;
-  background: $gradient;
-}
-.tab-header-item:hover{
-  cursor: pointer;
-  background: $gradient;
-  color: $tab-header;
-}
-.tab-content{
+
+.tab-content {
   display: flex;
   width: 100%;
 }
-.tab-content-item{
+.tab-content-item {
   display: none;
   padding: 1rem 0;
   margin: 0;
-  color: $main-bg;
+  color: $color-dark;
   width: 100%;
   height: auto;
   @include mQ($ipad) {
@@ -69,16 +70,15 @@
     margin: 0 1rem;
     padding: 1rem;
   }
-  @include mQ($mobile){
-    
+  @include mQ($mobile) {
   }
 }
-.active-tab{
+.active-tab {
   display: flex;
   flex-wrap: wrap;
-  background: $tab-content;
+  background: $white;
   animation: activefade 2s;
-  @include mQ($ipad){
+  @include mQ($ipad) {
     margin-bottom: 5rem;
     flex-wrap: nowrap;
     height: auto;
@@ -86,43 +86,48 @@
 }
 
 @keyframes activefade {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* tab columns */
-.tab-column{
+.tab-column {
   flex: 100%;
   padding: 0rem 1rem;
 
-  @include mQ($bp-medium){
+  @include mQ($bp-medium) {
     flex: 1;
     padding: 0rem 2rem;
   }
 }
 
-.tab-content-heading{
+.tab-content-heading {
   padding: 0;
-  font-size: 1.2rem;
-
-  @include mQ($ipad){
-    font-size: 1.25rem;
-    margin: 0.5rem 0 .5rem 0;
+  font-size: $font-size-title-2;
+  margin: 1rem 0 0.5rem 0;
+  @include mQ($ipad) {
+    margin: 0.5rem 0 0.5rem 0;
   }
 
   @include mQ($bp-xxlarge) {
-    font-size: 2.5rem;
+    font-size: $font-size-title-2 * 2;
   }
 }
 
-.tab-list{
+.tab-list {
+  padding: 0 0.5rem;
   list-style: square;
 }
 
-.tab-item{
+.tab-item {
   margin: 0.35rem;
+  color: $color-dark-2;
 
-  @include mQ($ipad){
+  @include mQ($ipad) {
     margin: 0.7rem 0;
   }
 }

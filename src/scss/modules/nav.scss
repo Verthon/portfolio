@@ -48,7 +48,7 @@
   font-size: 1rem;
   display: flex;
   border: none;
-  color: $tab-header;
+  color: $color-dark;
   background-color: transparent;
   cursor: pointer;
   animation: menufade 0.5s;
@@ -61,7 +61,7 @@
 .menu-ul {
   display: none;
   position: absolute;
-  background: $about-bg;
+  background: $color-gray-1;
   width: 100%;
   transform: translateY(20%);
   flex-direction: column;
@@ -89,7 +89,7 @@
 .menu-ul-mobile {
   display: flex;
   position: absolute;
-  background: $tab-content;
+  background: $color-gray-1;
   width: 100vw;
   left: -1rem;
   transform: translateY(16%);

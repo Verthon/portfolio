@@ -1,10 +1,11 @@
 .header-wrapper {
-  background-image: url('/hero.svg');
+  background-image: url('../images/bg-mobile.svg');
   background-size: cover;
   background-repeat: no-repeat;
-  min-height: 80vh;
+  background-position-x: right;
+  min-height: 100vh;
   @include flexColumn;
-  color: $black;
+  color: $color-dark;
   width: 100%;
 
   @include mQ($bp-small) {
@@ -13,22 +14,19 @@
   }
 
   @include mQ($bp-large) {
-    min-height: 80vh;
-    background-size: 140%;
+    min-height: 100vh;
+    background-image: url('../images/bg-large.svg');
+    background-size: cover;
+    background-position: bottom;
   }
 }
 .site-header {
-  padding: 0;
   @include flexColumn;
   justify-content: flex-start;
   margin: 4rem 0;
-  // margin: 7rem auto;
-  // width: 100%;
-  // height: auto;
-  // flex-wrap: wrap;
 
   @include mQ($bp-small) {
-    margin: 6rem 0;
+    margin: 6rem auto;
   }
 
 

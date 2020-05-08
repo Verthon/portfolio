@@ -21,10 +21,10 @@
 
   &__btn {
     border: 0;
-    background: $gradient;
-    color: $tab-header;
+    background: $color-primary;
+    color: $color-dark-1;
     border-radius: 0.1rem;
-    font-family: 'Open Sans';
+    font-family: $font;
     padding: 0.5rem 2rem;
     font-size: 1.35rem;
     margin: 2rem 0;

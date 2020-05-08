@@ -9,7 +9,8 @@ module.exports = {
     bio:
       "I am a frontend developer living in Bielsko-Biała, Poland. I build websites and web apps particularly, I specialize in frontend development React.js, mobile first web applications and creating modern user intefaces. Currently I'm learning Typescript, Ionic and Redux.",
     twitterSlug: '@chsordyl',
-    position: 'Frontend Developer',
+    position: 'Frontend developer passionate about React.js ecosystem, focused on creating modern web apps.',
+    location: 'Based in Bielsko-Biała, Poland. Currently I am learning Typescript, Ionic and Redux.',
     about:
       "I am a frontend developer living in Bielsko-Biała, Poland. I build websites and web apps particularly, I specialize in frontend development React.js, mobile first web applications and creating modern user intefaces. Currently I'm learning Typescript, Ionic and Redux.",
     linkedin: 'https://www.linkedin.com/in/krzysztof-sordyl/',
@@ -53,8 +54,6 @@ module.exports = {
         },
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
     'gatsby-plugin-offline',
   ],
 }
