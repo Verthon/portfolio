@@ -45,7 +45,7 @@ const Header = ({ scroll }) => {
             className="hero__btn"
             onClick={() => scroll('projects')}
           >
-            Check Project
+            Check Projects
           </button>
         </header>
       </div>
