@@ -5,30 +5,8 @@
   align-items: center;
   align-content: center;
   background: $color-secondary;
-  
-  &__text{
-    padding: 0rem 2rem;
-    margin: 0.5rem 0;
-  }
-
-  &__socials {
-    margin: 1rem 0 2rem 0;
-    display: flex;
-    width: 35%;
-    justify-content: space-around;
-
-    @include mQ($bp-xsmall) {
-      width: 25%;
-    }
-
-
-    @include mQ($bp-large) {
-      width: 10%;
-    }
-
-    @include mQ($bp-xxlarge) {
-      margin: 2rem 0;
-      width: 15%;
-    }
+  padding: 1rem 0;
+  @include mQ($bp-large) {
+    padding: 2rem 0;
   }
 }

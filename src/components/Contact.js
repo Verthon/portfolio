@@ -4,7 +4,6 @@ import { useStaticQuery, graphql } from 'gatsby'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { faPaperPlane, faEnvelope } from '@fortawesome/free-solid-svg-icons'
-import ReCAPTCHA from 'react-google-recaptcha'
 
 const Contact = React.forwardRef((props, ref) => {
   const data = useStaticQuery(
@@ -19,8 +18,25 @@ const Contact = React.forwardRef((props, ref) => {
     `
   )
 
+  const sendEmail = async(url='https://formspree.io/mzbjzzek', data={form}) => {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(data)
+    })
+    return response.json()
+  }
+
+  const successMessage = 'Thank you. Your message has been sent.'
+
   const initialErrorState = {
     inputName: '',
+    message: '',
+  }
+
+  const initialFormState = {
+    name: '',
+    email: '',
     message: '',
   }
 
@@ -57,12 +73,9 @@ const Contact = React.forwardRef((props, ref) => {
   })
 
   const [error, setError] = useState(initialErrorState)
+  const [success, setSuccess] = useState('')
   const onFormChange = e => {
     setForm({ ...form, [e.target.name]: e.target.value })
-  }
-
-  const onCaptchaChange = value => {
-    console.log('Captcha value:', value)
   }
 
   const onMessageSubmit = e => {
@@ -75,7 +88,13 @@ const Contact = React.forwardRef((props, ref) => {
       return
     }
     setError(initialErrorState)
-    console.log('ready to submit correct form', form)
+    sendEmail('https://formspree.io/mzbjzzek', form)
+      .then(() => {
+        setForm(initialFormState)
+        setSuccess(successMessage)
+      })
+      .catch((error) => console.log('error with email', error))
+    
   }
 
   return (
@@ -84,12 +103,17 @@ const Contact = React.forwardRef((props, ref) => {
       <div className="contact__container">
         <form
           className="contact__form"
-          // action="https://formspree.io/mzbjzzek"
+          action="https://formspree.io/mzbjzzek"
           method="POST"
           onSubmit={onMessageSubmit}
-          data-netlify-recaptcha="true"
+          netlify-honeypot="bot-field"
           data-netlify="true"
         >
+          <p className="hidden">
+            <label>
+              Don’t fill this out if you're human: <input name="bot-field" />
+            </label>
+          </p>
           <p className="contact__description">
             Have a question or want to say hi? Feel free to contact me with your
             webmail client or with form below.
@@ -114,7 +138,6 @@ const Contact = React.forwardRef((props, ref) => {
             <a
               href={`mailto:${data.site.siteMetadata.email}`}
               className="contact__btn"
-              data-aos="zoom-in"
               aria-label="Link to email christopher.sordyl@gmail.com"
             >
               Quick mail
@@ -167,10 +190,7 @@ const Contact = React.forwardRef((props, ref) => {
           {error.inputName === 'message' ? (
             <p className="contact__error">{error.message}</p>
           ) : null}
-          <ReCAPTCHA
-            sitekey="6Le86PQUAAAAAES6Bj74SkU9XbykPFY4ST51XD4j"
-            onChange={onCaptchaChange}
-          />
+          {success ? <p className="contact__success">{success}</p> : null }
           <div className="contact__footer">
             <button type="submit" className="contact__btn contact__btn--submit">
               Submit

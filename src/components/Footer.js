@@ -23,24 +23,6 @@ const Footer = () => {
       <p className="site-footer__text">
         {data.site.siteMetadata.author} portfolio {new Date().getFullYear()} ©{' '}
       </p>
-      <div className="site-footer__socials">
-        <a
-          href={data.site.siteMetadata.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Link to Verthon GitHub profile"
-        >
-          <FontAwesomeIcon icon={faGithub} size="lg" aria-hidden="true" />
-        </a>
-        <a
-          href={data.site.siteMetadata.linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Krzysztof Sordyl linkedin profile"
-        >
-          <FontAwesomeIcon icon={faLinkedin} size="lg" aria-hidden="true" />
-        </a>
-      </div>
     </footer>
   )
 }
