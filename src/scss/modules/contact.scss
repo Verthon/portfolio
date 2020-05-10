@@ -11,6 +11,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    max-width: 90%;
     @include mQ($bp-large) {
       margin: 1rem 0 0rem 0;
       background-color: $white;
@@ -19,6 +20,50 @@
       border-radius: 2px;
     }
   }
+
+  &__socials {
+    margin: 1rem 0 0 1rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    background: $white;
+    border-radius: $default-radius;
+    padding: 1rem;
+    max-width: 100%;
+  }
+
+  &__label {
+    font-size: 0.875rem;
+    margin: 1rem 0 0.5rem 0;
+    color: $color-dark;
+  }
+
+  &__input {
+    border-radius: $default-radius;
+    padding: 0.75rem 0.5rem;
+    background: $color-gray;
+    color: $color-dark;
+  }
+
+  &__textarea {
+    border-radius: $default-radius;
+    padding: 0.75rem 0.5rem;
+    background: $color-gray;
+  }
+
+  &__error {
+    border-radius: $default-radius;
+    padding: 0.75rem;
+    margin: 0.5rem 0;
+    background: $color-error;
+    color: $color-error-text;
+  }
+
 
   &__about {
     flex: 1;
@@ -36,14 +81,23 @@
   }
 
   &__btn {
-    padding: $button-mobile;
+    font-family: $font;
+    padding: $button-small-mobile;
     color: $color-dark;
-    background: $color-primary;
+    background-color: $color-primary;
     border: 0;
     font-size: $font-size-regular;
     border-radius: $default-radius;
-    box-shadow: $default-shadow;
+    box-shadow: $light-shadow;
     text-transform: capitalize;
+    cursor: pointer;
+
+    &--submit {
+      padding: $button-mobile;
+      margin: 1rem 0 0 0;
+      width: 100%;
+      cursor: pointer;
+    }
 
     @include mQ($bp-large) {
       padding: $button-desktop;
@@ -61,8 +115,8 @@
 
   &__description {
     line-height: 1.5;
-    margin: 1rem auto 0 auto;
-    max-width: 75%;
+    margin: 0 auto 1rem auto;
+    max-width: 100%;
     color: $color-dark-1;
 
     @include mQ($bp-large) {
@@ -78,6 +132,11 @@
       border-radius: $default-radius;
       background: $color-secondary-2;
     }
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-around;
   }
 }
 

@@ -21,8 +21,6 @@ const Nav = ({ links, scroll }) => {
     `
   )
 
-  const [show, handleMenuVisibility] = useState(false)
-  const menuCssClass = show ? 'menu-ul-mobile' : 'menu-ul'
   return (
     <nav className='site-nav'>
       <div className='site-nav--socials'>
@@ -51,20 +49,7 @@ const Nav = ({ links, scroll }) => {
           />
         </a>
       </div>
-      <button
-        className='menu-icon'
-        aria-label='menu button'
-        aria-haspopup='true'
-      >
-        <FontAwesomeIcon
-          icon={show ? faTimes : faBars}
-          size='lg'
-          aria-hidden='true'
-          color='black'
-          onClick={() => handleMenuVisibility(!show)}
-        />
-      </button>
-      <ul id='menu-ul' className={menuCssClass}>
+      <ul id='menu-ul' className='menu-ul'>
         {links.map(link => (
           <NavItem key={link} name={link} handleClick={scroll} />
         ))}

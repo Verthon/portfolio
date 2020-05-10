@@ -1,23 +1,30 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
 
-$color-primary: hsl(50.3,100%,78.2%);
-$color-secondary: hsl(176.8,43.9%,66.5%);
+$color-primary: hsl(50.3, 100%, 78.2%);
+$color-secondary: hsl(176.8, 43.9%, 66.5%);
 $color-secondary: hsl(176.8, 43.9%, 76.5%);
 $color-secondary-2: hsl(176.8, 43.9%, 86.5%);
-$color-tertiary: hsl(28.9,45.8%,88.4%);
-$color-light: hsl(356.3,47.1%,93.3%);
+$color-tertiary: hsl(28.9, 45.8%, 88.4%);
+$color-light: hsl(356.3, 47.1%, 93.3%);
 
-$color-light-gray-1: hsl(206.7,52.9%,97.7%);
-$color-light-gray: hsl(206.7,52.9%,98.7%);
-$color-gray: hsl(206.7,52.9%,96.7%);
-$color-gray-1: hsl(206.7,52.9%,92.7%);
-$color-gray-2: hsl(206.7,52.9%,86.7%);
-$color-gray-3: hsl(206.7,52.9%,80.7%); 
+$color-project: hsl(210, 20%, 100%);
+$color-tag: hsl(210, 50%, 97.6%);
+$color-tag-text: hsl(210, 20%, 33.6%);
 
-$color-dark: hsl(206.7,11.7%,15.1%);
-$color-dark-1: hsl(206.7,11.7%,20.1%);
-$color-dark-2: hsl(206.7,11.7%,30.1%);
+$color-light-gray-1: hsl(206.7, 52.9%, 97.7%);
+$color-light-gray: hsl(206.7, 52.9%, 98.7%);
+$color-gray: hsl(206.7, 52.9%, 96.7%);
+$color-gray-1: hsl(206.7, 52.9%, 92.7%);
+$color-gray-2: hsl(206.7, 52.9%, 86.7%);
+$color-gray-3: hsl(206.7, 52.9%, 80.7%);
+
+$color-dark: hsl(206.7, 11.7%, 15.1%);
+$color-dark-1: hsl(206.7, 11.7%, 20.1%);
+$color-dark-2: hsl(206.7, 11.7%, 30.1%);
+
+$color-error: hsl(351.6,44.3%,81%);
+$color-error-text: hsl(351.6,44.3%,21%);
 
 $white: #ffffff;
 $light: #eeeeee;
@@ -32,7 +39,7 @@ $black: #000000;
 // $light-green: rgba(22, 211, 149, 0.9);
 // $light-mint: rgba(63, 224, 216, 0.9);
 // $light-green-hex: #16d395;
-// $light-mint-hex: #3fe0d8; 
+// $light-mint-hex: #3fe0d8;
 // $gradient: linear-gradient(to right, $light-green, $light-mint);
 
 //devices
@@ -73,12 +80,13 @@ $g-padding: 0 15rem;
 
 $default-radius: 2px;
 
-$light-shadow: 0 1px 1px hsla(206.7,11.7%, 0%, 0.2);
-$default-shadow: 0 1px 3px hsla(206.7,11.7%,15.1%, 0.2);
-$project-shadow: 0 1px 2px hsla(206.7,11.7%,15.1%, 0.2);
+$light-shadow: 0 1px 1px hsla(206.7, 11.7%, 0%, 0.2);
+$default-shadow: 0 1px 3px hsla(206.7, 11.7%, 15.1%, 0.2);
+$project-shadow: 0 1px 2px hsla(206.7, 11.7%, 15.1%, 0.2);
 
 $button-mobile: 0.5rem 1rem;
 $button-tablet: 0.55rem 1.25rem;
 $button-desktop: 0.6rem 1.5rem;
+$button-small-mobile: 0.4rem 1rem;
 $button-4k: 1rem 2rem;
 $project-image-width: 600px;

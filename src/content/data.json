@@ -2,7 +2,7 @@
   "headers": [
     {
       "name": "Frontend",
-      "description": "Building responsive websites and web apps based on design projects. SEO optimalization. Creating React based frontend.",
+      "description": "Building responsive web apps and mobile apps based on design projects. SEO optimalization. Creating React based frontend.",
       "tab": "frontend"
     },
     {
@@ -14,25 +14,29 @@
   "content": [
     [
       {
-        "title": "HTML & CSS",
+        "title": "User interface",
         "tech": [
-          "HTML5, CSS3, Sass",
-          "Eye for the detail",
-          "Methodology: BEM",
-          "Experience with responsive design and browser compatibility",
-          "Hands on experience with Wordpress CMS"
+          "HTML5, CSS3, Sass, Styled Components",
+          "Experience with responsive design",
+          "Basic UI/UX skills, decent eye for the detail",
+          "Familiar with BEM methodology",
+          "Basic understanding about of Tailwind and Bootstrap 4",
+          "Hands on experience with Wordpress CMS",
+          "Familiar with SEO principles ",
+          "Basics of Figma",
+          "Real world experience with GIT version control system"
         ]
       },
       {
         "title": "JavaScript",
         "tech": [
-          "Solid knowledge of JavaScript ES6+",
+          "Working experience with JavaScript ES6+ and Typescript",
           "Familiar with React.js and Redux Toolkit",
-          "Basic understanding of functional programming",
+          "Experience with writing tests - Jest, React Testing Library",
           "Working experience with SPAs based on Rest APIs",
-          "Hands on experience with Gatsby",
-          "Familiar with GIT version control system",
-          "Gulp.js, npm, webpack, eslint"
+          "Hands on experience with Gatsby.js",
+          "Basic understanding of functional programming",
+          "Familiar with npm, webpack, eslint"
         ]
       }
     ],

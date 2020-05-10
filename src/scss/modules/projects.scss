@@ -6,7 +6,7 @@
 .project {
   @include flexColumn;
   padding: 1rem 1rem 1rem 1rem;
-  background: $white;
+  background: $color-project;
   box-shadow: $project-shadow;
   margin: 3rem auto;
   border-radius: $default-radius;
@@ -72,8 +72,8 @@
     padding: 0.25rem 0.5rem;
     border: 0;
     font-size: 0.875rem;
-    background: $color-light-gray-1;
-    color: $color-dark-2;
+    background: $color-tag;
+    color: $color-tag-text;
     margin: 0.15rem 0.25rem 0.15rem 0;
     font-family: $font;
     font-weight: 400;

@@ -21,6 +21,10 @@
       padding: 1rem 1.5rem;
     }
 
+    @include mQ($bp-large) {
+      margin: 1rem 0 1rem 1rem;
+    }
+
     @include mQ($bp-xxlarge) {
       padding: 2rem 3rem;
     }
@@ -29,6 +33,13 @@
       cursor: pointer;
       background: $color-primary;
       color: $color-dark;
+    }
+
+    &:last-of-type {
+
+      @include mQ($bp-large) {
+        margin: 1rem 1rem 1rem 1rem;
+      }
     }
   }
 
@@ -51,26 +62,41 @@
     max-width: 100%;
     margin: 0.5rem 0;
     color: $color-dark-2;
+
+    @include mQ($bp-large) {
+      max-width: 90%;
+    }
   }
 }
 
 .tab-content {
   display: flex;
   width: 100%;
-}
-.tab-content-item {
-  display: none;
-  padding: 1rem 0;
-  margin: 0;
-  color: $color-dark;
-  width: 100%;
-  height: auto;
-  @include mQ($ipad) {
+
+  &__item {
+    display: none;
+    padding: 1rem 0 2rem 0;
+    margin: 0;
+    color: $color-dark;
     width: 100%;
-    margin: 0 1rem;
-    padding: 1rem;
+    height: auto;
+    @include mQ($ipad) {
+      width: 100%;
+      margin: 0 1rem;
+      padding: 1rem;
+    }
   }
-  @include mQ($mobile) {
+
+  &--active {
+    display: flex;
+    flex-wrap: wrap;
+    background: $white;
+    animation: activefade 2s;
+    @include mQ($ipad) {
+      margin-bottom: 5rem;
+      flex-wrap: nowrap;
+      height: auto;
+    }
   }
 }
 .active-tab {
@@ -101,7 +127,7 @@
 
   @include mQ($bp-medium) {
     flex: 1;
-    padding: 0rem 2rem;
+    padding: 0rem 0.5rem;
   }
 }
 
@@ -128,6 +154,11 @@
   color: $color-dark-2;
 
   @include mQ($ipad) {
-    margin: 0.7rem 0;
+    margin: 0.5rem 0.25rem;
+  }
+
+  @include mQ($bp-large) {
+    max-width: 85%;
+    margin: 1rem 0.75rem;
   }
 }

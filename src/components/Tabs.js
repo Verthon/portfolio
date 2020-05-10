@@ -18,7 +18,8 @@ class Tabs extends React.Component {
 
   scrollToContent = content => {
     content.current.scrollIntoView({
-      alignToTop: true,
+      alignToTop: false,
+      block: 'start',
       behavior: 'smooth'
     })
   }
@@ -48,7 +49,7 @@ class Tabs extends React.Component {
   render() {
     const { headers, content } = this.props
     const { activeTab } = this.state
-    const contentCssActiveClass = `tab-content-item active-tab animated fadeIn`
+    const contentCssActiveClass = `tab-content__item active-tab animated fadeIn`
     return (
       <div className="row">
         <ul className="tab-header" data-aos="fade-down">
@@ -76,7 +77,7 @@ class Tabs extends React.Component {
             className={
               activeTab === 'frontend'
                 ? contentCssActiveClass
-                : 'tab-content-item'
+                : 'tab-content__item'
             }
           >
             {content[0].map(column => (
@@ -88,7 +89,7 @@ class Tabs extends React.Component {
             className={
               activeTab === 'backend'
                 ? contentCssActiveClass
-                : 'tab-content-item'
+                : 'tab-content__item'
             }
           >
             {content[1].map(column => (
