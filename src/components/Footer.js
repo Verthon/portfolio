@@ -22,11 +22,18 @@ const Footer = () => {
   return (
     <footer className="site-footer">
       <p className="site-footer__text">
-        <span className="site-footer__code"><FontAwesomeIcon icon={faCode} size="lg" aria-hidden="true"/></span>by {data.site.siteMetadata.author}
+        <span className="site-footer__code">
+          <FontAwesomeIcon icon={faCode} size="lg" aria-hidden="true" />
+        </span>
+        with{' '}
+        <span className="site-footer__heart" data-aos="fade-down" data-aos-delay="500">
+          <FontAwesomeIcon icon={faHeart} size="lg" aria-hidden="true" />
+        </span>
+        by {data.site.siteMetadata.author}
       </p>
       <div className="site-footer__tech">
-      <p className="site-footer__text">Build with</p>
-      <img className="site-footer__logo" src={GatsbyLogo} alt=""/>
+        <p className="site-footer__text">Build with </p>
+        <img className="site-footer__logo" src={GatsbyLogo} alt="" />
       </div>
     </footer>
   )

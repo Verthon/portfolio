@@ -148,7 +148,7 @@ const Contact = React.forwardRef((props, ref) => {
               />
             </a>
           </div>
-          <label className="contact__label" htmlFor="name" id="name">
+          <label className="contact__label" htmlFor="name" name="name">
             Name
           </label>
           <input
@@ -162,7 +162,7 @@ const Contact = React.forwardRef((props, ref) => {
           {error.inputName === 'name' ? (
             <p className="contact__error">{error.message}</p>
           ) : null}
-          <label className="contact__label" htmlFor="email">
+          <label className="contact__label" htmlFor="email" name="email">
             Email address
           </label>
           <input
@@ -176,7 +176,7 @@ const Contact = React.forwardRef((props, ref) => {
           {error.inputName === 'email' ? (
             <p className="contact__error">{error.message}</p>
           ) : null}
-          <label className="contact__label" htmlFor="message">
+          <label className="contact__label" htmlFor="message" name="message">
             Message
           </label>
           <textarea

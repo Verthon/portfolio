@@ -24,20 +24,20 @@ const Header = ({ scroll }) => {
         <Nav links={['skills', 'contact']} scroll={scroll} />
       </div>
       <div className="container site-header">
-        <header className="hero">
-          <h2 className="hero__welcome" data-aos="zoom-in">
+        <header className="hero" data-aos="zoom-out-down">
+          <h2 className="hero__welcome">
             Hello 👋 Welcome to my portfolio!
           </h2>
-          <h1 className="hero__name" data-aos="zoom-in">
+          <h1 className="hero__name">
             I'm{' '}
             <strong className="hero__highlight">
               {data.site.siteMetadata.author}
             </strong>
           </h1>
-          <p className="hero__description" data-aos="zoom-in">
+          <p className="hero__description" data-aos="fade-up" data-aos-delay="200">
             {data.site.siteMetadata.position}
           </p>
-          <p className="hero__description" data-aos="zoom-in">
+          <p className="hero__description" data-aos="fade-up" data-aos-delay="300">
             {data.site.siteMetadata.location}
           </p>
           <button

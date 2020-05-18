@@ -49,7 +49,7 @@ class IndexPage extends Component {
 
   componentDidMount() {
     AOS.init({
-      duration: 2000,
+      duration: 500,
     })
   }
 
