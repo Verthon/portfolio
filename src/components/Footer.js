@@ -26,7 +26,7 @@ const Footer = () => {
           <FontAwesomeIcon icon={faCode} size="lg" aria-hidden="true" />
         </span>
         with{' '}
-        <span className="site-footer__heart" data-aos="fade-down" data-aos-delay="500">
+        <span className="site-footer__heart" data-aos="fade-down" data-aos-delay="500" data-aos-offset="70">
           <FontAwesomeIcon icon={faHeart} size="lg" aria-hidden="true" />
         </span>
         by {data.site.siteMetadata.author}
