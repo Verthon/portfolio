@@ -9,4 +9,12 @@
   @include mQ($bp-large) {
     padding: 2rem 0;
   }
+
+  &__code {
+    margin: 0 0.5rem 0 0;
+  }
+
+  &__tech {
+    display: flex;
+  }
 }

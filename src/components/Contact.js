@@ -75,6 +75,7 @@ const Contact = React.forwardRef((props, ref) => {
   const [error, setError] = useState(initialErrorState)
   const [success, setSuccess] = useState('')
   const onFormChange = e => {
+    setError(initialErrorState)
     setForm({ ...form, [e.target.name]: e.target.value })
   }
 
@@ -110,7 +111,7 @@ const Contact = React.forwardRef((props, ref) => {
           data-netlify="true"
         >
           <p className="hidden">
-            <label>
+            <label htmlFor="bot-field" name="bot-field">
               Don’t fill this out if you're human: <input name="bot-field" />
             </label>
           </p>
@@ -147,11 +148,11 @@ const Contact = React.forwardRef((props, ref) => {
               />
             </a>
           </div>
-          <label className="contact__label" htmlFor="name">
+          <label className="contact__label" htmlFor="name" id="name">
             Name
           </label>
           <input
-            className="contact__input"
+            className={error.inputName === 'name' ? 'contact__input contact__input--error' : 'contact__input'}
             type="text"
             name="name"
             placeholder="Your name"
@@ -165,7 +166,7 @@ const Contact = React.forwardRef((props, ref) => {
             Email address
           </label>
           <input
-            className="contact__input"
+            className={error.inputName === 'email' ? 'contact__input contact__input--error' : 'contact__input'}
             type="email"
             name="email"
             placeholder="Email address"
@@ -179,7 +180,7 @@ const Contact = React.forwardRef((props, ref) => {
             Message
           </label>
           <textarea
-            className="contact__textarea"
+            className={error.inputName === 'message' ? 'contact__textarea contact__input--error' : 'contact__textarea'}
             name="message"
             cols="30"
             rows="10"
@@ -197,13 +198,6 @@ const Contact = React.forwardRef((props, ref) => {
             </button>
           </div>
         </form>
-
-        {/* <p className="contact__email">
-          <span className="contact__email__icon" data-aos="zoom-in">
-            <FontAwesomeIcon icon={faEnvelope} aria-label="Mail icon" />
-          </span>
-          {data.site.siteMetadata.email}
-        </p> */}
       </div>
     </section>
   )
