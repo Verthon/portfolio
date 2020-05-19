@@ -52,7 +52,7 @@ class Tabs extends React.Component {
     const contentCssActiveClass = `tab-content__item active-tab animated fadeIn`
     return (
       <div className="row">
-        <ul className="tab-header" data-aos="fade-down" data-aos-delay="500" data-aos-offset="50">
+        <ul className="tab-header" data-aos="fade-down" data-aos-delay="200" data-aos-offset="100" data-aos-easing="ease-in-out">
           {headers.map(header =>
             activeTab === header.tab ? (
               <TabHeader
