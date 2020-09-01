@@ -2,7 +2,7 @@
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 My first mobile-first personal portfolio
-- https://sordyl.me
+- https://sordyl.netlify.app/
 
 
 ## 💡 Table of contents
