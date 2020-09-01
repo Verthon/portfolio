@@ -7,12 +7,12 @@ module.exports = {
       'Welcome, my name is Krzysztof Sordyl frontend developer living in Bielsko-Biała, Poland. I"m creating solid, modern and well-designed websites. React enthusiast. Software, programming Bielsko-Biała',
     author: 'Krzysztof Sordyl',
     bio:
-      "I am a frontend developer living in Bielsko-Biała, Poland. I build websites and web apps particularly, I specialize in frontend development React.js, mobile first web applications and creating modern user intefaces. Currently I'm learning Typescript, Ionic and Redux.",
+      "I am a frontend developer living in Bielsko-Biała, Poland. I build websites and web apps particularly, I specialize in frontend development React.js, mobile first web applications and creating modern user intefaces. Currently I'm learning Typescript, GraphQL.",
     twitterSlug: '@chsordyl',
     position: 'Frontend developer passionate about React.js ecosystem, focused on creating modern web apps.',
-    location: 'Based in Bielsko-Biała, Poland. Currently I am learning Typescript, Ionic and Redux.',
+    location: 'Based in Bielsko-Biała, Poland. Currently I am learning Typescript, GraphQL.',
     about:
-      "I am a frontend developer living in Bielsko-Biała, Poland. I build websites and web apps particularly, I specialize in frontend development React.js, mobile first web applications and creating modern user intefaces. Currently I'm learning Typescript, Ionic and Redux.",
+      "I am a frontend developer living in Bielsko-Biała, Poland. I build websites and web apps particularly, I specialize in frontend development React.js, mobile first web applications and creating modern user intefaces. Currently I'm learning Typescript and GraphQL.",
     linkedin: 'https://www.linkedin.com/in/krzysztof-sordyl/',
     github: 'https://github.com/Verthon',
     email: 'christopher.sordyl@gmail.com',
