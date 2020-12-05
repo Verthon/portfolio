@@ -20,6 +20,7 @@
     "gatsby-plugin-sharp": "^2.10.0",
     "gatsby-source-filesystem": "^2.1.36",
     "gatsby-transformer-sharp": "^2.3.3",
+    "lighthouse": "^6.5.0",
     "node-sass": "^4.13.0",
     "prop-types": "^15.7.2",
     "react": "^16.11.0",
