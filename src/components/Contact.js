@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
-import { faPaperPlane, faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 
 const Contact = React.forwardRef((props, ref) => {
   const data = useStaticQuery(
@@ -12,6 +12,8 @@ const Contact = React.forwardRef((props, ref) => {
         site {
           siteMetadata {
             email
+            linkedin
+            github
           }
         }
       }

@@ -44,11 +44,15 @@ const {
 
 const apiRunner = require(`./api-runner-ssr`);
 
-const syncRequires = require(`./sync-requires`);
+const syncRequires = require(`$virtual/sync-requires`);
 
 const {
   version: gatsbyVersion
 } = require(`gatsby/package.json`);
+
+const {
+  grabMatchParams
+} = require(`./find-path`);
 
 const stats = JSON.parse(fs.readFileSync(`${process.cwd()}/public/webpack.stats.json`, `utf-8`));
 const chunkMapping = JSON.parse(fs.readFileSync(`${process.cwd()}/public/chunk-map.json`, `utf-8`)); // const testRequireError = require("./test-require-error")
@@ -85,6 +89,8 @@ const getPageDataUrl = pagePath => {
   const pageDataPath = getPageDataPath(pagePath);
   return `${__PATH_PREFIX__}/${pageDataPath}`;
 };
+
+const getStaticQueryUrl = hash => `${__PATH_PREFIX__}/page-data/sq/d/${hash}.json`;
 
 const getPageData = pagePath => {
   const pageDataPath = getPageDataPath(pagePath);
@@ -161,7 +167,7 @@ const ensureArray = components => {
 
 var _default = (pagePath, callback) => {
   let bodyHtml = ``;
-  let headComponents = [React.createElement("meta", {
+  let headComponents = [/*#__PURE__*/React.createElement("meta", {
     name: "generator",
     content: `Gatsby ${gatsbyVersion}`,
     key: `generator-${gatsbyVersion}`
@@ -222,13 +228,20 @@ var _default = (pagePath, callback) => {
   const pageDataUrl = getPageDataUrl(pagePath);
   const appDataUrl = getAppDataUrl();
   const {
-    componentChunkName
+    componentChunkName,
+    staticQueryHashes = []
   } = pageData;
+  const staticQueryUrls = staticQueryHashes.map(getStaticQueryUrl);
 
   class RouteHandler extends React.Component {
     render() {
+      var _pageData$result, _pageData$result$page;
+
       const props = { ...this.props,
         ...pageData.result,
+        params: { ...grabMatchParams(this.props.location.pathname),
+          ...(((_pageData$result = pageData.result) === null || _pageData$result === void 0 ? void 0 : (_pageData$result$page = _pageData$result.pageContext) === null || _pageData$result$page === void 0 ? void 0 : _pageData$result$page.__params) || {})
+        },
         // pathContext was deprecated in v2. Renamed to pageContext
         pathContext: pageData.result ? pageData.result.pageContext : undefined
       };
@@ -249,14 +262,14 @@ var _default = (pagePath, callback) => {
 
   }
 
-  const routerElement = React.createElement(ServerLocation, {
+  const routerElement = /*#__PURE__*/React.createElement(ServerLocation, {
     url: `${__BASE_PATH__}${pagePath}`
-  }, React.createElement(Router, {
+  }, /*#__PURE__*/React.createElement(Router, {
     id: "gatsby-focus-wrapper",
     baseuri: __BASE_PATH__
-  }, React.createElement(RouteHandler, {
+  }, /*#__PURE__*/React.createElement(RouteHandler, {
     path: "/*"
-  })), React.createElement("div", RouteAnnouncerProps));
+  })), /*#__PURE__*/React.createElement("div", RouteAnnouncerProps));
   const bodyComponent = apiRunner(`wrapRootElement`, {
     element: routerElement,
     pathname: pagePath
@@ -348,7 +361,7 @@ var _default = (pagePath, callback) => {
   });
   scripts.slice(0).reverse().forEach(script => {
     // Add preload/prefetch <link>s for scripts.
-    headComponents.push(React.createElement("link", {
+    headComponents.push( /*#__PURE__*/React.createElement("link", {
       as: "script",
       rel: script.rel,
       key: script.name,
@@ -357,7 +370,7 @@ var _default = (pagePath, callback) => {
   });
 
   if (pageData) {
-    headComponents.push(React.createElement("link", {
+    headComponents.push( /*#__PURE__*/React.createElement("link", {
       as: "fetch",
       rel: "preload",
       key: pageDataUrl,
@@ -366,8 +379,16 @@ var _default = (pagePath, callback) => {
     }));
   }
 
+  staticQueryUrls.forEach(staticQueryUrl => headComponents.push( /*#__PURE__*/React.createElement("link", {
+    as: "fetch",
+    rel: "preload",
+    key: staticQueryUrl,
+    href: staticQueryUrl,
+    crossOrigin: "anonymous"
+  })));
+
   if (appDataUrl) {
-    headComponents.push(React.createElement("link", {
+    headComponents.push( /*#__PURE__*/React.createElement("link", {
       as: "fetch",
       rel: "preload",
       key: appDataUrl,
@@ -380,15 +401,16 @@ var _default = (pagePath, callback) => {
     // Add <link>s for styles that should be prefetched
     // otherwise, inline as a <style> tag
     if (style.rel === `prefetch`) {
-      headComponents.push(React.createElement("link", {
+      headComponents.push( /*#__PURE__*/React.createElement("link", {
         as: "style",
         rel: style.rel,
         key: style.name,
         href: `${__PATH_PREFIX__}/${style.name}`
       }));
     } else {
-      headComponents.unshift(React.createElement("style", {
+      headComponents.unshift( /*#__PURE__*/React.createElement("style", {
         "data-href": `${__PATH_PREFIX__}/${style.name}`,
+        id: `gatsby-global-css`,
         dangerouslySetInnerHTML: {
           __html: fs.readFileSync(join(process.cwd(), `public`, style.name), `utf-8`)
         }
@@ -397,7 +419,7 @@ var _default = (pagePath, callback) => {
   }); // Add page metadata for the current page
 
   const windowPageData = `/*<![CDATA[*/window.pagePath="${pagePath}";/*]]>*/`;
-  postBodyComponents.push(React.createElement("script", {
+  postBodyComponents.push( /*#__PURE__*/React.createElement("script", {
     key: `script-loader`,
     id: `gatsby-script-loader`,
     dangerouslySetInnerHTML: {
@@ -406,23 +428,36 @@ var _default = (pagePath, callback) => {
   })); // Add chunk mapping metadata
 
   const scriptChunkMapping = `/*<![CDATA[*/window.___chunkMapping=${JSON.stringify(chunkMapping)};/*]]>*/`;
-  postBodyComponents.push(React.createElement("script", {
+  postBodyComponents.push( /*#__PURE__*/React.createElement("script", {
     key: `chunk-mapping`,
     id: `gatsby-chunk-mapping`,
     dangerouslySetInnerHTML: {
       __html: scriptChunkMapping
     }
-  })); // Filter out prefetched bundles as adding them as a script tag
+  }));
+  let bodyScripts = [];
+
+  if (chunkMapping[`polyfill`]) {
+    chunkMapping[`polyfill`].forEach(script => {
+      const scriptPath = `${__PATH_PREFIX__}${script}`;
+      bodyScripts.push( /*#__PURE__*/React.createElement("script", {
+        key: scriptPath,
+        src: scriptPath,
+        noModule: true
+      }));
+    });
+  } // Filter out prefetched bundles as adding them as a script tag
   // would force high priority fetching.
 
-  const bodyScripts = scripts.filter(s => s.rel !== `prefetch`).map(s => {
+
+  bodyScripts = bodyScripts.concat(scripts.filter(s => s.rel !== `prefetch`).map(s => {
     const scriptPath = `${__PATH_PREFIX__}/${JSON.stringify(s.name).slice(1, -1)}`;
-    return React.createElement("script", {
+    return /*#__PURE__*/React.createElement("script", {
       key: scriptPath,
       src: scriptPath,
       async: true
     });
-  });
+  }));
   postBodyComponents.push(...bodyScripts);
   apiRunner(`onPreRenderHTML`, {
     getHeadComponents,
@@ -434,7 +469,7 @@ var _default = (pagePath, callback) => {
     pathname: pagePath,
     pathPrefix: __PATH_PREFIX__
   });
-  const html = `<!DOCTYPE html>${renderToStaticMarkup(React.createElement(Html, (0, _extends2.default)({}, bodyProps, {
+  const html = `<!DOCTYPE html>${renderToStaticMarkup( /*#__PURE__*/React.createElement(Html, (0, _extends2.default)({}, bodyProps, {
     headComponents: headComponents,
     htmlAttributes: htmlAttributes,
     bodyAttributes: bodyAttributes,

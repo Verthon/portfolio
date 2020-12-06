@@ -120,7 +120,7 @@
     background: $color-gray-1;
     color: $color-dark-1;
     font-size: $font-size-regular;
-    box-shadow: $default-shadow;
+    box-shadow: $light-shadow;
     @include mQ($ipad) {
       margin: 0.25rem 0.5rem 0 0;
       padding: $button-desktop;
@@ -141,7 +141,7 @@
       padding: 0.5rem 1rem;
       margin: 0 0 0 0;
       font-size: $font-size-regular;
-      box-shadow: $default-shadow;
+      box-shadow: $light-shadow;
       @include mQ($ipad) {
         display: block;
         margin: 0.25rem 0 0 0;

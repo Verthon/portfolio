@@ -19,7 +19,7 @@ var AppShell = /*#__PURE__*/function (_React$Component) {
   var _proto = AppShell.prototype;
 
   _proto.render = function render() {
-    return _react.default.createElement(_react.default.Fragment, null);
+    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null);
   };
 
   return AppShell;
