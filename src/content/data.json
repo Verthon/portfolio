@@ -14,29 +14,29 @@
   "content": [
     [
       {
-        "title": "User interface",
+        "title": "JavaScript",
+        "tech": [
+          "Working experience with JavaScript ES6+ and Typescript",
+          "Familiar with React.js, Next.js, Gatsby.js and Redux Toolkit",
+          "Experience with writing tests - Jest, React Testing Library, Cypress",
+          "Hands on experience with Vue.js and Vuex",
+          "Working experience with SPAs based on Rest APIs",
+          "Real world experience with GIT version control system",
+          "Familiar with npm, webpack, eslint"
+        ]
+      },
+      {
+        "title": "General",
         "tech": [
           "HTML5, CSS3, Sass, Styled Components",
           "Experience with responsive design",
           "Basic UI/UX skills, decent eye for the detail",
           "Familiar with BEM methodology",
-          "Basic understanding about of Tailwind and Bootstrap 4",
-          "Hands on experience with Wordpress CMS",
+          "Basic understanding of Tailwind CSS",
+          "Hands on experience with Wordpress and Sanity CMS",
           "Familiar with SEO principles ",
-          "Basics of Figma",
-          "Real world experience with GIT version control system"
-        ]
-      },
-      {
-        "title": "JavaScript",
-        "tech": [
-          "Working experience with JavaScript ES6+ and Typescript",
-          "Familiar with React.js and Redux Toolkit",
-          "Experience with writing tests - Jest, React Testing Library",
-          "Working experience with SPAs based on Rest APIs",
-          "Hands on experience with Gatsby.js",
-          "Basic understanding of functional programming",
-          "Familiar with npm, webpack, eslint"
+          "Basics of the GraphQL",
+          "Basics of Figma"
         ]
       }
     ],
@@ -56,7 +56,8 @@
         "tech": [
           "Basics of SQL relational databases",
           "Familiar with Firestore and MongoDB",
-          "Currently learning more about SQL"
+          "Currently learning more about SQL",
+          "Hands experience on Hasura"
         ]
       }
     ]
@@ -66,8 +67,9 @@
       "name": "Alkinoos Taverna",
       "technologies": [
         "React",
-        "Sass",
-        "Firestore"
+        "GraphQL",
+        "Hasura",
+        "Sass"
       ],
       "description": "Responsive, progressive web app for small restaurants, with integrated simple booking system and basic administration tools for the staff.",
       "github": "https://github.com/Verthon/restaurant-app",
