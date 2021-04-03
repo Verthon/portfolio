@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 
-const Contact = React.forwardRef((props, ref) => {
+const Contact = React.forwardRef((_props, ref) => {
   const data = useStaticQuery(
     graphql`
       query {
@@ -49,19 +49,16 @@ const Contact = React.forwardRef((props, ref) => {
   }
 
   const validateEmail = email => {
-    const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     return regex.test(String(email).toLowerCase())
   }
 
   const validate = form => {
     if (form.name.length === 0) {
-      console.log('validate didnt pass', form.name)
       return { inputName: 'name', message: errorMsg.name }
     } else if (!validateEmail(form.email)) {
-      console.log('validate didnt pass', form.email)
       return { inputName: 'email', message: errorMsg.email }
     } else if (form.message.length < 10) {
-      console.log('validate message', form.message)
       return { inputName: 'message', message: errorMsg.message }
     }
 
@@ -84,9 +81,7 @@ const Contact = React.forwardRef((props, ref) => {
   const onMessageSubmit = e => {
     e.preventDefault()
     const errorObj = validate(form)
-    console.log('error obj afetr validation', errorObj)
     if (errorObj) {
-      console.log(errorObj)
       setError(errorObj)
       return
     }
