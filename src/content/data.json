@@ -66,14 +66,14 @@
     {
       "name": "Alkinoos Taverna",
       "technologies": [
-        "React",
+        "Next.js",
         "GraphQL",
         "Hasura",
-        "Sass"
+        "Typescript"
       ],
       "description": "Responsive, progressive web app for small restaurants, with integrated simple booking system and basic administration tools for the staff.",
       "github": "https://github.com/Verthon/restaurant-app",
-      "live": "https://alkinoos-taverna.netlify.com/",
+      "live": "https://alkinoos-taverna.vercel.app/",
       "animation": "slide-right"
     },
     {
