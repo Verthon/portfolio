@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const NavItem = ({ id, name, handleClick }) => {
+const NavItem = ({ name, handleClick }) => {
   return (
     <li className='menu-item' onClick={() => handleClick(name)}>
       {name}
