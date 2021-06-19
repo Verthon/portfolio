@@ -7,7 +7,7 @@ class Tabs extends React.Component {
     super()
     this.mobile = 769
     this.frontendTab = React.createRef()
-    this.backendTab = React.createRef()
+    this.generalTab = React.createRef()
     this.toolsTab = React.createRef()
     this.state = {
       activeTab: 'frontend'
@@ -29,8 +29,8 @@ class Tabs extends React.Component {
       case 'frontend':
         this.scrollToContent(this.frontendTab)
         break
-      case 'backend':
-        this.scrollToContent(this.backendTab)
+      case 'general':
+        this.scrollToContent(this.generalTab)
         break
       default:
         break
@@ -85,9 +85,9 @@ class Tabs extends React.Component {
             ))}
           </div>
           <div
-            ref={this.backendTab}
+            ref={this.generalTab}
             className={
-              activeTab === 'backend'
+              activeTab === 'general'
                 ? contentCssActiveClass
                 : 'tab-content__item'
             }
