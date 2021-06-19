@@ -7,7 +7,7 @@
     },
     {
       "name": "General",
-      "description": "Hands on experience server side programming. Basic understanding of Node.js and relational databases.",
+      "description": "Effectively work within a team of other engineers, as well as Product Owner, designers, and QA engineers.",
       "tab": "general"
     }
   ],
@@ -18,6 +18,7 @@
         "tech": [
           "Working experience with JavaScript ES6+ and Typescript",
           "Familiar with React.js, Next.js, Gatsby.js",
+          "Hands on experience with Redux Toolkit and Context API",
           "Experience with writing tests - Jest, React Testing Library, Cypress",
           "Hands on experience with Vue.js and Vuex",
           "Working experience with SPAs based on Rest APIs",
@@ -33,7 +34,7 @@
           "Familiar with BEM methodology",
           "Basic understanding of Tailwind CSS",
           "Hands on experience with Wordpress and Sanity CMS",
-          "Familiar with SEO principles ",
+          "Familiar with SEO principles and Web Vitals",
           "Basics of the GraphQL with Apollo",
           "Basics of Figma prototyping"
         ]
@@ -41,26 +42,25 @@
     ],
     [
       {
-        "title": "Node.js",
+        "title": "Soft skills",
         "tech": [
           "Experience with Agile/Scrum methodology",
-          "Basics of Node.js and Express.js",
-          "Knowledge about HTTP and REST",
-          "Basic understanding about MVC pattern",
-          "Hands on experience with Postman"
+          "Good communication skills",
+          "Experience in working with a clients",
+          "Familiar with working as a remote developer",
+          "Ability to learn on my own",
+          "Familiar with creating an own knowledge base on Notion"
         ]
       },
       {
         "title": "Backend",
         "tech": [
           "Familiar with Firestore",
-          "Hands experience on Hasura",
+          "Hands on experience on Hasura",
           "Basics of Node.js and Express.js",
           "Knowledge about HTTP and REST",
-          "Basic understanding about MVC pattern",
           "Hands on experience with Postman",
-          "Basics of PostgreSQL",
-          "Basics of Docker"
+          "Basics of PostgreSQL and Docker"
         ]
       }
     ]
