@@ -62,7 +62,9 @@ function Seo({ description, lang, meta, title }) {
           content: metaDescription,
         },
       ].concat(meta)}
-    />
+    >
+      <link href="/static/fonts/Inter.var.woff2" as="font" type="font/woff2" crossorigin="anonymous"/>
+    </Helmet>  
   )
 }
 
