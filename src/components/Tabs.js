@@ -10,21 +10,19 @@ class Tabs extends React.Component {
     this.generalTab = React.createRef()
     this.toolsTab = React.createRef()
     this.state = {
-      activeTab: 'frontend'
+      activeTab: 'frontend',
     }
   }
 
-  
-
-  scrollToContent = content => {
+  scrollToContent = (content) => {
     content.current.scrollIntoView({
       alignToTop: false,
       block: 'start',
-      behavior: 'smooth'
+      behavior: 'smooth',
     })
   }
 
-  getCurrentTab = type => {
+  getCurrentTab = (type) => {
     switch (type) {
       case 'frontend':
         this.scrollToContent(this.frontendTab)
@@ -37,7 +35,7 @@ class Tabs extends React.Component {
     }
   }
 
-  handleHeaderChange = e => {
+  handleHeaderChange = (e) => {
     const header = e.currentTarget.getAttribute('data-tab')
     this.setState({ activeTab: header }, () => {
       if (window.innerWidth < this.mobile) {
@@ -52,8 +50,14 @@ class Tabs extends React.Component {
     const contentCssActiveClass = `tab-content__item active-tab animated fadeIn`
     return (
       <div className="row">
-        <ul className="tab-header" data-aos="fade-down" data-aos-delay="200" data-aos-offset="100" data-aos-easing="ease-in-out">
-          {headers.map(header =>
+        <ul
+          className="tab-header"
+          data-aos="fade-down"
+          data-aos-delay="200"
+          data-aos-offset="100"
+          data-aos-easing="ease-in-out"
+        >
+          {headers.map((header) =>
             activeTab === header.tab ? (
               <TabHeader
                 key={header.name}
@@ -80,7 +84,7 @@ class Tabs extends React.Component {
                 : 'tab-content__item'
             }
           >
-            {content[0].map(column => (
+            {content[0].map((column) => (
               <TabContent key={column.title} item={column} />
             ))}
           </div>
@@ -92,7 +96,7 @@ class Tabs extends React.Component {
                 : 'tab-content__item'
             }
           >
-            {content[1].map(column => (
+            {content[1].map((column) => (
               <TabContent key={column.title} item={column} />
             ))}
           </div>

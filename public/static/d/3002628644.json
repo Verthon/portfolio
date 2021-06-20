@@ -1,1 +1,12 @@
-{"data":{"site":{"siteMetadata":{"quote":{"author":"Thomas Huxley","content":"Try to learn something about everything and everything about something."}}}}}
+{
+  "data": {
+    "site": {
+      "siteMetadata": {
+        "quote": {
+          "author": "Thomas Huxley",
+          "content": "Try to learn something about everything and everything about something."
+        }
+      }
+    }
+  }
+}

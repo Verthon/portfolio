@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
-import NavItem from './NavItem'
 import { useStaticQuery, graphql } from 'gatsby'
 
-const Nav = ({ links, scroll }) => {
+import NavItem from './NavItem'
+import { GithubIcon } from '../icons/GithubIcon'
+import { LinkedinIcon } from '../icons/LinkedinIcon'
 
+const Nav = ({ links, scroll }) => {
   const data = useStaticQuery(
     graphql`
       query {
@@ -21,35 +21,35 @@ const Nav = ({ links, scroll }) => {
   )
 
   return (
-    <nav className='site-nav'>
-      <div className='site-nav--socials'>
+    <nav className="site-nav">
+      <div className="site-nav--socials">
         <a
           href={data.site.siteMetadata.github}
-          target='_blank'
-          rel='noopener noreferrer'
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          <FontAwesomeIcon
-            icon={faGithub}
-            size='lg'
-            aria-label='Verthon GitHub profile'
-            color='black'
+          <GithubIcon
+            color="black"
+            width="22"
+            height="22"
+            ariaLabel="Verthon GitHub profile"
           />
         </a>
         <a
           href={data.site.siteMetadata.linkedin}
-          target='_blank'
-          rel='noopener noreferrer'
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          <FontAwesomeIcon
-            icon={faLinkedin}
-            size='lg'
-            aria-label='Krzysztof Sordyl linkedin profile'
-            color='black'
+          <LinkedinIcon
+            color="black"
+            width="22"
+            height="22"
+            ariaLabel="Krzysztof Sordyl linkedin profile"
           />
         </a>
       </div>
-      <ul id='menu-ul' className='menu-ul'>
-        {links.map(link => (
+      <ul id="menu-ul" className="menu-ul">
+        {links.map((link) => (
           <NavItem key={link} name={link} handleClick={scroll} />
         ))}
       </ul>
@@ -59,7 +59,7 @@ const Nav = ({ links, scroll }) => {
 
 Nav.propTypes = {
   links: PropTypes.array,
-  scroll: PropTypes.func
+  scroll: PropTypes.func,
 }
 
 export default Nav

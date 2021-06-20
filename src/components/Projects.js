@@ -26,14 +26,12 @@ const Projects = React.forwardRef((props, ref) => {
   `)
 
   const projectsImages = data.allFile.edges.map(
-    element => element.node.childImageSharp.fluid.srcSet
+    (element) => element.node.childImageSharp.fluid.srcSet
   )
   return (
     <section ref={ref} id="projects" className="section projects">
       <div className="container">
-        <h2 className="section__heading">
-          Projects
-        </h2>
+        <h2 className="section__heading">Projects</h2>
         <p className="section__description">
           This is what I have worked on so far.
         </p>

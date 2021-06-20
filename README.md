@@ -1,16 +1,19 @@
 # 🔥🔥🔥 My portfolio
+
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 My first mobile-first personal portfolio
+
 - https://sordyl.netlify.app/
 
-
 ## 💡 Table of contents
-* [Technologies](#technologies)
-* [Setup](#setup)
-* [Work in progress](#work-in-progress)
+
+- [Technologies](#technologies)
+- [Setup](#setup)
+- [Work in progress](#work-in-progress)
 
 ## 🔥 Technologies
+
 - Gatsby.js
 - GraphQL
 - Scss,
@@ -21,17 +24,17 @@ My first mobile-first personal portfolio
 ## 🚀 Setup
 
 1. **Clone repository**
-    ```shell
-    git clone https://github.com/Verthon/portfolio.git
-    ```
-2.  **Install all dependencies**
-    ```shell
-    npm install
-    ```
-3.  **Start developing.**
+   ```shell
+   git clone https://github.com/Verthon/portfolio.git
+   ```
+2. **Install all dependencies**
+   ```shell
+   npm install
+   ```
+3. **Start developing.**
 
-    Navigate into your new site’s directory and start it up.
+   Navigate into your new site’s directory and start it up.
 
-    ```shell
-    gatsby develop
-    ```
+   ```shell
+   gatsby develop
+   ```

@@ -17,7 +17,10 @@ const Layout = ({ children, scrollFunction }) => {
 
   return (
     <>
-      <Header scroll={scrollFunction} siteTitle={data.site.siteMetadata.title} />
+      <Header
+        scroll={scrollFunction}
+        siteTitle={data.site.siteMetadata.title}
+      />
       {children}
     </>
   )
@@ -25,7 +28,7 @@ const Layout = ({ children, scrollFunction }) => {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-  scrollFunction: PropTypes.func
+  scrollFunction: PropTypes.func,
 }
 
 export default Layout

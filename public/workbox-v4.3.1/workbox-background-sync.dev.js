@@ -1,9 +1,16 @@
-this.workbox = this.workbox || {};
-this.workbox.backgroundSync = (function (exports, WorkboxError_mjs, logger_mjs, assert_mjs, getFriendlyURL_mjs, DBWrapper_mjs) {
-  'use strict';
+this.workbox = this.workbox || {}
+this.workbox.backgroundSync = (function (
+  exports,
+  WorkboxError_mjs,
+  logger_mjs,
+  assert_mjs,
+  getFriendlyURL_mjs,
+  DBWrapper_mjs
+) {
+  'use strict'
 
   try {
-    self['workbox:background-sync:4.3.1'] && _();
+    self['workbox:background-sync:4.3.1'] && _()
   } catch (e) {} // eslint-disable-line
 
   /*
@@ -13,10 +20,10 @@ this.workbox.backgroundSync = (function (exports, WorkboxError_mjs, logger_mjs, 
     license that can be found in the LICENSE file or at
     https://opensource.org/licenses/MIT.
   */
-  const DB_VERSION = 3;
-  const DB_NAME = 'workbox-background-sync';
-  const OBJECT_STORE_NAME = 'requests';
-  const INDEXED_PROP = 'queueName';
+  const DB_VERSION = 3
+  const DB_NAME = 'workbox-background-sync'
+  const OBJECT_STORE_NAME = 'requests'
+  const INDEXED_PROP = 'queueName'
   /**
    * A class to manage storing requests from a Queue in IndexedbDB,
    * indexed by their queue name for easier access.
@@ -33,10 +40,10 @@ this.workbox.backgroundSync = (function (exports, WorkboxError_mjs, logger_mjs, 
      * @private
      */
     constructor(queueName) {
-      this._queueName = queueName;
+      this._queueName = queueName
       this._db = new DBWrapper_mjs.DBWrapper(DB_NAME, DB_VERSION, {
-        onupgradeneeded: this._upgradeDb
-      });
+        onupgradeneeded: this._upgradeDb,
+      })
     }
     /**
      * Append an entry last in the queue.
@@ -48,27 +55,25 @@ this.workbox.backgroundSync = (function (exports, WorkboxError_mjs, logger_mjs, 
      * @private
      */
 
-
     async pushEntry(entry) {
       {
         assert_mjs.assert.isType(entry, 'object', {
           moduleName: 'workbox-background-sync',
           className: 'QueueStore',
           funcName: 'pushEntry',
-          paramName: 'entry'
-        });
+          paramName: 'entry',
+        })
         assert_mjs.assert.isType(entry.requestData, 'object', {
           moduleName: 'workbox-background-sync',
           className: 'QueueStore',
           funcName: 'pushEntry',
-          paramName: 'entry.requestData'
-        });
+          paramName: 'entry.requestData',
+        })
       } // Don't specify an ID since one is automatically generated.
 
-
-      delete entry.id;
-      entry.queueName = this._queueName;
-      await this._db.add(OBJECT_STORE_NAME, entry);
+      delete entry.id
+      entry.queueName = this._queueName
+      await this._db.add(OBJECT_STORE_NAME, entry)
     }
     /**
      * Preppend an entry first in the queue.
@@ -80,37 +85,36 @@ this.workbox.backgroundSync = (function (exports, WorkboxError_mjs, logger_mjs, 
      * @private
      */
 
-
     async unshiftEntry(entry) {
       {
         assert_mjs.assert.isType(entry, 'object', {
           moduleName: 'workbox-background-sync',
           className: 'QueueStore',
           funcName: 'unshiftEntry',
-          paramName: 'entry'
-        });
+          paramName: 'entry',
+        })
         assert_mjs.assert.isType(entry.requestData, 'object', {
           moduleName: 'workbox-background-sync',
           className: 'QueueStore',
           funcName: 'unshiftEntry',
-          paramName: 'entry.requestData'
-        });
+          paramName: 'entry.requestData',
+        })
       }
 
       const [firstEntry] = await this._db.getAllMatching(OBJECT_STORE_NAME, {
-        count: 1
-      });
+        count: 1,
+      })
 
       if (firstEntry) {
         // Pick an ID one less than the lowest ID in the object store.
-        entry.id = firstEntry.id - 1;
+        entry.id = firstEntry.id - 1
       } else {
         // Otherwise let the auto-incrementor assign the ID.
-        delete entry.id;
+        delete entry.id
       }
 
-      entry.queueName = this._queueName;
-      await this._db.add(OBJECT_STORE_NAME, entry);
+      entry.queueName = this._queueName
+      await this._db.add(OBJECT_STORE_NAME, entry)
     }
     /**
      * Removes and returns the last entry in the queue matching the `queueName`.
@@ -119,11 +123,10 @@ this.workbox.backgroundSync = (function (exports, WorkboxError_mjs, logger_mjs, 
      * @private
      */
 
-
     async popEntry() {
       return this._removeEntry({
-        direction: 'prev'
-      });
+        direction: 'prev',
+      })
     }
     /**
      * Removes and returns the first entry in the queue matching the `queueName`.
@@ -132,11 +135,10 @@ this.workbox.backgroundSync = (function (exports, WorkboxError_mjs, logger_mjs, 
      * @private
      */
 
-
     async shiftEntry() {
       return this._removeEntry({
-        direction: 'next'
-      });
+        direction: 'next',
+      })
     }
     /**
      * Returns all entries in the store matching the `queueName`.
@@ -146,12 +148,11 @@ this.workbox.backgroundSync = (function (exports, WorkboxError_mjs, logger_mjs, 
      * @private
      */
 
-
     async getAll() {
       return await this._db.getAllMatching(OBJECT_STORE_NAME, {
         index: INDEXED_PROP,
-        query: IDBKeyRange.only(this._queueName)
-      });
+        query: IDBKeyRange.only(this._queueName),
+      })
     }
     /**
      * Deletes the entry for the given ID.
@@ -165,9 +166,8 @@ this.workbox.backgroundSync = (function (exports, WorkboxError_mjs, logger_mjs, 
      * @param {number} id
      */
 
-
     async deleteEntry(id) {
-      await this._db.delete(OBJECT_STORE_NAME, id);
+      await this._db.delete(OBJECT_STORE_NAME, id)
     }
     /**
      * Removes and returns the first or last entry in the queue (based on the
@@ -177,20 +177,17 @@ this.workbox.backgroundSync = (function (exports, WorkboxError_mjs, logger_mjs, 
      * @private
      */
 
-
-    async _removeEntry({
-      direction
-    }) {
+    async _removeEntry({ direction }) {
       const [entry] = await this._db.getAllMatching(OBJECT_STORE_NAME, {
         direction,
         index: INDEXED_PROP,
         query: IDBKeyRange.only(this._queueName),
-        count: 1
-      });
+        count: 1,
+      })
 
       if (entry) {
-        await this.deleteEntry(entry.id);
-        return entry;
+        await this.deleteEntry(entry.id)
+        return entry
       }
     }
     /**
@@ -200,25 +197,23 @@ this.workbox.backgroundSync = (function (exports, WorkboxError_mjs, logger_mjs, 
      * @private
      */
 
-
     _upgradeDb(event) {
-      const db = event.target.result;
+      const db = event.target.result
 
       if (event.oldVersion > 0 && event.oldVersion < DB_VERSION) {
         if (db.objectStoreNames.contains(OBJECT_STORE_NAME)) {
-          db.deleteObjectStore(OBJECT_STORE_NAME);
+          db.deleteObjectStore(OBJECT_STORE_NAME)
         }
       }
 
       const objStore = db.createObjectStore(OBJECT_STORE_NAME, {
         autoIncrement: true,
-        keyPath: 'id'
-      });
+        keyPath: 'id',
+      })
       objStore.createIndex(INDEXED_PROP, INDEXED_PROP, {
-        unique: false
-      });
+        unique: false,
+      })
     }
-
   }
 
   /*
@@ -228,7 +223,17 @@ this.workbox.backgroundSync = (function (exports, WorkboxError_mjs, logger_mjs, 
     license that can be found in the LICENSE file or at
     https://opensource.org/licenses/MIT.
   */
-  const serializableProperties = ['method', 'referrer', 'referrerPolicy', 'mode', 'credentials', 'cache', 'redirect', 'integrity', 'keepalive'];
+  const serializableProperties = [
+    'method',
+    'referrer',
+    'referrerPolicy',
+    'mode',
+    'credentials',
+    'cache',
+    'redirect',
+    'integrity',
+    'keepalive',
+  ]
   /**
    * A class to make it easier to serialize and de-serialize requests so they
    * can be stored in IndexedDB.
@@ -249,30 +254,28 @@ this.workbox.backgroundSync = (function (exports, WorkboxError_mjs, logger_mjs, 
     static async fromRequest(request) {
       const requestData = {
         url: request.url,
-        headers: {}
-      }; // Set the body if present.
+        headers: {},
+      } // Set the body if present.
 
       if (request.method !== 'GET') {
         // Use ArrayBuffer to support non-text request bodies.
         // NOTE: we can't use Blobs becuse Safari doesn't support storing
         // Blobs in IndexedDB in some cases:
         // https://github.com/dfahlander/Dexie.js/issues/618#issuecomment-398348457
-        requestData.body = await request.clone().arrayBuffer();
+        requestData.body = await request.clone().arrayBuffer()
       } // Convert the headers from an iterable to an object.
 
-
       for (const [key, value] of request.headers.entries()) {
-        requestData.headers[key] = value;
+        requestData.headers[key] = value
       } // Add all other serializable request properties
-
 
       for (const prop of serializableProperties) {
         if (request[prop] !== undefined) {
-          requestData[prop] = request[prop];
+          requestData[prop] = request[prop]
         }
       }
 
-      return new StorableRequest(requestData);
+      return new StorableRequest(requestData)
     }
     /**
      * Accepts an object of request data that can be used to construct a
@@ -284,30 +287,28 @@ this.workbox.backgroundSync = (function (exports, WorkboxError_mjs, logger_mjs, 
      * @private
      */
 
-
     constructor(requestData) {
       {
         assert_mjs.assert.isType(requestData, 'object', {
           moduleName: 'workbox-background-sync',
           className: 'StorableRequest',
           funcName: 'constructor',
-          paramName: 'requestData'
-        });
+          paramName: 'requestData',
+        })
         assert_mjs.assert.isType(requestData.url, 'string', {
           moduleName: 'workbox-background-sync',
           className: 'StorableRequest',
           funcName: 'constructor',
-          paramName: 'requestData.url'
-        });
+          paramName: 'requestData.url',
+        })
       } // If the request's mode is `navigate`, convert it to `same-origin` since
       // navigation requests can't be constructed via script.
 
-
       if (requestData.mode === 'navigate') {
-        requestData.mode = 'same-origin';
+        requestData.mode = 'same-origin'
       }
 
-      this._requestData = requestData;
+      this._requestData = requestData
     }
     /**
      * Returns a deep clone of the instances `_requestData` object.
@@ -317,16 +318,15 @@ this.workbox.backgroundSync = (function (exports, WorkboxError_mjs, logger_mjs, 
      * @private
      */
 
-
     toObject() {
-      const requestData = Object.assign({}, this._requestData);
-      requestData.headers = Object.assign({}, this._requestData.headers);
+      const requestData = Object.assign({}, this._requestData)
+      requestData.headers = Object.assign({}, this._requestData.headers)
 
       if (requestData.body) {
-        requestData.body = requestData.body.slice(0);
+        requestData.body = requestData.body.slice(0)
       }
 
-      return requestData;
+      return requestData
     }
     /**
      * Converts this instance to a Request.
@@ -336,9 +336,8 @@ this.workbox.backgroundSync = (function (exports, WorkboxError_mjs, logger_mjs, 
      * @private
      */
 
-
     toRequest() {
-      return new Request(this._requestData.url, this._requestData);
+      return new Request(this._requestData.url, this._requestData)
     }
     /**
      * Creates and returns a deep clone of the instance.
@@ -348,11 +347,9 @@ this.workbox.backgroundSync = (function (exports, WorkboxError_mjs, logger_mjs, 
      * @private
      */
 
-
     clone() {
-      return new StorableRequest(this.toObject());
+      return new StorableRequest(this.toObject())
     }
-
   }
 
   /*
@@ -362,10 +359,10 @@ this.workbox.backgroundSync = (function (exports, WorkboxError_mjs, logger_mjs, 
     license that can be found in the LICENSE file or at
     https://opensource.org/licenses/MIT.
   */
-  const TAG_PREFIX = 'workbox-background-sync';
-  const MAX_RETENTION_TIME = 60 * 24 * 7; // 7 days in minutes
+  const TAG_PREFIX = 'workbox-background-sync'
+  const MAX_RETENTION_TIME = 60 * 24 * 7 // 7 days in minutes
 
-  const queueNames = new Set();
+  const queueNames = new Set()
   /**
    * A class to manage storing failed requests in IndexedDB and retrying them
    * later. All parts of the storing and replaying process are observable via
@@ -394,33 +391,29 @@ this.workbox.backgroundSync = (function (exports, WorkboxError_mjs, logger_mjs, 
      *     minutes) a request may be retried. After this amount of time has
      *     passed, the request will be deleted from the queue.
      */
-    constructor(name, {
-      onSync,
-      maxRetentionTime
-    } = {}) {
+    constructor(name, { onSync, maxRetentionTime } = {}) {
       // Ensure the store name is not already being used
       if (queueNames.has(name)) {
         throw new WorkboxError_mjs.WorkboxError('duplicate-queue-name', {
-          name
-        });
+          name,
+        })
       } else {
-        queueNames.add(name);
+        queueNames.add(name)
       }
 
-      this._name = name;
-      this._onSync = onSync || this.replayRequests;
-      this._maxRetentionTime = maxRetentionTime || MAX_RETENTION_TIME;
-      this._queueStore = new QueueStore(this._name);
+      this._name = name
+      this._onSync = onSync || this.replayRequests
+      this._maxRetentionTime = maxRetentionTime || MAX_RETENTION_TIME
+      this._queueStore = new QueueStore(this._name)
 
-      this._addSyncListener();
+      this._addSyncListener()
     }
     /**
      * @return {string}
      */
 
-
     get name() {
-      return this._name;
+      return this._name
     }
     /**
      * Stores the passed request in IndexedDB (with its timestamp and any
@@ -439,24 +432,23 @@ this.workbox.backgroundSync = (function (exports, WorkboxError_mjs, logger_mjs, 
      *     don't want particular requests to expire.
      */
 
-
     async pushRequest(entry) {
       {
         assert_mjs.assert.isType(entry, 'object', {
           moduleName: 'workbox-background-sync',
           className: 'Queue',
           funcName: 'pushRequest',
-          paramName: 'entry'
-        });
+          paramName: 'entry',
+        })
         assert_mjs.assert.isInstance(entry.request, Request, {
           moduleName: 'workbox-background-sync',
           className: 'Queue',
           funcName: 'pushRequest',
-          paramName: 'entry.request'
-        });
+          paramName: 'entry.request',
+        })
       }
 
-      await this._addRequest(entry, 'push');
+      await this._addRequest(entry, 'push')
     }
     /**
      * Stores the passed request in IndexedDB (with its timestamp and any
@@ -475,24 +467,23 @@ this.workbox.backgroundSync = (function (exports, WorkboxError_mjs, logger_mjs, 
      *     don't want particular requests to expire.
      */
 
-
     async unshiftRequest(entry) {
       {
         assert_mjs.assert.isType(entry, 'object', {
           moduleName: 'workbox-background-sync',
           className: 'Queue',
           funcName: 'unshiftRequest',
-          paramName: 'entry'
-        });
+          paramName: 'entry',
+        })
         assert_mjs.assert.isInstance(entry.request, Request, {
           moduleName: 'workbox-background-sync',
           className: 'Queue',
           funcName: 'unshiftRequest',
-          paramName: 'entry.request'
-        });
+          paramName: 'entry.request',
+        })
       }
 
-      await this._addRequest(entry, 'unshift');
+      await this._addRequest(entry, 'unshift')
     }
     /**
      * Removes and returns the last request in the queue (along with its
@@ -502,9 +493,8 @@ this.workbox.backgroundSync = (function (exports, WorkboxError_mjs, logger_mjs, 
      * @return {Promise<Object>}
      */
 
-
     async popRequest() {
-      return this._removeRequest('pop');
+      return this._removeRequest('pop')
     }
     /**
      * Removes and returns the first request in the queue (along with its
@@ -514,9 +504,8 @@ this.workbox.backgroundSync = (function (exports, WorkboxError_mjs, logger_mjs, 
      * @return {Promise<Object>}
      */
 
-
     async shiftRequest() {
-      return this._removeRequest('shift');
+      return this._removeRequest('shift')
     }
     /**
      * Returns all the entries that have not expired (per `maxRetentionTime`).
@@ -525,25 +514,24 @@ this.workbox.backgroundSync = (function (exports, WorkboxError_mjs, logger_mjs, 
      * @return {Promise<Array<Object>>}
      */
 
-
     async getAll() {
-      const allEntries = await this._queueStore.getAll();
-      const now = Date.now();
-      const unexpiredEntries = [];
+      const allEntries = await this._queueStore.getAll()
+      const now = Date.now()
+      const unexpiredEntries = []
 
       for (const entry of allEntries) {
         // Ignore requests older than maxRetentionTime. Call this function
         // recursively until an unexpired request is found.
-        const maxRetentionTimeInMs = this._maxRetentionTime * 60 * 1000;
+        const maxRetentionTimeInMs = this._maxRetentionTime * 60 * 1000
 
         if (now - entry.timestamp > maxRetentionTimeInMs) {
-          await this._queueStore.deleteEntry(entry.id);
+          await this._queueStore.deleteEntry(entry.id)
         } else {
-          unexpiredEntries.push(convertEntry(entry));
+          unexpiredEntries.push(convertEntry(entry))
         }
       }
 
-      return unexpiredEntries;
+      return unexpiredEntries
     }
     /**
      * Adds the entry to the QueueStore and registers for a sync event.
@@ -556,35 +544,36 @@ this.workbox.backgroundSync = (function (exports, WorkboxError_mjs, logger_mjs, 
      * @private
      */
 
-
-    async _addRequest({
-      request,
-      metadata,
-      timestamp = Date.now()
-    }, operation) {
-      const storableRequest = await StorableRequest.fromRequest(request.clone());
+    async _addRequest(
+      { request, metadata, timestamp = Date.now() },
+      operation
+    ) {
+      const storableRequest = await StorableRequest.fromRequest(request.clone())
       const entry = {
         requestData: storableRequest.toObject(),
-        timestamp
-      }; // Only include metadata if it's present.
+        timestamp,
+      } // Only include metadata if it's present.
 
       if (metadata) {
-        entry.metadata = metadata;
+        entry.metadata = metadata
       }
 
-      await this._queueStore[`${operation}Entry`](entry);
+      await this._queueStore[`${operation}Entry`](entry)
 
       {
-        logger_mjs.logger.log(`Request for '${getFriendlyURL_mjs.getFriendlyURL(request.url)}' has ` + `been added to background sync queue '${this._name}'.`);
+        logger_mjs.logger.log(
+          `Request for '${getFriendlyURL_mjs.getFriendlyURL(
+            request.url
+          )}' has ` + `been added to background sync queue '${this._name}'.`
+        )
       } // Don't register for a sync if we're in the middle of a sync. Instead,
       // we wait until the sync is complete and call register if
       // `this._requestsAddedDuringSync` is true.
 
-
       if (this._syncInProgress) {
-        this._requestsAddedDuringSync = true;
+        this._requestsAddedDuringSync = true
       } else {
-        await this.registerSync();
+        await this.registerSync()
       }
     }
     /**
@@ -596,21 +585,20 @@ this.workbox.backgroundSync = (function (exports, WorkboxError_mjs, logger_mjs, 
      * @private
      */
 
-
     async _removeRequest(operation) {
-      const now = Date.now();
-      const entry = await this._queueStore[`${operation}Entry`]();
+      const now = Date.now()
+      const entry = await this._queueStore[`${operation}Entry`]()
 
       if (entry) {
         // Ignore requests older than maxRetentionTime. Call this function
         // recursively until an unexpired request is found.
-        const maxRetentionTimeInMs = this._maxRetentionTime * 60 * 1000;
+        const maxRetentionTimeInMs = this._maxRetentionTime * 60 * 1000
 
         if (now - entry.timestamp > maxRetentionTimeInMs) {
-          return this._removeRequest(operation);
+          return this._removeRequest(operation)
         }
 
-        return convertEntry(entry);
+        return convertEntry(entry)
       }
     }
     /**
@@ -619,48 +607,61 @@ this.workbox.backgroundSync = (function (exports, WorkboxError_mjs, logger_mjs, 
      * the queue (which registers a retry for the next sync event).
      */
 
-
     async replayRequests() {
-      let entry;
+      let entry
 
-      while (entry = await this.shiftRequest()) {
+      while ((entry = await this.shiftRequest())) {
         try {
-          await fetch(entry.request.clone());
+          await fetch(entry.request.clone())
 
           {
-            logger_mjs.logger.log(`Request for '${getFriendlyURL_mjs.getFriendlyURL(entry.request.url)}'` + `has been replayed in queue '${this._name}'`);
+            logger_mjs.logger.log(
+              `Request for '${getFriendlyURL_mjs.getFriendlyURL(
+                entry.request.url
+              )}'` + `has been replayed in queue '${this._name}'`
+            )
           }
         } catch (error) {
-          await this.unshiftRequest(entry);
+          await this.unshiftRequest(entry)
 
           {
-            logger_mjs.logger.log(`Request for '${getFriendlyURL_mjs.getFriendlyURL(entry.request.url)}'` + `failed to replay, putting it back in queue '${this._name}'`);
+            logger_mjs.logger.log(
+              `Request for '${getFriendlyURL_mjs.getFriendlyURL(
+                entry.request.url
+              )}'` +
+                `failed to replay, putting it back in queue '${this._name}'`
+            )
           }
 
           throw new WorkboxError_mjs.WorkboxError('queue-replay-failed', {
-            name: this._name
-          });
+            name: this._name,
+          })
         }
       }
 
       {
-        logger_mjs.logger.log(`All requests in queue '${this.name}' have successfully ` + `replayed; the queue is now empty!`);
+        logger_mjs.logger.log(
+          `All requests in queue '${this.name}' have successfully ` +
+            `replayed; the queue is now empty!`
+        )
       }
     }
     /**
      * Registers a sync event with a tag unique to this instance.
      */
 
-
     async registerSync() {
       if ('sync' in registration) {
         try {
-          await registration.sync.register(`${TAG_PREFIX}:${this._name}`);
+          await registration.sync.register(`${TAG_PREFIX}:${this._name}`)
         } catch (err) {
           // This means the registration failed for some reason, possibly due to
           // the user disabling it.
           {
-            logger_mjs.logger.warn(`Unable to register sync event for '${this._name}'.`, err);
+            logger_mjs.logger.warn(
+              `Unable to register sync event for '${this._name}'.`,
+              err
+            )
           }
         }
       }
@@ -673,56 +674,61 @@ this.workbox.backgroundSync = (function (exports, WorkboxError_mjs, logger_mjs, 
      * @private
      */
 
-
     _addSyncListener() {
       if ('sync' in registration) {
-        self.addEventListener('sync', event => {
+        self.addEventListener('sync', (event) => {
           if (event.tag === `${TAG_PREFIX}:${this._name}`) {
             {
-              logger_mjs.logger.log(`Background sync for tag '${event.tag}'` + `has been received`);
+              logger_mjs.logger.log(
+                `Background sync for tag '${event.tag}'` + `has been received`
+              )
             }
 
             const syncComplete = async () => {
-              this._syncInProgress = true;
-              let syncError;
+              this._syncInProgress = true
+              let syncError
 
               try {
                 await this._onSync({
-                  queue: this
-                });
+                  queue: this,
+                })
               } catch (error) {
-                syncError = error; // Rethrow the error. Note: the logic in the finally clause
+                syncError = error // Rethrow the error. Note: the logic in the finally clause
                 // will run before this gets rethrown.
 
-                throw syncError;
+                throw syncError
               } finally {
                 // New items may have been added to the queue during the sync,
                 // so we need to register for a new sync if that's happened...
                 // Unless there was an error during the sync, in which
                 // case the browser will automatically retry later, as long
                 // as `event.lastChance` is not true.
-                if (this._requestsAddedDuringSync && !(syncError && !event.lastChance)) {
-                  await this.registerSync();
+                if (
+                  this._requestsAddedDuringSync &&
+                  !(syncError && !event.lastChance)
+                ) {
+                  await this.registerSync()
                 }
 
-                this._syncInProgress = false;
-                this._requestsAddedDuringSync = false;
+                this._syncInProgress = false
+                this._requestsAddedDuringSync = false
               }
-            };
+            }
 
-            event.waitUntil(syncComplete());
+            event.waitUntil(syncComplete())
           }
-        });
+        })
       } else {
         {
-          logger_mjs.logger.log(`Background sync replaying without background sync event`);
+          logger_mjs.logger.log(
+            `Background sync replaying without background sync event`
+          )
         } // If the browser doesn't support background sync, retry
         // every time the service worker starts up as a fallback.
 
-
         this._onSync({
-          queue: this
-        });
+          queue: this,
+        })
       }
     }
     /**
@@ -734,11 +740,9 @@ this.workbox.backgroundSync = (function (exports, WorkboxError_mjs, logger_mjs, 
      * @private
      */
 
-
     static get _queueNames() {
-      return queueNames;
+      return queueNames
     }
-
   }
   /**
    * Converts a QueueStore entry into the format exposed by Queue. This entails
@@ -750,19 +754,18 @@ this.workbox.backgroundSync = (function (exports, WorkboxError_mjs, logger_mjs, 
    * @private
    */
 
-
-  const convertEntry = queueStoreEntry => {
+  const convertEntry = (queueStoreEntry) => {
     const queueEntry = {
       request: new StorableRequest(queueStoreEntry.requestData).toRequest(),
-      timestamp: queueStoreEntry.timestamp
-    };
-
-    if (queueStoreEntry.metadata) {
-      queueEntry.metadata = queueStoreEntry.metadata;
+      timestamp: queueStoreEntry.timestamp,
     }
 
-    return queueEntry;
-  };
+    if (queueStoreEntry.metadata) {
+      queueEntry.metadata = queueStoreEntry.metadata
+    }
+
+    return queueEntry
+  }
 
   /*
     Copyright 2018 Google LLC
@@ -785,8 +788,8 @@ this.workbox.backgroundSync = (function (exports, WorkboxError_mjs, logger_mjs, 
      *    parameter details.
      */
     constructor(...queueArgs) {
-      this._queue = new Queue(...queueArgs);
-      this.fetchDidFail = this.fetchDidFail.bind(this);
+      this._queue = new Queue(...queueArgs)
+      this.fetchDidFail = this.fetchDidFail.bind(this)
     }
     /**
      * @param {Object} options
@@ -794,15 +797,11 @@ this.workbox.backgroundSync = (function (exports, WorkboxError_mjs, logger_mjs, 
      * @private
      */
 
-
-    async fetchDidFail({
-      request
-    }) {
+    async fetchDidFail({ request }) {
       await this._queue.pushRequest({
-        request
-      });
+        request,
+      })
     }
-
   }
 
   /*
@@ -813,10 +812,16 @@ this.workbox.backgroundSync = (function (exports, WorkboxError_mjs, logger_mjs, 
     https://opensource.org/licenses/MIT.
   */
 
-  exports.Queue = Queue;
-  exports.Plugin = Plugin;
+  exports.Queue = Queue
+  exports.Plugin = Plugin
 
-  return exports;
-
-}({}, workbox.core._private, workbox.core._private, workbox.core._private, workbox.core._private, workbox.core._private));
+  return exports
+})(
+  {},
+  workbox.core._private,
+  workbox.core._private,
+  workbox.core._private,
+  workbox.core._private,
+  workbox.core._private
+)
 //# sourceMappingURL=workbox-background-sync.dev.js.map

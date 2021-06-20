@@ -1,1 +1,11 @@
-{"data":{"site":{"siteMetadata":{"author":"Krzysztof Sordyl","position":"Frontend developer passionate about React.js ecosystem, focused on creating modern web apps.","location":"Based in Bielsko-Biała, Poland. Currently I am learning Typescript, GraphQL."}}}}
+{
+  "data": {
+    "site": {
+      "siteMetadata": {
+        "author": "Krzysztof Sordyl",
+        "position": "Frontend developer passionate about React.js ecosystem, focused on creating modern web apps.",
+        "location": "Based in Bielsko-Biała, Poland. Currently I am learning Typescript, GraphQL."
+      }
+    }
+  }
+}

@@ -10,12 +10,25 @@
     padding: 1rem 0 1rem 0;
   }
 
+  &__text {
+    display: flex;
+    align-items: center;
+
+    & svg {
+      transform: scale(0.96);
+    }
+  }
+
   &__code {
     margin: 0 0.5rem 0 0;
+    display: flex;
+    align-items: center;
   }
 
   &__heart {
-    margin: 0 0.5rem 0 0;
+    margin: 0 0.25rem;
+    display: flex;
+    align-items: center;
     color: $color-error-text;
   }
 
