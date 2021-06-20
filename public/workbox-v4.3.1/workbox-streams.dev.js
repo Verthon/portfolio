@@ -1,9 +1,9 @@
-this.workbox = this.workbox || {}
+this.workbox = this.workbox || {};
 this.workbox.streams = (function (exports, logger_mjs, assert_mjs) {
-  'use strict'
+  'use strict';
 
   try {
-    self['workbox:streams:4.3.1'] && _()
+    self['workbox:streams:4.3.1'] && _();
   } catch (e) {} // eslint-disable-line
 
   /*
@@ -25,16 +25,17 @@ this.workbox.streams = (function (exports, logger_mjs, assert_mjs) {
 
   function _getReaderFromSource(source) {
     if (source.body && source.body.getReader) {
-      return source.body.getReader()
+      return source.body.getReader();
     }
 
     if (source.getReader) {
-      return source.getReader()
+      return source.getReader();
     } // TODO: This should be possible to do by constructing a ReadableStream, but
     // I can't get it to work. As a hack, construct a new Response, and use the
     // reader associated with its body.
 
-    return new Response(source).body.getReader()
+
+    return new Response(source).body.getReader();
   }
   /**
    * Takes multiple source Promises, each of which could resolve to a Response, a
@@ -50,94 +51,88 @@ this.workbox.streams = (function (exports, logger_mjs, assert_mjs) {
    * @memberof workbox.streams
    */
 
+
   function concatenate(sourcePromises) {
     {
       assert_mjs.assert.isArray(sourcePromises, {
         moduleName: 'workbox-streams',
         funcName: 'concatenate',
-        paramName: 'sourcePromises',
-      })
+        paramName: 'sourcePromises'
+      });
     }
 
-    const readerPromises = sourcePromises.map((sourcePromise) => {
-      return Promise.resolve(sourcePromise).then((source) => {
-        return _getReaderFromSource(source)
-      })
-    })
-    let fullyStreamedResolve
-    let fullyStreamedReject
+    const readerPromises = sourcePromises.map(sourcePromise => {
+      return Promise.resolve(sourcePromise).then(source => {
+        return _getReaderFromSource(source);
+      });
+    });
+    let fullyStreamedResolve;
+    let fullyStreamedReject;
     const done = new Promise((resolve, reject) => {
-      fullyStreamedResolve = resolve
-      fullyStreamedReject = reject
-    })
-    let i = 0
-    const logMessages = []
+      fullyStreamedResolve = resolve;
+      fullyStreamedReject = reject;
+    });
+    let i = 0;
+    const logMessages = [];
     const stream = new ReadableStream({
       pull(controller) {
-        return readerPromises[i]
-          .then((reader) => reader.read())
-          .then((result) => {
-            if (result.done) {
+        return readerPromises[i].then(reader => reader.read()).then(result => {
+          if (result.done) {
+            {
+              logMessages.push(['Reached the end of source:', sourcePromises[i]]);
+            }
+
+            i++;
+
+            if (i >= readerPromises.length) {
+              // Log all the messages in the group at once in a single group.
               {
-                logMessages.push([
-                  'Reached the end of source:',
-                  sourcePromises[i],
-                ])
-              }
+                logger_mjs.logger.groupCollapsed(`Concatenating ${readerPromises.length} sources.`);
 
-              i++
-
-              if (i >= readerPromises.length) {
-                // Log all the messages in the group at once in a single group.
-                {
-                  logger_mjs.logger.groupCollapsed(
-                    `Concatenating ${readerPromises.length} sources.`
-                  )
-
-                  for (const message of logMessages) {
-                    if (Array.isArray(message)) {
-                      logger_mjs.logger.log(...message)
-                    } else {
-                      logger_mjs.logger.log(message)
-                    }
+                for (const message of logMessages) {
+                  if (Array.isArray(message)) {
+                    logger_mjs.logger.log(...message);
+                  } else {
+                    logger_mjs.logger.log(message);
                   }
-
-                  logger_mjs.logger.log('Finished reading all sources.')
-                  logger_mjs.logger.groupEnd()
                 }
 
-                controller.close()
-                fullyStreamedResolve()
-                return
+                logger_mjs.logger.log('Finished reading all sources.');
+                logger_mjs.logger.groupEnd();
               }
 
-              return this.pull(controller)
-            } else {
-              controller.enqueue(result.value)
-            }
-          })
-          .catch((error) => {
-            {
-              logger_mjs.logger.error('An error occurred:', error)
+              controller.close();
+              fullyStreamedResolve();
+              return;
             }
 
-            fullyStreamedReject(error)
-            throw error
-          })
+            return this.pull(controller);
+          } else {
+            controller.enqueue(result.value);
+          }
+        }).catch(error => {
+          {
+            logger_mjs.logger.error('An error occurred:', error);
+          }
+
+          fullyStreamedReject(error);
+          throw error;
+        });
       },
 
       cancel() {
         {
-          logger_mjs.logger.warn('The ReadableStream was cancelled.')
+          logger_mjs.logger.warn('The ReadableStream was cancelled.');
         }
 
-        fullyStreamedResolve()
-      },
-    })
+        fullyStreamedResolve();
+      }
+
+    });
     return {
       done,
-      stream,
-    }
+      stream
+    };
   }
 
   /*
@@ -163,13 +158,13 @@ this.workbox.streams = (function (exports, logger_mjs, assert_mjs) {
 
   function createHeaders(headersInit = {}) {
     // See https://github.com/GoogleChrome/workbox/issues/1461
-    const headers = new Headers(headersInit)
+    const headers = new Headers(headersInit);
 
     if (!headers.has('content-type')) {
-      headers.set('content-type', 'text/html')
+      headers.set('content-type', 'text/html');
     }
 
-    return headers
+    return headers;
   }
 
   /*
@@ -198,15 +193,18 @@ this.workbox.streams = (function (exports, logger_mjs, assert_mjs) {
    */
 
   function concatenateToResponse(sourcePromises, headersInit) {
-    const { done, stream } = concatenate(sourcePromises)
-    const headers = createHeaders(headersInit)
+    const {
+      done,
+      stream
+    } = concatenate(sourcePromises);
+    const headers = createHeaders(headersInit);
     const response = new Response(stream, {
-      headers,
-    })
+      headers
+    });
     return {
       done,
-      response,
-    }
+      response
+    };
   }
 
   /*
@@ -216,7 +214,7 @@ this.workbox.streams = (function (exports, logger_mjs, assert_mjs) {
     license that can be found in the LICENSE file or at
     https://opensource.org/licenses/MIT.
   */
-  let cachedIsSupported = undefined
+  let cachedIsSupported = undefined;
   /**
    * This is a utility method that determines whether the current browser supports
    * the features required to create streamed responses. Currently, it checks if
@@ -234,15 +232,16 @@ this.workbox.streams = (function (exports, logger_mjs, assert_mjs) {
       // See https://github.com/GoogleChrome/workbox/issues/1473
       try {
         new ReadableStream({
-          start() {},
-        })
-        cachedIsSupported = true
+          start() {}
+
+        });
+        cachedIsSupported = true;
       } catch (error) {
-        cachedIsSupported = false
+        cachedIsSupported = false;
       }
     }
 
-    return cachedIsSupported
+    return cachedIsSupported;
   }
 
   /*
@@ -271,57 +270,52 @@ this.workbox.streams = (function (exports, logger_mjs, assert_mjs) {
    */
 
   function strategy(sourceFunctions, headersInit) {
-    return async ({ event, url, params }) => {
+    return async ({
+      event,
+      url,
+      params
+    }) => {
       if (isSupported()) {
-        const { done, response } = concatenateToResponse(
-          sourceFunctions.map((fn) =>
-            fn({
-              event,
-              url,
-              params,
-            })
-          ),
-          headersInit
-        )
-        event.waitUntil(done)
-        return response
+        const {
+          done,
+          response
+        } = concatenateToResponse(sourceFunctions.map(fn => fn({
+          event,
+          url,
+          params
+        })), headersInit);
+        event.waitUntil(done);
+        return response;
       }
 
       {
-        logger_mjs.logger.log(
-          `The current browser doesn't support creating response ` +
-            `streams. Falling back to non-streaming response instead.`
-        )
+        logger_mjs.logger.log(`The current browser doesn't support creating response ` + `streams. Falling back to non-streaming response instead.`);
       } // Fallback to waiting for everything to finish, and concatenating the
       // responses.
 
-      const parts = await Promise.all(
-        sourceFunctions
-          .map((sourceFunction) =>
-            sourceFunction({
-              event,
-              url,
-              params,
-            })
-          )
-          .map(async (responsePromise) => {
-            const response = await responsePromise
 
-            if (response instanceof Response) {
-              return response.blob()
-            } // Otherwise, assume it's something like a string which can be used
-            // as-is when constructing the final composite blob.
+      const parts = await Promise.all(sourceFunctions.map(sourceFunction => sourceFunction({
+        event,
+        url,
+        params
+      })).map(async responsePromise => {
+        const response = await responsePromise;
 
-            return response
-          })
-      )
-      const headers = createHeaders(headersInit) // Constructing a new Response from a Blob source is well-supported.
+        if (response instanceof Response) {
+          return response.blob();
+        } // Otherwise, assume it's something like a string which can be used
+        // as-is when constructing the final composite blob.
+
+
+        return response;
+      }));
+      const headers = createHeaders(headersInit); // Constructing a new Response from a Blob source is well-supported.
       // So is constructing a new Blob from multiple source Blobs or strings.
 
       return new Response(new Blob(parts), {
-        headers,
-      })
-    }
+        headers
+      });
+    };
   }
 
   /*
@@ -332,11 +326,12 @@ this.workbox.streams = (function (exports, logger_mjs, assert_mjs) {
     https://opensource.org/licenses/MIT.
   */
 
-  exports.concatenate = concatenate
-  exports.concatenateToResponse = concatenateToResponse
-  exports.isSupported = isSupported
-  exports.strategy = strategy
+  exports.concatenate = concatenate;
+  exports.concatenateToResponse = concatenateToResponse;
+  exports.isSupported = isSupported;
+  exports.strategy = strategy;
 
-  return exports
-})({}, workbox.core._private, workbox.core._private)
+  return exports;
+
+}({}, workbox.core._private, workbox.core._private));
 //# sourceMappingURL=workbox-streams.dev.js.map
