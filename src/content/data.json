@@ -68,12 +68,7 @@
   "projects": [
     {
       "name": "Alkinoos Taverna",
-      "technologies": [
-        "Next.js",
-        "GraphQL",
-        "Hasura",
-        "Typescript"
-      ],
+      "technologies": ["Next.js", "GraphQL", "Hasura", "Typescript"],
       "description": "Responsive, progressive web app for small restaurants, with integrated simple booking system and basic administration tools for the staff.",
       "github": "https://github.com/Verthon/restaurant-app",
       "live": "https://alkinoos-taverna.vercel.app/",
@@ -81,11 +76,7 @@
     },
     {
       "name": "Eventoo",
-      "technologies": [
-        "Ionic 4",
-        "Redux Toolkit",
-        "Firestore"
-      ],
+      "technologies": ["Ionic 4", "Redux Toolkit", "Firestore"],
       "description": "Mobile application for event management. Within Eventoo you can create and administer your own events.",
       "github": "https://github.com/Verthon/event-app",
       "live": "https://eventooo.netlify.app/",
@@ -93,11 +84,7 @@
     },
     {
       "name": "HeyU website",
-      "technologies": [
-        "Gatsby",
-        "GraphQL",
-        "Netlify"
-      ],
+      "technologies": ["Gatsby", "GraphQL", "Netlify"],
       "description": "Mobile first website based on Gatsby.js. Rated over 90 in Google Lighthouse in 4 different categories: performance, accessibility, best practicies and SEO.",
       "github": "https://github.com/Verthon/HeyU-Website",
       "live": "https://heyu-website.netlify.com/",
