@@ -141,7 +141,6 @@
         // https://bugs.webkit.org/show_bug.cgi?id=182754
         if (/^((?!chrome|android).)*safari/i.test(navigator.userAgent)) {
           var _console
-
           ;(_console = console)[method].apply(_console, args)
 
           return

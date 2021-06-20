@@ -1,8 +1,8 @@
 import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCode, faHeart } from '@fortawesome/free-solid-svg-icons'
 import { useStaticQuery, graphql } from 'gatsby'
 import GatsbyLogo from '../images/Gatsby_Monogram.svg'
+import { HearthIcon } from '../icons/HearthIcon'
+import { CodeIcon } from '../icons/CodeIcon'
 
 const Footer = () => {
   const data = useStaticQuery(
@@ -23,7 +23,7 @@ const Footer = () => {
     <footer className="site-footer">
       <p className="site-footer__text">
         <span className="site-footer__code">
-          <FontAwesomeIcon icon={faCode} size="lg" aria-hidden="true" />
+          <CodeIcon color="black" />
         </span>
         with{' '}
         <span
@@ -33,7 +33,7 @@ const Footer = () => {
           data-aos-offset="70"
           data-aos-once="true"
         >
-          <FontAwesomeIcon icon={faHeart} size="lg" aria-hidden="true" />
+          <HearthIcon color="#a33241" />
         </span>
         by {data.site.siteMetadata.author}
       </p>

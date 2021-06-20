@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
-import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+
+import { GithubIcon } from '../icons/GithubIcon'
+import { LinkedinIcon } from '../icons/LinkedinIcon'
+import { SendIcon } from '../icons/SendIcon'
 
 const Contact = React.forwardRef((_props, ref) => {
   const data = useStaticQuery(
@@ -126,7 +127,7 @@ const Contact = React.forwardRef((_props, ref) => {
               rel="noopener noreferrer"
               aria-label="Link to Verthon GitHub profile"
             >
-              <FontAwesomeIcon icon={faGithub} size="lg" aria-hidden="true" />
+              <GithubIcon color="black" ariaHidden="true" />
             </a>
             <a
               href={data.site.siteMetadata.linkedin}
@@ -134,7 +135,7 @@ const Contact = React.forwardRef((_props, ref) => {
               rel="noopener noreferrer"
               aria-label="Krzysztof Sordyl linkedin profile"
             >
-              <FontAwesomeIcon icon={faLinkedin} size="lg" aria-hidden="true" />
+              <LinkedinIcon color="black" ariaHidden={true} />
             </a>
             <a
               href={`mailto:${data.site.siteMetadata.email}`}
@@ -142,9 +143,11 @@ const Contact = React.forwardRef((_props, ref) => {
               aria-label="Link to email christopher.sordyl@gmail.com"
             >
               Quick mail
-              <FontAwesomeIcon
-                icon={faPaperPlane}
-                aria-label="Verthon GitHub profile"
+              <SendIcon
+                width="20"
+                height="20"
+                color="black"
+                aria-label="Send an email using your email client"
               />
             </a>
           </div>

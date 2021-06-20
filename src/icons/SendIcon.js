@@ -9,7 +9,6 @@ export const SendIcon = ({
 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    class="icon icon-tabler icon-tabler-send"
     width={width}
     height={height}
     stroke={color}
@@ -17,7 +16,6 @@ export const SendIcon = ({
     aria-hidden={ariaHidden}
     viewBox="0 0 24 24"
     strokeWidth="2"
-    stroke="currentColor"
     fill="none"
     strokeLinecap="round"
     strokeLinejoin="round"

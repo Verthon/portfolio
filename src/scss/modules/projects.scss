@@ -115,12 +115,14 @@
   }
 
   &__btn {
+    display: flex;
     margin: 0 0.5rem 0 0;
     padding: $button-mobile;
     background: $color-gray-1;
     color: $color-dark-1;
     font-size: $font-size-regular;
     box-shadow: $light-shadow;
+    max-height: 2.5rem;
     @include mQ($ipad) {
       margin: 0.25rem 0.5rem 0 0;
       padding: $button-desktop;
@@ -134,7 +136,7 @@
     }
 
     &--link {
-      display: block;
+      display: flex;
       background: $color-primary;
       text-transform: capitalize;
       color: $color-dark-1;
@@ -143,13 +145,16 @@
       font-size: $font-size-regular;
       box-shadow: $light-shadow;
       @include mQ($ipad) {
-        display: block;
         margin: 0.25rem 0 0 0;
         padding: 0.6rem 1.5rem;
       }
       @include mQ($bp-xxlarge) {
         padding: 1rem 2rem;
       }
+    }
+
+    svg {
+      transform: scale(0.8);
     }
   }
 }

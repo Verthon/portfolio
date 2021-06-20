@@ -28,7 +28,12 @@ const Nav = ({ links, scroll }) => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <GithubIcon color="black" ariaLabel="Verthon GitHub profile" />
+          <GithubIcon
+            color="black"
+            width="22"
+            height="22"
+            ariaLabel="Verthon GitHub profile"
+          />
         </a>
         <a
           href={data.site.siteMetadata.linkedin}
@@ -37,6 +42,8 @@ const Nav = ({ links, scroll }) => {
         >
           <LinkedinIcon
             color="black"
+            width="22"
+            height="22"
             ariaLabel="Krzysztof Sordyl linkedin profile"
           />
         </a>

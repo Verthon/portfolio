@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons'
-import { faGithub } from '@fortawesome/free-brands-svg-icons'
+
+import { GithubIcon } from '../icons/GithubIcon'
+import { ExternalLinkIcon } from '../icons/ExternalLinkIcon'
 
 const Project = ({
   name,
@@ -38,7 +38,13 @@ const Project = ({
             rel="noopener noreferrer"
             aria-label="Link to Verthon GitHub profile"
           >
-            Source <FontAwesomeIcon icon={faGithub} aria-hidden="true" />
+            Source{' '}
+            <GithubIcon
+              color="black"
+              width="22"
+              height="22"
+              aria-hidden="true"
+            />
           </a>
           <a
             className="project__btn project__btn--link"
@@ -47,7 +53,8 @@ const Project = ({
             rel="noopener noreferrer"
             aria-label="Link to live version"
           >
-            view app <FontAwesomeIcon icon={faExternalLinkAlt} />
+            <span>view app</span>{' '}
+            <ExternalLinkIcon color="black" width="20" height="20" />
           </a>
         </footer>
       </article>
