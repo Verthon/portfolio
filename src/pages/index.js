@@ -1,14 +1,14 @@
-import React, { Component } from "react"
-import AOS from "aos"
-import "aos/dist/aos.css"
+import React, { Component } from 'react'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
-import Layout from "../components/layout"
-import Skills from "../components/Skills"
-import Projects from "../components/Projects"
-import Contact from "../components/Contact"
-import Footer from "../components/Footer"
-import Seo from "../components/Seo"
-import "../scss/style.scss"
+import Layout from '../components/layout'
+import Skills from '../components/Skills'
+import Projects from '../components/Projects'
+import Contact from '../components/Contact'
+import Footer from '../components/Footer'
+import Seo from '../components/Seo'
+import '../scss/style.scss'
 
 class IndexPage extends Component {
   constructor() {
@@ -18,31 +18,31 @@ class IndexPage extends Component {
     this.contactSection = React.createRef()
     this.projects = [
       {
-        name: "Alkinoos Taverna",
-        technologies: ["React", "Sass", "Firestore"],
+        name: 'Alkinoos Taverna',
+        technologies: ['React', 'Sass', 'Firestore'],
         description:
-          "Fully responsive, serverless, progressive web app for small restaurants, with integrated simple booking system and basic administration tools for staff.",
-        github: "https://github.com/Verthon/restaurant-app",
-        live: "https://alkinoos-taverna.netlify.com/",
-        animation: "slide-right",
+          'Fully responsive, serverless, progressive web app for small restaurants, with integrated simple booking system and basic administration tools for staff.',
+        github: 'https://github.com/Verthon/restaurant-app',
+        live: 'https://alkinoos-taverna.netlify.com/',
+        animation: 'slide-right',
       },
       {
-        name: "Eventoo",
-        technologies: ["React", "Styled components", "Firestore"],
+        name: 'Eventoo',
+        technologies: ['React', 'Styled components', 'Firestore'],
         description:
-          "Responsive App based on React.js library for event management. Within Eventoo you can create your own events.",
-        github: "https://github.com/Verthon/event-app",
-        live: "https://eventooo.netlify.com/",
-        animation: "slide-left",
+          'Responsive App based on React.js library for event management. Within Eventoo you can create your own events.',
+        github: 'https://github.com/Verthon/event-app',
+        live: 'https://eventooo.netlify.com/',
+        animation: 'slide-left',
       },
       {
-        name: "HeyU website",
-        technologies: ["Gatsby", "Sass", "Netlify"],
+        name: 'HeyU website',
+        technologies: ['Gatsby', 'Sass', 'Netlify'],
         description:
-          "Responsive, mobile first website based on Gatsby.js. PSD to HTML",
-        github: "https://github.com/Verthon/HeyU-Website",
-        live: "https://heyu-website.netlify.com/",
-        animation: "slide-right",
+          'Responsive, mobile first website based on Gatsby.js. PSD to HTML',
+        github: 'https://github.com/Verthon/HeyU-Website',
+        live: 'https://heyu-website.netlify.com/',
+        animation: 'slide-right',
       },
     ]
   }
@@ -53,30 +53,30 @@ class IndexPage extends Component {
     })
   }
 
-  scrollToComponent = component => {
+  scrollToComponent = (component) => {
     switch (component) {
-      case "skills":
+      case 'skills':
         this.skillsSection.current.scrollIntoView({
           alignToTop: true,
-          behavior: "smooth",
+          behavior: 'smooth',
         })
         break
-      case "projects":
+      case 'projects':
         this.projectsSection.current.scrollIntoView({
           alignToTop: true,
-          behavior: "smooth",
+          behavior: 'smooth',
         })
         break
-      case "contact":
+      case 'contact':
         this.contactSection.current.scrollIntoView({
           alignToTop: true,
-          behavior: "smooth",
+          behavior: 'smooth',
         })
         break
       default:
         this.skillsSection.current.scrollIntoView({
           alignToTop: true,
-          behavior: "smooth",
+          behavior: 'smooth',
         })
         break
     }

@@ -26,7 +26,11 @@ const Header = ({ scroll }) => {
       <div className="container site-header">
         <header className="hero" data-aos="zoom-out-down">
           <h2 className="hero__welcome">
-            Hello <span role="img" aria-label="waving hand">👋</span> Welcome to my portfolio!
+            Hello{' '}
+            <span role="img" aria-label="waving hand">
+              👋
+            </span>{' '}
+            Welcome to my portfolio!
           </h2>
           <h1 className="hero__name">
             I'm{' '}
@@ -34,10 +38,18 @@ const Header = ({ scroll }) => {
               {data.site.siteMetadata.author}
             </strong>
           </h1>
-          <p className="hero__description" data-aos="fade-up" data-aos-delay="200">
+          <p
+            className="hero__description"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
             {data.site.siteMetadata.position}
           </p>
-          <p className="hero__description" data-aos="fade-up" data-aos-delay="300">
+          <p
+            className="hero__description"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
             {data.site.siteMetadata.location}
           </p>
           <button

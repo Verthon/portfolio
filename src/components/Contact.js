@@ -20,11 +20,14 @@ const Contact = React.forwardRef((_props, ref) => {
     `
   )
 
-  const sendEmail = async(url='https://formspree.io/mzbjzzek', data={form}) => {
+  const sendEmail = async (
+    url = 'https://formspree.io/mzbjzzek',
+    data = { form }
+  ) => {
     const response = await fetch(url, {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(data)
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
     })
     return response.json()
   }
@@ -48,12 +51,13 @@ const Contact = React.forwardRef((_props, ref) => {
     message: 'Message should have at least 10 chars.',
   }
 
-  const validateEmail = email => {
-    const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  const validateEmail = (email) => {
+    const regex =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     return regex.test(String(email).toLowerCase())
   }
 
-  const validate = form => {
+  const validate = (form) => {
     if (form.name.length === 0) {
       return { inputName: 'name', message: errorMsg.name }
     } else if (!validateEmail(form.email)) {
@@ -73,12 +77,12 @@ const Contact = React.forwardRef((_props, ref) => {
 
   const [error, setError] = useState(initialErrorState)
   const [success, setSuccess] = useState('')
-  const onFormChange = e => {
+  const onFormChange = (e) => {
     setError(initialErrorState)
     setForm({ ...form, [e.target.name]: e.target.value })
   }
 
-  const onMessageSubmit = e => {
+  const onMessageSubmit = (e) => {
     e.preventDefault()
     const errorObj = validate(form)
     if (errorObj) {
@@ -92,7 +96,6 @@ const Contact = React.forwardRef((_props, ref) => {
         setSuccess(successMessage)
       })
       .catch((error) => console.log('error with email', error))
-    
   }
 
   return (
@@ -149,12 +152,16 @@ const Contact = React.forwardRef((_props, ref) => {
             Name
           </label>
           <input
-            className={error.inputName === 'name' ? 'contact__input contact__input--error' : 'contact__input'}
+            className={
+              error.inputName === 'name'
+                ? 'contact__input contact__input--error'
+                : 'contact__input'
+            }
             type="text"
             name="name"
             placeholder="Your name"
             value={form.name}
-            onChange={e => onFormChange(e)}
+            onChange={(e) => onFormChange(e)}
           />
           {error.inputName === 'name' ? (
             <p className="contact__error">{error.message}</p>
@@ -163,12 +170,16 @@ const Contact = React.forwardRef((_props, ref) => {
             Email address
           </label>
           <input
-            className={error.inputName === 'email' ? 'contact__input contact__input--error' : 'contact__input'}
+            className={
+              error.inputName === 'email'
+                ? 'contact__input contact__input--error'
+                : 'contact__input'
+            }
             type="email"
             name="email"
             placeholder="Email address"
             value={form.email}
-            onChange={e => onFormChange(e)}
+            onChange={(e) => onFormChange(e)}
           />
           {error.inputName === 'email' ? (
             <p className="contact__error">{error.message}</p>
@@ -177,18 +188,22 @@ const Contact = React.forwardRef((_props, ref) => {
             Message
           </label>
           <textarea
-            className={error.inputName === 'message' ? 'contact__textarea contact__input--error' : 'contact__textarea'}
+            className={
+              error.inputName === 'message'
+                ? 'contact__textarea contact__input--error'
+                : 'contact__textarea'
+            }
             name="message"
             cols="30"
             rows="10"
             placeholder="Message"
             value={form.message}
-            onChange={e => onFormChange(e)}
+            onChange={(e) => onFormChange(e)}
           ></textarea>
           {error.inputName === 'message' ? (
             <p className="contact__error">{error.message}</p>
           ) : null}
-          {success ? <p className="contact__success">{success}</p> : null }
+          {success ? <p className="contact__success">{success}</p> : null}
           <div className="contact__footer">
             <button type="submit" className="contact__btn contact__btn--submit">
               Submit

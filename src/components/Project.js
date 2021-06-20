@@ -14,11 +14,7 @@ const Project = ({
   animation,
 }) => {
   return (
-    <div
-      className="project"
-      data-aos={animation}
-      data-aos-duration="1000"
-    >
+    <div className="project" data-aos={animation} data-aos-duration="1000">
       <img
         className="project__image"
         srcSet={image}
@@ -27,7 +23,7 @@ const Project = ({
       <article className="project__content">
         <h3 className="project__title">{name}</h3>
         <div className="project__tags">
-          {technologies.map(technology => (
+          {technologies.map((technology) => (
             <span key={technology} className="project__tag">
               {technology}
             </span>

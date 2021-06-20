@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 const NavItem = ({ name, handleClick }) => {
   return (
-    <li className='menu-item' onClick={() => handleClick(name)}>
+    <li className="menu-item" onClick={() => handleClick(name)}>
       {name}
     </li>
   )
@@ -11,7 +11,7 @@ const NavItem = ({ name, handleClick }) => {
 
 NavItem.propTypes = {
   id: PropTypes.string,
-  name: PropTypes.string
+  name: PropTypes.string,
 }
 
 export default NavItem
