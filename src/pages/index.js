@@ -8,15 +8,19 @@ import Projects from '../components/Projects'
 import Contact from '../components/Contact'
 import Footer from '../components/Footer'
 import Seo from '../components/Seo'
+import { useTheme } from "../hooks/useTheme"
 import '../scss/style.scss'
 
-class IndexPage extends Component {
-  constructor() {
-    super()
-    this.skillsSection = React.createRef()
-    this.projectsSection = React.createRef()
-    this.contactSection = React.createRef()
-    this.projects = [
+const IndexPage = () => {
+
+  const t = useTheme();
+
+    console.log(t)
+
+  const skillsSection = React.createRef()
+  const projectsSection = React.useRef()
+  const contactSection = React.useRef()
+  const projects = [
       {
         name: 'Alkinoos Taverna',
         technologies: ['React', 'Sass', 'Firestore'],
@@ -45,60 +49,57 @@ class IndexPage extends Component {
         animation: 'slide-right',
       },
     ]
-  }
 
-  componentDidMount() {
-    AOS.init({
-      duration: 500,
-    })
-  }
-
-  scrollToComponent = (component) => {
+  const scrollToComponent = (component) => {
     switch (component) {
       case 'skills':
-        this.skillsSection.current.scrollIntoView({
+        skillsSection.current.scrollIntoView({
           alignToTop: true,
           behavior: 'smooth',
         })
         break
       case 'projects':
-        this.projectsSection.current.scrollIntoView({
+        projectsSection.current.scrollIntoView({
           alignToTop: true,
           behavior: 'smooth',
         })
         break
       case 'contact':
-        this.contactSection.current.scrollIntoView({
+        contactSection.current.scrollIntoView({
           alignToTop: true,
           behavior: 'smooth',
         })
         break
       default:
-        this.skillsSection.current.scrollIntoView({
+        skillsSection.current.scrollIntoView({
           alignToTop: true,
           behavior: 'smooth',
         })
         break
     }
   }
+  
+  React.useEffect(() => {
+    AOS.init({
+      duration: 500,
+    });
+  }, [])
 
-  render() {
-    return (
-      <Layout scrollFunction={this.scrollToComponent}>
-        <Seo
-          title="Krzysztof Sordyl Frontend Developer"
-          description='Welcome, my name is Krzysztof Sordyl frontend developer living in Bielsko-Biała, Poland. I"m creating solid, modern and well-designed websites. React enthusiast. Software, programming Bielsko-Biała'
-        />
-        <Skills ref={this.skillsSection} />
-        <Projects ref={this.projectsSection} projects={this.projects} />
-        <Contact
-          ref={this.contactSection}
-          email="christopher.sordyl@gmail.com"
-        />
-        <Footer />
-      </Layout>
-    )
-  }
+  return (
+    <Layout scrollFunction={scrollToComponent}>
+      <Seo
+        title="Krzysztof Sordyl Frontend Developer"
+        description='Welcome, my name is Krzysztof Sordyl frontend developer living in Bielsko-Biała, Poland. I"m creating solid, modern and well-designed websites. React enthusiast. Software, programming Bielsko-Biała'
+      />
+    {/* <Skills ref={skillsSection} />
+      <Projects ref={projectsSection} projects={projects} />
+      <Contact
+        ref={contactSection}
+        email="christopher.sordyl@gmail.com"
+      /> */}
+      <Footer />
+    </Layout>
+  ) 
 }
 
 export default IndexPage
