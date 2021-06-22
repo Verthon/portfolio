@@ -1,43 +1,3 @@
-// import * as React from 'react'
-
-// export const THEME = {
-//   dark: 'dark',
-//   light: 'light',
-// }
-
-// export const useTheme = (theme = THEME.light) => {
-//   const SYSTEM_DARK_THEME = window
-//     ? window.matchMedia('(prefers-color-scheme: dark)').matches
-//     : false
-//   const INITIAL_THEME =
-//     localStorage.getItem('THEME') || SYSTEM_DARK_THEME
-//       ? THEME.dark
-//       : THEME.light
-//   const INIT_NEXT = theme === THEME.light ? THEME.dark : THEME.light
-//   const INIT_IS_NEXT_LIGHT = theme === THEME.light
-
-//   const [currentTheme, setTheme] = React.useState(INITIAL_THEME)
-//   const [nextTheme, setNextTheme] = React.useState({ name: INIT_NEXT, isLight: INIT_IS_NEXT_LIGHT })
-
-//   const updateTheme = () => {
-//     console.log({ nextTheme, currentTheme })
-//     localStorage.setItem('THEME', currentTheme)
-//     setTheme(nextTheme.name)
-//     const next = { name: nextTheme === THEME.light ? THEME.dark : THEME.light, isLight: !nextTheme.isLight }
-//     setNextTheme(next)
-//   }
-
-//   React.useEffect(() => {
-//     document.body.dataset.theme = currentTheme
-//   }, [theme, currentTheme])
-
-//   return {
-//     updateTheme,
-//     currentTheme,
-//     nextTheme,
-//   }
-// }
-
 import * as React from "react"
 
 import { useMedia } from "./useMedia"
@@ -61,7 +21,6 @@ export const useDarkMode = () => {
   const enabled =
     typeof enabledState !== "undefined" ? enabledState : prefersDarkMode;
 
-  // Fire off effect that add/removes dark mode class
   React.useEffect(
     () => {
       const className = "dark-mode";
@@ -72,9 +31,8 @@ export const useDarkMode = () => {
         element.classList.remove(className);
       }
     },
-    [enabled] // Only re-call effect when value changes
+    [enabled]
   );
 
-  // Return enabled state and setter
   return [enabled, setEnabledState];
 }
