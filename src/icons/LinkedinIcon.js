@@ -3,7 +3,7 @@ import * as React from 'react'
 export const LinkedinIcon = ({
   height = 24,
   width = 24,
-  color,
+  color = "currentColor",
   ariaLabel = '',
   ariaHidden = false,
 }) => (

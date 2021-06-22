@@ -85,12 +85,12 @@ const IndexPage = () => {
         title="Krzysztof Sordyl Frontend Developer"
         description='Welcome, my name is Krzysztof Sordyl frontend developer living in Bielsko-Biała, Poland. I"m creating solid, modern and well-designed websites. React enthusiast. Software, programming Bielsko-Biała'
       />
-      {/* <Skills ref={skillsSection} />
+      <Skills ref={skillsSection} />
       <Projects ref={projectsSection} projects={projects} />
       <Contact
         ref={contactSection}
         email="christopher.sordyl@gmail.com"
-      /> */}
+      />
       <Footer />
     </Layout>
   )

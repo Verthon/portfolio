@@ -37,7 +37,6 @@ const Nav = ({ links, scroll }) => {
             rel="noopener noreferrer"
           >
             <GithubIcon
-              color="black"
               width="22"
               height="22"
               ariaLabel="Verthon GitHub profile"
@@ -51,7 +50,6 @@ const Nav = ({ links, scroll }) => {
             rel="noopener noreferrer"
           >
             <LinkedinIcon
-              color="black"
               width="22"
               height="22"
               ariaLabel="Krzysztof Sordyl linkedin profile"

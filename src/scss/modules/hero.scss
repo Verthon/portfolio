@@ -1,3 +1,9 @@
+.dark-mode .hero {
+  &__description {
+    color: $dark-color-dark-1;
+  }
+}
+
 .hero {
   &__welcome {
     font-size: 1rem;

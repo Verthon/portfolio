@@ -1,3 +1,13 @@
+.dark-mode .site-footer {
+  background-color: $dark-color-dark-3;
+  color: $dark-color-dark-1;
+  &__text {
+    & svg {
+      color: $white;
+    }
+  }
+}
+
 .site-footer{
   display: flex;
   justify-content: center;
@@ -16,6 +26,8 @@
 
     & svg {
       transform: scale(0.96);
+      color: $black;
+      fill: currentColor;
     }
   }
 
