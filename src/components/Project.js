@@ -40,7 +40,6 @@ const Project = ({
           >
             Source{' '}
             <GithubIcon
-              color="black"
               width="22"
               height="22"
               aria-hidden="true"
@@ -54,7 +53,7 @@ const Project = ({
             aria-label="Link to live version"
           >
             <span>view app</span>{' '}
-            <ExternalLinkIcon color="black" width="20" height="20" />
+            <ExternalLinkIcon width="20" height="20" />
           </a>
         </footer>
       </article>

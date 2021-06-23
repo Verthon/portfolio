@@ -23,7 +23,7 @@ const Footer = () => {
     <footer className="site-footer">
       <p className="site-footer__text">
         <span className="site-footer__code">
-          <CodeIcon color="black" />
+          <CodeIcon />
         </span>
         with{' '}
         <span

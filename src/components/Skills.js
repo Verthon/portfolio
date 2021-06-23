@@ -4,7 +4,7 @@ import Tabs from './Tabs'
 import { useStaticQuery, graphql } from 'gatsby'
 import JSONData from '../content/data.json'
 
-const Skills = React.forwardRef((props, ref) => {
+const Skills = React.forwardRef((_props, ref) => {
   const data = useStaticQuery(
     graphql`
       query {
