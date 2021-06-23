@@ -1,3 +1,13 @@
+.dark-mode .site-nav {
+  &__theme-toggler {
+    background-color: $dark-color-dark-4;
+  }
+
+  .menu-item svg {
+    color: $white;
+  }
+}
+
 .site-nav {
   display: flex;
   margin: 1.5rem 0;
@@ -32,6 +42,13 @@
     @include mQ($bp-xxlarge) {
       font-size: 2rem;
     }
+  }
+
+  &__theme-toggler {
+    border: 0;
+    display: flex;
+    padding: 0.25rem;
+    cursor: pointer;
   }
 }
 
@@ -74,6 +91,7 @@
 .menu-item svg {
   font-size: 1.1rem;
   color: $black;
+  fill: currentColor;
   @include mQ($ipad) {
     font-size: 1.4rem;
   }
@@ -87,3 +105,4 @@
 i:hover {
   cursor: pointer;
 }
+

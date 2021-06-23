@@ -18,6 +18,30 @@
   }
 }
 
+.dark-mode .contact {
+
+  color: $dark-color-dark-1;
+  &__container {
+    background-color: $dark-color-dark-3;
+  }
+
+  &__socials {
+    color: $white;
+  }
+
+  &__input {
+    color: $dark-color-dark-1;
+    background-color: $dark-color-dark-5;
+    border-bottom: 3px solid $dark-color-dark-5;
+  }
+
+  &__textarea {
+    color: $dark-color-dark-1;
+    background-color: $dark-color-dark-5;
+    border-bottom: 3px solid $dark-color-dark-5;
+  }
+}
+
 .contact {
   display: flex;
   justify-content: center;
@@ -51,7 +75,6 @@
   &__form {
     display: flex;
     flex-direction: column;
-    background: $white;
     border-radius: $default-radius;
     padding: 1rem;
     max-width: 100%;
@@ -60,7 +83,6 @@
   &__label {
     font-size: 0.875rem;
     margin: 1rem 0 0.5rem 0;
-    color: $color-dark;
   }
 
   &__input {
@@ -155,7 +177,6 @@
     line-height: 1.5;
     margin: 0 auto 1rem auto;
     max-width: 100%;
-    color: $color-dark-1;
 
     @include mQ($bp-large) {
       max-width: 90%;

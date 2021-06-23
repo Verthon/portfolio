@@ -1,3 +1,9 @@
+.dark-mode .header-wrapper {
+  background-color: $dark-main-bg;
+  background-image: none;
+  color: $white;
+}
+
 .header-wrapper {
   background-color: $white;
   background-image: url('../images/bg-mobile.svg');

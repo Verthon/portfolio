@@ -1,6 +1,22 @@
+.dark-mode .section {
+  background-color: $dark-color-dark-0;
+
+  &__heading {
+    color: $white;
+  }
+
+  &__quote {
+    color: $dark-color-dark-1;
+  }
+
+  &__description {
+    color: $dark-color-dark-1;
+  }
+}
+
 .section {
   padding: 2rem 0;
-  background: $color-gray;
+  background-color: $color-gray;
   display: flex;
   justify-content: center;
 

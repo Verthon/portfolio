@@ -1,5 +1,3 @@
-// @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
-
 $color-primary: hsl(50.3, 100%, 78.2%);
 $color-secondary: hsl(176.8, 43.9%, 66.5%);
 $color-secondary: hsl(176.8, 43.9%, 76.5%);
@@ -22,6 +20,16 @@ $color-dark: hsl(206.7, 11.7%, 15.1%);
 $color-dark-1: hsl(206.7, 11.7%, 20.1%);
 $color-dark-2: hsl(206.7, 11.7%, 30.1%);
 
+$dark-color-dark: hsl(206.7, 11.7%, 95.1%);
+$dark-color-dark-1: hsl(206.7, 11.7%, 90.1%);
+$dark-color-dark-2: hsl(206.7, 11.7%, 80.1%);
+$dark-color-dark-0: #2D2D2A;
+$dark-color-dark-3: #363633;
+$dark-color-dark-4: #42423E;
+$dark-color-dark-5: #4F4F4C;
+$dark-color-dark-6: #5B5B58;
+$dark-main-bg: #1B1B17;
+
 $color-error: hsl(351.6,53.2%,92.8%);
 $color-error-text: hsl(351.6,53.2%,41.6%);
 
@@ -32,8 +40,8 @@ $light: #eeeeee;
 $black: #000000;
 
 // Dark theme
-// $color-secondary: #22252c;
-// $color-secondary: #313741;
+// $dark-color-secondary: #22252c;
+// $dark-color-secondary: #313741;
 // $about-tertiary: #3c414d;
 // $tab-dark: #2d313a;
 // $light: #e9eaee;

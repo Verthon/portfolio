@@ -1,3 +1,43 @@
+.dark-mode .tab-header {
+  &__item {
+    color: $white;
+    background-color: $dark-color-dark-3;
+
+    &:hover {
+      color: $color-dark;
+    }
+  }
+
+  &--active {
+    color: $color-dark;
+    background-color: $color-primary;
+    .tab-header__content {
+      color: $color-dark-2;
+    }
+  }
+
+  &__content {
+    color: $dark-color-dark-1;
+
+    &:hover {
+      color: $color-dark;
+    }
+  }
+
+  .tab-item {
+    color: $dark-color-dark-1;
+  }
+}
+
+.dark-mode .active-tab {
+  background-color: $dark-color-dark-4;
+  color: $white;
+}
+
+.dark-mode .tab-item {
+  color: $dark-color-dark-1;
+}
+
 .tab-header {
   list-style: none;
   display: block;
@@ -8,7 +48,7 @@
   &__item {
     margin: 1rem 0;
     padding: 1rem;
-    background: $color-gray-1;
+    background-color: $color-gray-1;
     color: $color-dark;
     flex-direction: column;
     align-items: center;
@@ -45,8 +85,7 @@
 
   &--active {
     color: $color-dark;
-    //background: $gradient;
-    background: $color-primary;
+    background-color: $color-primary;
   }
 
   &__title {
@@ -90,7 +129,7 @@
   &--active {
     display: flex;
     flex-wrap: wrap;
-    background: $white;
+    background-color: $white;
     animation: activefade 2s;
     @include mQ($ipad) {
       margin-bottom: 5rem;
@@ -102,7 +141,7 @@
 .active-tab {
   display: flex;
   flex-wrap: wrap;
-  background: $white;
+  background-color: $white;
   animation: activefade 2s;
   @include mQ($ipad) {
     margin-bottom: 5rem;
@@ -120,7 +159,6 @@
   }
 }
 
-/* tab columns */
 .tab-column {
   flex: 100%;
   padding: 0rem 1rem;
