@@ -31,6 +31,13 @@ module.exports = {
         path: path.join(__dirname, 'src', 'images'),
       },
     },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "fonts",
+        path: `${__dirname}/static/fonts/`
+      }
+    },
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     {

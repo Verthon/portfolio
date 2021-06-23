@@ -4,7 +4,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 import Project from './Project'
 import JSONData from '../content/data.json'
 
-const Projects = React.forwardRef((props, ref) => {
+const Projects = React.forwardRef((_props, ref) => {
   const data = useStaticQuery(graphql`
     query getAllImages {
       allFile(

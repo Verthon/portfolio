@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
@@ -11,7 +11,7 @@ import Seo from '../components/Seo'
 import '../scss/style.scss'
 
 const IndexPage = () => {
-  const skillsSection = React.createRef()
+  const skillsSection = React.useRef()
   const projectsSection = React.useRef()
   const contactSection = React.useRef()
   const projects = [

@@ -30,7 +30,7 @@ const Nav = ({ links, scroll }) => {
         {links.map((link) => (
           <NavItem key={link} name={link} handleClick={scroll} />
         ))}
-        <li li className="menu-item">
+        <li className="menu-item">
           <a
             href={data.site.siteMetadata.github}
             target="_blank"

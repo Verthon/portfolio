@@ -127,7 +127,7 @@ const Contact = React.forwardRef((_props, ref) => {
               rel="noopener noreferrer"
               aria-label="Link to Verthon GitHub profile"
             >
-              <GithubIcon color="black" ariaHidden="true" />
+              <GithubIcon ariaHidden={true} />
             </a>
             <a
               href={data.site.siteMetadata.linkedin}
@@ -135,7 +135,7 @@ const Contact = React.forwardRef((_props, ref) => {
               rel="noopener noreferrer"
               aria-label="Krzysztof Sordyl linkedin profile"
             >
-              <LinkedinIcon color="black" ariaHidden={true} />
+              <LinkedinIcon ariaHidden={true} />
             </a>
             <a
               href={`mailto:${data.site.siteMetadata.email}`}
