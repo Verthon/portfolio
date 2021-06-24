@@ -1,1 +1,70 @@
-{"namedChunkGroups":{"polyfill":{"name":"polyfill","assets":[{"name":"polyfill.js","size":755616},{"name":"polyfill.fbc76707fb97c7185708.hot-update.js","size":900}],"filteredAssets":0,"assetsSize":756516,"filteredAuxiliaryAssets":0,"auxiliaryAssetsSize":0},"commons":{"name":"commons","assets":[{"name":"framework.js","size":2668732},{"name":"commons.css","size":58264},{"name":"commons.js","size":2304822},{"name":"commons.fbc76707fb97c7185708.hot-update.js","size":899}],"filteredAssets":0,"assetsSize":5032717,"filteredAuxiliaryAssets":1,"auxiliaryAssetsSize":39813},"component---cache-dev-404-page-js":{"name":"component---cache-dev-404-page-js","assets":[{"name":"component---cache-dev-404-page-js.js","size":77860}],"filteredAssets":0,"assetsSize":77860,"filteredAuxiliaryAssets":0,"auxiliaryAssetsSize":0},"component---src-pages-404-js":{"name":"component---src-pages-404-js","assets":[{"name":"component---src-pages-404-js.js","size":137372}],"filteredAssets":0,"assetsSize":137372,"filteredAuxiliaryAssets":1,"auxiliaryAssetsSize":21104},"component---src-pages-index-js":{"name":"component---src-pages-index-js","assets":[{"name":"framework.js","size":2668732},{"name":"commons.css","size":58264},{"name":"commons.js","size":2304822},{"name":"commons.fbc76707fb97c7185708.hot-update.js","size":899},{"name":"component---src-pages-index-js.js","size":424373},{"name":"component---src-pages-index-js.fbc76707fb97c7185708.hot-update.js","size":7946}],"filteredAssets":0,"assetsSize":5465036,"filteredAuxiliaryAssets":1,"auxiliaryAssetsSize":39813}},"assetsByChunkName":{"polyfill":["polyfill.js","polyfill.fbc76707fb97c7185708.hot-update.js"],"commons":["framework.js","commons.css","commons.js","commons.fbc76707fb97c7185708.hot-update.js"],"component---cache-dev-404-page-js":["component---cache-dev-404-page-js.js"],"component---src-pages-404-js":["component---src-pages-404-js.js"],"component---src-pages-index-js":["framework.js","commons.css","commons.js","commons.fbc76707fb97c7185708.hot-update.js","component---src-pages-index-js.js","component---src-pages-index-js.fbc76707fb97c7185708.hot-update.js"]},"childAssetsByChunkName":{}}
+{
+  "namedChunkGroups": {
+    "polyfill": {
+      "name": "polyfill",
+      "assets": [{ "name": "polyfill.js", "size": 755616 }],
+      "filteredAssets": 0,
+      "assetsSize": 755616,
+      "filteredAuxiliaryAssets": 0,
+      "auxiliaryAssetsSize": 0
+    },
+    "commons": {
+      "name": "commons",
+      "assets": [
+        { "name": "framework.js", "size": 2668732 },
+        { "name": "commons.css", "size": 58264 },
+        { "name": "commons.js", "size": 2304822 }
+      ],
+      "filteredAssets": 0,
+      "assetsSize": 5031818,
+      "filteredAuxiliaryAssets": 1,
+      "auxiliaryAssetsSize": 39813
+    },
+    "component---cache-dev-404-page-js": {
+      "name": "component---cache-dev-404-page-js",
+      "assets": [
+        { "name": "component---cache-dev-404-page-js.js", "size": 77860 }
+      ],
+      "filteredAssets": 0,
+      "assetsSize": 77860,
+      "filteredAuxiliaryAssets": 0,
+      "auxiliaryAssetsSize": 0
+    },
+    "component---src-pages-404-js": {
+      "name": "component---src-pages-404-js",
+      "assets": [{ "name": "component---src-pages-404-js.js", "size": 137372 }],
+      "filteredAssets": 0,
+      "assetsSize": 137372,
+      "filteredAuxiliaryAssets": 1,
+      "auxiliaryAssetsSize": 21104
+    },
+    "component---src-pages-index-js": {
+      "name": "component---src-pages-index-js",
+      "assets": [
+        { "name": "framework.js", "size": 2668732 },
+        { "name": "commons.css", "size": 58264 },
+        { "name": "commons.js", "size": 2304822 },
+        { "name": "component---src-pages-index-js.js", "size": 424373 }
+      ],
+      "filteredAssets": 0,
+      "assetsSize": 5456191,
+      "filteredAuxiliaryAssets": 1,
+      "auxiliaryAssetsSize": 39813
+    }
+  },
+  "assetsByChunkName": {
+    "polyfill": ["polyfill.js"],
+    "commons": ["framework.js", "commons.css", "commons.js"],
+    "component---cache-dev-404-page-js": [
+      "component---cache-dev-404-page-js.js"
+    ],
+    "component---src-pages-404-js": ["component---src-pages-404-js.js"],
+    "component---src-pages-index-js": [
+      "framework.js",
+      "commons.css",
+      "commons.js",
+      "component---src-pages-index-js.js"
+    ]
+  },
+  "childAssetsByChunkName": {}
+}

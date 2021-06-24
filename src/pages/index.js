@@ -87,10 +87,7 @@ const IndexPage = () => {
       />
       <Skills ref={skillsSection} />
       <Projects ref={projectsSection} projects={projects} />
-      <Contact
-        ref={contactSection}
-        email="christopher.sordyl@gmail.com"
-      />
+      <Contact ref={contactSection} email="christopher.sordyl@gmail.com" />
       <Footer />
     </Layout>
   )
