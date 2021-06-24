@@ -32,13 +32,11 @@
   &__input {
     color: $dark-color-dark-1;
     background-color: $dark-color-dark-5;
-    border-bottom: 3px solid $dark-color-dark-5;
   }
 
   &__textarea {
     color: $dark-color-dark-1;
     background-color: $dark-color-dark-5;
-    border-bottom: 3px solid $dark-color-dark-5;
   }
 }
 
@@ -57,6 +55,7 @@
     justify-content: center;
     align-items: center;
     max-width: 90%;
+    background-color: $white;
     @include mQ($bp-large) {
       background-color: $white;
       padding: 1rem 3rem;
@@ -90,10 +89,8 @@
     padding: 0.75rem 0.5rem;
     background: $color-gray;
     color: $color-dark;
-    border-bottom: 3px solid $white;
 
     &--error {
-      border-bottom: 3px solid $color-error-text;
       border-radius: $default-radius;
     }
   }
