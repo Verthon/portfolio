@@ -26,15 +26,6 @@ a{
   text-decoration: none;
   color: inherit;
 }
-textarea:focus, input:focus {
-  outline: none;
-  border-bottom: 3px solid hsl(50.3, 100%, 78.2%);
-  border-radius: 2px;
-}
-textarea:invalid, input:invalid {
-  border-bottom: 3px solid hsl(351.6,44.3%,33%);
-  border-radius: 2px;
-}
 img{
   max-width: 100%;
   height: auto;
