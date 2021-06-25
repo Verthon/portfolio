@@ -12,7 +12,8 @@ module.exports = {
     __PATH_PREFIX__: ``,
   },
   collectCoverageFrom: [
-    '**/*.{js,jsx}',
+    './src/**/*.{js,jsx}',
+    '!./src/icons/**',
     '!**/node_modules/**',
     '!**/vendor/**',
   ],

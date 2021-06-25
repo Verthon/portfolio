@@ -5,6 +5,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 import { GithubIcon } from '../icons/GithubIcon'
 import { LinkedinIcon } from '../icons/LinkedinIcon'
 import { SendIcon } from '../icons/SendIcon'
+import { validate } from '../utils/validators'
 
 const Contact = React.forwardRef((_props, ref) => {
   const data = useStaticQuery(
@@ -35,65 +36,49 @@ const Contact = React.forwardRef((_props, ref) => {
 
   const successMessage = 'Thank you. Your message has been sent.'
 
-  const initialErrorState = {
+  const INIT_ERROR_STATE = {
     inputName: '',
     message: '',
   }
 
-  const initialFormState = {
+  const INIT_FORM_STATE = {
     name: '',
     email: '',
     message: '',
   }
 
-  const errorMsg = {
-    name: 'Please enter a valid name.',
-    email: 'Please enter a valid email.',
-    message: 'Message should have at least 10 chars.',
-  }
 
-  const validateEmail = (email) => {
-    const regex =
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    return regex.test(String(email).toLowerCase())
-  }
+  const STATUS = {
+    idle: "idle",
+    loading: 'loading',
+    complete: 'complete',
+    errored: 'errored',
+  };
 
-  const validate = (form) => {
-    if (form.name.length === 0) {
-      return { inputName: 'name', message: errorMsg.name }
-    } else if (!validateEmail(form.email)) {
-      return { inputName: 'email', message: errorMsg.email }
-    } else if (form.message.length < 10) {
-      return { inputName: 'message', message: errorMsg.message }
-    }
-
-    return false
-  }
-
+  const [status, setStatus] = useState(STATUS.idle)
   const [form, setForm] = useState({
     name: '',
     email: '',
     message: '',
   })
-
-  const [error, setError] = useState(initialErrorState)
+  const [error, setError] = useState(INIT_ERROR_STATE)
   const [success, setSuccess] = useState('')
   const onFormChange = (e) => {
-    setError(initialErrorState)
+    setError(INIT_ERROR_STATE)
     setForm({ ...form, [e.target.name]: e.target.value })
   }
 
-  const onMessageSubmit = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault()
     const errorObj = validate(form)
     if (errorObj) {
       setError(errorObj)
       return
     }
-    setError(initialErrorState)
+    setError(INIT_ERROR_STATE)
     sendEmail('https://formspree.io/mzbjzzek', form)
       .then(() => {
-        setForm(initialFormState)
+        setForm(INIT_FORM_STATE)
         setSuccess(successMessage)
       })
       .catch((error) => console.log('error with email', error))
@@ -107,7 +92,7 @@ const Contact = React.forwardRef((_props, ref) => {
           className="contact__form"
           action="https://formspree.io/mzbjzzek"
           method="POST"
-          onSubmit={onMessageSubmit}
+          onSubmit={onSubmit}
           netlify-honeypot="bot-field"
           data-netlify="true"
         >

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { isBrowser } from '../utils/environment'
+import { isBrowser } from '../constants/environment'
 
 export const useLocalStorage = (key, initialValue) => {
   const [storedValue, setStoredValue] = React.useState(() => {

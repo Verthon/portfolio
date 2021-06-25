@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { isBrowser } from '../utils/environment'
+import { isBrowser } from '../constants/environment'
 
 export const useMedia = (queries, values, defaultValue) => {
   const mediaQueryLists = queries.map((q) =>
