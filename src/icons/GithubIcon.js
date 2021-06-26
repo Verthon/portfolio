@@ -3,7 +3,7 @@ import * as React from 'react'
 export const GithubIcon = ({
   height = 24,
   width = 24,
-  color = "currentColor",
+  color = 'currentColor',
   ariaLabel = '',
   ariaHidden = false,
 }) => (

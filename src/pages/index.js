@@ -5,7 +5,7 @@ import 'aos/dist/aos.css'
 import Layout from '../components/layout'
 import Skills from '../components/Skills'
 import Projects from '../components/Projects'
-import Contact from '../components/Contact'
+import { Contact } from '../components/Contact'
 import Footer from '../components/Footer'
 import Seo from '../components/Seo'
 import '../scss/style.scss'
@@ -87,10 +87,7 @@ const IndexPage = () => {
       />
       <Skills ref={skillsSection} />
       <Projects ref={projectsSection} projects={projects} />
-      <Contact
-        ref={contactSection}
-        email="christopher.sordyl@gmail.com"
-      />
+      <Contact ref={contactSection} email="christopher.sordyl@gmail.com" />
       <Footer />
     </Layout>
   )
