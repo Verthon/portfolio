@@ -1,8 +1,9 @@
 # 🔥🔥🔥 My portfolio
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/d82d4cdf-5fd1-4456-b669-986592856739/deploy-status)](https://app.netlify.com/sites/sordyl/deploys)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-My first mobile-first personal portfolio
+High performant, mobile-first personal portfolio
 
 - https://sordyl.netlify.app/
 
@@ -16,9 +17,8 @@ My first mobile-first personal portfolio
 
 - Gatsby.js
 - GraphQL
-- Scss,
-- ES6 JavaScript,
-- SVG Background from https://loading.io
+- Sass,
+- JavaScript,
 - Continuous deployment with Netlify
 
 ## 🚀 Setup

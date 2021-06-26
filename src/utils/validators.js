@@ -1,9 +1,9 @@
-import { VALIDATIONS } from "../constants/messages"
+import { VALIDATIONS } from '../constants/messages'
 
 export const FIELDS = {
-  name: "name",
-  email: "email",
-  message: "message",
+  name: 'name',
+  email: 'email',
+  message: 'message',
 }
 
 export const validateEmail = (email) => {

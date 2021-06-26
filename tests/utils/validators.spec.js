@@ -1,5 +1,5 @@
 import { validateEmail, validate, FIELDS } from '../../src/utils/validators'
-import { VALIDATIONS } from "../../src/constants/messages"
+import { VALIDATIONS } from '../../src/constants/messages'
 
 describe('validators', () => {
   describe('validateEmail', () => {
@@ -18,34 +18,43 @@ describe('validators', () => {
         message: '',
       }
 
-      expect(validate(form)).toEqual({ inputName: FIELDS.name, message: VALIDATIONS.name })
+      expect(validate(form)).toEqual({
+        inputName: FIELDS.name,
+        message: VALIDATIONS.name,
+      })
     })
 
-    it("should return object with error email message for valid name field and invalid email", () => {
+    it('should return object with error email message for valid name field and invalid email', () => {
       const form = {
-        name: "Valid name",
-        email: "invalidmail@",
-        message: ""
+        name: 'Valid name',
+        email: 'invalidmail@',
+        message: '',
       }
 
-      expect(validate(form)).toEqual({ inputName: FIELDS.email, message: VALIDATIONS.email})
+      expect(validate(form)).toEqual({
+        inputName: FIELDS.email,
+        message: VALIDATIONS.email,
+      })
     })
 
-    it("should return object with error message", () => {
+    it('should return object with error message', () => {
       const form = {
-        name: "Valid name",
-        email: "validemail@test.pl",
-        message: "",
+        name: 'Valid name',
+        email: 'validemail@test.pl',
+        message: '',
       }
 
-      expect(validate(form)).toEqual({ inputName: FIELDS.message, message: VALIDATIONS.message })
+      expect(validate(form)).toEqual({
+        inputName: FIELDS.message,
+        message: VALIDATIONS.message,
+      })
     })
 
-    it("should return false if all fields are valid", () => {
+    it('should return false if all fields are valid', () => {
       const form = {
-        name: "Valid name",
-        email: "validemail@test.pl",
-        message: "Valid long enough message",
+        name: 'Valid name',
+        email: 'validemail@test.pl',
+        message: 'Valid long enough message',
       }
 
       expect(validate(form)).toBe(false)
