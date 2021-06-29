@@ -38,12 +38,7 @@ const Project = ({
             rel="noopener noreferrer"
             aria-label="Link to Verthon GitHub profile"
           >
-            Source{' '}
-            <GithubIcon
-              width="22"
-              height="22"
-              aria-hidden="true"
-            />
+            Source <GithubIcon width="22" height="22" aria-hidden="true" />
           </a>
           <a
             className="project__btn project__btn--link"
@@ -52,8 +47,7 @@ const Project = ({
             rel="noopener noreferrer"
             aria-label="Link to live version"
           >
-            <span>view app</span>{' '}
-            <ExternalLinkIcon width="20" height="20" />
+            <span>view app</span> <ExternalLinkIcon width="20" height="20" />
           </a>
         </footer>
       </article>

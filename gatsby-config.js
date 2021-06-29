@@ -32,11 +32,11 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: "fonts",
-        path: `${__dirname}/static/fonts/`
-      }
+        name: 'fonts',
+        path: `${__dirname}/src/fonts/`,
+      },
     },
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
