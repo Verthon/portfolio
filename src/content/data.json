@@ -81,14 +81,6 @@
       "github": "https://github.com/Verthon/event-app",
       "live": "https://eventooo.netlify.app/",
       "animation": "slide-left"
-    },
-    {
-      "name": "HeyU website",
-      "technologies": ["Gatsby", "GraphQL", "Netlify"],
-      "description": "Mobile first website based on Gatsby.js. Rated over 90 in Google Lighthouse in 4 different categories: performance, accessibility, best practicies and SEO.",
-      "github": "https://github.com/Verthon/HeyU-Website",
-      "live": "https://heyu-website.netlify.com/",
-      "animation": "slide-right"
     }
   ]
 }
