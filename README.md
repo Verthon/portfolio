@@ -2,26 +2,29 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/d82d4cdf-5fd1-4456-b669-986592856739/deploy-status)](https://app.netlify.com/sites/sordyl/deploys)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/d82d4cdf-5fd1-4456-b669-986592856739/deploy-status)](https://app.netlify.com/sites/sordyl/deploys)
 
 High performant, mobile-first personal portfolio
 
-- https://sordyl.netlify.app/
+- https://sordyl.dev
 
 ## 💡 Table of contents
 
 - [Technologies](#technologies)
 - [Setup](#setup)
-- [Work in progress](#work-in-progress)
 
 ## 🔥 Technologies
 
 - Gatsby.js
 - GraphQL
 - Sass,
-- JavaScript,
 - Continuous deployment with Netlify
+- Jest and React Testing Library
+- PWA support
 
 ## 🚀 Setup
+
+Requires Node.js v12
 
 1. **Clone repository**
    ```shell
