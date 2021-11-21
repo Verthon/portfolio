@@ -66,7 +66,14 @@ function Seo({ description, lang, meta, title }) {
           content: 'BasegdWYj9mPIuier-stGPV7DpDe04_OEZqyGG9Ak78',
         },
       ].concat(meta)}
-    ></Helmet>
+    >
+      <link
+        href="/fonts/Inter.var.woff2"
+        as="font"
+        type="font/woff2"
+        crossOrigin="anonymous"
+      />
+    </Helmet>
   )
 }
 

@@ -23,6 +23,13 @@
     "react-helmet": "^6.1.0"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^13.1.9",
+    "babel-jest": "^24.9.0",
+    "babel-preset-gatsby": "^0.5.10",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^24.9.0",
     "prettier": "^2.3.1",
     "standard": "^16.0.3"
   },
@@ -36,7 +43,8 @@
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "test": "jest",
+    "coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",

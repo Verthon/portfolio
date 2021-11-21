@@ -2,12 +2,42 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
 
+import { Spinner } from "../components/Spinner"
 import { GithubIcon } from '../icons/GithubIcon'
 import { LinkedinIcon } from '../icons/LinkedinIcon'
 import { SendIcon } from '../icons/SendIcon'
+import { validate } from '../utils/validators'
+import { sendEmail } from '../utils/contact'
+import { MESSAGES } from '../constants/messages'
+import { STATUS } from '../constants/state'
 
-const Contact = React.forwardRef((_props, ref) => {
-  const data = useStaticQuery(
+export const FormSubmitAlert = ({ status }) => {
+  return (
+    <>
+      {(() => {
+        switch (status) {
+          case STATUS.complete:
+            return (
+              <p role="alert" className="contact__success">
+                {MESSAGES.contactSuccess}
+              </p>
+            )
+          case STATUS.errored:
+            return (
+              <p role="alert" className="contact__error">
+                {MESSAGES.contactFailure}
+              </p>
+            )
+          default:
+            return null
+        }
+      })()}
+    </>
+  )
+}
+
+export const Contact = React.forwardRef((_props, ref) => {
+  const { site } = useStaticQuery(
     graphql`
       query {
         site {
@@ -21,83 +51,54 @@ const Contact = React.forwardRef((_props, ref) => {
     `
   )
 
-  const sendEmail = async (
-    url = 'https://formspree.io/mzbjzzek',
-    data = { form }
-  ) => {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    })
-    return response.json()
-  }
-
-  const successMessage = 'Thank you. Your message has been sent.'
-
-  const initialErrorState = {
+  const INIT_ERROR_STATE = {
     inputName: '',
     message: '',
   }
 
-  const initialFormState = {
+  const INIT_FORM_STATE = {
     name: '',
     email: '',
     message: '',
   }
 
-  const errorMsg = {
-    name: 'Please enter a valid name.',
-    email: 'Please enter a valid email.',
-    message: 'Message should have at least 10 chars.',
-  }
-
-  const validateEmail = (email) => {
-    const regex =
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    return regex.test(String(email).toLowerCase())
-  }
-
-  const validate = (form) => {
-    if (form.name.length === 0) {
-      return { inputName: 'name', message: errorMsg.name }
-    } else if (!validateEmail(form.email)) {
-      return { inputName: 'email', message: errorMsg.email }
-    } else if (form.message.length < 10) {
-      return { inputName: 'message', message: errorMsg.message }
-    }
-
-    return false
-  }
-
+  const [status, setStatus] = useState(STATUS.idle)
   const [form, setForm] = useState({
     name: '',
     email: '',
     message: '',
+    hasError: false,
+    error: INIT_ERROR_STATE,
   })
-
-  const [error, setError] = useState(initialErrorState)
-  const [success, setSuccess] = useState('')
   const onFormChange = (e) => {
-    setError(initialErrorState)
-    setForm({ ...form, [e.target.name]: e.target.value })
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+      hasError: false,
+      error: INIT_ERROR_STATE,
+    })
   }
 
-  const onMessageSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault()
     const errorObj = validate(form)
     if (errorObj) {
-      setError(errorObj)
+      setForm({ ...form, hasError: true, error: errorObj })
       return
     }
-    setError(initialErrorState)
-    sendEmail('https://formspree.io/mzbjzzek', form)
-      .then(() => {
-        setForm(initialFormState)
-        setSuccess(successMessage)
-      })
-      .catch((error) => console.log('error with email', error))
+    setStatus(STATUS.loading)
+    setForm({ ...form, hasError: false, error: INIT_ERROR_STATE })
+    try {
+      await sendEmail({ data: form })
+      setForm(INIT_FORM_STATE)
+      setStatus(STATUS.complete)
+    } catch (_) {
+      setStatus(STATUS.errored)
+    }
   }
+  const isFormFilled = Object.values(form).some((x) => x !== null && x !== '')
+  const isValid = !form.hasError && isFormFilled
+  const isDisabled = !isValid || status === STATUS.loading || form.hasError
 
   return (
     <section ref={ref} id="contact" className="section contact">
@@ -107,7 +108,7 @@ const Contact = React.forwardRef((_props, ref) => {
           className="contact__form"
           action="https://formspree.io/mzbjzzek"
           method="POST"
-          onSubmit={onMessageSubmit}
+          onSubmit={onSubmit}
           netlify-honeypot="bot-field"
           data-netlify="true"
         >
@@ -122,7 +123,7 @@ const Contact = React.forwardRef((_props, ref) => {
           </p>
           <div className="contact__socials">
             <a
-              href={data.site.siteMetadata.github}
+              href={site.siteMetadata.github}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Link to Verthon GitHub profile"
@@ -130,7 +131,7 @@ const Contact = React.forwardRef((_props, ref) => {
               <GithubIcon ariaHidden={true} />
             </a>
             <a
-              href={data.site.siteMetadata.linkedin}
+              href={site.siteMetadata.linkedin}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Krzysztof Sordyl linkedin profile"
@@ -138,7 +139,7 @@ const Contact = React.forwardRef((_props, ref) => {
               <LinkedinIcon ariaHidden={true} />
             </a>
             <a
-              href={`mailto:${data.site.siteMetadata.email}`}
+              href={`mailto:${site.siteMetadata.email}`}
               className="contact__btn"
               aria-label="Link to email christopher.sordyl@gmail.com"
             >
@@ -155,8 +156,9 @@ const Contact = React.forwardRef((_props, ref) => {
             Name
           </label>
           <input
+            role="textbox"
             className={
-              error.inputName === 'name'
+              form.error.inputName === 'name'
                 ? 'contact__input contact__input--error'
                 : 'contact__input'
             }
@@ -166,15 +168,17 @@ const Contact = React.forwardRef((_props, ref) => {
             value={form.name}
             onChange={(e) => onFormChange(e)}
           />
-          {error.inputName === 'name' ? (
-            <p className="contact__error">{error.message}</p>
+          {form.error.inputName === 'name' ? (
+            <p role="alert" className="contact__error">
+              {form.error.message}
+            </p>
           ) : null}
           <label className="contact__label" htmlFor="email" name="email">
             Email address
           </label>
           <input
             className={
-              error.inputName === 'email'
+              form.error.inputName === 'email'
                 ? 'contact__input contact__input--error'
                 : 'contact__input'
             }
@@ -184,15 +188,17 @@ const Contact = React.forwardRef((_props, ref) => {
             value={form.email}
             onChange={(e) => onFormChange(e)}
           />
-          {error.inputName === 'email' ? (
-            <p className="contact__error">{error.message}</p>
+          {form.error.inputName === 'email' ? (
+            <p role="alert" className="contact__error">
+              {form.error.message}
+            </p>
           ) : null}
           <label className="contact__label" htmlFor="message" name="message">
             Message
           </label>
           <textarea
             className={
-              error.inputName === 'message'
+              form.error.inputName === 'message'
                 ? 'contact__textarea contact__input--error'
                 : 'contact__textarea'
             }
@@ -203,12 +209,21 @@ const Contact = React.forwardRef((_props, ref) => {
             value={form.message}
             onChange={(e) => onFormChange(e)}
           ></textarea>
-          {error.inputName === 'message' ? (
-            <p className="contact__error">{error.message}</p>
+          {form.error.inputName === 'message' ? (
+            <p role="alert" className="contact__error">
+              {form.error.message}
+            </p>
           ) : null}
-          {success ? <p className="contact__success">{success}</p> : null}
+          <FormSubmitAlert status={status}/>
+          <Spinner isActive={status === STATUS.loading} />
           <div className="contact__footer">
-            <button type="submit" className="contact__btn contact__btn--submit">
+            <button
+              role="button"
+              type="submit"
+              name="submit"
+              className="contact__btn contact__btn--submit"
+              disabled={isDisabled}
+            >
               Submit
             </button>
           </div>
@@ -221,5 +236,3 @@ const Contact = React.forwardRef((_props, ref) => {
 Contact.propTypes = {
   email: PropTypes.string,
 }
-
-export default Contact

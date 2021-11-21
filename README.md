@@ -1,9 +1,10 @@
 # 🔥🔥🔥 My portfolio
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/d82d4cdf-5fd1-4456-b669-986592856739/deploy-status)](https://app.netlify.com/sites/sordyl/deploys)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/d82d4cdf-5fd1-4456-b669-986592856739/deploy-status)](https://app.netlify.com/sites/sordyl/deploys)
 
-My first mobile-first personal portfolio. It passing all Google Lighthouse audits in range of 90-100.
+High performant, mobile-first personal portfolio
 
 - https://sordyl.dev
 

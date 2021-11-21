@@ -43,4 +43,10 @@ textarea, input{
 button::-moz-focus-inner {
   border: 0;
 }
+button:disabled {
+  background-color: hsl(206.7, 52.9%, 96.7%);
+  color: hsl(206.7, 52.9%, 80.7%);
+  pointer-events: none;
+  cursor: not-allowed;
+}
 
