@@ -1,18 +1,9 @@
-this.workbox = this.workbox || {}
-this.workbox.strategies = (function (
-  exports,
-  logger_mjs,
-  assert_mjs,
-  cacheNames_mjs,
-  cacheWrapper_mjs,
-  fetchWrapper_mjs,
-  getFriendlyURL_mjs,
-  WorkboxError_mjs
-) {
-  'use strict'
+this.workbox = this.workbox || {};
+this.workbox.strategies = (function (exports, logger_mjs, assert_mjs, cacheNames_mjs, cacheWrapper_mjs, fetchWrapper_mjs, getFriendlyURL_mjs, WorkboxError_mjs) {
+  'use strict';
 
   try {
-    self['workbox:strategies:4.3.1'] && _()
+    self['workbox:strategies:4.3.1'] && _();
   } catch (e) {} // eslint-disable-line
 
   /*
@@ -23,28 +14,26 @@ this.workbox.strategies = (function (
     https://opensource.org/licenses/MIT.
   */
 
-  const getFriendlyURL = (url) => {
-    const urlObj = new URL(url, location)
+  const getFriendlyURL = url => {
+    const urlObj = new URL(url, location);
 
     if (urlObj.origin === location.origin) {
-      return urlObj.pathname
+      return urlObj.pathname;
     }
 
-    return urlObj.href
-  }
+    return urlObj.href;
+  };
 
   const messages = {
-    strategyStart: (strategyName, request) =>
-      `Using ${strategyName} to ` +
-      `respond to '${getFriendlyURL(request.url)}'`,
-    printFinalResponse: (response) => {
+    strategyStart: (strategyName, request) => `Using ${strategyName} to ` + `respond to '${getFriendlyURL(request.url)}'`,
+    printFinalResponse: response => {
       if (response) {
-        logger_mjs.logger.groupCollapsed(`View the final response here.`)
-        logger_mjs.logger.log(response)
-        logger_mjs.logger.groupEnd()
+        logger_mjs.logger.groupCollapsed(`View the final response here.`);
+        logger_mjs.logger.log(response);
+        logger_mjs.logger.groupEnd();
       }
-    },
-  }
+    }
+  };
 
   /*
     Copyright 2018 Google LLC
@@ -81,12 +70,10 @@ this.workbox.strategies = (function (
      * @param {Object} options.matchOptions [`CacheQueryOptions`](https://w3c.github.io/ServiceWorker/#dictdef-cachequeryoptions)
      */
     constructor(options = {}) {
-      this._cacheName = cacheNames_mjs.cacheNames.getRuntimeName(
-        options.cacheName
-      )
-      this._plugins = options.plugins || []
-      this._fetchOptions = options.fetchOptions || null
-      this._matchOptions = options.matchOptions || null
+      this._cacheName = cacheNames_mjs.cacheNames.getRuntimeName(options.cacheName);
+      this._plugins = options.plugins || [];
+      this._fetchOptions = options.fetchOptions || null;
+      this._matchOptions = options.matchOptions || null;
     }
     /**
      * This method will perform a request strategy and follows an API that
@@ -99,11 +86,15 @@ this.workbox.strategies = (function (
      * @return {Promise<Response>}
      */
 
-    async handle({ event, request }) {
+
+    async handle({
+      event,
+      request
+    }) {
       return this.makeRequest({
         event,
-        request: request || event.request,
-      })
+        request: request || event.request
+      });
     }
     /**
      * This method can be used to perform a make a standalone request outside the
@@ -121,11 +112,15 @@ this.workbox.strategies = (function (
      * @return {Promise<Response>}
      */
 
-    async makeRequest({ event, request }) {
-      const logs = []
+
+    async makeRequest({
+      event,
+      request
+    }) {
+      const logs = [];
 
       if (typeof request === 'string') {
-        request = new Request(request)
+        request = new Request(request);
       }
 
       {
@@ -133,8 +128,8 @@ this.workbox.strategies = (function (
           moduleName: 'workbox-strategies',
           className: 'CacheFirst',
           funcName: 'makeRequest',
-          paramName: 'request',
-        })
+          paramName: 'request'
+        });
       }
 
       let response = await cacheWrapper_mjs.cacheWrapper.match({
@@ -142,60 +137,53 @@ this.workbox.strategies = (function (
         request,
         event,
         matchOptions: this._matchOptions,
-        plugins: this._plugins,
-      })
-      let error
+        plugins: this._plugins
+      });
+      let error;
 
       if (!response) {
         {
-          logs.push(
-            `No response found in the '${this._cacheName}' cache. ` +
-              `Will respond with a network request.`
-          )
+          logs.push(`No response found in the '${this._cacheName}' cache. ` + `Will respond with a network request.`);
         }
 
         try {
-          response = await this._getFromNetwork(request, event)
+          response = await this._getFromNetwork(request, event);
         } catch (err) {
-          error = err
+          error = err;
         }
 
         {
           if (response) {
-            logs.push(`Got response from network.`)
+            logs.push(`Got response from network.`);
           } else {
-            logs.push(`Unable to get a response from the network.`)
+            logs.push(`Unable to get a response from the network.`);
           }
         }
       } else {
         {
-          logs.push(
-            `Found a cached response in the '${this._cacheName}' cache.`
-          )
+          logs.push(`Found a cached response in the '${this._cacheName}' cache.`);
         }
       }
 
       {
-        logger_mjs.logger.groupCollapsed(
-          messages.strategyStart('CacheFirst', request)
-        )
+        logger_mjs.logger.groupCollapsed(messages.strategyStart('CacheFirst', request));
 
         for (let log of logs) {
-          logger_mjs.logger.log(log)
+          logger_mjs.logger.log(log);
         }
 
-        messages.printFinalResponse(response)
-        logger_mjs.logger.groupEnd()
+        messages.printFinalResponse(response);
+        logger_mjs.logger.groupEnd();
       }
 
       if (!response) {
         throw new WorkboxError_mjs.WorkboxError('no-response', {
           url: request.url,
-          error,
-        })
+          error
+        });
       }
 
-      return response
+      return response;
     }
     /**
      * Handles the network and cache part of CacheFirst.
@@ -207,40 +195,37 @@ this.workbox.strategies = (function (
      * @private
      */
 
+
     async _getFromNetwork(request, event) {
       const response = await fetchWrapper_mjs.fetchWrapper.fetch({
         request,
         event,
         fetchOptions: this._fetchOptions,
-        plugins: this._plugins,
-      }) // Keep the service worker while we put the request to the cache
+        plugins: this._plugins
+      }); // Keep the service worker while we put the request to the cache
 
-      const responseClone = response.clone()
+      const responseClone = response.clone();
       const cachePutPromise = cacheWrapper_mjs.cacheWrapper.put({
         cacheName: this._cacheName,
         request,
         response: responseClone,
         event,
-        plugins: this._plugins,
-      })
+        plugins: this._plugins
+      });
 
       if (event) {
         try {
-          event.waitUntil(cachePutPromise)
+          event.waitUntil(cachePutPromise);
         } catch (error) {
           {
-            logger_mjs.logger.warn(
-              `Unable to ensure service worker stays alive when ` +
-                `updating cache for '${getFriendlyURL_mjs.getFriendlyURL(
-                  request.url
-                )}'.`
-            )
+            logger_mjs.logger.warn(`Unable to ensure service worker stays alive when ` + `updating cache for '${getFriendlyURL_mjs.getFriendlyURL(request.url)}'.`);
           }
         }
       }
 
-      return response
+      return response;
     }
+
   }
 
   /*
@@ -274,11 +259,9 @@ this.workbox.strategies = (function (
      * @param {Object} options.matchOptions [`CacheQueryOptions`](https://w3c.github.io/ServiceWorker/#dictdef-cachequeryoptions)
      */
     constructor(options = {}) {
-      this._cacheName = cacheNames_mjs.cacheNames.getRuntimeName(
-        options.cacheName
-      )
-      this._plugins = options.plugins || []
-      this._matchOptions = options.matchOptions || null
+      this._cacheName = cacheNames_mjs.cacheNames.getRuntimeName(options.cacheName);
+      this._plugins = options.plugins || [];
+      this._matchOptions = options.matchOptions || null;
     }
     /**
      * This method will perform a request strategy and follows an API that
@@ -291,11 +274,15 @@ this.workbox.strategies = (function (
      * @return {Promise<Response>}
      */
 
-    async handle({ event, request }) {
+
+    async handle({
+      event,
+      request
+    }) {
       return this.makeRequest({
         event,
-        request: request || event.request,
-      })
+        request: request || event.request
+      });
     }
     /**
      * This method can be used to perform a make a standalone request outside the
@@ -313,9 +300,13 @@ this.workbox.strategies = (function (
      * @return {Promise<Response>}
      */
 
-    async makeRequest({ event, request }) {
+
+    async makeRequest({
+      event,
+      request
+    }) {
       if (typeof request === 'string') {
-        request = new Request(request)
+        request = new Request(request);
       }
 
       {
@@ -323,8 +314,8 @@ this.workbox.strategies = (function (
           moduleName: 'workbox-strategies',
           className: 'CacheOnly',
           funcName: 'makeRequest',
-          paramName: 'request',
-        })
+          paramName: 'request'
+        });
       }
 
       const response = await cacheWrapper_mjs.cacheWrapper.match({
@@ -332,36 +323,31 @@ this.workbox.strategies = (function (
         request,
         event,
         matchOptions: this._matchOptions,
-        plugins: this._plugins,
-      })
+        plugins: this._plugins
+      });
 
       {
-        logger_mjs.logger.groupCollapsed(
-          messages.strategyStart('CacheOnly', request)
-        )
+        logger_mjs.logger.groupCollapsed(messages.strategyStart('CacheOnly', request));
 
         if (response) {
-          logger_mjs.logger.log(
-            `Found a cached response in the '${this._cacheName}'` + ` cache.`
-          )
-          messages.printFinalResponse(response)
+          logger_mjs.logger.log(`Found a cached response in the '${this._cacheName}'` + ` cache.`);
+          messages.printFinalResponse(response);
         } else {
-          logger_mjs.logger.log(
-            `No response found in the '${this._cacheName}' cache.`
-          )
+          logger_mjs.logger.log(`No response found in the '${this._cacheName}' cache.`);
         }
 
-        logger_mjs.logger.groupEnd()
+        logger_mjs.logger.groupEnd();
       }
 
       if (!response) {
         throw new WorkboxError_mjs.WorkboxError('no-response', {
-          url: request.url,
-        })
+          url: request.url
+        });
       }
 
-      return response
+      return response;
     }
+
   }
 
   /*
@@ -382,14 +368,16 @@ this.workbox.strategies = (function (
      *
      * @private
      */
-    cacheWillUpdate: ({ response }) => {
+    cacheWillUpdate: ({
+      response
+    }) => {
       if (response.status === 200 || response.status === 0) {
-        return response
+        return response;
       }
 
-      return null
-    },
-  }
+      return null;
+    }
+  };
 
   /*
     Copyright 2018 Google LLC
@@ -434,23 +422,17 @@ this.workbox.strategies = (function (
      * scenarios.
      */
     constructor(options = {}) {
-      this._cacheName = cacheNames_mjs.cacheNames.getRuntimeName(
-        options.cacheName
-      )
+      this._cacheName = cacheNames_mjs.cacheNames.getRuntimeName(options.cacheName);
 
       if (options.plugins) {
-        let isUsingCacheWillUpdate = options.plugins.some(
-          (plugin) => !!plugin.cacheWillUpdate
-        )
-        this._plugins = isUsingCacheWillUpdate
-          ? options.plugins
-          : [cacheOkAndOpaquePlugin, ...options.plugins]
+        let isUsingCacheWillUpdate = options.plugins.some(plugin => !!plugin.cacheWillUpdate);
+        this._plugins = isUsingCacheWillUpdate ? options.plugins : [cacheOkAndOpaquePlugin, ...options.plugins];
       } else {
         // No plugins passed in, use the default plugin.
-        this._plugins = [cacheOkAndOpaquePlugin]
+        this._plugins = [cacheOkAndOpaquePlugin];
       }
 
-      this._networkTimeoutSeconds = options.networkTimeoutSeconds
+      this._networkTimeoutSeconds = options.networkTimeoutSeconds;
 
       {
         if (this._networkTimeoutSeconds) {
@@ -458,13 +440,13 @@ this.workbox.strategies = (function (
             moduleName: 'workbox-strategies',
             className: 'NetworkFirst',
             funcName: 'constructor',
-            paramName: 'networkTimeoutSeconds',
-          })
+            paramName: 'networkTimeoutSeconds'
+          });
         }
       }
 
-      this._fetchOptions = options.fetchOptions || null
-      this._matchOptions = options.matchOptions || null
+      this._fetchOptions = options.fetchOptions || null;
+      this._matchOptions = options.matchOptions || null;
     }
     /**
      * This method will perform a request strategy and follows an API that
@@ -477,11 +459,15 @@ this.workbox.strategies = (function (
      * @return {Promise<Response>}
      */
 
-    async handle({ event, request }) {
+
+    async handle({
+      event,
+      request
+    }) {
       return this.makeRequest({
         event,
-        request: request || event.request,
-      })
+        request: request || event.request
+      });
     }
     /**
      * This method can be used to perform a make a standalone request outside the
@@ -499,11 +485,15 @@ this.workbox.strategies = (function (
      * @return {Promise<Response>}
      */
 
-    async makeRequest({ event, request }) {
-      const logs = []
+
+    async makeRequest({
+      event,
+      request
+    }) {
+      const logs = [];
 
       if (typeof request === 'string') {
-        request = new Request(request)
+        request = new Request(request);
       }
 
       {
@@ -511,63 +501,64 @@ this.workbox.strategies = (function (
           moduleName: 'workbox-strategies',
           className: 'NetworkFirst',
           funcName: 'handle',
-          paramName: 'makeRequest',
-        })
+          paramName: 'makeRequest'
+        });
       }
 
-      const promises = []
-      let timeoutId
+      const promises = [];
+      let timeoutId;
 
       if (this._networkTimeoutSeconds) {
-        const { id, promise } = this._getTimeoutPromise({
+        const {
+          id,
+          promise
+        } = this._getTimeoutPromise({
           request,
           event,
-          logs,
-        })
+          logs
+        });
 
-        timeoutId = id
-        promises.push(promise)
+        timeoutId = id;
+        promises.push(promise);
       }
 
       const networkPromise = this._getNetworkPromise({
         timeoutId,
         request,
         event,
-        logs,
-      })
+        logs
+      });
 
-      promises.push(networkPromise) // Promise.race() will resolve as soon as the first promise resolves.
+      promises.push(networkPromise); // Promise.race() will resolve as soon as the first promise resolves.
 
-      let response = await Promise.race(promises) // If Promise.race() resolved with null, it might be due to a network
+      let response = await Promise.race(promises); // If Promise.race() resolved with null, it might be due to a network
       // timeout + a cache miss. If that were to happen, we'd rather wait until
       // the networkPromise resolves instead of returning null.
       // Note that it's fine to await an already-resolved promise, so we don't
       // have to check to see if it's still "in flight".
 
       if (!response) {
-        response = await networkPromise
+        response = await networkPromise;
       }
 
       {
-        logger_mjs.logger.groupCollapsed(
-          messages.strategyStart('NetworkFirst', request)
-        )
+        logger_mjs.logger.groupCollapsed(messages.strategyStart('NetworkFirst', request));
 
         for (let log of logs) {
-          logger_mjs.logger.log(log)
+          logger_mjs.logger.log(log);
         }
 
-        messages.printFinalResponse(response)
-        logger_mjs.logger.groupEnd()
+        messages.printFinalResponse(response);
+        logger_mjs.logger.groupEnd();
       }
 
       if (!response) {
         throw new WorkboxError_mjs.WorkboxError('no-response', {
-          url: request.url,
-        })
+          url: request.url
+        });
       }
 
-      return response
+      return response;
     }
     /**
      * @param {Object} options
@@ -579,34 +570,31 @@ this.workbox.strategies = (function (
      * @private
      */
 
-    _getTimeoutPromise({ request, logs, event }) {
-      let timeoutId
-      const timeoutPromise = new Promise((resolve) => {
+
+    _getTimeoutPromise({
+      request,
+      logs,
+      event
+    }) {
+      let timeoutId;
+      const timeoutPromise = new Promise(resolve => {
         const onNetworkTimeout = async () => {
           {
-            logs.push(
-              `Timing out the network response at ` +
-                `${this._networkTimeoutSeconds} seconds.`
-            )
+            logs.push(`Timing out the network response at ` + `${this._networkTimeoutSeconds} seconds.`);
           }
 
-          resolve(
-            await this._respondFromCache({
-              request,
-              event,
-            })
-          )
-        }
+          resolve((await this._respondFromCache({
+            request,
+            event
+          })));
+        };
 
-        timeoutId = setTimeout(
-          onNetworkTimeout,
-          this._networkTimeoutSeconds * 1000
-        )
-      })
+        timeoutId = setTimeout(onNetworkTimeout, this._networkTimeoutSeconds * 1000);
+      });
       return {
         promise: timeoutPromise,
-        id: timeoutId,
-      }
+        id: timeoutId
+      };
     }
     /**
      * @param {Object} options
@@ -619,81 +607,77 @@ this.workbox.strategies = (function (
      * @private
      */
 
-    async _getNetworkPromise({ timeoutId, request, logs, event }) {
-      let error
-      let response
+
+    async _getNetworkPromise({
+      timeoutId,
+      request,
+      logs,
+      event
+    }) {
+      let error;
+      let response;
 
       try {
         response = await fetchWrapper_mjs.fetchWrapper.fetch({
           request,
           event,
           fetchOptions: this._fetchOptions,
-          plugins: this._plugins,
-        })
+          plugins: this._plugins
+        });
       } catch (err) {
-        error = err
+        error = err;
       }
 
       if (timeoutId) {
-        clearTimeout(timeoutId)
+        clearTimeout(timeoutId);
       }
 
       {
         if (response) {
-          logs.push(`Got response from network.`)
+          logs.push(`Got response from network.`);
         } else {
-          logs.push(
-            `Unable to get a response from the network. Will respond ` +
-              `with a cached response.`
-          )
+          logs.push(`Unable to get a response from the network. Will respond ` + `with a cached response.`);
         }
       }
 
       if (error || !response) {
         response = await this._respondFromCache({
           request,
-          event,
-        })
+          event
+        });
 
         {
           if (response) {
-            logs.push(
-              `Found a cached response in the '${this._cacheName}'` + ` cache.`
-            )
+            logs.push(`Found a cached response in the '${this._cacheName}'` + ` cache.`);
           } else {
-            logs.push(`No response found in the '${this._cacheName}' cache.`)
+            logs.push(`No response found in the '${this._cacheName}' cache.`);
           }
         }
       } else {
         // Keep the service worker alive while we put the request in the cache
-        const responseClone = response.clone()
+        const responseClone = response.clone();
         const cachePut = cacheWrapper_mjs.cacheWrapper.put({
           cacheName: this._cacheName,
           request,
           response: responseClone,
           event,
-          plugins: this._plugins,
-        })
+          plugins: this._plugins
+        });
 
         if (event) {
           try {
             // The event has been responded to so we can keep the SW alive to
             // respond to the request
-            event.waitUntil(cachePut)
+            event.waitUntil(cachePut);
           } catch (err) {
             {
-              logger_mjs.logger.warn(
-                `Unable to ensure service worker stays alive when ` +
-                  `updating cache for '${getFriendlyURL_mjs.getFriendlyURL(
-                    request.url
-                  )}'.`
-              )
+              logger_mjs.logger.warn(`Unable to ensure service worker stays alive when ` + `updating cache for '${getFriendlyURL_mjs.getFriendlyURL(request.url)}'.`);
             }
           }
         }
       }
 
-      return response
+      return response;
     }
     /**
      * Used if the network timeouts or fails to make the request.
@@ -706,15 +690,20 @@ this.workbox.strategies = (function (
      * @private
      */
 
-    _respondFromCache({ event, request }) {
+
+    _respondFromCache({
+      event,
+      request
+    }) {
       return cacheWrapper_mjs.cacheWrapper.match({
         cacheName: this._cacheName,
         request,
         event,
         matchOptions: this._matchOptions,
-        plugins: this._plugins,
-      })
+        plugins: this._plugins
+      });
     }
+
   }
 
   /*
@@ -750,11 +739,9 @@ this.workbox.strategies = (function (
      * of all fetch() requests made by this strategy.
      */
     constructor(options = {}) {
-      this._cacheName = cacheNames_mjs.cacheNames.getRuntimeName(
-        options.cacheName
-      )
-      this._plugins = options.plugins || []
-      this._fetchOptions = options.fetchOptions || null
+      this._cacheName = cacheNames_mjs.cacheNames.getRuntimeName(options.cacheName);
+      this._plugins = options.plugins || [];
+      this._fetchOptions = options.fetchOptions || null;
     }
     /**
      * This method will perform a request strategy and follows an API that
@@ -767,11 +754,15 @@ this.workbox.strategies = (function (
      * @return {Promise<Response>}
      */
 
-    async handle({ event, request }) {
+
+    async handle({
+      event,
+      request
+    }) {
       return this.makeRequest({
         event,
-        request: request || event.request,
-      })
+        request: request || event.request
+      });
     }
     /**
      * This method can be used to perform a make a standalone request outside the
@@ -789,9 +780,13 @@ this.workbox.strategies = (function (
      * @return {Promise<Response>}
      */
 
-    async makeRequest({ event, request }) {
+
+    async makeRequest({
+      event,
+      request
+    }) {
       if (typeof request === 'string') {
-        request = new Request(request)
+        request = new Request(request);
       }
 
       {
@@ -799,48 +794,47 @@ this.workbox.strategies = (function (
           moduleName: 'workbox-strategies',
           className: 'NetworkOnly',
           funcName: 'handle',
-          paramName: 'request',
-        })
+          paramName: 'request'
+        });
       }
 
-      let error
-      let response
+      let error;
+      let response;
 
       try {
         response = await fetchWrapper_mjs.fetchWrapper.fetch({
           request,
           event,
           fetchOptions: this._fetchOptions,
-          plugins: this._plugins,
-        })
+          plugins: this._plugins
+        });
       } catch (err) {
-        error = err
+        error = err;
       }
 
       {
-        logger_mjs.logger.groupCollapsed(
-          messages.strategyStart('NetworkOnly', request)
-        )
+        logger_mjs.logger.groupCollapsed(messages.strategyStart('NetworkOnly', request));
 
         if (response) {
-          logger_mjs.logger.log(`Got response from network.`)
+          logger_mjs.logger.log(`Got response from network.`);
         } else {
-          logger_mjs.logger.log(`Unable to get a response from the network.`)
+          logger_mjs.logger.log(`Unable to get a response from the network.`);
         }
 
-        messages.printFinalResponse(response)
-        logger_mjs.logger.groupEnd()
+        messages.printFinalResponse(response);
+        logger_mjs.logger.groupEnd();
       }
 
       if (!response) {
         throw new WorkboxError_mjs.WorkboxError('no-response', {
           url: request.url,
-          error,
-        })
+          error
+        });
       }
 
-      return response
+      return response;
     }
+
   }
 
   /*
@@ -885,25 +879,19 @@ this.workbox.strategies = (function (
      * @param {Object} options.matchOptions [`CacheQueryOptions`](https://w3c.github.io/ServiceWorker/#dictdef-cachequeryoptions)
      */
     constructor(options = {}) {
-      this._cacheName = cacheNames_mjs.cacheNames.getRuntimeName(
-        options.cacheName
-      )
-      this._plugins = options.plugins || []
+      this._cacheName = cacheNames_mjs.cacheNames.getRuntimeName(options.cacheName);
+      this._plugins = options.plugins || [];
 
       if (options.plugins) {
-        let isUsingCacheWillUpdate = options.plugins.some(
-          (plugin) => !!plugin.cacheWillUpdate
-        )
-        this._plugins = isUsingCacheWillUpdate
-          ? options.plugins
-          : [cacheOkAndOpaquePlugin, ...options.plugins]
+        let isUsingCacheWillUpdate = options.plugins.some(plugin => !!plugin.cacheWillUpdate);
+        this._plugins = isUsingCacheWillUpdate ? options.plugins : [cacheOkAndOpaquePlugin, ...options.plugins];
       } else {
         // No plugins passed in, use the default plugin.
-        this._plugins = [cacheOkAndOpaquePlugin]
+        this._plugins = [cacheOkAndOpaquePlugin];
       }
 
-      this._fetchOptions = options.fetchOptions || null
-      this._matchOptions = options.matchOptions || null
+      this._fetchOptions = options.fetchOptions || null;
+      this._matchOptions = options.matchOptions || null;
     }
     /**
      * This method will perform a request strategy and follows an API that
@@ -916,11 +904,15 @@ this.workbox.strategies = (function (
      * @return {Promise<Response>}
      */
 
-    async handle({ event, request }) {
+
+    async handle({
+      event,
+      request
+    }) {
       return this.makeRequest({
         event,
-        request: request || event.request,
-      })
+        request: request || event.request
+      });
     }
     /**
      * This method can be used to perform a make a standalone request outside the
@@ -938,11 +930,15 @@ this.workbox.strategies = (function (
      * @return {Promise<Response>}
      */
 
-    async makeRequest({ event, request }) {
-      const logs = []
+
+    async makeRequest({
+      event,
+      request
+    }) {
+      const logs = [];
 
       if (typeof request === 'string') {
-        request = new Request(request)
+        request = new Request(request);
       }
 
       {
@@ -950,82 +946,69 @@ this.workbox.strategies = (function (
           moduleName: 'workbox-strategies',
           className: 'StaleWhileRevalidate',
           funcName: 'handle',
-          paramName: 'request',
-        })
+          paramName: 'request'
+        });
       }
 
       const fetchAndCachePromise = this._getFromNetwork({
         request,
-        event,
-      })
+        event
+      });
 
       let response = await cacheWrapper_mjs.cacheWrapper.match({
         cacheName: this._cacheName,
         request,
         event,
         matchOptions: this._matchOptions,
-        plugins: this._plugins,
-      })
-      let error
+        plugins: this._plugins
+      });
+      let error;
 
       if (response) {
         {
-          logs.push(
-            `Found a cached response in the '${this._cacheName}'` +
-              ` cache. Will update with the network response in the background.`
-          )
+          logs.push(`Found a cached response in the '${this._cacheName}'` + ` cache. Will update with the network response in the background.`);
         }
 
         if (event) {
           try {
-            event.waitUntil(fetchAndCachePromise)
+            event.waitUntil(fetchAndCachePromise);
           } catch (error) {
             {
-              logger_mjs.logger.warn(
-                `Unable to ensure service worker stays alive when ` +
-                  `updating cache for '${getFriendlyURL_mjs.getFriendlyURL(
-                    request.url
-                  )}'.`
-              )
+              logger_mjs.logger.warn(`Unable to ensure service worker stays alive when ` + `updating cache for '${getFriendlyURL_mjs.getFriendlyURL(request.url)}'.`);
             }
           }
         }
       } else {
         {
-          logs.push(
-            `No response found in the '${this._cacheName}' cache. ` +
-              `Will wait for the network response.`
-          )
+          logs.push(`No response found in the '${this._cacheName}' cache. ` + `Will wait for the network response.`);
         }
 
         try {
-          response = await fetchAndCachePromise
+          response = await fetchAndCachePromise;
         } catch (err) {
-          error = err
+          error = err;
         }
       }
 
       {
-        logger_mjs.logger.groupCollapsed(
-          messages.strategyStart('StaleWhileRevalidate', request)
-        )
+        logger_mjs.logger.groupCollapsed(messages.strategyStart('StaleWhileRevalidate', request));
 
         for (let log of logs) {
-          logger_mjs.logger.log(log)
+          logger_mjs.logger.log(log);
         }
 
-        messages.printFinalResponse(response)
-        logger_mjs.logger.groupEnd()
+        messages.printFinalResponse(response);
+        logger_mjs.logger.groupEnd();
       }
 
       if (!response) {
         throw new WorkboxError_mjs.WorkboxError('no-response', {
           url: request.url,
-          error,
-        })
+          error
+        });
       }
 
-      return response
+      return response;
     }
     /**
      * @param {Object} options
@@ -1036,38 +1019,38 @@ this.workbox.strategies = (function (
      * @private
      */
 
-    async _getFromNetwork({ request, event }) {
+
+    async _getFromNetwork({
+      request,
+      event
+    }) {
       const response = await fetchWrapper_mjs.fetchWrapper.fetch({
         request,
         event,
         fetchOptions: this._fetchOptions,
-        plugins: this._plugins,
-      })
+        plugins: this._plugins
+      });
       const cachePutPromise = cacheWrapper_mjs.cacheWrapper.put({
         cacheName: this._cacheName,
         request,
         response: response.clone(),
         event,
-        plugins: this._plugins,
-      })
+        plugins: this._plugins
+      });
 
       if (event) {
         try {
-          event.waitUntil(cachePutPromise)
+          event.waitUntil(cachePutPromise);
         } catch (error) {
           {
-            logger_mjs.logger.warn(
-              `Unable to ensure service worker stays alive when ` +
-                `updating cache for '${getFriendlyURL_mjs.getFriendlyURL(
-                  request.url
-                )}'.`
-            )
+            logger_mjs.logger.warn(`Unable to ensure service worker stays alive when ` + `updating cache for '${getFriendlyURL_mjs.getFriendlyURL(request.url)}'.`);
           }
         }
       }
 
-      return response
+      return response;
     }
+
   }
 
   /*
@@ -1082,24 +1065,20 @@ this.workbox.strategies = (function (
     cacheOnly: CacheOnly,
     networkFirst: NetworkFirst,
     networkOnly: NetworkOnly,
-    staleWhileRevalidate: StaleWhileRevalidate,
-  }
+    staleWhileRevalidate: StaleWhileRevalidate
+  };
 
-  const deprecate = (strategy) => {
-    const StrategyCtr = mapping[strategy]
-    return (options) => {
+  const deprecate = strategy => {
+    const StrategyCtr = mapping[strategy];
+    return options => {
       {
-        const strategyCtrName = strategy[0].toUpperCase() + strategy.slice(1)
-        logger_mjs.logger.warn(
-          `The 'workbox.strategies.${strategy}()' function has been ` +
-            `deprecated and will be removed in a future version of Workbox.\n` +
-            `Please use 'new workbox.strategies.${strategyCtrName}()' instead.`
-        )
+        const strategyCtrName = strategy[0].toUpperCase() + strategy.slice(1);
+        logger_mjs.logger.warn(`The 'workbox.strategies.${strategy}()' function has been ` + `deprecated and will be removed in a future version of Workbox.\n` + `Please use 'new workbox.strategies.${strategyCtrName}()' instead.`);
       }
 
-      return new StrategyCtr(options)
-    }
-  }
+      return new StrategyCtr(options);
+    };
+  };
   /**
    * @function workbox.strategies.cacheFirst
    * @param {Object} options See the {@link workbox.strategies.CacheFirst}
@@ -1107,7 +1086,8 @@ this.workbox.strategies = (function (
    * @deprecated since v4.0.0
    */
 
-  const cacheFirst = deprecate('cacheFirst')
+
+  const cacheFirst = deprecate('cacheFirst');
   /**
    * @function workbox.strategies.cacheOnly
    * @param {Object} options See the {@link workbox.strategies.CacheOnly}
@@ -1115,7 +1095,7 @@ this.workbox.strategies = (function (
    * @deprecated since v4.0.0
    */
 
-  const cacheOnly = deprecate('cacheOnly')
+  const cacheOnly = deprecate('cacheOnly');
   /**
    * @function workbox.strategies.networkFirst
    * @param {Object} options See the {@link workbox.strategies.NetworkFirst}
@@ -1123,7 +1103,7 @@ this.workbox.strategies = (function (
    * @deprecated since v4.0.0
    */
 
-  const networkFirst = deprecate('networkFirst')
+  const networkFirst = deprecate('networkFirst');
   /**
    * @function workbox.strategies.networkOnly
    * @param {Object} options See the {@link workbox.strategies.NetworkOnly}
@@ -1131,7 +1111,7 @@ this.workbox.strategies = (function (
    * @deprecated since v4.0.0
    */
 
-  const networkOnly = deprecate('networkOnly')
+  const networkOnly = deprecate('networkOnly');
   /**
    * @function workbox.strategies.staleWhileRevalidate
    * @param {Object} options See the
@@ -1139,28 +1119,20 @@ this.workbox.strategies = (function (
    * @deprecated since v4.0.0
    */
 
-  const staleWhileRevalidate = deprecate('staleWhileRevalidate')
+  const staleWhileRevalidate = deprecate('staleWhileRevalidate');
 
-  exports.CacheFirst = CacheFirst
-  exports.CacheOnly = CacheOnly
-  exports.NetworkFirst = NetworkFirst
-  exports.NetworkOnly = NetworkOnly
-  exports.StaleWhileRevalidate = StaleWhileRevalidate
-  exports.cacheFirst = cacheFirst
-  exports.cacheOnly = cacheOnly
-  exports.networkFirst = networkFirst
-  exports.networkOnly = networkOnly
-  exports.staleWhileRevalidate = staleWhileRevalidate
+  exports.CacheFirst = CacheFirst;
+  exports.CacheOnly = CacheOnly;
+  exports.NetworkFirst = NetworkFirst;
+  exports.NetworkOnly = NetworkOnly;
+  exports.StaleWhileRevalidate = StaleWhileRevalidate;
+  exports.cacheFirst = cacheFirst;
+  exports.cacheOnly = cacheOnly;
+  exports.networkFirst = networkFirst;
+  exports.networkOnly = networkOnly;
+  exports.staleWhileRevalidate = staleWhileRevalidate;
 
-  return exports
-})(
-  {},
-  workbox.core._private,
-  workbox.core._private,
-  workbox.core._private,
-  workbox.core._private,
-  workbox.core._private,
-  workbox.core._private,
-  workbox.core._private
-)
+  return exports;
+
+}({}, workbox.core._private, workbox.core._private, workbox.core._private, workbox.core._private, workbox.core._private, workbox.core._private, workbox.core._private));
 //# sourceMappingURL=workbox-strategies.dev.js.map
