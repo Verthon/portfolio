@@ -24,7 +24,7 @@ High performant, mobile-first personal portfolio
 
 ## 🚀 Setup
 
-Requires Node.js v12
+Requires Node.js v14
 
 1. **Clone repository**
    ```shell

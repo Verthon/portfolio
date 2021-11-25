@@ -33,6 +33,7 @@ describe('Contact', () => {
   it.todo('check submiting form with correct email and name but empty message')
   it('should send email once everything is correct', async () => {
     render(<Contact />)
+
     const submitButton = screen.getByText(/submit/i)
     const nameInput = screen.getByPlaceholderText(/Your name/i)
     const emailInput = screen.getByPlaceholderText(/Email address/i)
@@ -45,6 +46,5 @@ describe('Contact', () => {
     user.click(submitButton)
 
     await waitFor(() => expect(sendEmail).toHaveBeenCalledTimes(1))
-    await waitForElementToBeRemoved(() => screen.getByRole('progressbar'))
   })
 })
