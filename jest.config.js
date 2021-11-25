@@ -1,4 +1,5 @@
 module.exports = {
+  verbose: true,
   transform: {
     '^.+\\.jsx?$': `<rootDir>/tests/jest-preprocess.js`,
   },
@@ -20,4 +21,5 @@ module.exports = {
   testURL: `http://localhost`,
   setupFilesAfterEnv: ['<rootDir>/tests/setup-test-env.js'],
   setupFiles: [`<rootDir>/tests/loadershim.js`],
+  testEnvironment: "jsdom"
 }
