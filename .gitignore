@@ -31,10 +31,10 @@ dist
 bin/published.js
 
 # Build Path of Test Fixtures
-test/**/public
 .gatsby-context.js
 .DS_Store
 public/
+test/**/public
 node_modules/
 e2e-tests/gatsby-pnp/
 __diff_output__/

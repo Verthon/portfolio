@@ -1,8 +1,4 @@
 .dark-mode .site-nav {
-  &__theme-toggler {
-    background-color: $dark-color-dark-4;
-  }
-
   .menu-item svg {
     color: $white;
   }
@@ -45,7 +41,7 @@
   }
 
   &__theme-toggler {
-    background-color: $color-tertiary;
+    background-color: transparent;
     border: 0;
     display: flex;
     padding: 0.25rem;
