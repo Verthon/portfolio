@@ -1,52 +1,42 @@
-html, body, ul, ol{
-  padding: 0;
-  margin: 0;
+/*
+  Josh's Custom CSS Reset
+  https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+*, *::before, *::after {
   box-sizing: border-box;
-  overflow: auto;
-  font-family: Inter, -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
 }
-body{
-  display: flex;
-  flex-wrap: wrap;
+* {
+  margin: 0;
 }
-
-#___gatsby {
+html, body {
+  height: 100%;
+}
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+img, picture, video, canvas, svg {
+  display: block;
   max-width: 100%;
 }
-ul{
-  list-style: none;
-  padding: 0;
-  margin: 0;
+input, button, textarea, select {
+  font: inherit;
 }
-h1,h2,h3,h4,h5,h6{
-  -webkit-margin-before: 0;
-  -webkit-margin-after: 0;
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
 }
-a{
+#root, #__next {
+  isolation: isolate;
+}
+a {
   text-decoration: none;
   color: inherit;
 }
-img{
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-body *{
-  box-sizing: border-box;
-}
-textarea, input{
+ul {
   padding: 0;
-  border: 0;
-  font-family: inherit;
-  background: inherit; 
+  list-style: none;
 }
-button::-moz-focus-inner {
-  border: 0;
+#___gatsby {
+  max-width: 100%;
+  overflow: auto;
 }
-button:disabled {
-  background-color: hsl(206.7, 52.9%, 96.7%);
-  color: hsl(206.7, 52.9%, 80.7%);
-  pointer-events: none;
-  cursor: not-allowed;
-}
-

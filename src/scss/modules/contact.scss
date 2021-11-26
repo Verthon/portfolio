@@ -85,9 +85,10 @@
   }
 
   &__input {
+    border: 1px solid transparent;
     border-radius: $default-radius;
     padding: 0.75rem 0.5rem;
-    background: $color-gray;
+    background-color: $color-gray;
     color: $color-dark;
 
     &--error {
@@ -96,9 +97,10 @@
   }
 
   &__textarea {
+    border: 1px solid transparent;
     border-radius: $default-radius;
     padding: 0.75rem 0.5rem;
-    background: $color-gray;
+    background-color: $color-gray;
   }
 
   &__success {

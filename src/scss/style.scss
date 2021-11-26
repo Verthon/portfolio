@@ -15,12 +15,7 @@
 @import 'modules/spinner.scss';
 
 body {
-  font-size: $base-font-size;
   font-family: Inter, -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-  overflow-x: hidden;
 
   @include mQ($bp-xxlarge) {
     font-size: $base-font-size * 2;
