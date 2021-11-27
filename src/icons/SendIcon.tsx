@@ -1,12 +1,14 @@
 import * as React from 'react'
 
+import type { Props } from './Icon.types'
+
 export const SendIcon = ({
   height = 24,
   width = 24,
   color,
   ariaLabel = '',
   ariaHidden = false,
-}) => (
+}: Props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={width}

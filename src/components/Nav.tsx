@@ -3,7 +3,7 @@ import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 
 import NavItem from './NavItem'
-import { ThemeToggler } from '../components/ThemeToggler'
+import { ThemeToggler } from './ThemeToggler'
 import { GithubIcon } from '../icons/GithubIcon'
 import { LinkedinIcon } from '../icons/LinkedinIcon'
 

@@ -10,7 +10,7 @@ export const ThemeToggler = () => {
     <button
       className="site-nav__theme-toggler"
       onClick={() => setDarkMode(!darkMode)}
-      aria-label="Dark theme toggler"
+      aria-label={darkMode ? "Activate light theme" : "Activate dark theme"}
       title={darkMode ? "Activate light theme" : "Activate dark theme"}
     >
       {darkMode ? <SunIcon color="white" /> : <MoonIcon color="black" />}

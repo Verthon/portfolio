@@ -1,11 +1,11 @@
-import React from 'react'
+import * as React from 'react'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
 import Layout from '../components/layout'
 import Skills from '../components/Skills'
 import Projects from '../components/Projects'
-import { Contact } from '../components/Contact'
+import { Contact } from '../components/Contact/Contact'
 import Footer from '../components/Footer'
 import Seo from '../components/Seo'
 import '../scss/style.scss'
@@ -44,7 +44,7 @@ const IndexPage = () => {
     },
   ]
 
-  const scrollToComponent = (component) => {
+  const scrollToComponent = (component: string) => {
     switch (component) {
       case 'skills':
         skillsSection.current.scrollIntoView({

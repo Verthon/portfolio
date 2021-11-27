@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types'
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
-import Project from './Project'
+
+import Project from './Project/Project'
 import JSONData from '../content/data.json'
 
 const Projects = React.forwardRef((_props, ref) => {
@@ -51,9 +51,5 @@ const Projects = React.forwardRef((_props, ref) => {
     </section>
   )
 })
-
-Projects.propTypes = {
-  projects: PropTypes.array,
-}
 
 export default Projects

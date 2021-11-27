@@ -1,27 +1,31 @@
 import * as React from 'react'
+import * as Gatsby from 'gatsby';
 import user from '@testing-library/user-event'
 import { render, screen, fireEvent, act, waitForElementToBeRemoved, waitFor } from '@testing-library/react'
-import { useStaticQuery } from 'gatsby'
-import { sendEmail } from '../../src/utils/contact'
 
-import { Contact } from '../../src/components/Contact'
+import { sendEmail } from '../../src/utils/contact'
+import { Contact } from '../../src/components/Contact/Contact'
 
 jest.mock('../../src/utils/contact', () => ({
   sendEmail: jest.fn(() => Promise.resolve()),
 }))
 
+const useStaticQuery = jest.spyOn(Gatsby, 'useStaticQuery');
+useStaticQuery.mockImplementation(() => ({
+  site: {
+    siteMetadata: {
+      email: `mail@gmail.com`,
+      linkedin: 'https://www.linkedin.com',
+      github: 'https://github.com',
+    },
+  },
+}));
+
 describe('Contact', () => {
   beforeEach(() => {
-    useStaticQuery.mockReturnValue({
-      site: {
-        siteMetadata: {
-          email: `christopher.sordyl@gmail.com`,
-          linkedin: 'https://www.linkedin.com/in/krzysztof-sordyl/',
-          github: 'https://github.com/Verthon',
-        },
-      },
-    })
-  })
+    jest.clearAllMocks();
+  });
+
   it('should show error message in the form while submiting form without any data', async () => {
     render(<Contact />)
     fireEvent.click(screen.getByText(/submit/i))

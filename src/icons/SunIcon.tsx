@@ -1,12 +1,14 @@
 import * as React from 'react'
 
+import type { Props } from './Icon.types'
+
 export const SunIcon = ({
   height = 24,
   width = 24,
   color,
   ariaLabel = '',
   ariaHidden = false,
-}) => (
+}: Props) => (
   <svg
     width={width}
     height={height}

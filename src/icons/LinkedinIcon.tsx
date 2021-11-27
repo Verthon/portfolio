@@ -1,12 +1,14 @@
 import * as React from 'react'
 
+import type { Props } from './Icon.types'
+
 export const LinkedinIcon = ({
   height = 24,
   width = 24,
   color = 'currentColor',
   ariaLabel = '',
   ariaHidden = false,
-}) => (
+}: Props) => (
   <svg
     width={width}
     height={height}

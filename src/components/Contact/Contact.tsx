@@ -1,42 +1,18 @@
 import React, { useState } from 'react'
-import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
 
-import { Spinner } from "../components/Spinner"
-import { GithubIcon } from '../icons/GithubIcon'
-import { LinkedinIcon } from '../icons/LinkedinIcon'
-import { SendIcon } from '../icons/SendIcon'
-import { validate } from '../utils/validators'
-import { sendEmail } from '../utils/contact'
-import { MESSAGES } from '../constants/messages'
-import { STATUS } from '../constants/state'
+import { Spinner } from "../Spinner"
+import { GithubIcon } from '../../icons/GithubIcon'
+import { LinkedinIcon } from '../../icons/LinkedinIcon'
+import { SendIcon } from '../../icons/SendIcon'
+import { validate } from '../../utils/validators'
+import { sendEmail } from '../../utils/contact'
+import { STATUS } from '../../constants/state'
+import { SubmitStatus } from './Contact.types'
+import { FormAlert } from './FormAlert/FormAlert'
+import { INIT_FORM_STATE, INIT_ERROR_STATE } from './Contact.const'
 
-export const FormSubmitAlert = ({ status }) => {
-  return (
-    <>
-      {(() => {
-        switch (status) {
-          case STATUS.complete:
-            return (
-              <p role="alert" className="contact__success">
-                {MESSAGES.contactSuccess}
-              </p>
-            )
-          case STATUS.errored:
-            return (
-              <p role="alert" className="contact__error">
-                {MESSAGES.contactFailure}
-              </p>
-            )
-          default:
-            return null
-        }
-      })()}
-    </>
-  )
-}
-
-export const Contact = React.forwardRef((_props, ref) => {
+export const Contact = React.forwardRef((_props, ref: React.Ref<HTMLElement>) => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -51,26 +27,9 @@ export const Contact = React.forwardRef((_props, ref) => {
     `
   )
 
-  const INIT_ERROR_STATE = {
-    inputName: '',
-    message: '',
-  }
-
-  const INIT_FORM_STATE = {
-    name: '',
-    email: '',
-    message: '',
-  }
-
-  const [status, setStatus] = useState(STATUS.idle)
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    message: '',
-    hasError: false,
-    error: INIT_ERROR_STATE,
-  })
-  const onFormChange = (e) => {
+  const [status, setStatus] = useState<SubmitStatus>("idle")
+  const [form, setForm] = useState(INIT_FORM_STATE)
+  const onFormChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
     setForm({
       ...form,
       [e.target.name]: e.target.value,
@@ -79,21 +38,21 @@ export const Contact = React.forwardRef((_props, ref) => {
     })
   }
 
-  const onSubmit = async (e) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const errorObj = validate(form)
     if (errorObj) {
       setForm({ ...form, hasError: true, error: errorObj })
       return
     }
-    setStatus(STATUS.loading)
+    setStatus("loading")
     setForm({ ...form, hasError: false, error: INIT_ERROR_STATE })
     try {
       await sendEmail({ data: form })
       setForm(INIT_FORM_STATE)
-      setStatus(STATUS.complete)
+      setStatus("complete")
     } catch (_) {
-      setStatus(STATUS.errored)
+      setStatus("error")
     }
   }
   const isFormFilled = Object.values(form).some((x) => x !== null && x !== '')
@@ -108,12 +67,12 @@ export const Contact = React.forwardRef((_props, ref) => {
           className="contact__form"
           action="https://formspree.io/mzbjzzek"
           method="POST"
-          onSubmit={onSubmit}
+          onSubmit={(e) => onSubmit(e)}
           netlify-honeypot="bot-field"
           data-netlify="true"
         >
           <p className="hidden">
-            <label htmlFor="bot-field" name="bot-field">
+            <label htmlFor="bot-field" id="bot-field">
               Don’t fill this out if you're human: <input name="bot-field" />
             </label>
           </p>
@@ -145,14 +104,14 @@ export const Contact = React.forwardRef((_props, ref) => {
             >
               Quick mail
               <SendIcon
-                width="20"
-                height="20"
+                width={20}
+                height={20}
                 color="black"
                 aria-label="Send an email using your email client"
               />
             </a>
           </div>
-          <label className="contact__label" htmlFor="name" name="name">
+          <label className="contact__label" htmlFor="name">
             Name
           </label>
           <input
@@ -173,7 +132,7 @@ export const Contact = React.forwardRef((_props, ref) => {
               {form.error.message}
             </p>
           ) : null}
-          <label className="contact__label" htmlFor="email" name="email">
+          <label className="contact__label" htmlFor="email">
             Email address
           </label>
           <input
@@ -193,7 +152,7 @@ export const Contact = React.forwardRef((_props, ref) => {
               {form.error.message}
             </p>
           ) : null}
-          <label className="contact__label" htmlFor="message" name="message">
+          <label className="contact__label" htmlFor="message">
             Message
           </label>
           <textarea
@@ -203,8 +162,8 @@ export const Contact = React.forwardRef((_props, ref) => {
                 : 'contact__textarea'
             }
             name="message"
-            cols="30"
-            rows="10"
+            cols={30}
+            rows={10}
             placeholder="Message"
             value={form.message}
             onChange={(e) => onFormChange(e)}
@@ -214,7 +173,7 @@ export const Contact = React.forwardRef((_props, ref) => {
               {form.error.message}
             </p>
           ) : null}
-          <FormSubmitAlert status={status}/>
+          <FormAlert status={status}/>
           <Spinner isActive={status === STATUS.loading} />
           <div className="contact__footer">
             <button
@@ -232,7 +191,3 @@ export const Contact = React.forwardRef((_props, ref) => {
     </section>
   )
 })
-
-Contact.propTypes = {
-  email: PropTypes.string,
-}

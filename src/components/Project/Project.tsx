@@ -1,8 +1,8 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
-import { GithubIcon } from '../icons/GithubIcon'
-import { ExternalLinkIcon } from '../icons/ExternalLinkIcon'
+import { GithubIcon } from '../../icons/GithubIcon'
+import { ExternalLinkIcon } from '../../icons/ExternalLinkIcon'
+import { Props } from './Project.types'
 
 const Project = ({
   name,
@@ -12,7 +12,7 @@ const Project = ({
   github,
   live,
   animation,
-}) => {
+}: Props) => {
   return (
     <div className="project" data-aos={animation} data-aos-duration="1000">
       <img
@@ -38,7 +38,7 @@ const Project = ({
             rel="noopener noreferrer"
             aria-label="Link to Verthon GitHub profile"
           >
-            Source <GithubIcon width="22" height="22" aria-hidden="true" />
+            Source <GithubIcon width={22} height={22} aria-hidden="true" />
           </a>
           <a
             className="project__btn project__btn--link"
@@ -47,22 +47,12 @@ const Project = ({
             rel="noopener noreferrer"
             aria-label="Link to live version"
           >
-            <span>view app</span> <ExternalLinkIcon width="20" height="20" />
+            <span>view app</span> <ExternalLinkIcon width={20} height={20} />
           </a>
         </footer>
       </article>
     </div>
   )
-}
-
-Project.propTypes = {
-  name: PropTypes.string,
-  image: PropTypes.string,
-  description: PropTypes.string,
-  technologies: PropTypes.array,
-  github: PropTypes.string,
-  live: PropTypes.string,
-  animation: PropTypes.string,
 }
 
 export default Project

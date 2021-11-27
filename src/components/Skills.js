@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types'
-import React from 'react'
-import Tabs from './Tabs'
+import * as React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
+
+import Tabs from './Tabs'
 import JSONData from '../content/data.json'
 
 const Skills = React.forwardRef((_props, ref) => {
@@ -34,13 +34,5 @@ const Skills = React.forwardRef((_props, ref) => {
     </section>
   )
 })
-
-Skills.propTypes = {
-  siteTitle: PropTypes.string,
-}
-
-Skills.defaultProps = {
-  siteTitle: '',
-}
 
 export default Skills
