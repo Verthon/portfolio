@@ -1,10 +1,11 @@
-import PropTypes from 'prop-types'
-import React from 'react'
-import Nav from './Nav'
+import * as React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 
-const Header = ({ scroll }) => {
-  const data = useStaticQuery(
+import { Nav } from '../Nav/Nav'
+import type { HeaderData, Props } from './Header.types'
+
+export const Header = ({ scroll }: Props) => {
+  const data = useStaticQuery<HeaderData>(
     graphql`
       query {
         site {
@@ -64,9 +65,3 @@ const Header = ({ scroll }) => {
     </div>
   )
 }
-
-Header.propTypes = {
-  scroll: PropTypes.func,
-}
-
-export default Header

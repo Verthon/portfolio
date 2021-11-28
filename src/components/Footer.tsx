@@ -1,10 +1,11 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
+
 import GatsbyLogo from '../images/Gatsby_Monogram.svg'
 import { HearthIcon } from '../icons/HearthIcon'
 import { CodeIcon } from '../icons/CodeIcon'
 
-const Footer = () => {
+export const Footer = () => {
   const data = useStaticQuery(
     graphql`
       query {
@@ -44,5 +45,3 @@ const Footer = () => {
     </footer>
   )
 }
-
-export default Footer

@@ -20,9 +20,9 @@
           "Familiar with React.js, Next.js, Gatsby.js",
           "Hands on experience with Redux Toolkit and Context API",
           "Experience with writing tests - Jest, React Testing Library, Cypress",
-          "Hands on experience with Vue.js and Vuex",
+          "Hands on experience with Vue.js and Vuex / Pinia",
           "Working experience with SPAs based on Rest APIs",
-          "Familiar with npm, webpack, eslint"
+          "Familiar with tooling: webpack, eslint"
         ]
       },
       {
@@ -46,7 +46,7 @@
         "tech": [
           "Experience with Agile/Scrum methodology",
           "Good communication skills",
-          "Experience in working with a clients",
+          "Experience in working directly with a clients",
           "Familiar with working as a remote developer",
           "Ability to learn on my own",
           "Familiar with creating an own knowledge base on Notion"
@@ -55,12 +55,12 @@
       {
         "title": "Backend",
         "tech": [
-          "Familiar with Firestore",
+          "Familiar with Firestore and Supabase",
           "Hands on experience on Hasura",
           "Basics of Node.js and Express.js",
           "Knowledge about HTTP and REST",
           "Hands on experience with Postman",
-          "Basics of PostgreSQL and Docker"
+          "Basics of PostgreSQL"
         ]
       }
     ]

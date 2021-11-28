@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 
-import { Spinner } from "../Spinner"
+import { Spinner } from "../Spinner/Spinner"
 import { GithubIcon } from '../../icons/GithubIcon'
 import { LinkedinIcon } from '../../icons/LinkedinIcon'
 import { SendIcon } from '../../icons/SendIcon'
@@ -12,7 +12,7 @@ import { SubmitStatus } from './Contact.types'
 import { FormAlert } from './FormAlert/FormAlert'
 import { INIT_FORM_STATE, INIT_ERROR_STATE } from './Contact.const'
 
-export const Contact = React.forwardRef((_props, ref: React.Ref<HTMLElement>) => {
+export const Contact = React.forwardRef((_props, ref) => {
   const { site } = useStaticQuery(
     graphql`
       query {

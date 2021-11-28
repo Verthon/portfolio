@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 
-import Tabs from './Tabs'
-import JSONData from '../content/data.json'
+import { Tabs } from '../Tabs/Tabs'
+import type { QueryData } from './Skills.types'
 
-const Skills = React.forwardRef((_props, ref) => {
-  const data = useStaticQuery(
+export const Skills = React.forwardRef((_props, ref: React.ForwardedRef<HTMLElement>) => {
+  const data = useStaticQuery<QueryData>(
     graphql`
       query {
         site {
@@ -13,7 +13,9 @@ const Skills = React.forwardRef((_props, ref) => {
             quote {
               author
               content
-            }
+            },
+            tabsHeaders,
+            tabsContent,
           }
         }
       }
@@ -29,10 +31,8 @@ const Skills = React.forwardRef((_props, ref) => {
             {data.site.siteMetadata.quote.author}
           </footer>
         </blockquote>
-        <Tabs headers={JSONData.headers} content={JSONData.content} />
+        <Tabs headers={data.site.siteMetadata.tabsHeaders} content={data.site.siteMetadata.tabsContent} />
       </div>
     </section>
   )
 })
-
-export default Skills

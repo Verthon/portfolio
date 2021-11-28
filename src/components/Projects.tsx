@@ -1,10 +1,10 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 
-import Project from './Project/Project'
+import { Project } from './Project/Project'
 import JSONData from '../content/data.json'
 
-const Projects = React.forwardRef((_props, ref) => {
+export const Projects = React.forwardRef((_props, ref) => {
   const data = useStaticQuery(graphql`
     query getAllImages {
       allFile(
@@ -51,5 +51,3 @@ const Projects = React.forwardRef((_props, ref) => {
     </section>
   )
 })
-
-export default Projects

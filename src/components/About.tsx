@@ -1,7 +1,7 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 
-const About = () => {
+export const About = () => {
   const data = useStaticQuery(
     graphql`
       query {
@@ -22,5 +22,3 @@ const About = () => {
     </section>
   )
 }
-
-export default About

@@ -1,12 +1,12 @@
-import React from 'react'
+import * as React from 'react'
 
-import Seo from '../components/Seo'
+import { Seo } from '../components/Seo'
 import Image from '../images/404.svg'
 
-const NotFoundPage = () => (
+export const NotFoundPage = () => (
   <div className="not-found">
     <img className="not-found__image" src={Image} alt="not-found graphic" />
-    <Seo title="not-found: Not found" />
+    <Seo />
     <h1 className="not-found__title">Sorry, page not found</h1>
     <p className="not-found__text">
       You just hit a route that doesn&#39;t exist...
@@ -16,5 +16,3 @@ const NotFoundPage = () => (
     </a>
   </div>
 )
-
-export default NotFoundPage

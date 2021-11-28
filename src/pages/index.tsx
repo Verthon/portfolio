@@ -2,47 +2,18 @@ import * as React from 'react'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
-import Layout from '../components/layout'
-import Skills from '../components/Skills'
-import Projects from '../components/Projects'
-import { Contact } from '../components/Contact/Contact'
-import Footer from '../components/Footer'
-import Seo from '../components/Seo'
 import '../scss/style.scss'
+import { Contact } from '../components/Contact/Contact'
+import { Layout } from '../components/Layout/Layout'
+import { Projects } from '../components/Projects'
+import { Skills } from '../components/Skills/Skills'
+import { Seo } from '../components/Seo'
+import { Footer } from '../components/Footer'
 
-const IndexPage = () => {
-  const skillsSection = React.useRef()
-  const projectsSection = React.useRef()
-  const contactSection = React.useRef()
-  const projects = [
-    {
-      name: 'Alkinoos Taverna',
-      technologies: ['React', 'Sass', 'Firestore'],
-      description:
-        'Fully responsive, serverless, progressive web app for small restaurants, with integrated simple booking system and basic administration tools for staff.',
-      github: 'https://github.com/Verthon/restaurant-app',
-      live: 'https://alkinoos-taverna.netlify.com/',
-      animation: 'slide-right',
-    },
-    {
-      name: 'Eventoo',
-      technologies: ['React', 'Styled components', 'Firestore'],
-      description:
-        'Responsive App based on React.js library for event management. Within Eventoo you can create your own events.',
-      github: 'https://github.com/Verthon/event-app',
-      live: 'https://eventooo.netlify.com/',
-      animation: 'slide-left',
-    },
-    {
-      name: 'HeyU website',
-      technologies: ['Gatsby', 'Sass', 'Netlify'],
-      description:
-        'Responsive, mobile first website based on Gatsby.js. PSD to HTML',
-      github: 'https://github.com/Verthon/HeyU-Website',
-      live: 'https://heyu-website.netlify.com/',
-      animation: 'slide-right',
-    },
-  ]
+export const IndexPage = () => {
+  const skillsSection = React.useRef<HTMLElement>(null)
+  const projectsSection = React.useRef<HTMLElement>(null)
+  const contactSection = React.useRef<HTMLElement>(null)
 
   const scrollToComponent = (component: string) => {
     switch (component) {
@@ -81,16 +52,11 @@ const IndexPage = () => {
 
   return (
     <Layout scrollFunction={scrollToComponent}>
-      <Seo
-        title="Krzysztof Sordyl Frontend Developer"
-        description='Welcome, my name is Krzysztof Sordyl frontend developer living in Bielsko-Biała, Poland. I"m creating solid, modern and well-designed websites. React enthusiast. Software, programming Bielsko-Biała'
-      />
+      <Seo />
       <Skills ref={skillsSection} />
-      <Projects ref={projectsSection} projects={projects} />
-      <Contact ref={contactSection} email="christopher.sordyl@gmail.com" />
+      <Projects ref={projectsSection} />
+      <Contact ref={contactSection} />
       <Footer />
     </Layout>
   )
 }
-
-export default IndexPage

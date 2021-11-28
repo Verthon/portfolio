@@ -1,13 +1,13 @@
-import PropTypes from 'prop-types'
-import React from 'react'
+import * as React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 
-import NavItem from './NavItem'
-import { ThemeToggler } from './ThemeToggler'
-import { GithubIcon } from '../icons/GithubIcon'
-import { LinkedinIcon } from '../icons/LinkedinIcon'
+import NavItem from '../NavItem/NavItem'
+import { ThemeToggler } from '../ThemeToggler'
+import { GithubIcon } from '../../icons/GithubIcon'
+import { LinkedinIcon } from '../../icons/LinkedinIcon'
+import type { Props } from './Nav.types'
 
-const Nav = ({ links, scroll }) => {
+export const Nav = ({ links, scroll }: Props) => {
   const data = useStaticQuery(
     graphql`
       query {
@@ -37,8 +37,8 @@ const Nav = ({ links, scroll }) => {
             rel="noopener noreferrer"
           >
             <GithubIcon
-              width="22"
-              height="22"
+              width={22}
+              height={22}
               ariaLabel="Verthon GitHub profile"
             />
           </a>
@@ -50,8 +50,8 @@ const Nav = ({ links, scroll }) => {
             rel="noopener noreferrer"
           >
             <LinkedinIcon
-              width="22"
-              height="22"
+              width={22}
+              height={22}
               ariaLabel="Krzysztof Sordyl linkedin profile"
             />
           </a>
@@ -60,10 +60,3 @@ const Nav = ({ links, scroll }) => {
     </nav>
   )
 }
-
-Nav.propTypes = {
-  links: PropTypes.array,
-  scroll: PropTypes.func,
-}
-
-export default Nav

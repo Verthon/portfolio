@@ -1,20 +1,18 @@
-import React from 'react'
-import TabHeader from './TabHeader'
-import TabContent from './TabContent'
+import * as React from 'react'
 
-class Tabs extends React.Component {
-  constructor() {
-    super()
-    this.mobile = 769
-    this.frontendTab = React.createRef()
-    this.generalTab = React.createRef()
-    this.toolsTab = React.createRef()
-    this.state = {
-      activeTab: 'frontend',
-    }
-  }
+import { TabHeader } from '../TabHeader/TabHeader'
+import { TabContent } from '../TabContent/TabContent'
 
-  scrollToContent = (content) => {
+import type { TabType } from './Tabs.types'
+import { MOBILE_BREAKPOINT } from './Tabs.const'
+
+export const Tabs = ({ headers, content }) => {
+  const frontendTabRef = React.useRef<HTMLInputElement>(null)
+  const generalTabRef = React.useRef<HTMLInputElement>(null)
+
+  const [activeTab, setActiveTab] = React.useState<TabType>("frontend")
+
+  const scrollToContent = (content) => {
     content.current.scrollIntoView({
       alignToTop: false,
       block: 'start',
@@ -22,31 +20,33 @@ class Tabs extends React.Component {
     })
   }
 
-  getCurrentTab = (type) => {
+  const getCurrentTab = (type: TabType) => {
     switch (type) {
       case 'frontend':
-        this.scrollToContent(this.frontendTab)
+        scrollToContent(frontendTabRef)
         break
       case 'general':
-        this.scrollToContent(this.generalTab)
+        scrollToContent(generalTabRef)
         break
       default:
         break
     }
   }
 
-  handleHeaderChange = (e) => {
+  const handleHeaderChange = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
     const header = e.currentTarget.getAttribute('data-tab')
-    this.setState({ activeTab: header }, () => {
-      if (window.innerWidth < this.mobile) {
-        this.getCurrentTab(header)
-      }
-    })
+    if (header === activeTab) {
+      setActiveTab(() => {
+        if (window.innerWidth < MOBILE_BREAKPOINT) {
+          getCurrentTab(header)
+        }
+  
+        return header
+      })
+    }
+    
   }
 
-  render() {
-    const { headers, content } = this.props
-    const { activeTab } = this.state
     const contentCssActiveClass = `tab-content__item active-tab animated fadeIn`
     return (
       <div className="row">
@@ -61,23 +61,23 @@ class Tabs extends React.Component {
             activeTab === header.tab ? (
               <TabHeader
                 key={header.name}
-                data={header}
+                tabProps={header}
                 activeHeader="tab-header--active"
-                handleClick={this.handleHeaderChange}
+                handleClick={(e) => handleHeaderChange(e)}
               />
             ) : (
               <TabHeader
                 key={header.name}
-                data={header}
+                tabProps={header}
                 activeHeader={''}
-                handleClick={this.handleHeaderChange}
+                handleClick={(e) => handleHeaderChange(e)}
               />
             )
           )}
         </ul>
         <article className="tab-content">
           <div
-            ref={this.frontendTab}
+            ref={frontendTabRef}
             className={
               activeTab === 'frontend'
                 ? contentCssActiveClass
@@ -89,7 +89,7 @@ class Tabs extends React.Component {
             ))}
           </div>
           <div
-            ref={this.generalTab}
+            ref={generalTabRef}
             className={
               activeTab === 'general'
                 ? contentCssActiveClass
@@ -103,7 +103,5 @@ class Tabs extends React.Component {
         </article>
       </div>
     )
-  }
+  })
 }
-
-export default Tabs

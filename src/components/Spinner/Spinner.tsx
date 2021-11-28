@@ -1,6 +1,8 @@
 import * as React from "react"
 
-export const Spinner = ({ isActive }) => {
+import type { Props } from "./Spinner.types";
+
+export const Spinner = ({ isActive }: Props) => {
   if(!isActive) {
     return null
   }

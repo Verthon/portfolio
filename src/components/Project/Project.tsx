@@ -1,10 +1,10 @@
-import React from 'react'
+import * as React from 'react'
 
 import { GithubIcon } from '../../icons/GithubIcon'
 import { ExternalLinkIcon } from '../../icons/ExternalLinkIcon'
 import { Props } from './Project.types'
 
-const Project = ({
+export const Project = ({
   name,
   image,
   description,
@@ -54,5 +54,3 @@ const Project = ({
     </div>
   )
 }
-
-export default Project
