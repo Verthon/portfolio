@@ -1,7 +1,7 @@
 module.exports = {
   verbose: true,
   transform: {
-    "^.+\\.[jt]sx?$": "<rootDir>/tests/jest-preprocess.js",
+    '^.+\\.[jt]sx?$': '<rootDir>/tests/jest-preprocess.js',
   },
   moduleNameMapper: {
     '.+\\.(css|styl|less|sass|scss)$': `identity-obj-proxy`,
@@ -19,8 +19,8 @@ module.exports = {
   testURL: `http://localhost`,
   setupFilesAfterEnv: ['<rootDir>/tests/setup-test-env.js'],
   setupFiles: [`<rootDir>/tests/loadershim.js`],
-  testEnvironment: "jsdom",
-  moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
+  testEnvironment: 'jsdom',
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   testPathIgnorePatterns: [`node_modules`, `\\.cache`, `<rootDir>.*/public`],
   transformIgnorePatterns: [`node_modules/(?!(gatsby)/)`],
 }

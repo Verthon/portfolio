@@ -1,0 +1,20 @@
+{
+  "projects": [
+    {
+      "name": "Alkinoos Taverna",
+      "technologies": ["Next.js", "GraphQL", "Hasura", "Typescript"],
+      "description": "Responsive, progressive web app for small restaurants, with integrated simple booking system and basic administration tools for the staff.",
+      "github": "https://github.com/Verthon/restaurant-app",
+      "live": "https://alkinoos-taverna.vercel.app/",
+      "animation": "slide-right"
+    },
+    {
+      "name": "Eventoo",
+      "technologies": ["Ionic 4", "Redux Toolkit", "Firestore"],
+      "description": "Mobile application for event management. Within Eventoo you can create and administer your own events.",
+      "github": "https://github.com/Verthon/event-app",
+      "live": "https://eventooo.netlify.app/",
+      "animation": "slide-left"
+    }
+  ]
+}

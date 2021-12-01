@@ -22,90 +22,6 @@ module.exports = {
         'Try to learn something about everything and everything about something.',
     },
     lang: 'en',
-    projects: [
-      {
-        name: "Alkinoos Taverna",
-        technologies: ["Next.js", "GraphQL", "Hasura", "Typescript"],
-        description: "Responsive, progressive web app for small restaurants, with integrated simple booking system and basic administration tools for the staff.",
-        github: "https://github.com/Verthon/restaurant-app",
-        live: "https://alkinoos-taverna.vercel.app/",
-        animation: "slide-right"
-      },
-      {
-        name: "Eventoo",
-        technologies: ["Ionic 4", "Redux Toolkit", "Firestore"],
-        description: "Mobile application for event management. Within Eventoo you can create and administer your own events.",
-        github: "https://github.com/Verthon/event-app",
-        live: "https://eventooo.netlify.app/",
-        animation: "slide-left"
-      }
-    ],
-    tabsHeaders: [
-      {
-        name: "Frontend",
-        description: "Building responsive web apps and mobile apps based on design projects. Creating React/Vue based frontend.",
-        tab: "frontend"
-      },
-      {
-        name: "General",
-        description: "Effectively work within a team of other engineers, as well as Product Owner, designers, and QA engineers.",
-        tab: "general"
-      }
-    ],
-    tabsContent: [
-      [
-        {
-          title: "JavaScript",
-          tech: [
-            "Working experience with JavaScript ES6+ and Typescript",
-            "Familiar with React.js, Next.js, Gatsby.js",
-            "Hands on experience with Redux Toolkit and Context API",
-            "Experience with writing tests - Jest, React Testing Library, Cypress",
-            "Hands on experience with Vue.js and Vuex / Pinia",
-            "Working experience with SPAs based on Rest APIs",
-            "Familiar with tooling: webpack, eslint"
-          ]
-        },
-        {
-          title: "Universal",
-          tech: [
-            "HTML5, CSS3, Sass, Styled Components",
-            "Real world experience with GIT version control system",
-            "Proficient with RWD and UI/UX, decent eye for the detail",
-            "Familiar with BEM methodology",
-            "Basic understanding of Tailwind CSS",
-            "Hands on experience with Wordpress and Sanity CMS",
-            "Familiar with SEO principles and Core Web Vitals",
-            "Basics of the GraphQL with Apollo",
-            "Basics of Figma prototyping"
-          ]
-        }
-      ],
-      [
-        {
-          title: "Soft skills",
-          tech: [
-            "Experience with Agile/Scrum methodology",
-            "Good communication skills",
-            "Experience in working directly with a clients",
-            "Familiar with working as a remote developer",
-            "Ability to learn on my own",
-            "Familiar with creating an own knowledge base on Notion"
-          ]
-        },
-        {
-          title: "Backend",
-          tech: [
-            "Familiar with Firestore and Supabase",
-            "Hands on experience on Hasura",
-            "Basics of Node.js and Express.js",
-            "Knowledge about HTTP and REST",
-            "Hands on experience with Postman",
-            "Basics of PostgreSQL"
-          ]
-        }
-      ]
-    ],
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -153,6 +69,13 @@ module.exports = {
         isTSX: true, // defaults to false
         jsxPragma: `jsx`, // defaults to "React"
         allExtensions: true, // defaults to false
+      },
+    },
+    `gatsby-transformer-json`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `./src/content/`,
       },
     },
   ],

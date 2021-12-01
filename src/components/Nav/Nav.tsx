@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 
-import NavItem from '../NavItem/NavItem'
+import { NavItem } from '../NavItem/NavItem'
 import { ThemeToggler } from '../ThemeToggler'
 import { GithubIcon } from '../../icons/GithubIcon'
 import { LinkedinIcon } from '../../icons/LinkedinIcon'

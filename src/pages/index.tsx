@@ -10,37 +10,43 @@ import { Skills } from '../components/Skills/Skills'
 import { Seo } from '../components/Seo'
 import { Footer } from '../components/Footer'
 
-export const IndexPage = () => {
+const IndexPage = () => {
   const skillsSection = React.useRef<HTMLElement>(null)
   const projectsSection = React.useRef<HTMLElement>(null)
   const contactSection = React.useRef<HTMLElement>(null)
 
   const scrollToComponent = (component: string) => {
-    switch (component) {
-      case 'skills':
-        skillsSection.current.scrollIntoView({
-          alignToTop: true,
-          behavior: 'smooth',
-        })
-        break
-      case 'projects':
-        projectsSection.current.scrollIntoView({
-          alignToTop: true,
-          behavior: 'smooth',
-        })
-        break
-      case 'contact':
-        contactSection.current.scrollIntoView({
-          alignToTop: true,
-          behavior: 'smooth',
-        })
-        break
-      default:
-        skillsSection.current.scrollIntoView({
-          alignToTop: true,
-          behavior: 'smooth',
-        })
-        break
+    if(skillsSection.current && projectsSection.current && contactSection.current) {
+      switch (component) {
+        case 'skills':
+          skillsSection.current.scrollIntoView({
+            inline: 'nearest',
+            block: 'start',
+            behavior: 'smooth',
+          })
+          break
+        case 'projects':
+          projectsSection.current.scrollIntoView({
+            inline: 'nearest',
+            block: 'start',
+            behavior: 'smooth',
+          })
+          break
+        case 'contact':
+          contactSection.current.scrollIntoView({
+            inline: 'nearest',
+            block: 'start',
+            behavior: 'smooth',
+          })
+          break
+        default:
+          skillsSection.current.scrollIntoView({
+            inline: 'nearest',
+            block: 'start',
+            behavior: 'smooth',
+          })
+          break
+      }
     }
   }
 
@@ -60,3 +66,5 @@ export const IndexPage = () => {
     </Layout>
   )
 }
+
+export default IndexPage

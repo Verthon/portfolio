@@ -2,15 +2,22 @@ import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 
 import { Project } from './Project/Project'
-import JSONData from '../content/data.json'
+import { ProjectsQueryResponse } from '../types/projects.types'
 
-export const Projects = React.forwardRef((_props, ref) => {
-  const data = useStaticQuery(graphql`
-    query getAllImages {
-      allFile(
-        filter: { relativeDirectory: { eq: "projects" } }
-        sort: { fields: base }
-      ) {
+export const Projects = React.forwardRef((_props, ref: React.ForwardedRef<HTMLElement>) => {
+  const data = useStaticQuery<ProjectsQueryResponse>(graphql`
+    query getProjectsData {
+      contentJson {
+        projects {
+          animation
+          description
+          github
+          live
+          name
+          technologies
+        }
+      }
+      allFile(filter: {relativeDirectory: {eq: "projects"}}, sort: {fields: base}) {
         edges {
           node {
             base
@@ -25,6 +32,8 @@ export const Projects = React.forwardRef((_props, ref) => {
     }
   `)
 
+  console.log(data);
+
   const projectsImages = data.allFile.edges.map(
     (element) => element.node.childImageSharp.fluid.srcSet
   )
@@ -35,7 +44,7 @@ export const Projects = React.forwardRef((_props, ref) => {
         <p className="section__description">
           This is what I have worked on so far.
         </p>
-        {JSONData.projects.map((project, index) => (
+        {data.contentJson.projects.map((project, index) => (
           <Project
             key={project.name}
             name={project.name}

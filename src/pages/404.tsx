@@ -3,7 +3,7 @@ import * as React from 'react'
 import { Seo } from '../components/Seo'
 import Image from '../images/404.svg'
 
-export const NotFoundPage = () => (
+const NotFoundPage = () => (
   <div className="not-found">
     <img className="not-found__image" src={Image} alt="not-found graphic" />
     <Seo />
@@ -16,3 +16,6 @@ export const NotFoundPage = () => (
     </a>
   </div>
 )
+
+
+export default NotFoundPage

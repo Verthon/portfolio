@@ -61,11 +61,7 @@ export const Seo = () => {
           name: 'twitter:description',
           content: metaDescription,
         },
-        {
-          name: 'google-site-verification',
-          content: 'BasegdWYj9mPIuier-stGPV7DpDe04_OEZqyGG9Ak78',
-        },
-      ].concat(meta)}
+      ].concat([])}
     >
       <link
         href="/fonts/Inter.var.woff2"
