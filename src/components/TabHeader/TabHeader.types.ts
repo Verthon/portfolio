@@ -1,9 +1,10 @@
+import { TabHeaderName } from "../../types/tabs.types";
+
 export type Props = {
   tabProps: {
-    tab: string
-    name: string
+    name: TabHeaderName
     description: string
   }
-  activeHeader: string
+  active: boolean
   handleClick: React.MouseEventHandler<HTMLLIElement>
 }

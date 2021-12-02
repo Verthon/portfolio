@@ -22,7 +22,7 @@ export const Tabs = ({ headers, content }: Props) => {
     }
   }
 
-  const getCurrentTab = (type: TabType) => {
+  const scrollToTab = (type: TabType) => {
     switch (type) {
       case 'frontend':
         scrollToContent(frontendTabRef)
@@ -39,14 +39,11 @@ export const Tabs = ({ headers, content }: Props) => {
     e: React.MouseEvent<HTMLLIElement, MouseEvent>
   ) => {
     const header = e.currentTarget.getAttribute('data-tab')
-    if (header === activeTab) {
-      setActiveTab(() => {
-        if (window.innerWidth < MOBILE_BREAKPOINT) {
-          getCurrentTab(header)
-        }
-
-        return header
-      })
+    const isCorrectTab = header === "frontend" || header === "general"
+    const isMobile = window.innerWidth < MOBILE_BREAKPOINT;
+    if (isCorrectTab) {
+      setActiveTab(header)
+      isMobile ? scrollToTab(header) : null
     }
   }
 
@@ -61,18 +58,18 @@ export const Tabs = ({ headers, content }: Props) => {
         data-aos-easing="ease-in-out"
       >
         {headers.map((header) =>
-          activeTab === header.tab ? (
+          activeTab === header.name.toLocaleLowerCase() ? (
             <TabHeader
               key={header.name}
               tabProps={header}
-              activeHeader="tab-header--active"
+              active={true}
               handleClick={(e) => handleHeaderChange(e)}
             />
           ) : (
             <TabHeader
               key={header.name}
               tabProps={header}
-              activeHeader={''}
+              active={false}
               handleClick={(e) => handleHeaderChange(e)}
             />
           )

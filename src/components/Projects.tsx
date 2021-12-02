@@ -32,8 +32,6 @@ export const Projects = React.forwardRef((_props, ref: React.ForwardedRef<HTMLEl
     }
   `)
 
-  console.log(data);
-
   const projectsImages = data.allFile.edges.map(
     (element) => element.node.childImageSharp.fluid.srcSet
   )

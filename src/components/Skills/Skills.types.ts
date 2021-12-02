@@ -1,12 +1,13 @@
 import type { Quote } from "../../types/quote.types";
-import type { TabsContentTuple, TabsHeader } from "../../types/tabs.types";
+import type { TabsDataNode, TabsEmptyNode } from "../../types/tabs.types";
 
-export type QueryData = {
+export type SkillsQueryResponse = {
   site: {
     siteMetadata: {
       quote: Quote
-      tabsHeaders: TabsHeader[]
-      tabsContent: TabsContentTuple
     }
+  }
+  allContentJson: {
+    edges: [ TabsEmptyNode, TabsDataNode ]
   }
 }

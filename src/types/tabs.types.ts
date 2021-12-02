@@ -1,7 +1,8 @@
+export type TabHeaderName = "Frontend" | "General"
+
 export type TabsHeader  = {
-  name: string,
+  name: TabHeaderName,
   description: string
-  tab: string
 }
 
 export type TabsContent = {
@@ -10,3 +11,18 @@ export type TabsContent = {
 }
 
 export type TabsContentTuple = [TabsContent[], TabsContent[]]
+
+export type TabsEmptyNode = {
+  node: {
+    tabs: null
+  }
+}
+
+export type TabsDataNode = {
+  node: {
+    tabs: {
+      content: TabsContentTuple
+      headers: TabsHeader[]
+    }
+  }
+}
