@@ -21,6 +21,7 @@ module.exports = {
       content:
         'Try to learn something about everything and everything about something.',
     },
+    lang: 'en',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -62,5 +63,20 @@ module.exports = {
       },
     },
     'gatsby-plugin-offline',
+    {
+      resolve: `gatsby-plugin-typescript`,
+      options: {
+        isTSX: true, // defaults to false
+        jsxPragma: `jsx`, // defaults to "React"
+        allExtensions: true, // defaults to false
+      },
+    },
+    `gatsby-transformer-json`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `./src/content/`,
+      },
+    },
   ],
 }
