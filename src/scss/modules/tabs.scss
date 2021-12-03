@@ -13,6 +13,10 @@
     background-color: $color-primary;
     .tab-header__content {
       color: $color-dark-2;
+
+      &:hover {
+        color: $color-dark-2;
+      }
     }
   }
 
@@ -26,6 +30,9 @@
 
   .tab-item {
     color: $dark-color-dark-1;
+    &:hover {
+      color: $color-dark-2;
+    }
   }
 }
 
