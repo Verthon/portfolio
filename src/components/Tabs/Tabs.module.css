@@ -1,0 +1,209 @@
+.dark-mode .tab-header {
+  &__item {
+    color: var(--white-color);
+    background-color: $dark-color-dark-3;
+
+    &:hover {
+      color: var(--dark-color-700);
+    }
+  }
+
+  &--active {
+    color: var(--dark-color-700);
+    background-color: var(--primary-color);
+    .tab-header__content {
+      color: var(--grey-color-600);
+
+      &:hover {
+        color: var(--grey-color-600);
+      }
+    }
+  }
+
+  &__content {
+    color: var(--grey-color);
+
+    &:hover {
+      color: var(--dark-color-700);
+    }
+  }
+
+  .tab-item {
+    color: var(--grey-color);
+    &:hover {
+      color: var(--grey-color-600);
+    }
+  }
+}
+
+.dark-mode .active-tab {
+  background-color: $dark-color-dark-4;
+  color: var(--white-color);
+}
+
+.dark-mode .tab-item {
+  color: var(--grey-color);
+}
+
+.tabHeader {
+  list-style: none;
+  display: block;
+  @include mQ($ipad) {
+    display: flex;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: $font-size-title-2;
+
+    @include mQ($bp-medium) {
+      margin: 0.5rem 0;
+    }
+  }
+
+  &__content {
+    max-width: 100%;
+    margin: 0.5rem 0;
+    color: var(--grey-color-600);
+
+    @include mQ($bp-large) {
+      max-width: 90%;
+    }
+  }
+}
+
+.tabHeaderItem {
+  margin: 1rem 0;
+  padding: 1rem;
+  background-color: $color-gray-1;
+  color: var(--dark-color-700);
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  width: auto;
+
+  @include mQ($bp-medium) {
+    margin: 1rem;
+    line-height: 1.6;
+    padding: 1rem 1.5rem;
+  }
+
+  @include mQ($bp-large) {
+    margin: 1rem 0 1rem 1rem;
+  }
+
+  @include mQ($bp-xxlarge) {
+    padding: 2rem 3rem;
+  }
+}
+
+.tabHeaderItem:hover {
+  cursor: pointer;
+  background: var(--primary-color);
+  color: var(--dark-color-700);
+}
+
+.tabHeaderItem:last-of-type {
+
+  @include mQ($bp-large) {
+    margin: 1rem 1rem 1rem 1rem;
+  }
+}
+
+.tabHeaderItemActive {
+  color: var(--dark-color-700);
+  background-color: var(--primary-color);
+}
+
+.tab-content {
+  display: flex;
+  width: 100%;
+
+  &__item {
+    display: none;
+    padding: 1rem 0 2rem 0;
+    margin: 0;
+    color: var(--dark-color-700);
+    width: 100%;
+    height: auto;
+    @include mQ($ipad) {
+      width: 100%;
+      margin: 0 1rem;
+      padding: 1rem;
+    }
+  }
+
+  &--active {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: var(--white-color);
+    animation: activefade 2s;
+    @include mQ($ipad) {
+      margin-bottom: 5rem;
+      flex-wrap: nowrap;
+      height: auto;
+    }
+  }
+}
+.active-tab {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: var(--white-color);
+  animation: activefade 2s;
+  @include mQ($ipad) {
+    margin-bottom: 5rem;
+    flex-wrap: nowrap;
+    height: auto;
+  }
+}
+
+@keyframes activefade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.tab-column {
+  flex: 100%;
+  padding: 0rem 1rem;
+
+  @include mQ($bp-medium) {
+    flex: 1;
+    padding: 0rem 0.5rem;
+  }
+}
+
+.tab-content-heading {
+  padding: 0;
+  font-size: $font-size-title-2;
+  margin: 1rem 0 0.5rem 0;
+  @include mQ($ipad) {
+    margin: 0.5rem 0 0.5rem 0;
+  }
+
+  @include mQ($bp-xxlarge) {
+    font-size: $font-size-title-2 * 2;
+  }
+}
+
+.tab-list {
+  padding: 0 0.5rem;
+  list-style: square;
+}
+
+.tab-item {
+  margin: 0.35rem;
+  color: var(--grey-color-600);
+
+  @include mQ($ipad) {
+    margin: 0.5rem 0.25rem;
+  }
+
+  @include mQ($bp-large) {
+    max-width: 85%;
+    margin: 1rem 0.75rem;
+  }
+}

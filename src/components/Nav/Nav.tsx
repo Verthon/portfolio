@@ -27,7 +27,7 @@ export const Nav = ({ links, scrollToComponent }: Props) => {
       <div className={socials}>
         <ThemeToggler />
       </div>
-      <ul id="menu-ul" className={menuList}>
+      <ul className={menuList}>
         {links.map((link) => (
           <NavItem key={link} name={link} handleClick={scrollToComponent} />
         ))}

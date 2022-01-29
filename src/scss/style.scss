@@ -4,7 +4,7 @@
 @import 'mixins.scss';
 @import 'modules/grid.scss';
 @import 'modules/header.scss';
-@import 'modules/nav.scss';
+// @import 'modules/nav.scss';
 @import 'modules/hero.scss';
 @import 'modules/section.scss';
 @import 'modules/tabs.scss';
@@ -12,54 +12,12 @@
 @import 'modules/contact.scss';
 @import 'modules/footer.scss';
 @import 'modules/404.scss';
-@import 'modules/spinner.scss';
+// @import 'modules/spinner.scss';
 
 body {
   font-family: Inter, -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
 
   @include mQ($bp-xxlarge) {
     font-size: $base-font-size * 2;
-  }
-}
-
-.skills {
-  i {
-    font-size: 8rem;
-
-    @include mQ($mobile) {
-      font-size: 4.5rem;
-    }
-  }
-  .row {
-    display: flex;
-    flex-wrap: wrap;
-
-    .skills-technology {
-      display: flex;
-      margin: 2rem 0;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      font-size: 1.4rem;
-      flex-basis: 33%;
-
-      @include mQ($medium) {
-        flex-basis: 33%;
-        font-size: 1.5rem;
-      }
-
-      @include mQ($ipad) {
-        flex-basis: 50%;
-      }
-
-      @include mQ($mobile) {
-        flex-basis: 50%;
-        font-size: 1.3rem;
-      }
-
-      span {
-        margin: 2rem 0;
-      }
-    }
   }
 }

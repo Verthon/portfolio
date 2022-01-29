@@ -1,0 +1,12 @@
+.quote {
+  font-style: italic;
+  margin: 1rem auto 3rem auto;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.author {
+  font-style: normal;
+  font-weight: 800;
+  margin: 0.5rem 0 0 0;
+}
