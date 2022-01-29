@@ -4,7 +4,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 import { Nav } from '../Nav/Nav'
 import type { HeaderData, Props } from './Header.types'
 
-export const Header = ({ scroll }: Props) => {
+export const Header = ({ scrollToComponent }: Props) => {
   const data = useStaticQuery<HeaderData>(
     graphql`
       query {
@@ -22,7 +22,7 @@ export const Header = ({ scroll }: Props) => {
   return (
     <div className="header-wrapper">
       <div className="container">
-        <Nav links={['skills', 'contact']} scroll={scroll} />
+        <Nav links={['skills', 'contact']} scrollToComponent={scrollToComponent} />
       </div>
       <div className="container site-header">
         <header className="hero" data-aos="zoom-out-down">
@@ -56,7 +56,7 @@ export const Header = ({ scroll }: Props) => {
           <button
             id="btn-projects"
             className="hero__btn"
-            onClick={() => scroll('projects')}
+            onClick={() => scrollToComponent('projects')}
           >
             Check Projects
           </button>

@@ -1,4 +1,4 @@
 export type Props = {
-  scroll: Function
+  scrollToComponent: (component: string) => void
   links: string[]
 }

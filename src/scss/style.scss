@@ -26,10 +26,6 @@ body {
   i {
     font-size: 8rem;
 
-    @include mQ($medium) {
-      font-size: 8rem;
-    }
-
     @include mQ($mobile) {
       font-size: 4.5rem;
     }

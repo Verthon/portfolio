@@ -19,8 +19,10 @@ export const useDarkMode = () => {
     const className = 'dark-mode'
     const element = window.document.body
     if (enabled) {
+      element.dataset.theme = "dark"
       element.classList.add(className)
     } else {
+      element.dataset.theme = ""
       element.classList.remove(className)
     }
   }, [enabled])

@@ -57,7 +57,7 @@ const IndexPage = () => {
   }, [])
 
   return (
-    <Layout scrollFunction={scrollToComponent}>
+    <Layout scrollToComponent={scrollToComponent}>
       <Seo />
       <Skills ref={skillsSection} />
       <Projects ref={projectsSection} />

@@ -1,14 +1,15 @@
 import * as React from 'react'
 
 import { Header } from '../Header/Header'
+import type { Props } from './Layout.types'
 
 
-export const Layout = ({ children, scrollFunction }: Props) => {
+export const Layout = ({ children, scrollToComponent }: Props) => {
 
   return (
     <>
       <Header
-        scroll={scrollFunction}
+        scrollToComponent={scrollToComponent}
       />
       {children}
     </>
