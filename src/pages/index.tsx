@@ -3,6 +3,7 @@ import AOS from 'aos'
 import 'aos/dist/aos.css'
 
 import '../scss/style.scss'
+import "../scss/variables.css"
 import { Contact } from '../components/Contact/Contact'
 import { Layout } from '../components/Layout/Layout'
 import { Projects } from '../components/Projects'

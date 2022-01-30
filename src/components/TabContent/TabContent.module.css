@@ -1,0 +1,93 @@
+.tabContent {
+  display: flex;
+  width: 100%;
+}
+
+.tabContentItem {
+  display: none;
+  padding: 1rem 0 2rem 0;
+  margin: 0;
+  color: var(--dark-color-700);
+  width: 100%;
+  height: auto;
+}
+
+@media screen and (min-width: 1024px) {
+  .tabContentItem {
+    width: 100%;
+    margin: 0 1rem;
+    padding: 1rem;
+  }
+}
+
+.tabContentActive {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: var(--white-color);
+  animation: activefade 2s;
+}
+
+@media screen and (min-width: 1024px) {
+  .tabContentActive {
+    margin-bottom: 5rem;
+    flex-wrap: nowrap;
+    height: auto;
+  }
+}
+
+@keyframes activefade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.tabColumn {
+  flex: 100%;
+  padding: 0rem 1rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .tabColumn {
+    flex: 1;
+    padding: 0rem 0.5rem;
+  }
+}
+
+
+.tabContentHeading {
+  padding: 0;
+  font-size: var(--font-size-lg);
+  margin: 1rem 0 0.5rem 0;
+}
+
+@media screen and (min-width: 1024px) {
+  .tabContentHeading {
+    margin: 0.5rem 0 0.5rem 0;
+  }
+}
+
+.tabList {
+  padding: 0 0.5rem;
+  list-style: square;
+}
+
+.tabItem {
+  margin: 0.35rem;
+  color: var(--dark-color-400);
+}
+
+@media screen and (min-width: 1024px) {
+  .tabItem {
+    margin: 0.5rem 0.25rem;
+  }
+}
+
+@media screen and (min-width: 1366px) {
+  .tabItem {
+    max-width: 85%;
+    margin: 1rem 0.75rem;
+  }
+}

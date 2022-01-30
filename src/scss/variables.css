@@ -20,6 +20,7 @@
   --font-size-lg: 1.25rem;
   --font-size-xl: 1.5rem;
   --font-size-xxl: 1.75rem;
+  --font-size-2xl: 2rem;
 
   --bp-xxsmall: 520px;
   --bp-xsmall: 768px;
@@ -28,6 +29,7 @@
   --bp-large: 1366px;
   --bp-xlarge: 1536px;
   --bp-xxlarge: 1920px;
+  --bp-2xlarge: 2560px;
 
   --shadow-light: 0 1px 1px hsla(206.7, 11.7%, 0%, 0.2);
   --shadow: 0 1px 3px hsla(206.7, 11.7%, 15.1%, 0.2);
