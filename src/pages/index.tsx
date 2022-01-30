@@ -9,7 +9,7 @@ import { Layout } from '../components/Layout/Layout'
 import { Projects } from '../components/Projects'
 import { Skills } from '../components/Skills/Skills'
 import { Seo } from '../components/Seo'
-import { Footer } from '../components/Footer'
+import { Footer } from '../components/Footer/Footer'
 
 const IndexPage = () => {
   const skillsSection = React.useRef<HTMLElement>(null)
