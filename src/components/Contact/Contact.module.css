@@ -1,0 +1,216 @@
+@keyframes pulse {
+  0% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+
+  50% {
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+.dark-mode .contact {
+
+  color: $dark-color-dark-1;
+  &__container {
+    background-color: $dark-color-dark-3;
+  }
+
+  &__socials {
+    color: $white;
+  }
+
+  &__input {
+    color: $dark-color-dark-1;
+    background-color: $dark-color-dark-5;
+  }
+
+  &__textarea {
+    color: $dark-color-dark-1;
+    background-color: $dark-color-dark-5;
+  }
+}
+
+.contact {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  background: $color-secondary;
+
+  &__container {
+    margin: 3rem 0 0rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 90%;
+    background-color: $white;
+    @include mQ($bp-large) {
+      background-color: $white;
+      padding: 1rem 3rem;
+      max-width: 600px;
+      border-radius: 2px;
+    }
+  }
+
+  &__socials {
+    margin: 1rem 0 0 1rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    border-radius: $default-radius;
+    padding: 1rem;
+    max-width: 100%;
+  }
+
+  &__label {
+    font-size: 0.875rem;
+    margin: 1rem 0 0.5rem 0;
+  }
+
+  &__input {
+    border: 1px solid transparent;
+    border-radius: $default-radius;
+    padding: 0.75rem 0.5rem;
+    background-color: $color-gray;
+    color: $color-dark;
+
+    &--error {
+      border-radius: $default-radius;
+    }
+  }
+
+  &__textarea {
+    border: 1px solid transparent;
+    border-radius: $default-radius;
+    padding: 0.75rem 0.5rem;
+    background-color: $color-gray;
+  }
+
+  &__success {
+    animation: pulse 0.5s;
+    border-left: 5px solid $color-success-text;
+    border-radius: $default-radius;
+    padding: 0.5rem 0.75rem;
+    background: $color-secondary-2;
+    color: $color-success-text;
+  }
+
+  &__error {
+    animation: pulse 0.5s;
+    border-left: 5px solid $color-error-text;
+    border-radius: $default-radius;
+    padding: 0.5rem 0.75rem;
+    margin: 0.5rem 0;
+    background: $color-error;
+    color: $color-error-text;
+  }
+
+
+  &__about {
+    flex: 1;
+  }
+
+  &__info {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include mQ($bp-large) {
+      background: $white;
+    }
+  }
+
+  &__btn {
+    display: inline-flex;
+    justify-content: center;
+    padding: $button-small-mobile;
+    color: $color-dark;
+    background-color: $color-primary;
+    border: 0;
+    font-size: $font-size-regular;
+    border-radius: $default-radius;
+    box-shadow: $light-shadow;
+    text-transform: capitalize;
+    cursor: pointer;
+
+    &--submit {
+      padding: $button-mobile;
+      margin: 1rem 0 0 0;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    @include mQ($bp-large) {
+      padding: $button-desktop;
+    }
+
+    @include mQ($bp-xxlarge) {
+      padding: $button-4k;
+      font-size: 2.5rem;
+    }
+
+    & svg {
+      margin: 0 0 0 0.5rem;
+    }
+  }
+
+  &__description {
+    line-height: 1.5;
+    margin: 0 auto 1rem auto;
+    max-width: 100%;
+
+    @include mQ($bp-large) {
+      max-width: 90%;
+    }
+  }
+
+  &__email {
+    margin: 2rem 0 2rem 0;
+    &__icon {
+      padding: 0.25rem 0.5rem;
+      margin: 0 0.5rem 0 0;
+      border-radius: $default-radius;
+      background: $color-secondary-2;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-around;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.section-heading--contact {
+  margin: 2.5rem 0 0 0;
+}
+.contact-btn:hover {
+  cursor: pointer;
+}
+.section-description--contact {
+  margin: 0.5rem 0 0 0;
+}
+.section-description--email {
+  margin: 1rem 0 3rem 0;
+}

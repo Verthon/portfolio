@@ -3,6 +3,14 @@
   width: 100%;
 }
 
+/* &__content {
+  color: $dark-color-dark-1;
+
+  &:hover {
+    color: $color-dark;
+  }
+} */
+
 .tabContentItem {
   display: none;
   padding: 1rem 0 2rem 0;
@@ -10,6 +18,10 @@
   color: var(--dark-color-700);
   width: 100%;
   height: auto;
+}
+
+[data-theme='dark'] .tabContentItem {
+  color: var(--grey-color-200);
 }
 
 @media screen and (min-width: 1024px) {
@@ -77,6 +89,10 @@
 .tabItem {
   margin: 0.35rem;
   color: var(--dark-color-400);
+}
+
+[data-theme='dark'] .tabItem {
+  color: var(--grey-color);
 }
 
 @media screen and (min-width: 1024px) {

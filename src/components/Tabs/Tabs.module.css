@@ -1,40 +1,10 @@
-.dark-mode .tab-header {
-  &__item {
-    color: var(--white-color);
-    background-color: var(--dark-color-600);
-
-    &:hover {
-      color: var(--dark-color-700);
-    }
-  }
-
-  &--active {
-    color: var(--dark-color-700);
-    background-color: var(--primary-color);
-    .tab-header__content {
-      color: var(--grey-color-600);
-
-      &:hover {
-        color: var(--grey-color-600);
-      }
-    }
-  }
-
-  &__content {
-    color: var(--grey-color);
-
-    &:hover {
-      color: var(--dark-color-700);
-    }
-  }
-
-  .tab-item {
+  /* .tab-item {
     color: var(--grey-color);
     &:hover {
       color: var(--grey-color-600);
     }
   }
-}
+} */
 
 .dark-mode .active-tab {
   background-color: var(--dark-color);
@@ -61,6 +31,11 @@
   flex-wrap: wrap;
   background-color: var(--white-color);
   animation: activefade 2s;
+}
+
+[data-theme='dark'] .activeContentTab {
+  background-color: var(--dark-color-600);
+  color: var(--white-color);
 }
 
 @media screen and (min-width: 1024px) {
