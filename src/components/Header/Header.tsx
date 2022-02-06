@@ -2,7 +2,10 @@ import * as React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 
 import { Nav } from '../Nav/Nav'
+import { Container } from '../Container/Container'
+
 import type { HeaderData, Props } from './Header.types'
+import { wrapper, header, heroName, heroWelcome, heroHighlight, heroDescription, heroBtn } from "./Header.module.css"
 
 export const Header = ({ scrollToComponent }: Props) => {
   const data = useStaticQuery<HeaderData>(
@@ -20,34 +23,34 @@ export const Header = ({ scrollToComponent }: Props) => {
   )
 
   return (
-    <div className="header-wrapper">
-      <div className="container">
+    <div className={wrapper}>
+      <Container>
         <Nav links={['skills', 'contact']} scrollToComponent={scrollToComponent} />
-      </div>
-      <div className="container site-header">
-        <header className="hero" data-aos="zoom-out-down">
-          <h2 className="hero__welcome">
+      </Container>
+      <Container>
+        <header className={header} data-aos="zoom-out-down">
+          <h2 className={heroWelcome}>
             Hello{' '}
             <span role="img" aria-label="waving hand">
               👋
             </span>{' '}
             Welcome to my portfolio!
           </h2>
-          <h1 className="hero__name">
+          <h1 className={heroName}>
             I'm{' '}
-            <strong className="hero__highlight">
+            <strong className={heroHighlight}>
               {data.site.siteMetadata.author}
             </strong>
           </h1>
           <p
-            className="hero__description"
+            className={heroDescription}
             data-aos="fade-up"
             data-aos-delay="200"
           >
             {data.site.siteMetadata.position}
           </p>
           <p
-            className="hero__description"
+            className={heroDescription}
             data-aos="fade-up"
             data-aos-delay="300"
           >
@@ -55,13 +58,13 @@ export const Header = ({ scrollToComponent }: Props) => {
           </p>
           <button
             id="btn-projects"
-            className="hero__btn"
+            className={heroBtn}
             onClick={() => scrollToComponent('projects')}
           >
             Check Projects
           </button>
         </header>
-      </div>
+      </Container>
     </div>
   )
 }

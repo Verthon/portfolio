@@ -2,7 +2,8 @@ import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 
 import { Project } from './Project/Project'
-import { ProjectsQueryResponse } from '../types/projects.types'
+import { Container } from './Container/Container'
+import type { ProjectsQueryResponse } from '../types/projects.types'
 
 export const Projects = React.forwardRef((_props, ref: React.ForwardedRef<HTMLElement>) => {
   const data = useStaticQuery<ProjectsQueryResponse>(graphql`
@@ -37,7 +38,7 @@ export const Projects = React.forwardRef((_props, ref: React.ForwardedRef<HTMLEl
   )
   return (
     <section ref={ref} id="projects" className="section projects">
-      <div className="container">
+      <Container>
         <h2 className="section__heading">Projects</h2>
         <p className="section__description">
           This is what I have worked on so far.
@@ -54,7 +55,7 @@ export const Projects = React.forwardRef((_props, ref: React.ForwardedRef<HTMLEl
             animation={project.animation}
           />
         ))}
-      </div>
+      </Container>
     </section>
   )
 })
