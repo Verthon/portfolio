@@ -2,14 +2,14 @@ import * as React from 'react'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
-import '../scss/style.css'
-import "../scss/variables.css"
 import { Contact } from '../components/Contact/Contact'
 import { Layout } from '../components/Layout/Layout'
 import { Projects } from '../components/Projects'
 import { Skills } from '../components/Skills/Skills'
 import { Seo } from '../components/Seo'
 import { Footer } from '../components/Footer/Footer'
+import '../styles/style.css'
+import "../styles/variables.css"
 
 const IndexPage = () => {
   const skillsSection = React.useRef<HTMLElement>(null)
@@ -17,6 +17,7 @@ const IndexPage = () => {
   const contactSection = React.useRef<HTMLElement>(null)
 
   const scrollToComponent = (component: string) => {
+    console.log(component, skillsSection.current)
     if(skillsSection.current && projectsSection.current && contactSection.current) {
       switch (component) {
         case 'skills':

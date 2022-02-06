@@ -53,7 +53,6 @@ module.exports = {
         icon: 'src/images/android-chrome-192x192.png',
       },
     },
-    'gatsby-plugin-sass',
     {
       resolve: 'gatsby-plugin-react-svg',
       options: {
