@@ -3,15 +3,9 @@ import * as React from 'react'
 import { navItem } from "./NavItem.module.css"
 import { Props } from './NavItem.types'
 
-export const NavItem = ({ name, handleClick, children }: Props) => {
-  if (name && handleClick) {
-    <li className={navItem} onClick={() => handleClick && handleClick(name)}>
-      {children}
-    </li>
-  }
-
+export const NavItem = ({ onClick, children }: Props) => {
   return (
-    <li className={navItem}>
+    <li className={navItem} onClick={onClick}>
       {children}
     </li>
   )

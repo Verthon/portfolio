@@ -18,7 +18,7 @@ const IndexPage = () => {
 
   const scrollToComponent = (component: string) => {
     console.log(component, skillsSection.current)
-    if(skillsSection.current && projectsSection.current && contactSection.current) {
+    if (skillsSection.current && projectsSection.current && contactSection.current) {
       switch (component) {
         case 'skills':
           skillsSection.current.scrollIntoView({
@@ -60,13 +60,16 @@ const IndexPage = () => {
   }, [])
 
   return (
-    <Layout scrollToComponent={scrollToComponent}>
-      <Seo />
-      <Skills ref={skillsSection} />
-      <Projects ref={projectsSection} />
-      <Contact ref={contactSection} />
-      <Footer />
-    </Layout>
+    <React.StrictMode>
+      <Layout scrollToComponent={scrollToComponent}>
+        <Seo />
+        <Skills ref={skillsSection} />
+        <Projects ref={projectsSection} />
+        <Contact ref={contactSection} />
+        <Footer />
+      </Layout>
+    </React.StrictMode>
+
   )
 }
 
