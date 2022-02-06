@@ -11,7 +11,7 @@
 
   --error-box-color: hsl(351.6,53.2%,92.8%);
   --error-box-text-color: hsl(351.6,53.2%,41.6%);
-  --sucess-text: hsl(176.1,44.9%,21.5%);
+  --success-text: hsl(176.1,44.9%,21.5%);
   --default-radius: 2px;
 
   --font-size-xs: 0.75rem;

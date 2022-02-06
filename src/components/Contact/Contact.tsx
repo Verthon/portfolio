@@ -10,6 +10,8 @@ import { sendEmail } from '../../utils/contact'
 import { STATUS } from '../../constants/state'
 import { SubmitStatus } from './Contact.types'
 import { FormAlert } from './FormAlert/FormAlert'
+
+import { contactContainer, contactForm, contactSocials, contactLabel, contactInput, contactTextarea, error, btn, btnSubmit, description, footer, contactInputError, hidden } from "./Contact.module.css"
 import { INIT_FORM_STATE, INIT_ERROR_STATE } from './Contact.const'
 
 export const Contact = React.forwardRef((_props, ref) => {
@@ -62,25 +64,25 @@ export const Contact = React.forwardRef((_props, ref) => {
   return (
     <section ref={ref} id="contact" className="section contact">
       <h2 className="section__heading section__heading--contact">Contact</h2>
-      <div className="contact__container">
+      <div className={contactContainer}>
         <form
-          className="contact__form"
+          className={contactForm}
           action="https://formspree.io/mzbjzzek"
           method="POST"
           onSubmit={(e) => onSubmit(e)}
           netlify-honeypot="bot-field"
           data-netlify="true"
         >
-          <p className="hidden">
+          <p className={hidden}>
             <label htmlFor="bot-field" id="bot-field">
               Don’t fill this out if you're human: <input name="bot-field" />
             </label>
           </p>
-          <p className="contact__description">
+          <p className={description}>
             Have a question or want to say hi? Feel free to contact me with your
             webmail client or with form below.
           </p>
-          <div className="contact__socials">
+          <div className={contactSocials}>
             <a
               href={site.siteMetadata.github}
               target="_blank"
@@ -99,7 +101,7 @@ export const Contact = React.forwardRef((_props, ref) => {
             </a>
             <a
               href={`mailto:${site.siteMetadata.email}`}
-              className="contact__btn"
+              className={btn}
               aria-label="Link to email christopher.sordyl@gmail.com"
             >
               Quick mail
@@ -111,15 +113,15 @@ export const Contact = React.forwardRef((_props, ref) => {
               />
             </a>
           </div>
-          <label className="contact__label" htmlFor="name">
+          <label className={contactLabel} htmlFor="name">
             Name
           </label>
           <input
             role="textbox"
             className={
               form.error.inputName === 'name'
-                ? 'contact__input contact__input--error'
-                : 'contact__input'
+                ? `${contactInput} ${contactInputError}`
+                : contactInput
             }
             type="text"
             name="name"
@@ -128,18 +130,18 @@ export const Contact = React.forwardRef((_props, ref) => {
             onChange={(e) => onFormChange(e)}
           />
           {form.error.inputName === 'name' ? (
-            <p role="alert" className="contact__error">
+            <p role="alert" className={error}>
               {form.error.message}
             </p>
           ) : null}
-          <label className="contact__label" htmlFor="email">
+          <label className={contactLabel} htmlFor="email">
             Email address
           </label>
           <input
             className={
               form.error.inputName === 'email'
-                ? 'contact__input contact__input--error'
-                : 'contact__input'
+                ? `${contactInput} ${contactInputError}`
+                : contactInput
             }
             type="email"
             name="email"
@@ -148,46 +150,46 @@ export const Contact = React.forwardRef((_props, ref) => {
             onChange={(e) => onFormChange(e)}
           />
           {form.error.inputName === 'email' ? (
-            <p role="alert" className="contact__error">
+            <p role="alert" className={error}>
               {form.error.message}
             </p>
           ) : null}
-          <label className="contact__label" htmlFor="message">
+          <label className={contactLabel} htmlFor="message">
             Message
           </label>
           <textarea
             className={
               form.error.inputName === 'message'
-                ? 'contact__textarea contact__input--error'
-                : 'contact__textarea'
+                ? `${contactTextarea} ${contactInputError}`
+          : contactTextarea
             }
-            name="message"
-            cols={30}
-            rows={10}
-            placeholder="Message"
-            value={form.message}
-            onChange={(e) => onFormChange(e)}
+          name="message"
+          cols={30}
+          rows={10}
+          placeholder="Message"
+          value={form.message}
+          onChange={(e) => onFormChange(e)}
           ></textarea>
-          {form.error.inputName === 'message' ? (
-            <p role="alert" className="contact__error">
-              {form.error.message}
-            </p>
-          ) : null}
-          <FormAlert status={status}/>
-          <Spinner isActive={status === STATUS.loading} />
-          <div className="contact__footer">
-            <button
-              role="button"
-              type="submit"
-              name="submit"
-              className="contact__btn contact__btn--submit"
-              disabled={isDisabled}
-            >
-              Submit
-            </button>
-          </div>
-        </form>
-      </div>
-    </section>
+        {form.error.inputName === 'message' ? (
+          <p role="alert" className={error}>
+            {form.error.message}
+          </p>
+        ) : null}
+        <FormAlert status={status} />
+        <Spinner isActive={status === STATUS.loading} />
+        <div className={footer}>
+          <button
+            role="button"
+            type="submit"
+            name="submit"
+            className={btnSubmit}
+            disabled={isDisabled}
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+    </section >
   )
 })

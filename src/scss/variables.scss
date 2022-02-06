@@ -8,10 +8,10 @@ $color-project: hsl(210, 20%, 100%);
 $color-tag: hsl(210, 50%, 97.3%);
 $color-tag-text: hsl(210, 20%, 33.6%);
 
-$color-gray: hsl(206.7, 52.9%, 96.7%);
-$color-gray-1: hsl(206.7, 52.9%, 92.7%);
+$color-gray: hsl(206.7, 52.9%, 96.7%); // --grey-color-100
+$color-gray-1: hsl(206.7, 52.9%, 92.7%); // --grey-color-200
 $dark-color-dark-1: hsl(206.7, 11.7%, 90.1%); //--grey-color
-$dark-color-dark-2: hsl(206.7, 11.7%, 80.1%);
+$dark-color-dark-2: hsl(206.7, 11.7%, 80.1%); //--grey-color-600
 
 $color-dark: hsl(206.7, 11.7%, 15.1%); //   --dark-color-700
 $color-dark-1: hsl(206.7, 11.7%, 20.1%);
@@ -54,7 +54,7 @@ $md: 720px;
 $lg: 960px;
 $xxl: 1140px;
 
-$font-size-regular: 1rem;
+$font-size-regular: 1rem; //--font-size-md
 $font-size-small: 0.875rem;
 
 $font-size-title: 1.75rem;
@@ -69,9 +69,9 @@ $light-shadow: 0 1px 1px hsla(206.7, 11.7%, 0%, 0.2);
 $default-shadow: 0 1px 3px hsla(206.7, 11.7%, 15.1%, 0.2);
 $project-shadow: 0 1px 2px hsla(206.7, 11.7%, 15.1%, 0.2);
 
-$button-mobile: 0.5rem 1rem;
-$button-tablet: 0.55rem 1.25rem;
-$button-desktop: 0.6rem 1.5rem;
-$button-small-mobile: 0.4rem 1rem;
+$button-mobile: 0.5rem 1rem; // --button-padding-xs: 0.5rem 1rem;
+$button-tablet: 0.55rem 1.25rem; // --button-padding-sm: 0.55rem 1.25rem;
+$button-desktop: 0.6rem 1.5rem; // --button-padding-md: 0.6rem 1.5rem;
+$button-small-mobile: 0.4rem 1rem; // --button-padding-xxs
 $button-4k: 1rem 2rem;
 $project-image-width: 600px;
