@@ -1,9 +1,11 @@
-import React from 'react'
+import * as React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 
-import GatsbyLogo from '../images/Gatsby_Monogram.svg'
-import { HearthIcon } from '../icons/HearthIcon'
-import { CodeIcon } from '../icons/CodeIcon'
+import GatsbyLogo from '../../images/Gatsby_Monogram.svg'
+import { HearthIcon } from '../../icons/HearthIcon'
+import { CodeIcon } from '../../icons/CodeIcon'
+
+import { footer, footerText, footerCode, footerHearth, footerTech, footerLogo } from "./Footer.module.css"
 
 export const Footer = () => {
   const data = useStaticQuery(
@@ -21,14 +23,14 @@ export const Footer = () => {
   )
 
   return (
-    <footer className="site-footer">
-      <p className="site-footer__text">
-        <span className="site-footer__code">
+    <footer className={footer}>
+      <p className={footerText}>
+        <span className={footerCode}>
           <CodeIcon />
         </span>
         with{' '}
         <span
-          className="site-footer__heart"
+          className={footerHearth}
           data-aos="fade-down"
           data-aos-delay="500"
           data-aos-offset="70"
@@ -38,9 +40,9 @@ export const Footer = () => {
         </span>
         by {data.site.siteMetadata.author}
       </p>
-      <div className="site-footer__tech">
-        <p className="site-footer__text">Build with </p>
-        <img className="site-footer__logo" src={GatsbyLogo} alt="" />
+      <div className={footerTech}>
+        <p className={footerText}>Build with </p>
+        <img className={footerLogo} src={GatsbyLogo} alt="" />
       </div>
     </footer>
   )

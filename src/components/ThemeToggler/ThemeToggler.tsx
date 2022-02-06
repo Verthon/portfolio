@@ -1,14 +1,16 @@
 import * as React from 'react'
-import { useDarkMode } from '../hooks/useDarkMode'
+import { useDarkMode } from '../../hooks/useDarkMode'
 
-import { MoonIcon } from '../icons/MoonIcon'
-import { SunIcon } from '../icons/SunIcon'
+import { MoonIcon } from '../../icons/MoonIcon'
+import { SunIcon } from '../../icons/SunIcon'
+
+import { themeToggler } from "./ThemeToggler.module.css"
 
 export const ThemeToggler = () => {
   const [darkMode, setDarkMode] = useDarkMode()
   return (
     <button
-      className="site-nav__theme-toggler"
+      className={themeToggler}
       onClick={() => setDarkMode(!darkMode)}
       aria-label={darkMode ? "Activate light theme" : "Activate dark theme"}
       title={darkMode ? "Activate light theme" : "Activate dark theme"}

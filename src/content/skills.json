@@ -23,21 +23,18 @@
             "Experience with writing tests - Jest, React Testing Library, Cypress",
             "Hands on experience with Vue.js and Vuex / Pinia",
             "Working experience with SPAs based on Rest APIs",
-            "Familiar with tooling: webpack, eslint"
+            "Hands on experience with React Query"
           ]
         },
         {
           "title": "Universal",
           "tech": [
-            "HTML5, CSS3, Sass, Styled Components",
             "Real world experience with GIT version control system",
-            "Proficient with RWD and UI/UX, decent eye for the detail",
-            "Familiar with BEM methodology",
-            "Basic understanding of Tailwind CSS",
-            "Hands on experience with Wordpress and Sanity CMS",
+            "Experience with troubleshooting and applications maintenance in production environments",
+            "Basic sense of UX/UI, decent eye for the detail",
+            "Familiar HTML and modern styling (Styled Components, CSS modules)",
             "Familiar with SEO principles and Web Vitals",
-            "Basics of the GraphQL with Apollo",
-            "Basics of Figma prototyping"
+            "Basics understanding of the GraphQL with Apollo"
           ]
         }
       ],
@@ -49,8 +46,8 @@
             "Good communication skills",
             "Experience in working directly with a clients",
             "Familiar with working as a remote developer",
-            "Ability to learn on my own",
-            "Familiar with creating an own knowledge base on Notion"
+            "Able to quickly gain new technical expertise",
+            "Good command of written and spoken English"
           ]
         },
         {
@@ -60,8 +57,7 @@
             "Hands on experience on Hasura",
             "Basics of Node.js and Express.js",
             "Knowledge about HTTP and REST",
-            "Hands on experience with Postman",
-            "Basics of PostgreSQL"
+            "Hands on experience with Postman"
           ]
         }
       ]
