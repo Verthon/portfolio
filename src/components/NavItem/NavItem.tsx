@@ -1,11 +1,12 @@
 import * as React from 'react'
 
+import { navItem } from "./NavItem.module.css"
 import { Props } from './NavItem.types'
 
-export const NavItem = ({ name, handleClick }: Props) => {
+export const NavItem = ({ onClick, children }: Props) => {
   return (
-    <li className="menu-item" onClick={() => handleClick(name)}>
-      {name}
+    <li className={navItem} onClick={onClick}>
+      {children}
     </li>
   )
 }

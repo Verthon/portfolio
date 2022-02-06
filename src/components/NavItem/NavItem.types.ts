@@ -1,4 +1,4 @@
 export type Props = {
-  name: string
-  handleClick: Function
+  onClick?: () => void
+  children?: React.ReactNode,
 }

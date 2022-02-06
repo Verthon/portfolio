@@ -1,0 +1,21 @@
+.quote {
+  font-style: italic;
+  margin: 1rem auto 3rem auto;
+  text-align: center;
+  line-height: 1.5;
+}
+
+[data-theme='dark'] .quote {
+  color: var(--white-color);
+}
+
+.author {
+  font-style: normal;
+  font-weight: 800;
+  margin: 0.5rem 0 0 0;
+}
+
+
+[data-theme='dark'] .author {
+  color: var(--white-color);
+}

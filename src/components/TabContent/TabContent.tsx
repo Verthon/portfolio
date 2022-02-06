@@ -1,14 +1,15 @@
 import * as React from 'react'
 
 import type { Props } from './TabContent.types'
+import { tabContentHeading, tabList, tabItem, tabColumn } from "./TabContent.module.css"
 
 export const TabContent = ({ item }: Props) => {
   return (
-    <div className="tab-column">
-      <h3 className="tab-content-heading">{item.title}</h3>
-      <ul className="tab-list">
+    <div className={tabColumn}>
+      <h3 className={tabContentHeading}>{item.title}</h3>
+      <ul className={tabList}>
         {item.tech.map((tech) => (
-          <li key={tech} className="tab-item">
+          <li key={tech} className={tabItem}>
             {tech}
           </li>
         ))}

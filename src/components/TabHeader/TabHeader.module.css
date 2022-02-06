@@ -1,0 +1,91 @@
+.tabHeaderTitle {
+  margin: 0;
+  font-size: var(--font-size-lg);
+}
+
+@media screen and (min-width: 1024px) {
+  .tabHeaderTitle {
+    margin: 0.5rem 0;
+  }
+}
+
+.tabHeaderContent {
+  max-width: 100%;
+  margin: 0.5rem 0;
+  color: var(--dark-color-400);
+}
+
+[data-theme='dark'] .tabHeaderContent {
+  color: var(--grey-color-200);
+}
+
+@media screen and (min-width: 1366px) {
+  .tabHeaderContent {
+    max-width: 90%;
+  }
+}
+
+.tabHeaderItem {
+  margin: 1rem 0;
+  padding: 1rem;
+  background-color: var(--grey-color-200);
+  color: var(--dark-color-700);
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  width: auto;
+}
+
+@media screen and (min-width: 1024px) {
+  .tabHeaderItem {
+    margin: 1rem;
+    line-height: 1.6;
+    padding: 1rem 1.5rem;
+  }
+}
+
+@media screen and (min-width: 1366px) {
+  .tabHeaderItem {
+    margin: 1rem 0 1rem 1rem;
+  }
+}
+
+.tabHeaderItem:hover {
+  cursor: pointer;
+  background-color: var(--primary-color);
+  color: var(--dark-color-700);
+}
+
+[data-theme='dark'] .tabHeaderItem {
+  color: var(--white-color);
+  background-color: var(--dark-color);
+}
+
+[data-theme='dark'] .tabHeaderItem:hover {
+  color: var(--dark-color-700);
+  background-color: var(--primary-color);
+}
+
+[data-theme='dark'] .tabHeaderItem:hover .tabHeaderContent {
+  color: var(--dark-color-700);
+}
+
+@media screen and (min-width: 1366px) {
+  .tabHeaderItem:last-of-type {
+    margin: 1rem 1rem 1rem 1rem;
+  }
+}
+
+.tabHeaderItemActive {
+  color: var(--dark-color-700);
+  background-color: var(--primary-color);
+}
+
+[data-theme='dark'] .tabHeaderItemActive {
+  background-color: var(--primary-color);
+  color: var(--dark-color-700);
+}
+
+[data-theme='dark'] .tabHeaderItemActive .tabHeaderContent {
+  color: var(--dark-color-700);
+}
