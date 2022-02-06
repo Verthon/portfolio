@@ -1,18 +1,6 @@
-  /* .tab-item {
-    color: var(--grey-color);
-    &:hover {
-      color: var(--grey-color-600);
-    }
-  }
-} */
-
-.dark-mode .active-tab {
-  background-color: var(--dark-color);
-  color: var(--white-color);
-}
-
-.dark-mode .tab-item {
-  color: var(--grey-color);
+.container {
+  max-width: 950px;
+  margin: auto;
 }
 
 .tabHeadersWrapper {

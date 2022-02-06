@@ -10,9 +10,11 @@ import { sendEmail } from '../../utils/contact'
 import { STATUS } from '../../constants/state'
 import { SubmitStatus } from './Contact.types'
 import { FormAlert } from './FormAlert/FormAlert'
+import { Section } from '../Section/Section'
 
 import { contactContainer, contactForm, contactSocials, contactLabel, contactInput, contactTextarea, error, btn, btnSubmit, description, footer, contactInputError, hidden } from "./Contact.module.css"
 import { INIT_FORM_STATE, INIT_ERROR_STATE } from './Contact.const'
+
 
 export const Contact = React.forwardRef((_props, ref) => {
   const { site } = useStaticQuery(
@@ -62,8 +64,7 @@ export const Contact = React.forwardRef((_props, ref) => {
   const isDisabled = !isValid || status === STATUS.loading || form.hasError
 
   return (
-    <section ref={ref} id="contact" className="section contact">
-      <h2 className="section__heading section__heading--contact">Contact</h2>
+    <Section ref={ref} id="contact" header="Contact" type="contact">
       <div className={contactContainer}>
         <form
           className={contactForm}
@@ -190,6 +191,6 @@ export const Contact = React.forwardRef((_props, ref) => {
         </div>
       </form>
     </div>
-    </section >
+    </Section >
   )
 })

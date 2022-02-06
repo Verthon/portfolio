@@ -1,12 +1,26 @@
 .section {
   padding: 2rem 0;
-  background-color: var(--grey-color-100);
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
 }
 
 [data-theme='dark'] .section {
-  background-color: var(--dark-color-600);
+  background-color: var(--dark-color-700);
+}
+
+.sectionDefault {
+  background-color: var(--grey-color-100);
+}
+
+.sectionContact {
+  composes: section;
+  background-color: var(--secondary-color);
+}
+
+.sectionProjects {
+  background-color: var(--secondary-color-400)
 }
 
 .heading {
@@ -18,7 +32,7 @@
 }
 
 [data-theme='dark'] .heading {
-  background-color: var(--white-color);
+  color: var(--white-color);
 }
 
 @media screen and (min-width: 768px) {
@@ -41,10 +55,4 @@
 
 [data-theme='dark'] .description {
   color: var(--grey-color);
-}
-
-@media screen and (min-width: 768px) {
-  .description {
-    font-size: 1.25rem;
-  }
 }

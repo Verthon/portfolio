@@ -2,7 +2,7 @@ import * as React from 'react'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
-import '../scss/style.scss'
+import '../scss/style.css'
 import "../scss/variables.css"
 import { Contact } from '../components/Contact/Contact'
 import { Layout } from '../components/Layout/Layout'

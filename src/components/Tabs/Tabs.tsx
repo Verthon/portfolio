@@ -6,7 +6,7 @@ import { tabContentItem, tabContent } from "../TabContent/TabContent.module.css"
 
 import type { TabType, Props } from './Tabs.types'
 import { MOBILE_BREAKPOINT } from './Tabs.const'
-import { activeContentTab, tabHeadersWrapper } from "./Tabs.module.css"
+import { activeContentTab, tabHeadersWrapper, container } from "./Tabs.module.css"
 
 export const Tabs = ({ headers, content }: Props) => {
   const frontendTabRef = React.useRef<HTMLInputElement>(null)
@@ -51,7 +51,7 @@ export const Tabs = ({ headers, content }: Props) => {
 
   const contentCssActiveClass = `${tabContentItem} ${activeContentTab} animated fadeIn`
   return (
-    <div className="row">
+    <div className={container}>
       <ul
         className={tabHeadersWrapper}
         data-aos="fade-down"

@@ -6,7 +6,7 @@ import { Props } from './NavItem.types'
 export const NavItem = ({ name, handleClick, children }: Props) => {
   if (name && handleClick) {
     <li className={navItem} onClick={() => handleClick && handleClick(name)}>
-      {name}
+      {children}
     </li>
   }
 

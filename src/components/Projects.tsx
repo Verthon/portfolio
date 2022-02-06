@@ -4,6 +4,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 import { Project } from './Project/Project'
 import { Container } from './Container/Container'
 import type { ProjectsQueryResponse } from '../types/projects.types'
+import { Section } from './Section/Section'
 
 export const Projects = React.forwardRef((_props, ref: React.ForwardedRef<HTMLElement>) => {
   const data = useStaticQuery<ProjectsQueryResponse>(graphql`
@@ -37,12 +38,8 @@ export const Projects = React.forwardRef((_props, ref: React.ForwardedRef<HTMLEl
     (element) => element.node.childImageSharp.fluid.srcSet
   )
   return (
-    <section ref={ref} id="projects" className="section projects">
+    <Section ref={ref} id="projects" header="Projects" description="This is what I have worked on so far." type="projects">
       <Container>
-        <h2 className="section__heading">Projects</h2>
-        <p className="section__description">
-          This is what I have worked on so far.
-        </p>
         {data.contentJson.projects.map((project, index) => (
           <Project
             key={project.name}
@@ -56,6 +53,6 @@ export const Projects = React.forwardRef((_props, ref: React.ForwardedRef<HTMLEl
           />
         ))}
       </Container>
-    </section>
+    </Section>
   )
 })

@@ -10,7 +10,7 @@ module.exports = {
     twitterSlug: '@chsordyl',
     position:
       'Frontend developer passionate about React.js ecosystem, focused on creating modern web apps.',
-    location: 'Based in Bielsko-Biała, Poland ⛰️',
+    location: 'Based in Bielsko-Biała, Poland 🏔️',
     about:
       'I am a frontend developer living in Bielsko-Biała, Poland. I build websites and web apps particularly, I specialize in frontend development React.js, mobile first web applications and creating modern user intefaces.',
     linkedin: 'https://www.linkedin.com/in/krzysztof-sordyl/',

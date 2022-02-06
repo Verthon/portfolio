@@ -29,7 +29,7 @@ export const Nav = ({ links, scrollToComponent }: Props) => {
       </div>
       <ul className={menuList}>
         {links.map((link) => (
-          <NavItem key={link} name={link} handleClick={scrollToComponent} />
+          <NavItem key={link} name={link} handleClick={scrollToComponent}>{link}</NavItem>
         ))}
         <NavItem>
           <a
