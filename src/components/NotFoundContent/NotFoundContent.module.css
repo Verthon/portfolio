@@ -1,0 +1,32 @@
+.notFound {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  flex-direction: column;
+  color: var(--black-color);
+}
+
+@media screen and (min-width: 1024px) {
+  .notFound {
+    margin: 2rem;
+  }
+}
+
+.image {
+  display: flex;
+}
+
+.title {
+  font-size: 2rem;
+}
+
+.btn {
+  border: 0;
+  background: var(--black-primary);
+  color: var(--dark-color-600);
+  border-radius: 0.1rem;
+  padding: 0.5rem 2rem;
+  font-size: 1.35rem;
+  margin: 2rem 0;
+  cursor: pointer;
+}

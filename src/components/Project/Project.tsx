@@ -2,7 +2,9 @@ import * as React from 'react'
 
 import { GithubIcon } from '../../icons/GithubIcon'
 import { ExternalLinkIcon } from '../../icons/ExternalLinkIcon'
-import { Props } from './Project.types'
+
+import { project, image as imageStyle, content, title, description as descriptionStyles, tag, descriptionSources, footer, link, btn } from "./Project.module.css"
+import type { Props } from './Project.types'
 
 export const Project = ({
   name,
@@ -14,25 +16,25 @@ export const Project = ({
   animation,
 }: Props) => {
   return (
-    <div className="project" data-aos={animation} data-aos-duration="1000">
+    <div className={project} data-aos={animation} data-aos-duration="1000">
       <img
-        className="project__image"
+        className={imageStyle}
         srcSet={image}
         alt="Event app screenshot"
       />
-      <article className="project__content">
-        <h3 className="project__title">{name}</h3>
-        <div className="project__tags">
+      <article className={content}>
+        <h3 className={title}>{name}</h3>
+        <div>
           {technologies.map((technology) => (
-            <span key={technology} className="project__tag">
+            <span key={technology} className={tag}>
               {technology}
             </span>
           ))}
         </div>
-        <p className="project__description">{description}</p>
-        <footer className="project__footer">
+        <p className={descriptionStyles}>{description}</p>
+        <footer className={footer}>
           <a
-            className="project__btn"
+            className={btn}
             href={github}
             target="_blank"
             rel="noopener noreferrer"
@@ -41,7 +43,7 @@ export const Project = ({
             Source <GithubIcon width={22} height={22} aria-hidden="true" />
           </a>
           <a
-            className="project__btn project__btn--link"
+            className={link}
             href={live}
             target="_blank"
             rel="noopener noreferrer"

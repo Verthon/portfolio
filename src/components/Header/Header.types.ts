@@ -1,5 +1,5 @@
 export type Props = {
-  scroll: Function
+  scrollToComponent: (component: string) => void
 }
 
 export type HeaderData = {

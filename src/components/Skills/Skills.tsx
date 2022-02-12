@@ -2,7 +2,11 @@ import * as React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 
 import { Tabs } from '../Tabs/Tabs'
+
 import type { SkillsQueryResponse } from './Skills.types'
+import { quote, author } from "./Skills.module.css"
+import { Section } from '../Section/Section'
+import { Container } from '../Container/Container'
 
 export const Skills = React.forwardRef((_props, ref: React.ForwardedRef<HTMLElement>) => {
   const data = useStaticQuery<SkillsQueryResponse>(
@@ -37,17 +41,16 @@ export const Skills = React.forwardRef((_props, ref: React.ForwardedRef<HTMLElem
   )
 
   return (
-    <section ref={ref} id="skills" className="section">
-      <div className="container container--skills">
-        <h2 className="section__heading">Skills</h2>
-        <blockquote className="section__quote">
+    <Section ref={ref} id="skills" header="Skills">
+      <Container>
+        <blockquote className={quote}>
           "{data.site.siteMetadata.quote.content}"
-          <footer className="section__quote__author">
+          <footer className={author}>
             {data.site.siteMetadata.quote.author}
           </footer>
         </blockquote>
         <Tabs headers={data.allContentJson.edges[1].node.tabs.headers} content={data.allContentJson.edges[1].node.tabs.content} />
-      </div>
-    </section>
+      </Container>
+    </Section>
   )
 })

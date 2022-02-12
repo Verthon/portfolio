@@ -2,9 +2,11 @@ import * as React from 'react'
 
 import { TabHeader } from '../TabHeader/TabHeader'
 import { TabContent } from '../TabContent/TabContent'
+import { tabContentItem, tabContent } from "../TabContent/TabContent.module.css"
 
 import type { TabType, Props } from './Tabs.types'
 import { MOBILE_BREAKPOINT } from './Tabs.const'
+import { activeContentTab, tabHeadersWrapper, container } from "./Tabs.module.css"
 
 export const Tabs = ({ headers, content }: Props) => {
   const frontendTabRef = React.useRef<HTMLInputElement>(null)
@@ -47,11 +49,11 @@ export const Tabs = ({ headers, content }: Props) => {
     }
   }
 
-  const contentCssActiveClass = `tab-content__item active-tab animated fadeIn`
+  const contentCssActiveClass = `${tabContentItem} ${activeContentTab} animated fadeIn`
   return (
-    <div className="row">
+    <div className={container}>
       <ul
-        className="tab-header"
+        className={tabHeadersWrapper}
         data-aos="fade-down"
         data-aos-delay="200"
         data-aos-offset="100"
@@ -75,13 +77,13 @@ export const Tabs = ({ headers, content }: Props) => {
           )
         )}
       </ul>
-      <article className="tab-content">
+      <article className={tabContent}>
         <div
           ref={frontendTabRef}
           className={
             activeTab === 'frontend'
               ? contentCssActiveClass
-              : 'tab-content__item'
+              : tabContentItem
           }
         >
           {content[0].map((column) => (
@@ -93,7 +95,7 @@ export const Tabs = ({ headers, content }: Props) => {
           className={
             activeTab === 'general'
               ? contentCssActiveClass
-              : 'tab-content__item'
+              : tabContentItem
           }
         >
           {content[1].map((column) => (
