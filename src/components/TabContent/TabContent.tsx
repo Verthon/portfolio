@@ -5,7 +5,7 @@ import { tabContentHeading, tabList, tabItem, tabColumn } from "./TabContent.mod
 
 export const TabContent = ({ item }: Props) => {
   return (
-    <div className={tabColumn}>
+    <div className={tabColumn} data-cy="tab-content">
       <h3 className={tabContentHeading}>{item.title}</h3>
       <ul className={tabList}>
         {item.tech.map((tech) => (

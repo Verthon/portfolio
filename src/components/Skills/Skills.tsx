@@ -23,6 +23,7 @@ export const Skills = React.forwardRef((_props, ref: React.ForwardedRef<HTMLElem
         allContentJson {
           edges {
             node {
+              id
               tabs {
                 content {
                   tech
@@ -31,6 +32,7 @@ export const Skills = React.forwardRef((_props, ref: React.ForwardedRef<HTMLElem
                 headers {
                   description
                   name
+                  tab
                 }
               }
             }
@@ -39,6 +41,9 @@ export const Skills = React.forwardRef((_props, ref: React.ForwardedRef<HTMLElem
       }
     `
   )
+
+
+  console.log(data);
 
   return (
     <Section ref={ref} id="skills" header="Skills">
@@ -49,7 +54,7 @@ export const Skills = React.forwardRef((_props, ref: React.ForwardedRef<HTMLElem
             {data.site.siteMetadata.quote.author}
           </footer>
         </blockquote>
-        <Tabs headers={data.allContentJson.edges[1].node.tabs.headers} content={data.allContentJson.edges[1].node.tabs.content} />
+        <Tabs headers={data.allContentJson.edges[0].node.tabs.headers} content={data.allContentJson.edges[0].node.tabs.content} />
       </Container>
     </Section>
   )
