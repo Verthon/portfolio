@@ -68,11 +68,11 @@ export const Contact = React.forwardRef((_props, ref) => {
       <div className={contactContainer}>
         <form
           className={contactForm}
-          action="https://formspree.io/mzbjzzek"
           method="POST"
           onSubmit={(e) => onSubmit(e)}
           netlify-honeypot="bot-field"
           data-netlify="true"
+          data-cy="contact-form"
         >
           <p className={hidden}>
             <label htmlFor="bot-field" id="bot-field">
@@ -162,35 +162,35 @@ export const Contact = React.forwardRef((_props, ref) => {
             className={
               form.error.inputName === 'message'
                 ? `${contactTextarea} ${contactInputError}`
-          : contactTextarea
+                : contactTextarea
             }
-          name="message"
-          cols={30}
-          rows={10}
-          placeholder="Message"
-          value={form.message}
-          onChange={(e) => onFormChange(e)}
+            name="message"
+            cols={30}
+            rows={10}
+            placeholder="Message"
+            value={form.message}
+            onChange={(e) => onFormChange(e)}
           ></textarea>
-        {form.error.inputName === 'message' ? (
-          <p role="alert" className={error}>
-            {form.error.message}
-          </p>
-        ) : null}
-        <FormAlert status={status} />
-        <Spinner isActive={status === STATUS.loading} />
-        <div className={footer}>
-          <button
-            role="button"
-            type="submit"
-            name="submit"
-            className={btnSubmit}
-            disabled={isDisabled}
-          >
-            Submit
-          </button>
-        </div>
-      </form>
-    </div>
+          {form.error.inputName === 'message' ? (
+            <p role="alert" className={error}>
+              {form.error.message}
+            </p>
+          ) : null}
+          <FormAlert status={status} />
+          <Spinner isActive={status === STATUS.loading} />
+          <div className={footer}>
+            <button
+              role="button"
+              type="submit"
+              name="submit"
+              className={btnSubmit}
+              disabled={isDisabled}
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
     </Section >
   )
 })
