@@ -42,9 +42,6 @@ export const Skills = React.forwardRef((_props, ref: React.ForwardedRef<HTMLElem
     `
   )
 
-
-  console.log(data);
-
   return (
     <Section ref={ref} id="skills" header="Skills">
       <Container>

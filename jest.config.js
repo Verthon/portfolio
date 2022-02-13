@@ -24,4 +24,10 @@ module.exports = {
   testPathIgnorePatterns: [`node_modules`, `\\.cache`, `<rootDir>.*/public`],
   testMatch: ["**/tests/unit/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx)"],
   transformIgnorePatterns: [`node_modules/(?!(gatsby)/)`],
+  collectCoverageFrom: [
+    "src/components/**/*.tsx",
+    "src/components/**/*.utils.ts",
+    "src/utils/**/*.ts",
+    "src/hooks/*.(js|ts)",
+  ],
 }

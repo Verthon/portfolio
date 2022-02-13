@@ -68,7 +68,6 @@ export const Contact = React.forwardRef((_props, ref) => {
       <div className={contactContainer}>
         <form
           className={contactForm}
-          action="https://formspree.io/mzbjzzek"
           method="POST"
           onSubmit={(e) => onSubmit(e)}
           netlify-honeypot="bot-field"

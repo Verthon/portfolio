@@ -43,7 +43,6 @@ export const Projects = React.forwardRef((_props, ref: React.ForwardedRef<HTMLEl
     (element) => element.node.childImageSharp.fluid.srcSet
   )
 
-  console.log(data);
   return (
     <Section ref={ref} id="projects" header="Projects" description="This is what I have worked on so far." type="projects">
       <Container>

@@ -17,7 +17,6 @@ const IndexPage = () => {
   const contactSection = React.useRef<HTMLElement>(null)
 
   const scrollToComponent = (component: string) => {
-    console.log(component, skillsSection.current)
     if (skillsSection.current && projectsSection.current && contactSection.current) {
       switch (component) {
         case 'skills':
