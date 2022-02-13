@@ -3,10 +3,10 @@ import * as Gatsby from 'gatsby';
 import user from '@testing-library/user-event'
 import { render, screen, fireEvent, act, waitForElementToBeRemoved, waitFor } from '@testing-library/react'
 
-import { sendEmail } from '../../src/utils/contact'
-import { Contact } from '../../src/components/Contact/Contact'
+import { sendEmail } from '../../../src/utils/contact'
+import { Contact } from '../../../src/components/Contact/Contact'
 
-jest.mock('../../src/utils/contact', () => ({
+jest.mock('../../../src/utils/contact', () => ({
   sendEmail: jest.fn(() => Promise.resolve()),
 }))
 
@@ -30,7 +30,7 @@ describe('Contact', () => {
     render(<Contact />)
     fireEvent.click(screen.getByText(/submit/i))
 
-    expect(screen.getByRole('alert')).toBeTruthy()
+    expect(screen.getByRole('alert')).toBeInTheDocument()
     expect(sendEmail).not.toBeCalled()
   })
   it.todo('check submiting form with incorrect email')
