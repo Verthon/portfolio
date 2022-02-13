@@ -8,6 +8,6 @@ export type SkillsQueryResponse = {
     }
   }
   allContentJson: {
-    edges: [ TabsEmptyNode, TabsDataNode ]
+    edges: [ TabsDataNode, TabsEmptyNode ]
   }
 }

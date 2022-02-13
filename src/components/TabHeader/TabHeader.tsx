@@ -6,7 +6,7 @@ import { tabHeaderItem, tabHeaderItemActive, tabHeaderTitle, tabHeaderContent } 
 export const TabHeader = ({ tabProps, active, handleClick }: Props) => {
   const cssClass = active ? `${tabHeaderItem} ${tabHeaderItemActive}` : `${tabHeaderItem}` 
   return (
-    <li className={cssClass} data-tab={tabProps.name.toLowerCase()} onClick={handleClick}>
+    <li className={cssClass} data-tab={tabProps.name.toLowerCase()} onClick={handleClick} data-cy="tab-header">
       <h3 className={tabHeaderTitle}>{tabProps.name}</h3>
       <p className={tabHeaderContent}>{tabProps.description}</p>
     </li>

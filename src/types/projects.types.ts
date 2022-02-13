@@ -18,11 +18,25 @@ export type ImageNode = {
   }
 }
 
+export type ProjectEmptyNode = {
+  node : {
+    projects: null,
+    id: string,
+  }
+}
+
+export type ProjectNode = {
+  node: {
+    projects: Project[],
+    id: string,
+  }
+}
+
 export type ProjectsQueryResponse = {
   allFile: {
     edges: ImageNode[]
   }
-  contentJson: {
-    projects: Project[]
+  allContentJson: {
+    edges: [ ProjectEmptyNode, ProjectNode ]
   }
 }

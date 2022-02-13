@@ -1,5 +1,5 @@
-import { validateEmail, validate, FIELDS } from '../../src/utils/validators'
-import { VALIDATIONS } from '../../src/constants/messages'
+import { validateEmail, validate, FIELDS } from '../../../src/utils/validators'
+import { VALIDATIONS } from '../../../src/constants/messages'
 
 describe('validators', () => {
   describe('validateEmail', () => {

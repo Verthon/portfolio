@@ -10,13 +10,13 @@ export const FormAlert = ({ status }: Props ) => {
         switch (status) {
           case "complete":
             return (
-              <p role="alert" className="contact__success">
+              <p role="alert" className="contact__success" data-cy="contact-success-alert">
                 {MESSAGES.contactSuccess}
               </p>
             )
           case "error":
             return (
-              <p role="alert" className="contact__error">
+              <p role="alert" className="contact__error" data-cy="contact-error-alert">
                 {MESSAGES.contactFailure}
               </p>
             )
