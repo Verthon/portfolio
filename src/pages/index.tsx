@@ -10,46 +10,9 @@ import { Seo } from '../components/Seo'
 import { Footer } from '../components/Footer/Footer'
 import '../styles/style.css'
 import "../styles/variables.css"
+import { ScrollProvider } from '../providers/scroll/ScrollProvider'
 
 const IndexPage = () => {
-  const skillsSection = React.useRef<HTMLElement>(null)
-  const projectsSection = React.useRef<HTMLElement>(null)
-  const contactSection = React.useRef<HTMLElement>(null)
-
-  const scrollToComponent = (component: string) => {
-    if (skillsSection.current && projectsSection.current && contactSection.current) {
-      switch (component) {
-        case 'skills':
-          skillsSection.current.scrollIntoView({
-            inline: 'nearest',
-            block: 'start',
-            behavior: 'smooth',
-          })
-          break
-        case 'projects':
-          projectsSection.current.scrollIntoView({
-            inline: 'nearest',
-            block: 'start',
-            behavior: 'smooth',
-          })
-          break
-        case 'contact':
-          contactSection.current.scrollIntoView({
-            inline: 'nearest',
-            block: 'start',
-            behavior: 'smooth',
-          })
-          break
-        default:
-          skillsSection.current.scrollIntoView({
-            inline: 'nearest',
-            block: 'start',
-            behavior: 'smooth',
-          })
-          break
-      }
-    }
-  }
 
   React.useEffect(() => {
     AOS.init({
@@ -60,15 +23,17 @@ const IndexPage = () => {
 
   return (
     <React.StrictMode>
-      <Layout scrollToComponent={scrollToComponent}>
-        <Seo />
-        <Skills ref={skillsSection} />
-        <Projects ref={projectsSection} />
-        <Contact ref={contactSection} />
-        <Footer />
-      </Layout>
-    </React.StrictMode>
+      <ScrollProvider>
+        <Layout>
+          <Seo />
+          <Skills ref={skillsSection} />
+          <Projects ref={projectsSection} />
+          <Contact ref={contactSection} />
+          <Footer />
+        </Layout>
+      </ScrollProvider>
 
+    </React.StrictMode>
   )
 }
 
