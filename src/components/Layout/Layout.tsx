@@ -4,13 +4,11 @@ import { Header } from '../Header/Header'
 import type { Props } from './Layout.types'
 
 
-export const Layout = ({ children, scrollToComponent }: Props) => {
+export const Layout = ({ children }: Props) => {
 
   return (
     <>
-      <Header
-        scrollToComponent={scrollToComponent}
-      />
+      <Header/>
       {children}
     </>
   )

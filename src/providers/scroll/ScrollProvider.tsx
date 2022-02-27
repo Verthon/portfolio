@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { ScrollDispatchContext } from "../../context/scroll/ScrollContext"
+import { ScrollDispatchContext, ScrollStateContext } from "../../context/scroll/ScrollContext"
 
 import type { Props } from "./ScrollProvider.types"
 
@@ -44,5 +44,5 @@ export const ScrollProvider = ({ children }: Props) => {
     }
   }
 
-  return <ScrollDispatchContext.Provider value={{ scrollToComponent }}>{children}</ScrollDispatchContext.Provider>
+  return <ScrollStateContext.Provider value={{ skillsSection, projectsSection, contactSection }}><ScrollDispatchContext.Provider value={{ scrollToComponent }}>{children}</ScrollDispatchContext.Provider></ScrollStateContext.Provider>
 }
