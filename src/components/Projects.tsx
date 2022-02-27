@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 
 import { Project } from './Project/Project'
@@ -43,10 +43,12 @@ export const Projects = React.forwardRef((_props, ref: React.ForwardedRef<HTMLEl
     (element) => element.node.childImageSharp.fluid.srcSet
   )
 
+  const projects = data.allContentJson.edges.find(edge => edge.node.projects)?.node.projects!
+
   return (
     <Section ref={ref} id="projects" header="Projects" description="This is what I have worked on so far." type="projects">
       <Container>
-        {data.allContentJson.edges[1].node.projects.map((project, index) => (
+        {projects.map((project, index) => (
           <Project
             key={project.name}
             name={project.name}

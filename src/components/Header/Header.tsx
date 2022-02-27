@@ -3,11 +3,12 @@ import { useStaticQuery, graphql } from 'gatsby'
 
 import { Nav } from '../Nav/Nav'
 import { Container } from '../Container/Container'
+import { useScrollDispatch } from '../../hooks/useScrollDispatch'
 
-import type { HeaderData, Props } from './Header.types'
+import type { HeaderData } from './Header.types'
 import { wrapper, header, heroName, heroWelcome, heroHighlight, heroDescription, heroBtn } from "./Header.module.css"
 
-export const Header = ({ scrollToComponent }: Props) => {
+export const Header = () => {
   const data = useStaticQuery<HeaderData>(
     graphql`
       query {
@@ -22,10 +23,12 @@ export const Header = ({ scrollToComponent }: Props) => {
     `
   )
 
+  const { scrollToComponent } = useScrollDispatch()
+
   return (
     <div className={wrapper}>
       <Container>
-        <Nav links={['skills', 'contact']} scrollToComponent={scrollToComponent} />
+        <Nav links={['skills', 'projects', 'contact']} />
       </Container>
       <Container>
         <header className={header} data-aos="zoom-out-down">
