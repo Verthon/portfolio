@@ -5,10 +5,13 @@ import { NavItem } from '../NavItem/NavItem'
 import { ThemeToggler } from '../ThemeToggler/ThemeToggler'
 import { GithubIcon } from '../../icons/GithubIcon'
 import { LinkedinIcon } from '../../icons/LinkedinIcon'
+import { useScrollDispatch } from '../../hooks/useScrollDispatch'
+
 import type { Props } from './Nav.types'
 import { siteNav, socials, menuList } from "./Nav.module.css";
 
-export const Nav = ({ links, scrollToComponent }: Props) => {
+
+export const Nav = ({ links }: Props) => {
   const data = useStaticQuery(
     graphql`
       query {
@@ -21,6 +24,8 @@ export const Nav = ({ links, scrollToComponent }: Props) => {
       }
     `
   )
+
+  const { scrollToComponent } = useScrollDispatch()
 
   return (
     <nav className={siteNav}>
