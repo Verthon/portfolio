@@ -3,6 +3,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 
 import { Nav } from '../Nav/Nav'
 import { Container } from '../Container/Container'
+import { Button } from "../Button/Button"
 import { useScrollDispatch } from '../../hooks/useScrollDispatch'
 
 import type { HeaderData } from './Header.types'
@@ -59,13 +60,15 @@ export const Header = () => {
           >
             {data.site.siteMetadata.location}
           </p>
-          <button
+          <Button
             id="btn-projects"
+            variant="primary"
+            size="large"
             className={heroBtn}
             onClick={() => scrollToComponent('projects')}
           >
             Check Projects
-          </button>
+          </Button>
         </header>
       </Container>
     </div>

@@ -1,0 +1,54 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 0.5rem 0 0;
+  padding: var(--button-padding-xs);
+  background-color: var(--grey-color-200);
+  color: var(--dark-color-600);
+  font-size: var(--font-size-md);
+  box-shadow: var(--shadow);
+  max-height: 2.5rem;
+}
+
+.primary {
+  background-color: var(--primary-color);
+  color: var(--dark-color-700);
+}
+
+.large {
+  border: 0;
+  color: var(--dark-color-700);
+  font-weight: normal;
+  border-radius: 0.1rem;
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  margin: 3rem 0;
+  box-shadow: var(--shadow-light);
+}
+
+@media screen and (min-width: 768px) {
+  .large {
+    padding: 0.5rem 1.25rem;
+    font-size: 1.35rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .large {
+    padding: 0.5rem 1.5rem;
+    font-size: 1.25rem;
+  }
+}
+
+@media screen and (min-width: 1366px) {
+  .large {
+    padding: 0.75rem 2.5rem;
+    font-size: 1.1rem;
+  }
+}
+
+.small {
+  padding: 0.5rem 1.25rem;
+  font-size: 0.875rem;
+  margin: 0;
+}
