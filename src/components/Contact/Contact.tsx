@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 
 import { Spinner } from "../Spinner/Spinner"
+import { Button } from "../Button/Button"
 import { GithubIcon } from '../../icons/GithubIcon'
 import { LinkedinIcon } from '../../icons/LinkedinIcon'
 import { SendIcon } from '../../icons/SendIcon'
@@ -12,11 +13,11 @@ import { SubmitStatus } from './Contact.types'
 import { FormAlert } from './FormAlert/FormAlert'
 import { Section } from '../Section/Section'
 
-import { contactContainer, contactForm, contactSocials, contactLabel, contactInput, contactTextarea, error, btn, btnSubmit, description, footer, contactInputError, hidden } from "./Contact.module.css"
+import { contactContainer, contactForm, contactSocials, contactLabel, contactInput, contactTextarea, error, btnSubmit, description, footer, contactInputError, hidden } from "./Contact.module.css"
 import { INIT_FORM_STATE, INIT_ERROR_STATE } from './Contact.const'
 
 
-export const Contact = React.forwardRef((_props, ref) => {
+export const Contact = React.forwardRef((_props, ref: React.ForwardedRef<HTMLElement>) => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -100,10 +101,10 @@ export const Contact = React.forwardRef((_props, ref) => {
             >
               <LinkedinIcon ariaHidden={true} />
             </a>
-            <a
+            <Button
+              variant="primary"
               href={`mailto:${site.siteMetadata.email}`}
-              className={btn}
-              aria-label="Link to email christopher.sordyl@gmail.com"
+              ariaLabel="Link to email christopher.sordyl@gmail.com"
             >
               Quick mail
               <SendIcon
@@ -112,7 +113,7 @@ export const Contact = React.forwardRef((_props, ref) => {
                 color="black"
                 aria-label="Send an email using your email client"
               />
-            </a>
+            </Button>
           </div>
           <label className={contactLabel} htmlFor="name">
             Name
@@ -179,7 +180,8 @@ export const Contact = React.forwardRef((_props, ref) => {
           <FormAlert status={status} />
           <Spinner isActive={status === STATUS.loading} />
           <div className={footer}>
-            <button
+            <Button
+              variant="primary"
               role="button"
               type="submit"
               name="submit"
@@ -187,7 +189,7 @@ export const Contact = React.forwardRef((_props, ref) => {
               disabled={isDisabled}
             >
               Submit
-            </button>
+            </Button>
           </div>
         </form>
       </div>

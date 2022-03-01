@@ -14,17 +14,10 @@ const generateClassName = (variant: Props["variant"], size: Props["size"], class
   return [styles.btn, styles[size], styles[variant]].join(" ")
 }
 
-export const Button = ({ variant, size, children, link, href, type, onClick, loading, className }: Props) => {
-  // if (link) {
-  //   return (
-  //     <Link to={link}>
-  //       <a className={generateClassName(variant, size)}>{children}</a>
-  //     </Link>
-  //   )
-  // }
+export const Button = ({ variant, size = "regular", children, href, type, onClick, loading, className, rel, ariaLabel, target }: Props) => {
   if (href) {
     return (
-      <a className={generateClassName(variant, size)} href={href}>
+      <a className={generateClassName(variant, size)} href={href} rel={rel} aria-label={ariaLabel} target={target}>
         {children}
       </a>
     )

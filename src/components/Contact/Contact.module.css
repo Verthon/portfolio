@@ -113,30 +113,10 @@
   color: var(--error-box-text-color);
 }
 
-.btn {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  padding: var(--button-padding-xxs);
-  color: var(--dark-color-700);
-  background-color: var(--primary-color);
-  border: 0;
-  font-size: var(--font-size-md);
-  border-radius: var(--default-radius);
-  box-shadow: var(--shadow-light);
-  text-transform: capitalize;
-  cursor: pointer;
-}
-
-.btn svg {
-  margin: 0 0 0 0.5rem;
-}
-
 .btnSubmit {
-  composes: btn;
-  padding: var(--button-padding-xs);
   margin: 1rem 0 0 0;
-  width: 100%;
+  justify-content: center;
+  flex: 100%;
 }
 
 @media screen and (min-width: 1366px) {
