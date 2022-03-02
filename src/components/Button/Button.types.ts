@@ -1,6 +1,6 @@
 import React from "react";
 
-export type Props = {
+export type ButtonProps = {
   variant: "primary" | "secondary"
   size?: "regular" | "large" | "small"
   children: React.ReactNode
