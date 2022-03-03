@@ -19,8 +19,6 @@ export const Button = ({ variant, size = "regular", children, href, type, onClic
       </a>
     )
   }
-  const cls = generateClassName(variant, size)
-  console.log(cls)
   return (
     <button className={generateClassName(variant, size, className)} type={type} onClick={onClick} disabled={loading}>
       {children} {loading ? <Spinner isActive={loading} /> : null}

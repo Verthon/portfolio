@@ -1,4 +1,5 @@
 export type InputProps = {
   error?: boolean
-  onInput: React.FormEventHandler<HTMLInputElement>
-} & React.InputHTMLAttributes<HTMLInputElement>
+  handleChange: React.ChangeEventHandler<HTMLInputElement> | React.ChangeEventHandler<HTMLTextAreaElement>
+  textarea?: boolean
+} & React.InputHTMLAttributes<HTMLInputElement> | React.TextareaHTMLAttributes<HTMLTextAreaElement>

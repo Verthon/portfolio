@@ -4,6 +4,9 @@ import type { LabelProps } from "../Label/Label.types";
 export type InputFieldProps = {
   value: InputProps["value"]
   error: InputProps["error"]
-  onInput: InputProps["onInput"]
+  handleChange: InputProps["handleChange"]
+  name: InputProps["name"]
+  textarea?: InputProps["textarea"]
   label: LabelProps["label"]
-}
+  errorMessage?: string
+} & InputProps

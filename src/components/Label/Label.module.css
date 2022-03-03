@@ -1,4 +1,6 @@
 .label {
+  display: flex;
+  flex-direction: column;
   font-size: 0.875rem;
-  margin: 1rem 0 0.5rem 0;
+  margin: 0;
 }
