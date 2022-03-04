@@ -1,22 +1,17 @@
-import React, { useState } from 'react'
+import * as React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 
-import { Spinner } from "../Spinner/Spinner"
+import { Button } from "../Button/Button"
 import { GithubIcon } from '../../icons/GithubIcon'
 import { LinkedinIcon } from '../../icons/LinkedinIcon'
 import { SendIcon } from '../../icons/SendIcon'
-import { validate } from '../../utils/validators'
-import { sendEmail } from '../../utils/contact'
-import { STATUS } from '../../constants/state'
-import { SubmitStatus } from './Contact.types'
-import { FormAlert } from './FormAlert/FormAlert'
 import { Section } from '../Section/Section'
 
-import { contactContainer, contactForm, contactSocials, contactLabel, contactInput, contactTextarea, error, btn, btnSubmit, description, footer, contactInputError, hidden } from "./Contact.module.css"
-import { INIT_FORM_STATE, INIT_ERROR_STATE } from './Contact.const'
+import { contactContainer, contactFormWrapper, contactSocials, description } from "./Contact.module.css"
+import { Form } from './Form/Form'
 
 
-export const Contact = React.forwardRef((_props, ref) => {
+export const Contact = React.forwardRef((_props, ref: React.ForwardedRef<HTMLElement>) => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -31,54 +26,10 @@ export const Contact = React.forwardRef((_props, ref) => {
     `
   )
 
-  const [status, setStatus] = useState<SubmitStatus>("idle")
-  const [form, setForm] = useState(INIT_FORM_STATE)
-  const onFormChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-      hasError: false,
-      error: INIT_ERROR_STATE,
-    })
-  }
-
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const errorObj = validate(form)
-    if (errorObj) {
-      setForm({ ...form, hasError: true, error: errorObj })
-      return
-    }
-    setStatus("loading")
-    setForm({ ...form, hasError: false, error: INIT_ERROR_STATE })
-    try {
-      await sendEmail({ data: form })
-      setForm(INIT_FORM_STATE)
-      setStatus("complete")
-    } catch (_) {
-      setStatus("error")
-    }
-  }
-  const isFormFilled = Object.values(form).some((x) => x !== null && x !== '')
-  const isValid = !form.hasError && isFormFilled
-  const isDisabled = !isValid || status === STATUS.loading || form.hasError
-
   return (
     <Section ref={ref} id="contact" header="Contact" type="contact">
       <div className={contactContainer}>
-        <form
-          className={contactForm}
-          method="POST"
-          onSubmit={(e) => onSubmit(e)}
-          netlify-honeypot="bot-field"
-          data-netlify="true"
-          data-cy="contact-form"
-        >
-          <p className={hidden}>
-            <label htmlFor="bot-field" id="bot-field">
-              Don’t fill this out if you're human: <input name="bot-field" />
-            </label>
-          </p>
+        <div className={contactFormWrapper}>
           <p className={description}>
             Have a question or want to say hi? Feel free to contact me with your
             webmail client or with form below.
@@ -100,10 +51,10 @@ export const Contact = React.forwardRef((_props, ref) => {
             >
               <LinkedinIcon ariaHidden={true} />
             </a>
-            <a
+            <Button
+              variant="primary"
               href={`mailto:${site.siteMetadata.email}`}
-              className={btn}
-              aria-label="Link to email christopher.sordyl@gmail.com"
+              ariaLabel="Link to email christopher.sordyl@gmail.com"
             >
               Quick mail
               <SendIcon
@@ -112,84 +63,10 @@ export const Contact = React.forwardRef((_props, ref) => {
                 color="black"
                 aria-label="Send an email using your email client"
               />
-            </a>
+            </Button>
           </div>
-          <label className={contactLabel} htmlFor="name">
-            Name
-          </label>
-          <input
-            role="textbox"
-            className={
-              form.error.inputName === 'name'
-                ? `${contactInput} ${contactInputError}`
-                : contactInput
-            }
-            type="text"
-            name="name"
-            placeholder="Your name"
-            value={form.name}
-            onChange={(e) => onFormChange(e)}
-          />
-          {form.error.inputName === 'name' ? (
-            <p role="alert" className={error}>
-              {form.error.message}
-            </p>
-          ) : null}
-          <label className={contactLabel} htmlFor="email">
-            Email address
-          </label>
-          <input
-            className={
-              form.error.inputName === 'email'
-                ? `${contactInput} ${contactInputError}`
-                : contactInput
-            }
-            type="email"
-            name="email"
-            placeholder="Email address"
-            value={form.email}
-            onChange={(e) => onFormChange(e)}
-          />
-          {form.error.inputName === 'email' ? (
-            <p role="alert" className={error}>
-              {form.error.message}
-            </p>
-          ) : null}
-          <label className={contactLabel} htmlFor="message">
-            Message
-          </label>
-          <textarea
-            className={
-              form.error.inputName === 'message'
-                ? `${contactTextarea} ${contactInputError}`
-                : contactTextarea
-            }
-            name="message"
-            cols={30}
-            rows={10}
-            placeholder="Message"
-            value={form.message}
-            onChange={(e) => onFormChange(e)}
-          ></textarea>
-          {form.error.inputName === 'message' ? (
-            <p role="alert" className={error}>
-              {form.error.message}
-            </p>
-          ) : null}
-          <FormAlert status={status} />
-          <Spinner isActive={status === STATUS.loading} />
-          <div className={footer}>
-            <button
-              role="button"
-              type="submit"
-              name="submit"
-              className={btnSubmit}
-              disabled={isDisabled}
-            >
-              Submit
-            </button>
-          </div>
-        </form>
+          <Form />
+        </div>
       </div>
     </Section >
   )
