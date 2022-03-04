@@ -4,7 +4,6 @@ import { useStaticQuery, graphql } from 'gatsby'
 import { Tabs } from '../Tabs/Tabs'
 import { Section } from '../Section/Section'
 import { Container } from '../Container/Container'
-import { useScrollState } from '../../hooks/useScrollState'
 
 import type { SkillsQueryResponse } from './Skills.types'
 import { quote, author } from "./Skills.module.css"

@@ -126,40 +126,7 @@
   }
 }
 
-.btn {
-  display: inline-flex;
-  align-items: center;
-  margin: 0 0.5rem 0 0;
-  padding: var(--button-padding-xs);
-  background-color: var(--grey-color-200);
-  color: var(--dark-color-600);
-  font-size: var(--font-size-md);
-  box-shadow: var(--shadow);
-  max-height: 2.5rem;
-}
-
-.btn svg {
-  transform: scale(0.8);
-}
-
-.btn:hover {
-  cursor: pointer;
-}
-
-[data-theme='dark'] .btn {
-  background-color: var(--dark-color);
-  color: var(--grey-color-200);
-}
-
-@media screen and (min-width: 1024px) {
-  .btn {
-    margin: 0.25rem 0.5rem 0 0;
-    padding: var(--button-padding-md);
-  }
-}
-
 .link {
-  composes: btn;
   display: flex;
   background-color: var(--primary-color);
   text-transform: capitalize;
@@ -185,32 +152,3 @@
     padding: 0.6rem 1.5rem;
   }
 }
-
-.dark-mode .projects {
-  .project {
-    background-color: $dark-color-dark-3;
-
-    &__title {
-      color: $white;
-    }
-
-    &__tag {
-      background-color: $dark-color-dark-4;
-      color: $dark-color-dark-2;
-    }
-
-    &__description {
-      color: $dark-color-dark-1;
-    }
-
-    &__btn {
-      color: $color-gray-1;
-      background-color: $dark-color-dark-4;
-
-      &--link {
-        background-color: $color-primary;
-        color: $color-dark-1;
-      }
-    }
-  }
-} 

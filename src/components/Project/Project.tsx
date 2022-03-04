@@ -2,8 +2,9 @@ import * as React from 'react'
 
 import { GithubIcon } from '../../icons/GithubIcon'
 import { ExternalLinkIcon } from '../../icons/ExternalLinkIcon'
+import { Button } from "../Button/Button"
 
-import { project, image as imageStyle, content, title, description as descriptionStyles, tag, descriptionSources, footer, link, btn } from "./Project.module.css"
+import { project, image as imageStyle, content, title, description as descriptionStyles, tag, descriptionSources, footer, link } from "./Project.module.css"
 import type { Props } from './Project.types'
 
 export const Project = ({
@@ -33,24 +34,25 @@ export const Project = ({
         </div>
         <p className={descriptionStyles}>{description}</p>
         <footer className={footer}>
-          <a
-            className={btn}
+          <Button
+            variant="secondary"
             href={github}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Link to Verthon GitHub profile"
+            ariaLabel="Link to Verthon GitHub profile"
           >
             Source <GithubIcon width={22} height={22} aria-hidden="true" />
-          </a>
-          <a
+          </Button>
+          <Button
+            variant="primary"
             className={link}
             href={live}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Link to live version"
+            ariaLabel="Link to live version"
           >
             <span>view app</span> <ExternalLinkIcon width={20} height={20} />
-          </a>
+          </Button>
         </footer>
       </article>
     </div>

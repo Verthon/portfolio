@@ -115,36 +115,17 @@
 
 .heroBtn {
   align-self: flex-start;
-  background: var(--primary-color);
-  border: 0;
-  color: var(--dark-color-700);
-  font-weight: normal;
-  border-radius: 0.1rem;
-  padding: 0.5rem 1.5rem;
-  font-size: 1rem;
   margin: 3rem 0;
-  box-shadow: var(--shadow-light);
-}
-
-@media screen and (min-width: 768px) {
-  .heroBtn {
-    padding: 0.5rem 1.25rem;
-    font-size: 1.35rem;
-  }
 }
 
 @media screen and (min-width: 1024px) {
   .heroBtn {
     margin: 2rem 0;
-    padding: 0.5rem 1.5rem;
-    font-size: 1.25rem;
   }
 }
 
 @media screen and (min-width: 1366px) {
   .heroBtn {
-    padding: 0.75rem 2.5rem;
-    font-size: 1.1rem;
     margin: 2rem 0;
   }
 }
