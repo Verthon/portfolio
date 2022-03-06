@@ -21,7 +21,6 @@ const IndexPage = () => {
       <ScrollProvider>
         <HomePageContent />
       </ScrollProvider>
-
     </React.StrictMode>
   )
 }

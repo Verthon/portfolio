@@ -1,3 +1,1 @@
-export type Props = {
-  children: React.ReactNode;
-}
+export type ContainerProps = React.PropsWithChildren<unknown>

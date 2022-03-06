@@ -1,3 +1,1 @@
-export type Props = {
-  children: React.ReactNode,
-}
+export type LayoutProps = React.PropsWithChildren<unknown>

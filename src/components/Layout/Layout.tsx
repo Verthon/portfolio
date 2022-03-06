@@ -1,10 +1,10 @@
 import * as React from 'react'
 
 import { Header } from '../Header/Header'
-import type { Props } from './Layout.types'
+import type { LayoutProps } from './Layout.types'
 
 
-export const Layout = ({ children }: Props) => {
+export const Layout = ({ children }: LayoutProps) => {
 
   return (
     <>
