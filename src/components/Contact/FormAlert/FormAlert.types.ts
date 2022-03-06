@@ -1,5 +1,5 @@
-import { SubmitStatus } from "../Contact.types";
+import type { SubmitStatus } from "../Form/Form.types"
 
-export type Props = {
+export type FormAlertProps = {
   status: SubmitStatus
 }

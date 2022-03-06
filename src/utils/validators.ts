@@ -12,7 +12,7 @@ export const validateEmail = (email: string) => {
   return regex.test(String(email).toLowerCase())
 }
 
-export const validate = (form) => {
+export const validate = (form: { name: string; email: string; message: string; hasError?: boolean; error?: { inputName: string; message: string } }) => {
   if (form.name.length === 0) {
     return { inputName: FIELDS.name, message: VALIDATIONS.name }
   } else if (!validateEmail(form.email)) {

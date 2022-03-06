@@ -4,7 +4,7 @@ import { GithubIcon } from '../../icons/GithubIcon'
 import { ExternalLinkIcon } from '../../icons/ExternalLinkIcon'
 import { Button } from "../Button/Button"
 
-import { project, image as imageStyle, content, title, description as descriptionStyles, tag, descriptionSources, footer, link } from "./Project.module.css"
+import { project, image as imageStyle, content, title, description as descriptionStyles, tag, footer, link } from "./Project.module.css"
 import type { Props } from './Project.types'
 
 export const Project = ({

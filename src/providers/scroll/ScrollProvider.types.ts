@@ -1,5 +1,1 @@
-import * as React from "react";
-
-export type Props = {
-  children: React.ReactNode
-}
+export type ScrollProviderProps = React.PropsWithChildren<unknown>

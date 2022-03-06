@@ -2,9 +2,9 @@ import * as React from "react"
 
 import { ScrollDispatchContext, ScrollStateContext } from "../../context/scroll/ScrollContext"
 
-import type { Props } from "./ScrollProvider.types"
+import type { ScrollProviderProps } from "./ScrollProvider.types"
 
-export const ScrollProvider = ({ children }: Props) => {
+export const ScrollProvider = ({ children }: ScrollProviderProps) => {
   const skillsSection = React.useRef<HTMLElement>(null)
   const projectsSection = React.useRef<HTMLElement>(null)
   const contactSection = React.useRef<HTMLElement>(null)
