@@ -1,6 +1,7 @@
+import type { ContactFormState } from '../components/Contact/Form/Form.const'
 import { getJSON } from './async'
 
-export const sendEmail = async ({ data }) => {
+export const sendEmail = async ({ data }: { data: ContactFormState }) => {
   const URL = 'https://formspree.io/mzbjzzek'
   const CONFIG = {
     method: 'POST',

@@ -17,7 +17,7 @@ High performant, mobile-first personal portfolio
 
 - Gatsby.js
 - GraphQL
-- Sass,
+- CSS-modules,
 - Continuous deployment with Netlify
 - Jest and React Testing Library
 - PWA support

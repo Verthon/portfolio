@@ -1,9 +1,9 @@
 import * as React from "react"
 
 import { MESSAGES } from "../../../constants/messages"
-import { Props } from "./FormAlert.types"
+import { FormAlertProps } from "./FormAlert.types"
 
-export const FormAlert = ({ status }: Props ) => {
+export const FormAlert = ({ status }: FormAlertProps ) => {
   return (
     <>
       {(() => {

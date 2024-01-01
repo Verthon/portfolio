@@ -10,3 +10,5 @@ export const INIT_FORM_STATE = {
   hasError: false,
   error: INIT_ERROR_STATE,
 }
+
+export type ContactFormState = typeof INIT_FORM_STATE;
