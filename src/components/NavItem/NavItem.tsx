@@ -1,7 +1,8 @@
+/** @jsxImportSource react */
 import * as React from 'react'
 
-import { navItem } from "./NavItem.module.css"
-import { Props } from './NavItem.types'
+import { navItem } from './NavItem.module.css'
+import type { Props } from './NavItem.types'
 
 export const NavItem = ({ onClick, children }: Props) => {
   return (

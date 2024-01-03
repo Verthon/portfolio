@@ -1,10 +1,20 @@
+/** @jsxImportSource react */
 import * as React from 'react'
 
 import { GithubIcon } from '../../icons/GithubIcon'
 import { ExternalLinkIcon } from '../../icons/ExternalLinkIcon'
-import { Button } from "../Button/Button"
+import { Button } from '../Button/Button'
 
-import { project, image as imageStyle, content, title, description as descriptionStyles, tag, footer, link } from "./Project.module.css"
+import {
+  project,
+  image as imageStyle,
+  content,
+  title,
+  description as descriptionStyles,
+  tag,
+  footer,
+  link,
+} from './Project.module.css'
 import type { Props } from './Project.types'
 
 export const Project = ({
@@ -18,11 +28,7 @@ export const Project = ({
 }: Props) => {
   return (
     <div className={project} data-aos={animation} data-aos-duration="1000">
-      <img
-        className={imageStyle}
-        srcSet={image}
-        alt="Event app screenshot"
-      />
+      <img className={imageStyle} srcSet={image} alt="Event app screenshot" />
       <article className={content}>
         <h3 className={title}>{name}</h3>
         <div>

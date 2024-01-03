@@ -1,4 +1,4 @@
-import { TabHeaderName } from "../../types/tabs.types";
+import type { TabHeaderName } from '../../types/tabs.types'
 
 export type Props = {
   tabProps: {

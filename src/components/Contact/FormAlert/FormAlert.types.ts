@@ -1,4 +1,4 @@
-import type { SubmitStatus } from "../Form/Form.types"
+import type { SubmitStatus } from '../Form/Form.types'
 
 export type FormAlertProps = {
   status: SubmitStatus

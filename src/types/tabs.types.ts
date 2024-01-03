@@ -1,12 +1,12 @@
-export type TabHeaderName = "Frontend" | "General"
+export type TabHeaderName = 'Frontend' | 'General'
 
-export type TabsHeader  = {
-  name: TabHeaderName,
+export type TabsHeader = {
+  name: TabHeaderName
   description: string
 }
 
 export type TabsContent = {
-  title: string,
+  title: string
   tech: string[]
 }
 

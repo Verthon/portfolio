@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+  "name": "krzysztof-sordyl-portfolio",
+  "short_name": "Krzysztof Sordyl portfolio",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fff",
+  "description": "Portfolio and blog about programming"
+}

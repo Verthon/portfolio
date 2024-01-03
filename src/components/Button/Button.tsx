@@ -1,26 +1,54 @@
-import * as React from "react";
-import { Spinner } from "../Spinner/Spinner";
+/** @jsxImportSource react */
 
-import type { ButtonProps } from "./Button.types";
-import * as styles from "./Button.module.css"
+import { Spinner } from '../Spinner/Spinner'
 
-const generateClassName = (variant: ButtonProps["variant"], size: ButtonProps["size"] = "regular", className?: string) => {
+import type { ButtonProps } from './Button.types'
+import * as styles from './Button.module.css'
+
+const generateClassName = (
+  variant: ButtonProps['variant'],
+  size: ButtonProps['size'] = 'regular',
+  className?: string
+) => {
   if (className) {
-    return [styles.btn, styles[size], styles[variant], className].join(" ")
+    return [styles.btn, styles[size], styles[variant], className].join(' ')
   }
-  return [styles.btn, styles[size], styles[variant]].join(" ")
+  return [styles.btn, styles[size], styles[variant]].join(' ')
 }
 
-export const Button = ({ variant, size = "regular", children, href, type, onClick, loading, className, rel, ariaLabel, target }: ButtonProps) => {
+export const Button = ({
+  variant,
+  size = 'regular',
+  children,
+  href,
+  type,
+  onClick,
+  loading,
+  className,
+  rel,
+  ariaLabel,
+  target,
+}: ButtonProps) => {
   if (href) {
     return (
-      <a className={generateClassName(variant, size)} href={href} rel={rel} aria-label={ariaLabel} target={target}>
+      <a
+        className={generateClassName(variant, size)}
+        href={href}
+        rel={rel}
+        aria-label={ariaLabel}
+        target={target}
+      >
         {children}
       </a>
     )
   }
   return (
-    <button className={generateClassName(variant, size, className)} type={type} onClick={onClick} disabled={loading}>
+    <button
+      className={generateClassName(variant, size, className)}
+      type={type}
+      onClick={onClick}
+      disabled={loading}
+    >
       {children} {loading ? <Spinner isActive={loading} /> : null}
     </button>
   )

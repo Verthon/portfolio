@@ -1,5 +1,5 @@
-import type { Quote } from "../../types/quote.types";
-import type { TabsDataNode, TabsEmptyNode } from "../../types/tabs.types";
+import type { Quote } from '../../types/quote.types'
+import type { TabsDataNode, TabsEmptyNode } from '../../types/tabs.types'
 
 export type SkillsQueryResponse = {
   site: {
@@ -8,6 +8,6 @@ export type SkillsQueryResponse = {
     }
   }
   allContentJson: {
-    edges: [ TabsDataNode, TabsEmptyNode ]
+    edges: [TabsDataNode, TabsEmptyNode]
   }
 }

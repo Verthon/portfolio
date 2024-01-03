@@ -1,0 +1,137 @@
+/*
+  Josh's Custom CSS Reset
+  https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    avenir next,
+    avenir,
+    segoe ui,
+    helvetica neue,
+    helvetica,
+    Ubuntu,
+    roboto,
+    noto,
+    arial,
+    sans-serif;
+}
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+#root,
+#__next {
+  isolation: isolate;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+ul {
+  padding: 0;
+  list-style: none;
+}
+#___gatsby {
+  max-width: 100%;
+  overflow: auto;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 300 400 800;
+  font-display: swap;
+  src: url('../fonts/InterVar.woff2') format('woff2');
+}
+
+:root {
+  --primary-color: hsl(50.3, 100%, 78.2%);
+  --secondary-color: hsl(176.8, 43.9%, 66.5%);
+  --secondary-color-400: hsl(176.8, 43.9%, 86.5%);
+  --white-color: hsl(0, 0%, 100%);
+  --black-color: hsl(0, 0, 0%);
+
+  --error-box-color: hsl(351.6, 53.2%, 92.8%);
+  --error-box-text-color: hsl(351.6, 53.2%, 41.6%);
+  --success-text: hsl(176.1, 44.9%, 21.5%);
+  --default-radius: 2px;
+
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-xxl: 1.75rem;
+  --font-size-2xl: 2rem;
+
+  --bp-xxsmall: 520px;
+  --bp-xsmall: 768px;
+  --bp-small: 1024px;
+  --bp-medium: 1280px;
+  --bp-large: 1366px;
+  --bp-xlarge: 1536px;
+  --bp-xxlarge: 1920px;
+  --bp-2xlarge: 2560px;
+
+  --shadow-light: 0 1px 1px hsla(206.7, 11.7%, 0%, 0.2);
+  --shadow: 0 1px 3px hsla(206.7, 11.7%, 15.1%, 0.2);
+
+  --button-padding-xxs: 0.4rem 1rem;
+  --button-padding-xs: 0.5rem 1rem;
+  --button-padding-sm: 0.55rem 1.25rem;
+  --button-padding-md: 0.6rem 1.5rem;
+  --button-padding-lg: 1rem 2rem;
+
+  --grey-color-100: hsl(206.7, 52.9%, 96.7%);
+  --grey-color-200: hsl(206.7, 52.9%, 92.7%);
+  --grey-color: hsl(206.7, 11.7%, 90.1%);
+  --grey-color-600: hsl(206.7, 11.7%, 80.1%);
+  --dark-color-300: hsl(60, 1.7%, 35.1%);
+  --dark-color-400: hsl(60, 1.9%, 30.4%);
+  --dark-color: hsl(60, 3.1%, 25.1%);
+  --dark-color-600: hsl(60, 2.9%, 20.6%);
+  --dark-color-700: hsl(60, 3.4%, 17.1%);
+  --dark-color-800: hsl(60, 8%, 9.8%);
+
+  --text-color: var(--dark-color);
+}
+
+[data-theme='dark'] {
+  --text-color: var(--white-color);
+}
