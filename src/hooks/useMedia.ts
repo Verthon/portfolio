@@ -2,9 +2,13 @@ import * as React from 'react'
 
 import { isBrowser } from '../utils/environment'
 
-export const useMedia = <T>(queries: string[], values: T[], defaultValue: T) => {
+export const useMedia = <T>(
+  queries: string[],
+  values: T[],
+  defaultValue: T
+) => {
   const mediaQueryLists = queries.map((q) =>
-    isBrowser ? window.matchMedia(q) : { matches: "" }
+    isBrowser ? window.matchMedia(q) : { matches: '' }
   )
 
   const getValue = () => {
@@ -16,12 +20,12 @@ export const useMedia = <T>(queries: string[], values: T[], defaultValue: T) => 
   const [value, setValue] = React.useState(getValue)
 
   React.useEffect(() => {
-    const handler = () => setValue(getValue);
+    const handler = () => setValue(getValue)
     // @ts-ignore
-    mediaQueryLists.forEach((mql) => mql.addListener(handler));
+    mediaQueryLists.forEach((mql) => mql.addListener(handler))
     return () =>
       // @ts-ignore
-      mediaQueryLists.forEach((mql) => mql.removeListener(handler));
+      mediaQueryLists.forEach((mql) => mql.removeListener(handler))
   }, [])
 
   return value

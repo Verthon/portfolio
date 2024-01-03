@@ -1,35 +1,33 @@
-import * as React from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
-
+/** @jsxImportSource react */
 import { Nav } from '../Nav/Nav'
 import { Container } from '../Container/Container'
-import { Button } from "../Button/Button"
-import { useScrollDispatch } from '../../hooks/useScrollDispatch'
 
-import type { HeaderData } from './Header.types'
-import { wrapper, header, heroName, heroWelcome, heroHighlight, heroDescription, heroBtn } from "./Header.module.css"
+import {
+  wrapper,
+  header,
+  heroName,
+  heroWelcome,
+  heroHighlight,
+  heroDescription,
+} from './Header.module.css'
+import { qwikify$ } from '@builder.io/qwik-react'
 
-export const Header = () => {
-  const data = useStaticQuery<HeaderData>(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            author
-            position
-            location
-          }
-        }
-      }
-    `
-  )
-
-  const { scrollToComponent } = useScrollDispatch()
+export const HeaderComponent = () => {
+  const data = {
+    site: {
+      siteMetadata: {
+        author: 'Krzysztof Sordyl',
+        position:
+          'Frontend developer passionate about React.js ecosystem, focused on creating modern web apps.',
+        location: 'Based in Bielsko-Biała, Poland 🏔️',
+      },
+    },
+  }
 
   return (
     <div className={wrapper}>
       <Container>
-        <Nav links={['skills', 'projects', 'contact']} />
+        <Nav links={['skills', 'contact']} />
       </Container>
       <Container>
         <header className={header} data-aos="zoom-out-down">
@@ -60,17 +58,10 @@ export const Header = () => {
           >
             {data.site.siteMetadata.location}
           </p>
-          <Button
-            id="btn-projects"
-            variant="primary"
-            size="large"
-            className={heroBtn}
-            onClick={() => scrollToComponent('projects')}
-          >
-            Check Projects
-          </Button>
         </header>
       </Container>
     </div>
   )
 }
+
+export const Header = qwikify$(HeaderComponent, { eagerness: 'load' })

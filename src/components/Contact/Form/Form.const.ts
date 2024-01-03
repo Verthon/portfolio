@@ -11,4 +11,4 @@ export const INIT_FORM_STATE = {
   error: INIT_ERROR_STATE,
 }
 
-export type ContactFormState = typeof INIT_FORM_STATE;
+export type ContactFormState = typeof INIT_FORM_STATE

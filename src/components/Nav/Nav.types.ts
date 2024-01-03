@@ -1,3 +1,5 @@
+export type LinkVariant = 'skills' | 'contact'
+
 export type Props = {
-  links: string[]
+  links: LinkVariant[]
 }

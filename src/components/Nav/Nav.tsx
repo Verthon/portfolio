@@ -1,31 +1,22 @@
-import * as React from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
+/** @jsxImportSource react */
 
 import { NavItem } from '../NavItem/NavItem'
 import { ThemeToggler } from '../ThemeToggler/ThemeToggler'
 import { GithubIcon } from '../../icons/GithubIcon'
 import { LinkedinIcon } from '../../icons/LinkedinIcon'
-import { useScrollDispatch } from '../../hooks/useScrollDispatch'
 
 import type { Props } from './Nav.types'
-import { siteNav, socials, menuList } from "./Nav.module.css";
-
+import { siteNav, socials, menuList } from './Nav.module.css'
 
 export const Nav = ({ links }: Props) => {
-  const data = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            linkedin
-            github
-          }
-        }
-      }
-    `
-  )
-
-  const { scrollToComponent } = useScrollDispatch()
+  const data = {
+    site: {
+      siteMetadata: {
+        linkedin: 'https://www.linkedin.com/in/krzysztof-sordyl/',
+        github: 'https://github.com/Verthon',
+      },
+    },
+  }
 
   return (
     <nav className={siteNav}>
@@ -34,7 +25,9 @@ export const Nav = ({ links }: Props) => {
       </div>
       <ul className={menuList}>
         {links.map((link) => (
-          <NavItem key={link} onClick={() => scrollToComponent(link)}>{link}</NavItem>
+          <NavItem key={link}>
+            <a href={`#${link}`}>{link}</a>
+          </NavItem>
         ))}
         <NavItem>
           <a

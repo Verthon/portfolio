@@ -1,22 +1,23 @@
-import * as React from "react"
+/** @jsxImportSource react */
+import * as React from 'react'
+import { qwikify$ } from '@builder.io/qwik-react'
 
 import { Contact } from '../../components/Contact/Contact'
-import { Layout } from '../../components/Layout/Layout'
-import { Projects } from '../../components/Projects'
 import { Skills } from '../../components/Skills/Skills'
-import { Seo } from '../../components/Seo'
 import { Footer } from '../../components/Footer/Footer'
-import { useScrollState } from '../../hooks/useScrollState'
 
-export const HomePageContent = () => {
-  const { skillsSection, projectsSection, contactSection } = useScrollState()
+export const HomePageContentComponent = () => {
+  const skillsSection = React.useRef<HTMLElement>(null)
+  const contactSection = React.useRef<HTMLElement>(null)
   return (
-    <Layout>
-      <Seo />
+    <>
       <Skills ref={skillsSection} />
-      <Projects ref={projectsSection} />
       <Contact ref={contactSection} />
       <Footer />
-    </Layout>
+    </>
   )
 }
+
+export const HomePageContent = qwikify$(HomePageContentComponent, {
+  eagerness: 'visible',
+})

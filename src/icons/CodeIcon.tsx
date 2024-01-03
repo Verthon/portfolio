@@ -1,4 +1,4 @@
-import * as React from 'react'
+/** @jsxImportSource react */
 
 import type { Props } from './Icon.types'
 

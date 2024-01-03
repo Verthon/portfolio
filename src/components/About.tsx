@@ -1,18 +1,14 @@
+/** @jsxImportSource react */
 import React from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
 
 export const About = () => {
-  const data = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            bio
-          }
-        }
-      }
-    `
-  )
+  const data = {
+    site: {
+      siteMetadata: {
+        bio: '',
+      },
+    },
+  }
 
   return (
     <section className="section about">

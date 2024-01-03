@@ -1,9 +1,9 @@
-import * as React from "react"
+/** @jsxImportSource react */
 
-import type { Props } from "./Spinner.types";
+import type { Props } from './Spinner.types'
 
 export const Spinner = ({ isActive }: Props) => {
-  if(!isActive) {
+  if (!isActive) {
     return null
   }
 
@@ -14,5 +14,5 @@ export const Spinner = ({ isActive }: Props) => {
       <div></div>
       <div></div>
     </div>
-  );
-};
+  )
+}
