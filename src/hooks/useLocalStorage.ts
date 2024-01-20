@@ -18,7 +18,7 @@ export const useLocalStorage = <T>(key: string, initialValue?: T) => {
       const valueToStore =
         value instanceof Function ? value(storedValue) : value
       setStoredValue(valueToStore)
-      if (!isBrowser) {
+      if (isBrowser) {
         return window.localStorage.setItem(key, JSON.stringify(valueToStore))
       }
     } catch (error) {

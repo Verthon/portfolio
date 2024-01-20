@@ -5,10 +5,31 @@ import { ThemeToggler } from '../ThemeToggler/ThemeToggler'
 import { GithubIcon } from '../../icons/GithubIcon'
 import { LinkedinIcon } from '../../icons/LinkedinIcon'
 
-import type { Props } from './Nav.types'
 import { siteNav, socials, menuList } from './Nav.module.css'
 
-export const Nav = ({ links }: Props) => {
+type SlugVariant = 'skills' | 'contact' | 'blog' | 'home'
+type LinkVariant = 'hash' | 'regular'
+
+type NavProps = {
+  links: {
+    slug: SlugVariant
+    type: LinkVariant
+  }[]
+}
+
+const generateNavLink = ({
+  linkType,
+  slug,
+}: {
+  linkType: LinkVariant
+  slug: SlugVariant
+}) => {
+  if (linkType === 'hash') return `#${slug}`
+
+  return slug
+}
+
+export const Nav = ({ links }: NavProps) => {
   const data = {
     site: {
       siteMetadata: {
@@ -25,8 +46,10 @@ export const Nav = ({ links }: Props) => {
       </div>
       <ul className={menuList}>
         {links.map((link) => (
-          <NavItem key={link}>
-            <a href={`#${link}`}>{link}</a>
+          <NavItem key={link.slug}>
+            <a href={generateNavLink({ linkType: link.type, slug: link.slug })}>
+              {link.slug}
+            </a>
           </NavItem>
         ))}
         <NavItem>

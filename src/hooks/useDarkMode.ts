@@ -8,17 +8,23 @@ const usePrefersDarkMode = () => {
 }
 
 export const useDarkMode = () => {
-  const [enabledState, setEnabledState] = useLocalStorage('dark-mode-enabled')
+  const [enabledState, setEnabledState] = useLocalStorage<'dark' | 'light'>(
+    'user-theme-variant'
+  )
 
   const prefersDarkMode = usePrefersDarkMode()
 
   const enabled =
     typeof enabledState !== 'undefined' ? enabledState : prefersDarkMode
 
+  const setDarkMode = () => {
+    setEnabledState((prevState) => (prevState === 'dark' ? 'light' : 'dark'))
+  }
+
   React.useEffect(() => {
     const className = 'dark-mode'
     const element = window.document.body
-    if (enabled) {
+    if (enabled === 'dark') {
       element.dataset.theme = 'dark'
       element.classList.add(className)
     } else {
@@ -27,5 +33,5 @@ export const useDarkMode = () => {
     }
   }, [enabled])
 
-  return [enabled, setEnabledState]
+  return [enabled, setDarkMode] as const
 }

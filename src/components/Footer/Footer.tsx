@@ -1,5 +1,5 @@
 /** @jsxImportSource react */
-import GatsbyLogo from '../../images/Gatsby_Monogram.svg'
+import QwikLogo from '~/common/infrastructure/media/qwik-logo.svg'
 import { HearthIcon } from '../../icons/HearthIcon'
 import { CodeIcon } from '../../icons/CodeIcon'
 
@@ -45,9 +45,9 @@ export const Footer = () => {
         <p className={footerText}>Build with </p>
         <img
           className={footerLogo}
-          width={20}
-          height={20}
-          src={GatsbyLogo}
+          width={50}
+          height={50}
+          src={QwikLogo}
           alt=""
         />
       </div>

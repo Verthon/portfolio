@@ -1,0 +1,216 @@
+---
+title: 'Modern Webpack Boilerplate: Part 1: Setting Up the Basics'
+description: Discover the essentials of a modern Webpack boilerplate in this introductory article. Learn the crucial steps for a basic setup that can transform the way you develop and manage web applications, laying a solid foundation for more advanced techniques.
+excerpt: 'Discover the essentials of a modern Webpack boilerplate in this introductory article. Learn the crucial steps for a basic setup that can transform the way you develop and manage web applications, laying a solid foundation for more advanced techniques.'
+tags: react, headlessui, webdev, ui
+date: 2023-12-31
+---
+
+import ArticleWrapper from '~/blog/components/article-wrapper/article-wrapper'
+import ArticleHeader from '~/blog/components/article-header/article-header'
+import ArticleContent from '~/blog/components/article-content/article-content'
+
+<ArticleWrapper>
+<ArticleHeader>
+## Modern Webpack Boilerplate: Part 1: Setting Up the Basics
+</ArticleHeader>
+
+<ArticleContent>
+
+Building a Modern React SPA Boilerplate with Webpack 5, Part 1: Setting Up the Basics
+
+### What is Webpack
+
+Webpack is static module bundler - it basically takes your modules (needed to run your app) and turn them into one or more bundles, which are simply static assets.
+
+Bundler starts with scanning your modules, in order to create something called `dependency-graph` . This way Webpack will know, which modules and libraries are needed for the entry-point for your application.
+
+### Core concepts
+
+- Entry - module, where Webpack starts building dependency-graph, in React apps it is often index.ts/js file which imports bootstrap file
+- Output - location where Webpack should place the final bundle
+- Loaders - allow Webpack to process files with extensions other than JavaScript and JSON (JSX transformations, CSS, Fonts loaders, Babel transformations)
+- Plugins - plugins will handle the additional performance optimizations, environment variables, Module Federation etc.
+- Mode - tells Webpack, if you are in dev mode or production, where bundler apply all of its environment based optimizations
+
+### Why Webpack ?
+
+You might be wondering why to use Webpack nowadays, especially with many new bundlers emerging ? There are multiple advantages to still use Webpack:
+
+- Webpack huge ecosystem of loaders and plugins, battle-proven with big community
+- Highly customizable with great documentation
+- Framework agnostic - in this guide we use React - but bundler is completely separated from the any framework
+- Advanced code-splitting and lazy loading with Webpack Magic comments (https://webpack.js.org/api/module-methods/#magic-comments) fetch priorities (https://webpack.js.org/api/module-methods/#webpackfetchpriority) and many more advanced features
+- Module Federation - this topic is very advanced and dedicated rather for big projects - to learn more please refer to this fantastic article: https://scriptedalchemy.medium.com/understanding-webpack-module-federation-a-deep-dive-efe5c55bf366
+
+### Setting up npm
+
+Now we need put the concepts into minimal webpack setup. We assume that repository with initialized npm setup is there. The goal for this section is to:
+
+- ensure devs working on this project will have Node v20 LTS
+- install needed npm packages
+- add basic TypeScript setup
+- create Webpack setup function
+- create build script
+- prepare environment variables config
+
+### Unified Node version
+
+We always want to use Node 20 in this repository. To enforce this, create a new file named `.nvmrc`Run the following command to enforce the use of exact package versions within the project.
+
+```bash
+echo "v20" > .nvmrc
+```
+
+Whenever someone using NVM navigate to this project, it will automatically switch to Node 20.
+
+Sometimes it may not work automatically, so it is a good practice to always use `nvm use` before you run npm install command.
+
+### Additional setup for npm
+
+Run this command to enforce exact versions of packages that will be installed inside of the project.
+
+```bash
+echo engine-strict = true > .npmrc
+echo save-prefix="" >> .npmrc
+```
+
+Additionally it is good practice to add engines to package.json to make our lives easier on CICD and deployments
+
+```bash
+"engines": {
+  "node": "20"
+ },
+```
+
+### Install dependencies
+
+To use Webpack, it is necessary to install it as a dependency in our project, along with some helper packages needed for TypeScript.
+
+```bash
+npm i -D webpack webpack-cli typescript ts-node @types/node @types/webpack
+```
+
+### Base tsconfig.json
+
+I strongly recommend fantastic TypeScript resources available on: [https://www.totaltypescript.com](https://www.totaltypescript.com/)
+
+For this boilerplate, the bundler setup will do the job. Create a `tsconfig.json` file with the following content (Reference: [TypeScript Configurations Cheat Sheet](https://www.totaltypescript.com/tsconfig-cheat-sheet)):
+
+```json
+{
+  "compilerOptions": {
+    /* Base Options: */
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "target": "es2022",
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    "isolatedModules": true,
+    /* Strictness */
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "outDir": "dist",
+    "sourceMap": true,
+    "composite": true,
+    "declarationMap": true,
+    /* If NOT transpiling with TypeScript: */
+    "moduleResolution": "Bundler",
+    "module": "ESNext",
+    "noEmit": true,
+    /* If your code runs in the DOM: */
+    "lib": ["es2022", "dom", "dom.iterable"]
+  }
+}
+```
+
+### Add minimal Webpack build configuration
+
+Next, create a configuration file for Webpack - `webpack.config.ts` - in the root of the project:
+
+```tsx
+import path from 'path'
+import type { Configuration } from 'webpack'
+
+const createWebpackConfig = (mode: Configuration['mode']): Configuration => {
+  return {
+    mode: mode,
+    entry: path.resolve(process.cwd(), 'src/index.js'),
+    resolve: {
+      extensions: ['.js'],
+    },
+    output: {
+      path: path.resolve(process.cwd(), 'dist'),
+      clean: true,
+    },
+  }
+}
+
+export default createWebpackConfig
+```
+
+We take advantage of having function as configuration over object to be able to customize our scripts later on.
+
+- mode for production will be set always to `production` - this allow Webpack to make its optimizations for production build
+- entry points to entry file index.js
+- output is set to the `dist` folder, we also pass `clean` property, to remove old dist folder whenever you are creating new build
+
+### Example entry file and build command
+
+For now, we can stick with a basic `index.js` file to simply test the build command.
+
+```tsx
+//src/index.js
+
+export const printHelloWorld = () => {
+  return 'hello world'
+}
+
+console.log(printHelloWorld())
+```
+
+Last but not least the build command and dedicated script:
+
+```tsx
+// scripts/build.ts
+
+import createWebpackConfig from '../webpack.config'
+
+export default () => {
+  return createWebpackConfig('production')
+}
+```
+
+Build command in package.json
+
+```tsx
+"scripts": {
+  "build": "webpack --config scripts/build.ts"
+}
+```
+
+Now by running `npm run build` new folder `dist` should be created with following file in it:
+
+```tsx
+//dist/main.
+;(() => {
+  'use strict'
+  console.log('hello world')
+})()
+```
+
+That concludes this part. You can review all the details in following PR: https://github.com/Verthon/webpack-react-boilerplate/pull/1/files
+
+We now have a minimal setup, which we will extend with useful React-based features in the next article. In upcoming part we will focus on:
+
+- setting up modern Babel configuration
+- adding React
+- creating dev-server configuration
+- extending Webpack plugins
+
+Thank you, any feedback is highly appreciated.
+
+</ArticleContent>
+
+</ArticleWrapper>

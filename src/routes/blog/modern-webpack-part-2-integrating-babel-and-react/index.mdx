@@ -1,0 +1,401 @@
+---
+title: 'Modern Webpack Boilerplate: Part 2: Integrating Babel and React'
+description: Building upon the basics, Part 2 of our Webpack series delves into the integration of Babel and React. Learn how to combine these powerful tools within your Webpack setup to enhance your frontend development workflow
+excerpt: 'Building upon the basics, Part 2 of our Webpack series delves into the integration of Babel and React. Learn how to combine these powerful tools within your Webpack setup to enhance your frontend development workflow.'
+tags: react, headlessui, webdev, ui
+date: 2023-12-31
+---
+
+import ArticleWrapper from '~/blog/components/article-wrapper/article-wrapper'
+import ArticleHeader from '~/blog/components/article-header/article-header'
+import ArticleContent from '~/blog/components/article-content/article-content'
+
+<ArticleWrapper>
+<ArticleHeader>
+## Modern Webpack Boilerplate: Part 2: Integrating Babel and React
+</ArticleHeader>
+
+<ArticleContent>
+
+**Recap of Part 1**: In the first installment of this series, we laid the groundwork for our modern React SPA boilerplate using Webpack 5.
+We covered the basics of Webpack, including core
+concepts like entry points, outputs, loaders, and plugins. We also set
+up our npm environment, ensuring consistency with Node v20 LTS, and
+introduced a basic TypeScript configuration.
+With a foundational Webpack setup in place, we're now ready to dive into integrating Babel, Webpack Dev Server and React to enhance our SPA's capabilities.
+
+### Babel setup
+
+In order to use latest JavaScript features, while supporting older browsers, we need to use transpiler. In this configuration step, we will use babel.
+
+Install following dev-dependencies:
+
+```bash
+npm i -D babel-loader @babel/preset-typescript @babel/preset-react @babel/preset-env @babel/core
+```
+
+Since preset-env requires core-js we need to install it as well
+
+```bash
+npm install core-js@3
+```
+
+Additionally we need to specify what browsers need to be supported. You can create the required file with following command.
+
+```bash
+echo -e "> 0.25%\nnot dead" > .browserslistrc
+```
+
+Last but not least to finalize babel setup we would need to create `babel.config.js` file with following presets:
+
+- `@babel/preset-env` - simply allow to use latest JS syntax, without worry about browser support
+- `@babel/preset-typescript` - project uses TypeScript, so we need it
+- `@babel/preset-react` - allows Babel to parse JSX and other React related stuff
+
+Final config file looks like this
+
+```javascript
+//babel.config.js
+
+/**
+ * @type {import('@babel/core').TransformOptions}
+ */
+const config = {
+  presets: [
+    [
+      '@babel/preset-env',
+      {
+        useBuiltIns: 'usage',
+        corejs: { version: '3.35', shippedProposals: true },
+      },
+    ],
+    '@babel/preset-typescript',
+    [
+      '@babel/preset-react',
+      {
+        runtime: 'automatic',
+        development: process.env.NODE_ENV !== 'production',
+      },
+    ],
+  ],
+}
+
+module.exports = config
+```
+
+Now we need to tell Webpack how to handle tsx and ts files, current Webpack config need to be extended with following rules:
+
+```tsx
+module: {
+			rules: [
+				{
+					test: /\.(js|mjs|ts|tsx)$/,
+					include: path.resolve(process.cwd(), "src"),
+					loader: "babel-loader",
+				},
+			],
+		},
+		resolve: {
+			extensions: [".ts", ".tsx", ".js"],
+		},
+```
+
+This allow to pass all the files (tsx, ts, js) in src directory through babel and apply changes to use it safely in the browser.
+
+### Environment variables
+
+To clear any confusion around envs on the frontend, let's clarify one thing: every env listed in .env.prod will be publicly available. If you need a way to hide some sort of API_KEY - you need most likely a backend proxy layer.
+
+With public nature of envs on frontend world, lets dive into implementation. The idea is to provide our envs and build time, so when application is being deployed the envs will be available in the runtime. Without it we would end up with runtime error: `process is no defined` as it is part of Node.js not browser runtime.
+
+The whole mechanism is easily extendable for adding new environments (staging, test or whatever you want) - but for now we will stick with basic setup for:
+
+- production
+- local
+
+With that in mind lets create 3 files:
+
+- .env.prod - envs for production
+- .env.local - envs for local development **Note**: it must be added to .gitignore to not expose it
+- .env.example - example envs structure that matches .env.prod - new dev can easily copy it and fill with proper values
+
+For now we can add only one variable called for instance `ENVIRONMENT_NAME` for simplicity it cane be either `prod` or `local`
+
+Next install package `dotenv` which will help us manage the environment variables:
+
+```bash
+npm i -D dotenv
+```
+
+Once we have the envs and dotenv installed, we need to tell Webpack to add envs to code at build time. We need some helpers functions so it would be good idea to defined them under `config/env.ts` with following content:
+
+```typescript
+import dotenv from 'dotenv'
+import path from 'path'
+
+type EnvironmentVariable = Record<string, string>
+
+export const loadEnvs = (): EnvironmentVariable => {
+  const environment = process.env.NODE_ENV || 'prod'
+  const envPath = path.resolve(process.cwd(), `.env.${environment}`)
+  const result = dotenv.config({ path: envPath })
+
+  if (result.error) {
+    console.error(`Failed to load .env file: ${envPath}`, result.error)
+    throw result.error
+  }
+
+  return result.parsed || {}
+}
+
+export const mapEnvsToConfig = (envs: {
+  [key: string]: string
+}): EnvironmentVariable => {
+  return Object.keys(envs).reduce<EnvironmentVariable>((prev, next) => {
+    prev[`process.env.${next}`] = JSON.stringify(envs[next])
+    return prev
+  }, {})
+}
+```
+
+Function loadEnvs is getting proper env file based on NODE_ENV environment variable and creates config using `dotenv` package.
+
+However we still need to provide envs to Webpack in proper format, this task is handled by `mapEnvsToConfig`
+
+Last step is to import those functions to webpack config and provide NODE_ENV for build npm script:
+
+Webpack
+
+```tsx
+//...
+import { loadEnvs, mapEnvsToConfig } from './config/env'
+
+const createWebpackConfig = (mode: Configuration['mode']): Configuration => {
+  // load envs
+  const envs = loadEnvs()
+  const envsConfig = mapEnvsToConfig(envs)
+
+  return {
+    mode: mode,
+    entry: path.resolve(process.cwd(), 'src/index.ts'),
+    module: {
+      rules: [
+        {
+          test: /\.(js|mjs|ts|tsx)$/,
+          include: path.resolve(process.cwd(), 'src'),
+          loader: 'babel-loader',
+        },
+      ],
+    },
+    resolve: {
+      extensions: ['.ts', '.tsx', '.js'],
+    },
+    output: {
+      path: path.resolve(process.cwd(), 'dist'),
+      clean: true,
+    },
+    // pass them to Webpack so that process.env.ENVIRONMENT_NAME won't be undefined
+    plugins: [new DefinePlugin(envsConfig)],
+  }
+}
+```
+
+Build script - we still need to pass NODE_ENV
+
+```json
+"scripts": {
+		"build": "webpack --config scripts/build.ts --node-env=prod"
+	},
+```
+
+### React
+
+Install React
+
+```shell
+npm i react react-dom
+```
+
+And types for React
+
+```shell
+npm i -D @types/react-dom @types/react
+```
+
+Since we are working on SPA add `index.html` inside of new folder `public`
+
+Example content of the `index.html` can be as follow
+
+```html
+<!-- index.html -->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Webpack React Boilerplate</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
+</html>
+```
+
+Additionally we need to tell TypeScript that we are using JSX, add following line to `compilerOptions` of `tsconfig.json`
+
+```bash
+"jsx": "react-jsx",
+```
+
+Next we need dummy react component and bootstrap to mount application in root
+
+Dummy app
+
+```bash
+// src/App.tsx
+
+export const App = () => {
+	return <p>Hello World</p>;
+};
+```
+
+```tsx
+// src/bootstrap.tsx
+
+import { createRoot } from 'react-dom/client'
+
+import { App } from './App'
+
+const render = () => {
+  const container = document.getElementById('root')
+  if (container) {
+    const root = createRoot(container)
+    root.render(<App />)
+  }
+}
+
+render()
+```
+
+Using render function allows us to have flexibility to pass some configuration to it, for instance when you switch from build-time envs to runtime.
+
+Last we need to update the `src/index.ts` to address changes done in bootstrap
+
+```bash
+// src/index.ts
+
+import('./bootstrap');
+
+export {};
+```
+
+Finally we will setup the dev-server to be able spin up the development environment.
+
+Install dev-server package and html plugin
+
+```bash
+npm i -D webpack-dev-server html-webpack-plugin
+```
+
+In order to include webpack bundles automatically as script tags in index.html we need to add HTML plugin with some configuration
+
+```tsx
+//webpack.config.ts
+
+plugins: [
+			new DefinePlugin(envsConfig),
+			// new plugin for dealing with HTML
+			new HtmlWebpackPlugin({
+				inject: true,
+				template: path.resolve(process.cwd(), "public/index.html"),
+			}),
+		],
+```
+
+Next we need function that encapsulate the creating dev-server setup create following file `config/devServer.ts` which will have that config function
+
+```typescript
+import path from 'path'
+import { WebpackConfiguration } from 'webpack-dev-server'
+
+const defaultPort = Number(process.env.PORT) || 8080
+
+export const createDevServerConfig = (): WebpackConfiguration['devServer'] => ({
+  historyApiFallback: {
+    disableDotRule: true,
+    index: '/',
+  },
+  client: {
+    overlay: false,
+    logging: 'info',
+  },
+  static: {
+    directory: path.resolve(process.cwd(), 'public'),
+    serveIndex: true,
+    watch: true,
+  },
+  liveReload: false,
+  hot: true,
+  open: false,
+  port: defaultPort,
+})
+```
+
+You can define PORT environment variable if you need more flexibility otherwise it will use default `8080`
+
+Generate the dev-server only for dev mode in webpack config
+
+```tsx
+resolve: {
+			extensions: [".ts", ".tsx", ".js"],
+		},
+		// use it only for dev mode
+		...(mode === "development"
+			? {
+					devServer: createDevServerConfig(),
+			  }
+			: {}),
+		output: {
+			path: path.resolve(process.cwd(), "dist"),
+			publicPath: "/",
+			clean: true,
+		},
+```
+
+Last but not least we need new `scripts/start.ts` to be able to use it in npm scripts like build command.
+
+```tsx
+import createWebpackConfig from '../webpack.config'
+
+export default () => {
+  return createWebpackConfig('development')
+}
+```
+
+Additionally it has to be specified in package.json as well
+
+```tsx
+"scripts": {
+		"build": "webpack --config scripts/build.ts --node-env=prod",
+		"start": "webpack serve --config scripts/start.ts --node-env=local"
+	},
+```
+
+That concludes this part. You can review all the details in following PR: https://github.com/Verthon/webpack-react-boilerplate/pull/2
+
+Currently we have setup for modern JS, dev-server and React. In upcoming next part configuration will be extended with:
+
+- providing assets handling configuration
+- providing test configuration with Jest
+- basic configuration for CSS
+- adding bundle analyzer to track bundle-size in each build
+- minimal docs in the readme
+
+Thank you, any feedback is highly appreciated.
+
+</ArticleContent>
+
+</ArticleWrapper>

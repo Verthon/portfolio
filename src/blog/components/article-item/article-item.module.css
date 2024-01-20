@@ -1,0 +1,34 @@
+.articleItemWrapper {
+  border-radius: 0.5rem;
+  padding: 2rem;
+  transition: all 0.3s ease 0s;
+}
+
+.articleItemLink {
+  position: relative;
+  display: block;
+  text-decoration: none;
+}
+
+.articleMeta {
+  margin-bottom: 0.5rem;
+}
+
+.articleDate {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.articleItemTitle {
+  display: flex;
+  align-items: baseline;
+  gap: 0.875rem;
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+
+.articleItemExcerpt {
+  margin-top: 1rem;
+  line-height: 1.5rem;
+  font-size: 0.875rem;
+}

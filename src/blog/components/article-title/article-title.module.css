@@ -1,0 +1,7 @@
+.articleTitle {
+  line-height: 1.5;
+
+  [data-theme='dark'] .tabContentItem {
+    color: var(--grey-color-200);
+  }
+}

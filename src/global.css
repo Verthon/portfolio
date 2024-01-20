@@ -14,9 +14,13 @@ html,
 body {
   height: 100%;
 }
+html {
+  tab-size: 4;
+}
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   font-family:
     Inter,
     -apple-system,
@@ -82,6 +86,8 @@ ul {
 
 :root {
   --primary-color: hsl(50.3, 100%, 78.2%);
+  --primary-color-50: hsl(50.3, 100%, 96.2%);
+  --primary-color-100: hsl(50.3, 100%, 90.2%);
   --secondary-color: hsl(176.8, 43.9%, 66.5%);
   --secondary-color-400: hsl(176.8, 43.9%, 86.5%);
   --white-color: hsl(0, 0%, 100%);
@@ -118,20 +124,57 @@ ul {
   --button-padding-md: 0.6rem 1.5rem;
   --button-padding-lg: 1rem 2rem;
 
+  --grey-color-50: hsl(206.7, 52.9%, 98.3%);
   --grey-color-100: hsl(206.7, 52.9%, 96.7%);
   --grey-color-200: hsl(206.7, 52.9%, 92.7%);
-  --grey-color: hsl(206.7, 11.7%, 90.1%);
+  --grey-color-300: hsl(206.7, 11.7%, 91.4%);
+  --grey-color-400: hsl(206.7, 11.7%, 85.1%);
+  --grey-color-500: hsl(206.7, 11.7%, 82.6%);
+  --grey-color: hsl(206.7, 11.7%, 80.1%);
   --grey-color-600: hsl(206.7, 11.7%, 80.1%);
+  --grey-color-800: hsl(206.7, 11.7%, 70%);
+  --dark-color-100: hsl(60, 2.3%, 40%);
+  --dark-color-200: hsl(60, 2%, 37.5%);
   --dark-color-300: hsl(60, 1.7%, 35.1%);
   --dark-color-400: hsl(60, 1.9%, 30.4%);
+  --dark-color-500: hsl(60, 2.5%, 27.75%);
   --dark-color: hsl(60, 3.1%, 25.1%);
   --dark-color-600: hsl(60, 2.9%, 20.6%);
   --dark-color-700: hsl(60, 3.4%, 17.1%);
   --dark-color-800: hsl(60, 8%, 9.8%);
 
   --text-color: var(--dark-color);
+
+  --code-background: hsl(
+    206.7,
+    52.9%,
+    98.3%
+  ); /* Light grey background for code blocks */
+  --code-text: hsl(240, 27%, 38%); /* Primary text color for code */
+  --code-comment: hsl(60, 2.3%, 40%); /* Color for comments in code */
+  --code-keyword: hsl(0, 65%, 48%); /* Color for keywords in code */
+  --code-function: hsl(240, 60%, 52%); /* Color for functions in code */
+  --code-builtin: hsl(
+    240,
+    60%,
+    52%
+  ); /* Color for built-in language constructs */
 }
 
 [data-theme='dark'] {
   --text-color: var(--white-color);
+  --code-background: hsl(206.7, 11.7%, 20.6%); /* Darker background for code blocks */
+  --code-text: hsl(206.7, 15%, 75%); /* Lighter text color for code */
+  --code-comment: hsl(206.7, 11.7%, 50.6%); /* Lighter color for comments in code */
+  --code-keyword: hsl(50.3, 100%, 78.2%); /* Lighter red for keywords in code */
+  --code-function: hsl(176.8, 43.9%, 50.5%); /* Lighter blue for functions in code */
+  --code-builtin: hsl(176.8, 43.9%, 50.5%); /* Lighter blue for built-in language constructs */
+  --primary-color-50: hsl(50.3, 100%, 9.8%);
+  --primary-color-100: hsl(50.3, 100%, 15.2%);;
+}
+
+[data-theme='dark'] body {
+  background-color: var(--dark-color-800);
+  background-image: none;
+  color: var(--white-color);
 }

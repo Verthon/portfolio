@@ -1,0 +1,128 @@
+---
+title: 'Headless UI Libraries: The Key to Flexible and Accessible User Interfaces'
+description: Why Headless Component Libraries Are the Future of UI Development
+excerpt: Headless UI Libraries are redefining user interface development with their flexibility and focus on accessibility. This article delves into how these libraries work, their benefits in modern web development, and why they are becoming a go-to solution for inclusive and adaptable UIs.
+tags: react, headlessui, webdev, ui
+date: 2022-12-18
+# cover_image: https://direct_url_to_image.jpg
+# Use a ratio of 100:42 for best results.
+# published_at: 2022-12-18 13:10 +0000
+---
+
+import ArticleWrapper from '~/blog/components/article-wrapper/article-wrapper'
+import ArticleHeader from '~/blog/components/article-header/article-header'
+import ArticleContent from '~/blog/components/article-content/article-content'
+
+<ArticleWrapper>
+<ArticleHeader>
+## Headless UI Libraries: The Key to Flexible and Accessible User Interfaces
+</ArticleHeader>
+
+<ArticleContent>
+In general the building UI is a very custom experience based on the brand you are building. Every company has different needs. So how to achieve that ?
+
+There are a lot of already advanced, already styled, production ready libraries out there like MUI, Mantine, Chakra, Antd etc. These libraries allow you to deliver features extremely quickly at the beginning of the project and have large and supporting community. 
+
+The **headless components** gives you the small building blocks for creating UI, it comes with the freedom of styling, while maintaining the accessibility, functionality and all cross browser quirks for you.
+
+Headless components are the unstyled versions of the regular components like Select or Dropdown, that:
+
+- are fully tested on different browsers and platforms
+- supports keyboard navigation
+- supports the entire focus management for you
+- supports screen readers and are fully accessible
+- supports all that edge cases that you don't want to deal with
+
+Example of headless component from radix-ui docs
+
+```typescript
+import React from 'react';
+import * as ToggleGroup from '@radix-ui/react-toggle-group';
+import { TextAlignLeftIcon, TextAlignCenterIcon, TextAlignRightIcon } from '@radix-ui/react-icons';
+import './styles.css';
+
+const ToggleGroupDemo = () => (
+  <ToggleGroup.Root
+    className="ToggleGroup"
+    type="single"
+    defaultValue="center"
+    aria-label="Text alignment"
+  >
+    <ToggleGroup.Item className="ToggleGroupItem" value="left" aria-label="Left aligned">
+      <TextAlignLeftIcon />
+    </ToggleGroup.Item>
+    <ToggleGroup.Item className="ToggleGroupItem" value="center" aria-label="Center aligned">
+      <TextAlignCenterIcon />
+    </ToggleGroup.Item>
+    <ToggleGroup.Item className="ToggleGroupItem" value="right" aria-label="Right aligned">
+      <TextAlignRightIcon />
+    </ToggleGroup.Item>
+  </ToggleGroup.Root>
+);
+
+export default ToggleGroupDemo;
+```
+
+Now imagine how much time you will have to spent in order to support all of those features 😅 If you are still thinking “I can surely can do that on my own” - please take a look at Pedro Duarte talk [So You Think You Can Build A Dropdown? (Next.js Conf 2021)](https://www.youtube.com/watch?v=pcMYcjtWwVI)
+
+Example of headless UI libraries:
+
+- [Radix-UI](https://www.radix-ui.com/) - low-level UI component library with a focus on accessibility, customization and developer experience that can be adopted incrementally since every component is a diffrent npm package
+- [Headless UI](https://headlessui.com/) - works great with TailwindCSS but has 10 components, however it supports both Vue and React
+- [Reakit](https://reakit.io/docs/get-started/) - comes with hooks and components built with composition in mind
+- [Reach UI](https://reach.tech/) - created by React Router team
+- [React Aria](https://react-spectrum.adobe.com/react-aria/index.html) - created by Adobe - library of hooks that provides primitives for your custom styling
+
+### Why to even think about it ?
+
+As mentioned briefly above the headless components comes with a lot features, which make your life easier while building custom UI. 
+
+The main reasons, that you should consider going headless for your project:
+
+- **unstyled** - gives you freedom how you would like to style your components (css in js, tailwind, css-modules etc.) Additionally you are not being force to follow specific library design scheme
+- **bundle size** - is not bloated with libraries code (styling, hooks, helpers, theming etc.), they are doing great job with tree shaking, but still it is bigger than headless
+- **consistency** - similar like in the regular UI libs the api of components is consistent, so your team mates won’t spot the difference in daily basis work and maintenance
+- **incremental adoption** - libraries like **radix-ui** serves components as standalone package which help greatly with migrating existing library step by step
+- **typescript support** - most of libraries that will mention in this article are written in TypeScript it means that DX will be great, and package will be most likely self documenting
+- **can improve the UI layer** - you can nicely decouple the ui from logic in your components
+- **redesigns won’t be scary** - since you have full control of theming and styling, it is more future-proof and easier to maintain
+
+### When to choose a headless option ?
+
+The headless approach works best when you are building the components library for your organization or for your client. 
+
+Additionally it will be perfect case when you are build a project which has own design system, that is different than systems that popular UI libraries are using.
+
+Given that I think most of the project should at least consider using mentioned headless libraries. 
+
+Personally in the projects that I’m working on we initially choose the mui - but right now, since we have custom design system, we are gradually removing the mui and adding the radix-ui components.
+
+### Are “traditional” UI Library obsolete then ?
+
+Definitely not, they are still maintained and they are fantastic tools for:
+
+- Proof of Concept like projects, when time to market is crucial
+- Very unlikely to happen - but your design system is based on the same, that UI library uses
+- Projects with tight deadlines or very low budget
+- Personal projects
+
+### Drawbacks of headless UI
+
+- they often require more setup on the developer side
+- the community is not that big as traditional UI libraries
+- you most likely won’t find every component, that you are familiar with from mui system for example
+- may not be as widely used - most of FE devs are familiar with mui for instance, the headless ones are going to mainstream, but they are still unfortunately not widely adopted
+
+### Summary
+
+In my opinion the headless component libraries will continue to gain popularity over time as more developers seek out ways to create user interfaces that are accessible, customizable, and performant.
+
+As headless component libraries continue to evolve and improve, they may become an increasingly attractive option for developers looking to create user interfaces that meet the specific needs of their projects. It's possible that traditional component libraries will also continue to adapt and offer more customization options, such as unstyled versions of their libraries, in response to the growing popularity of headless libraries.
+
+It's worth noting that some traditional component libraries, like Material-UI ([https://mui.com/base/getting-started/overview/](https://mui.com/base/getting-started/overview/)) and Mantine ([https://mantine.dev/changelog/5-0-0/#unstyled-components](https://mantine.dev/changelog/5-0-0/#unstyled-components)), are also now offering unstyled versions of their libraries, which can allow for more customization and control over the design of your application. 
+
+This can be a good option if you want to use a traditional library but still have some of the design flexibility provided by a headless library.
+
+</ArticleContent>
+
+</ArticleWrapper>

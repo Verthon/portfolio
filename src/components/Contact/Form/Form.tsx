@@ -22,7 +22,6 @@ export const Form = () => {
       | React.ChangeEvent<HTMLInputElement>
       | React.ChangeEvent<HTMLTextAreaElement>
   ) => {
-    console.log(e.target.name)
     setForm({
       ...form,
       [e.target.name]: e.target.value,

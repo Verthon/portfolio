@@ -1,0 +1,58 @@
+.footer {
+  background: var(--secondary-color-400);
+}
+
+.footerWrapper {
+  margin: auto;
+  padding: 4rem 2rem 2rem 2rem;
+}
+
+.footerContent {
+  display: flex;
+  justify-content: center;
+  columns: 2;
+}
+
+[data-theme='dark'] .footer {
+  background-color: var(--dark-color-600);
+  color: var(--grey-color);
+}
+
+@media screen and (min-width: 1366px) {
+  .footer {
+    padding: 1rem 0 1rem 0;
+  }
+}
+
+.footerText {
+  align-items: center;
+  margin: 0.5rem 0 0.5rem 0;
+}
+
+.footerText svg {
+  color: var(--black-color);
+  fill: currentColor;
+}
+
+[data-theme='dark'] .footerText svg {
+  color: var(--white-color);
+}
+
+.footerCode {
+  margin: 0 0.5rem 0 0;
+}
+
+.footerHearth {
+  margin: 0 0.25rem;
+}
+
+.footerTech {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.footerLogo {
+  margin: 0 0 0 0.5rem;
+}
