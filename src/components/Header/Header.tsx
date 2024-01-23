@@ -27,7 +27,13 @@ export const HeaderComponent = () => {
   return (
     <div className={wrapper}>
       <Container>
-        <Nav links={['skills', 'contact']} />
+        <Nav
+          links={[
+            { type: 'regular', slug: 'blog' },
+            { type: 'hash', slug: 'skills' },
+            { type: 'hash', slug: 'contact' },
+          ]}
+        />
       </Container>
       <Container>
         <header className={header} data-aos="zoom-out-down">

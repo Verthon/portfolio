@@ -1,0 +1,216 @@
+---
+title: Frontend test smells
+published: true
+description: How to spot the tests smells in your frontend application
+tags: testing, frontend
+date: 2022-10-30
+excerpt: A Guide to Identifying and Fixing Test Smells. Discover the subtle yet impactful mistakes that can occur in frontend testing and how to rectify them. This article provides a comprehensive overview of common test smells, including the misuse of user events and the pitfalls of redundant assertions.
+# cover_image: https://direct_url_to_image.jpg
+# Use a ratio of 100:42 for best results.
+# published_at: 2022-10-30 07:39 +0000
+---
+
+import ArticleWrapper from '~/blog/components/article-wrapper/article-wrapper'
+import ArticleHeader from '~/blog/components/article-header/article-header'
+import ArticleContent from '~/blog/components/article-content/article-content'
+
+<ArticleWrapper>
+<ArticleHeader>
+## Frontend test smells
+</ArticleHeader>
+
+<ArticleContent>
+This article aims to help you find common problems in frontend testing.
+
+Our frontend applications grows very fast, along with the addition of (more and more thoughtful 😉) features, which should be tested automatically.
+
+I strongly encourage you to critique and also review the additional materials at the end of this article, that formed the basis for this list of "test smell's"
+
+List of the most common problems in testing, that I have noticed in projects and libraries that I maintain in my regular job:
+
+### Using the `fireEvent` for user interactions
+
+If you using a React Testing Library in your tests I would suggest to switch for `userEvent`.
+
+UserEvent is way better at simulating the user behaviour, `fireEvent` just dispatches the DOM event, when the `userEvent` simulates full interactions - similarly like it is in real browser.
+
+### Lack of using setup for `userEvent`
+
+It is recommended to invoke `setup` method before the actual component render in test.
+
+The `UserEvent` [authors encourage to invoke setup always before the render](https://testing-library.com/docs/user-event/intro#writing-tests-with-userevent). Personally I'm sticking with helper createWrapper function. It helps with managing all our providers in once place.
+
+```tsx
+export const createTestWrapper =
+({ children }: React.PropsWithChildren<unknown>) => {
+  return {
+    user: userEvent.setup(),
+    ...render(<SomeProvider>{children}</SomeProvider>),
+  }
+}
+```
+
+### Lack of using await for the `user events`
+
+Simply always await any user interaction
+
+```typescript
+const { user } =
+createTestWrapper({ children: <Checkbox /> })
+const checkbox = screen.getByRole('checkbox')
+
+user.click(checkbox) 🛑
+
+await user.click(checkbox) ✅
+
+expect(screen.getByRole('checkbox')).toBeChecked()
+```
+
+The only expection from it is `.type` according to the docs:
+
+_"To be clear, userEvent.type always returns a promise, but you only need to await the promise it returns if you're using the delay option. Otherwise everything runs synchronously and you can ignore the promise"._
+
+
+### Huge test cases
+
+On the whole it is quite logical, it is definitely better to break up into several smaller cases - than to test everything in one.
+
+There is absolutely no point in artificially limiting the number of cases.
+
+
+### Too many assertions in one test case
+
+It will be problematic to find what exactly failed, while you have a lot of assertions that checks totally different things.
+
+Some people like to have only 1 assertion per test. I think it might be problematic, since checking one behavior might need more than just one assertion. As long as you testing one thing - you should be fine.
+
+Here it can be helpful to use these techniques:
+
+- given => when => then
+- prepare => act => assert
+
+
+### Lack of any assertions or assertion which are useless
+
+Think of it as something like `expect(true).toBe(true)` or `expect(MightyComponent).toBeDefined()` 😉
+
+
+### Lack of strongly typed response mocks
+
+In case you are using [msw](https://mswjs.io/).
+I think it is best to aim to be 100% up to date in terms of api responses structure.
+By typing it all, the TypeScript compiler makes sure that these mocks are always up to date as to type.
+
+```typescript
+// fixture for msw handlers
+export const regionsDictionary: RegionsDictionaryResponse = [
+  {
+    id: 1,
+    name_en: 'Bavaria',
+    name_ar: 'بافاريا',
+  },
+  {
+    id: 2,
+    name_en: 'Saxony',
+    name_ar: 'ساكسونيا',
+  },
+  {
+    id: 3,
+    name_en: 'Hesse',
+    name_ar: 'هيس',
+  },
+]
+```
+
+
+### Badly described test cases
+
+I see it always in codebases: `should render a component` or `method should return true`
+
+I found that, it is best to show our descriptions to someone else and give that person very short time to read it and then ask what this test is actually checking ?
+If it is not obvious, then most likely our descriptions are misleading.
+
+It is crucial to think, up front - what exactly I need to test. What user interaction should I check, the more our description is for humans not 🤖 the better test is.
+
+
+### Tests that sometimes passes, sometimes not
+
+If it happens to your unit tests, then most likely it will be caused by some side effects. I often see the problems with time / dates.
+If there is not time for such a debugging I would suggest to just delete those problematic tests
+
+
+### Logic in your tests
+
+Even "simple" if statements. It is hard to determine if your logic in test failed or something is wrong with the thing that you are testing.
+
+When someone claims, that if/else logic in test can be removed for some reason, I would try to check if it can be split into two or more test cases.
+
+
+### It is hard to write any tests
+
+This usually indicates a complicated code, functions that do everything ? React Context that oversees the entire state ?
+
+
+### tests duplication
+
+Sometimes it is enough to write only integration test to check user interaction and not necessarily additionally unit-test a component / function that has already been tested in the integration test
+
+
+### very high coverage (90% +)
+
+Most often points to implementation testing, or worse, jacking up coverage at all costs, and no longer necessarily focusing on quality and behavioral coverage.
+
+
+### Very slow tests
+
+Especially the typical unit ones, we want developers to get in the habit of running tests often.
+If they are slow, no one will let them go - happily there is always CICD at the end, but it is rather poor consolation when we want to popularize testing.
+
+
+### mocking everything
+
+Such a test does not work much, in addition, having in our projects setup msw - mocking axios is in my opinion an average idea - when we have fantastic tools like [msw](https://mswjs.io/) to deal with your api calls easily
+
+
+### tests initially are always pass ✅
+
+It is quite important to check whether for bad data or for reversal of the studied behavior - the test will correctly fail.
+Then we are sure that we do not fall into the so-called false positive.
+Here I refer to the article by [Vlad Khorikov](https://khorikov.org/posts/2020-01-29-false-positives-negatives/)
+
+
+### Tests don't act as living documentation
+
+Good tests should be easy for the person reading them.
+You can always check it by folding all test cases in your IDE and reading its description only, if it gives you a brief idea what behavior is being tested then everything is fine.
+Below I cite some of the most important features developed by **Gerard Meszaros**
+
+The guiding principle, of course, is to write tests for people not robots, a good test:
+
+
+1. describes the context, starting point or preconditions that must be met
+
+2. illustrates how the code is called
+
+3. variables or names in the test are trivial for the recipient to understand
+
+4. describes exactly the expected result or the secondary conditions it verifies
+
+
+
+### Lack of any test
+
+The biggest red flag that I can think of 🛑 . It is best to start by testing the simplest utils or even (it might be controversial) write empty test cases with detailed business descriptions of the functionality.
+When the time is right, someone can help with writing such tests, or you can learn it yourself.
+
+### Material that helped me a lot preparing this article:
+
+- https://kentcdodds.com/blog/common-mistakes-with-react-testing-library
+- https://kentcdodds.com/blog/the-testing-trophy-and-testing-classifications
+- https://khorikov.org/posts/2020-01-29-false-positives-negatives/
+- http://xunitpatterns.com/Test%20Smells.html
+- https://www.youtube.com/watch?v=wCx_6kOo99M&t=1808s
+
+</ArticleContent>
+
+</ArticleWrapper>

@@ -1,9 +1,18 @@
 import { component$ } from '@builder.io/qwik'
 import type { DocumentHead } from '@builder.io/qwik-city'
+
+import { Header } from '~/components/Header/Header'
 import { HomePageContent } from '~/components/HomePageContent/HomePageContent'
 
 export default component$(() => {
-  return <HomePageContent />
+  return (
+    <>
+      <Header />
+      <main>
+        <HomePageContent />
+      </main>
+    </>
+  )
 })
 
 export const head: DocumentHead = {

@@ -1,0 +1,18 @@
+.navItem {
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 0 0.5rem;
+  cursor: pointer;
+  @media screen and (min-width: var(--bp-xxlarge)) {
+    font-size: 2rem;
+  }
+}
+
+.navItem svg {
+  font-size: 1.1rem;
+  color: var(--black-color);
+  fill: currentColor;
+  @media screen and (min-width: var(--bp-xsmall)) {
+    font-size: 1.4rem;
+  }
+}

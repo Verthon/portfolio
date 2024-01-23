@@ -1,0 +1,22 @@
+.footerSocialsWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footerSocialsLinksWrapper {
+  display: flex;
+}
+
+.footerSocialsLink {
+  margin-inline-start: 1rem;
+  color: var(--dark-color-700);
+  svg {
+    fill: currentColor;
+    display: inline;
+  }
+}
+
+[data-theme='dark'] .footerSocialsLink {
+  color: var(--white-color);
+}

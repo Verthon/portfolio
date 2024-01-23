@@ -9,15 +9,16 @@ import { themeToggler } from './ThemeToggler.module.css'
 
 export const ThemeToggler = () => {
   const [darkMode, setDarkMode] = useDarkMode()
+
   return (
     <button
       className={themeToggler}
-      onClick={() => setDarkMode(!darkMode)}
+      onClick={() => setDarkMode()}
       aria-label={darkMode ? 'Activate light theme' : 'Activate dark theme'}
       title={darkMode ? 'Activate light theme' : 'Activate dark theme'}
       data-cy="theme-toggler"
     >
-      {darkMode ? <SunIcon color="white" /> : <MoonIcon color="black" />}
+      {darkMode === 'dark' ? <SunIcon color="white" /> : <MoonIcon color="black" />}
     </button>
   )
 }
