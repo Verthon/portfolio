@@ -3,4 +3,5 @@ export type ArticleItem = {
   excerpt: string
   permalink: string
   date: string
+  articleType: 'featured' | 'default'
 }

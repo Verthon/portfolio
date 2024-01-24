@@ -4,6 +4,7 @@ type ModuleWithFrontmatter = {
     description: string
     date: string
     excerpt: string
+    article_type: 'featured' | 'regular'
   }
 }
 
@@ -19,7 +20,8 @@ const isFrontmatter = (obj: unknown): obj is ModuleWithFrontmatter =>
   isObject(obj) &&
   hasStringProperty(obj, 'title') &&
   hasStringProperty(obj, 'description') &&
-  hasStringProperty(obj, 'date')
+  hasStringProperty(obj, 'date') &&
+  hasStringProperty(obj, 'article_type')
 
 export const isModuleWithFrontmatter = (
   obj: unknown
@@ -60,7 +62,8 @@ export const fetchMdxFiles = async ({
     }[]
   >((acc, [path, module]) => {
     if (isModuleWithFrontmatter(module)) {
-      const { title, description, date, excerpt } = module.frontmatter
+      const { title, description, date, excerpt, article_type } =
+        module.frontmatter
       acc.push({
         path,
         metadata: {
@@ -68,6 +71,7 @@ export const fetchMdxFiles = async ({
           description: description,
           date: date,
           excerpt: excerpt,
+          article_type: article_type,
         },
       })
     }

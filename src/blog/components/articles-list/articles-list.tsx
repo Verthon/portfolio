@@ -1,4 +1,5 @@
 import { component$ } from '@builder.io/qwik'
+
 import type { ArticleItemProps } from '../article-item/article-item'
 import ArticleItem from '../article-item/article-item'
 
@@ -18,6 +19,7 @@ export default component$(({ list }: ArticlesListProps) => {
           title={item.title}
           permalink={item.permalink}
           excerpt={item.excerpt}
+          articleType={item.articleType}
         />
       ))}
     </div>
