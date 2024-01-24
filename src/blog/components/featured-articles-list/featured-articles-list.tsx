@@ -9,7 +9,9 @@ export default component$(() => {
   return (
     <Resource
       value={articlesResource}
-      onResolved={(articles) => <ArticlesList list={articles} />}
+      onResolved={(articles) => (
+        <ArticlesList list={articles} orientation="vertical" />
+      )}
     />
   )
 })
