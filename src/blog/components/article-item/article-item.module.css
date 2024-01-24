@@ -1,7 +1,7 @@
 .articleItemWrapper {
   border-radius: 0.5rem;
-  padding: 2rem;
   transition: all 0.3s ease 0s;
+  max-width: 37rem;
 }
 
 .articleItemLink {
