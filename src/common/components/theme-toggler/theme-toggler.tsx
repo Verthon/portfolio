@@ -1,62 +1,76 @@
-import { component$, useStore, useVisibleTask$ } from '@builder.io/qwik'
-import { isServer } from '@builder.io/qwik/build'
+import { component$, useSignal, $, useVisibleTask$ } from '@builder.io/qwik'
 
 import { createStorageService } from '~/common/infrastructure/services/storage'
-import { usePrefersDarkMode } from '~/common/application/hooks/usePrefersDarkMode'
-import SunIcon from '../sun-icon/sun-icon'
-import MoonIcon from '../moon-icon/moon-icon'
+import type { UserTheme } from '~/common/domain/models/user-theme'
 
 import { themeToggler } from './theme-toggler.module.css'
 
+const updateThemeInStorage = (currentTheme: UserTheme) => {
+  const storage = createStorageService<'user-theme-variant'>({
+    storage: window.localStorage,
+  })
+  storage.setItem({
+    key: 'user-theme-variant',
+    value: currentTheme,
+  })
+}
+
+const detectSystemTheme = () => {
+  return window.matchMedia('(prefers-color-scheme: dark)').matches
+}
+
+const updateThemeInCss = (currentTheme: UserTheme) => {
+  const prefersDarkMode = detectSystemTheme()
+  const isDark =
+    currentTheme === 'system' ? prefersDarkMode : currentTheme === 'dark'
+  const element = window.document.documentElement
+  element.dataset.theme = isDark ? 'dark' : 'light'
+  element.classList.toggle('dark-mode', isDark)
+}
+
+const getInitialUserTheme = () => {
+  const storage = createStorageService<'user-theme-variant'>({
+    storage: window.localStorage,
+  })
+
+  const storageTheme = storage.getItem({
+    key: 'user-theme-variant',
+  }) as UserTheme | null
+
+  return storageTheme ?? 'system'
+}
+
 export default component$(() => {
-  const prefersDarkMode = usePrefersDarkMode()
-  const store = useStore({ isDarkMode: true })
+  const currentTheme = useSignal<UserTheme>('system')
+
+  const setCurrentTheme = $((_event: Event, element: HTMLSelectElement) => {
+    currentTheme.value = element.value as UserTheme
+    updateThemeInStorage(currentTheme.value)
+    updateThemeInCss(currentTheme.value)
+  })
+
+  const themeOptions = [
+    { value: 'system', name: 'System mode' },
+    { value: 'dark', name: 'Dark mode' },
+    { value: 'light', name: 'Light mode' },
+  ]
 
   // eslint-disable-next-line qwik/no-use-visible-task
   useVisibleTask$(() => {
-    const storage = createStorageService<'user-theme-variant'>({
-      storage: isServer ? undefined : window.localStorage,
-    })
-    const storedPreference = storage.getItem({ key: 'user-theme-variant' })
-
-    store.isDarkMode =
-      storedPreference !== null ? storedPreference === 'dark' : prefersDarkMode
-
-    const element = window.document.documentElement
-    element.dataset.theme = store.isDarkMode ? 'dark' : 'light'
-    element.classList.toggle('dark-mode', store.isDarkMode)
+    currentTheme.value = getInitialUserTheme()
   })
 
   return (
-    <button
+    <select
       class={themeToggler}
-      onClick$={() => {
-        const setTheme = () => {
-          const element = window.document.documentElement
-          element.dataset.theme = store.isDarkMode ? 'dark' : 'light'
-          element.classList.toggle('dark-mode', store.isDarkMode)
-        }
-        store.isDarkMode = !store.isDarkMode
-        const storage = createStorageService<'user-theme-variant'>({
-          storage: window.localStorage,
-        })
-        storage.setItem({
-          key: 'user-theme-variant',
-          value: store.isDarkMode ? 'dark' : 'light',
-        })
-        setTheme()
-      }}
-      aria-label={
-        store.isDarkMode ? 'Activate light theme' : 'Activate dark theme'
-      }
-      title={store.isDarkMode ? 'Activate light theme' : 'Activate dark theme'}
-      data-cy="theme-toggler"
+      value={currentTheme.value}
+      onInput$={setCurrentTheme}
     >
-      {store.isDarkMode ? (
-        <SunIcon color="white" />
-      ) : (
-        <MoonIcon color="black" />
-      )}
-    </button>
+      {themeOptions.map((option) => (
+        <option value={option.value} key={option.value}>
+          {option.name}
+        </option>
+      ))}
+    </select>
   )
 })
