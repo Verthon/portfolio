@@ -178,3 +178,9 @@ ul {
   background-image: none;
   color: var(--white-color);
 }
+
+[data-theme='light'] body {
+  background-color: var(--white-color);
+  background-image: none;
+  color: var(--dark-color-800);
+}
