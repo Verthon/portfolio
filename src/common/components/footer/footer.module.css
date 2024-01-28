@@ -1,21 +1,22 @@
 .footer {
-  background: var(--secondary-color-400);
+  margin-top: auto;
+  border-top: 1px solid var(--grey-color-200);
+  color: var(--text-color);
+}
+
+[data-theme='dark'] .footer {
+  border-color: var(--dark-color-400);
 }
 
 .footerWrapper {
   margin: auto;
-  padding: 4rem 2rem 2rem 2rem;
+  padding: 2rem;
 }
 
 .footerContent {
   display: flex;
   justify-content: center;
   columns: 2;
-}
-
-[data-theme='dark'] .footer {
-  background-color: var(--dark-color-600);
-  color: var(--grey-color);
 }
 
 @media screen and (min-width: 1366px) {
@@ -32,10 +33,6 @@
 .footerText svg {
   color: var(--black-color);
   fill: currentColor;
-}
-
-[data-theme='dark'] .footerText svg {
-  color: var(--white-color);
 }
 
 .footerCode {
