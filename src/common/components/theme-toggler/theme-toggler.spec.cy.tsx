@@ -1,17 +1,18 @@
+import { mount } from 'cypress-ct-qwik'
 import ThemeToggler from './theme-toggler'
 
 describe('ThemeToggler', () => {
   it('should by default has system theme selected', () => {
-    cy.mount(<ThemeToggler />)
+    mount(<ThemeToggler />)
 
-    cy.contains(/system theme/i).should('be.visible')
+    cy.contains(/system mode/i).should('be.visible')
   })
 
   it('should allow to change the theme to dark one', () => {
-    cy.mount(<ThemeToggler />)
+    mount(<ThemeToggler />)
 
-    cy.get('select').select('Dark theme')
+    cy.get('select').select('Dark mode')
 
-    cy.contains(/dark theme/i).should('be.visible')
+    cy.contains(/dark mode/i).should('be.visible')
   })
 })

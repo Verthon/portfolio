@@ -26,7 +26,7 @@ describe('StorageService - allows to create type-safe storage either localStorag
     const serverService = createStorageService<string>({
       storage: nonExistantStorage,
     })
-    serverService.setItem({ key: 'test', value: 'value' })
+    serverService.setItem({ key: 'test', value: 'testValue' })
     expect(serverService.getItem({ key: 'test' })).toBe('testValue')
   })
 })
