@@ -6,17 +6,19 @@ import Footer from '~/common/components/footer/footer'
 
 export default component$(() => {
   return (
-    <main>
-      <Container>
-        <Nav
-          links={[
-            { type: 'regular', slug: 'home' },
-            { type: 'regular', slug: 'blog' },
-          ]}
-        />
-        <Slot />
-      </Container>
+    <>
+      <main>
+        <Container>
+          <Nav
+            links={[
+              { type: 'regular', slug: 'home' },
+              { type: 'regular', slug: 'blog' },
+            ]}
+          />
+          <Slot />
+        </Container>
+      </main>
       <Footer />
-    </main>
+    </>
   )
 })

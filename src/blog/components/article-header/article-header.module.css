@@ -3,7 +3,7 @@
     font-size: 2rem;
     letter-spacing: -0.025em;
     line-height: 3rem;
-    color: var(--text-color);
+    color: var(--heading-color);
 
     @media screen and (min-width: 520px) {
       font-size: 3rem;
