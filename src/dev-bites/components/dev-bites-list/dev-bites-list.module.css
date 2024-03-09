@@ -1,0 +1,18 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  margin: auto;
+  gap: 4rem;
+  margin-top: 3rem;
+  margin-bottom: 5rem;
+
+  @media screen and (min-width: 520px) {
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    margin-top: 3rem;
+    margin-bottom: 6rem;
+  }
+}
+
+.gridOrientationVertical {
+  grid-template-columns: 1fr;
+}

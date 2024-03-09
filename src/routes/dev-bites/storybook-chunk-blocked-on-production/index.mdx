@@ -1,0 +1,62 @@
+---
+title: 'Storybook chunk blocked by network policy'
+published: true
+description: 'Resolve issue with storybook chunks being blocked on production'
+tags: testing
+date: 2024-03-09
+excerpt: "Quick fix for Storybook's network-blocked chunks: Adjust Webpack's output filename to bypass restrictive policies."
+last_updated: 2024-03-07
+dev_bite_type: featured
+---
+
+import DevBiteWrapper from '~/dev-bites/components/dev-bite-wrapper/dev-bite-wrapper'
+import DevBiteHeader from '~/dev-bites/components/dev-bite-header/dev-bite-header'
+import DevBiteContent from '~/dev-bites/components/dev-bite-content/dev-bite-content'
+
+<DevBiteWrapper>
+<DevBiteHeader>
+## Storybook chunk blocked by network policy
+</DevBiteHeader>
+
+<DevBiteContent>
+
+**Last updated**: 06.03.2023
+
+**Context**:
+
+- Environment: SPA React Application with Webpack as a bundler
+- Dependencies:
+  - Webpack version: `"webpack": "5.82.0"`
+  - Storybook version: `"storybook": "7.5.3"`
+
+**Problem**:
+
+Storybook creates a chunk that has `~` mark in the chunk-name - this could be considered as illegal character in URL (blacklisted at network level).
+
+**Root cause:**
+
+By default, Storybook generates its main chunk with Webpack using the pattern: `'[name].[contenthash:8].iframe.bundle.js'`. This results in chunk names such as `runtime~main.35339373.iframe.bundle.js`, where the tilde can be problematic.
+
+**Solution:**
+
+Simply remove `[name]` part from filename - since we don’t have control over it.
+
+```bash
+// .storybook/main.ts or main.js
+
+const config: StorybookConfig = {
+  webpackFinal: async (config) => {
+	  config.output = {
+		  ...config.output,
+      filename: '[contenthash:8].iframe.bundle.js',
+	  }
+    return config;
+  },
+}
+```
+
+For an in-depth understanding of customizing Storybook's Webpack setup, visit [Storybook's official documentation on Webpack configuration](https://storybook.js.org/docs/builders/webpack#override-the-default-configuration).
+
+</DevBiteContent>
+
+</DevBiteWrapper>

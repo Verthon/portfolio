@@ -1,0 +1,109 @@
+---
+title: Async Error Handling in Mocha
+published: true
+description: 'Simplify your async testing in Mocha with a concise overview of using Chai-as-Promised, focusing on practical examples for immediate application.'
+tags: testing
+date: 2024-03-09
+excerpt: 'Immediate solutions for async error handling in Mocha with Chai-as-Promised, targeting common issues with quick fixes.'
+last_updated: 2024-02-25
+dev_bite_type: featured
+---
+
+import DevBiteWrapper from '~/dev-bites/components/dev-bite-wrapper/dev-bite-wrapper'
+import DevBiteHeader from '~/dev-bites/components/dev-bite-header/dev-bite-header'
+import DevBiteContent from '~/dev-bites/components/dev-bite-content/dev-bite-content'
+
+<DevBiteWrapper>
+<DevBiteHeader>
+## Async Error Handling in Mocha with Chai tests
+</DevBiteHeader>
+
+<DevBiteContent>
+**Last updated:** 25.02.2024
+
+**Context:**
+
+- **Environment:** ESM, Node.js 20, TypeScript project.
+- **Dependencies:**
+  - Mocha version: `"mocha": "10.3.0"`
+  - Chai version: `"chai": "4.4.1"`
+
+**Problem:**
+
+Consider a service attempting to create a new database resource. If initial business validation fails, an error is thrown. To test this behavior, you might write:
+
+```tsx
+it('should raise a validation error when title is too short', async () => {
+  const service = taskService()
+
+  expect(service.createNewTask({ title: ' FV' })).to.throw(
+    'Validation failed, double check your form please and try again'
+  )
+})
+```
+
+Test will fail with following error:
+
+```bash
+1) task service
+       should raise a validation error when title is too short:
+     AssertionError: expected Promise{…} to be a function
+      at Context.<anonymous> (src/tasks/services/task-service.spec.ts:46:54)
+      at process.processImmediate (node:internal/timers:478:21)
+```
+
+**Root cause:**
+
+The test incorrectly attempts to use `expect().to.throw` with a promise returned by an async function, which is not supported by Chai's `expect` directly.
+
+**Solution:**
+
+- install `chai-as-promised` and use it in your test
+
+```bash
+import { expect, use } from "chai";
+import chaiAsPromised from "chai-as-promised";
+
+import { taskService } from "./task-service.js";
+
+use(chaiAsPromised);
+```
+
+Switch assertion to `to.be.rejectedWith` and await the assertion
+
+```bash
+it("should raise a validation error when title is too short", async () => {
+		const service = taskService();
+
+		await expect(service.createNewTask({ title: " FV" })).to.be.rejectedWith(
+			"Validation failed, please double check your form and try again"
+		);
+	});
+```
+
+You can read more about chai as promised: [here](https://www.npmjs.com/package/chai-as-promised)
+
+There is also Github issue about native support for promise in Chai: [here](https://github.com/chaijs/chai/issues/1570)
+
+**Alternative:**
+
+You could also leverage the approach without `chai-as-promised` simply by wrapping the test in try catch block
+
+```bash
+it("should raise a validation error when title is too short", async () => {
+		const service = taskService();
+
+		try {
+			await service.createNewTask({ title: " FV" });
+		} catch (err) {
+			// Note: error is unknown here, use type-guard or ts-ignore
+			expect(err.message).to.equal(
+				"Validation failed, please double check your form and try again"
+			);
+		}
+});
+```
+
+</DevBiteContent>
+
+</DevBiteWrapper>

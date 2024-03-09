@@ -14,6 +14,7 @@ type NavProps = {
   links: {
     slug: SlugVariant
     type: LinkVariant
+    name: string
   }[]
 }
 
@@ -32,7 +33,7 @@ export default component$(({ links }: NavProps) => {
         {links.map((link) => (
           <NavItem key={link.slug}>
             <a href={generateNavLink({ linkType: link.type, slug: link.slug })}>
-              {link.slug}
+              {link.name}
             </a>
           </NavItem>
         ))}

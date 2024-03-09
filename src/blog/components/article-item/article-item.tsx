@@ -7,7 +7,8 @@ import {
   articleItemLink,
   articleItemExcerpt,
   articleDate,
-  articleMeta
+  articleMeta,
+  articleReadMore
 } from './article-item.module.css'
 
 export type ArticleItemProps = Omit<ArticleItem, 'description'>
@@ -27,6 +28,7 @@ export default component$(
               <h2 class={articleItemTitle}>{title}</h2>
               <p class={articleItemExcerpt}>{excerpt}</p>
             </div>
+            <span class={articleReadMore}>Read article</span>
           </a>
         </article>
       </div>
