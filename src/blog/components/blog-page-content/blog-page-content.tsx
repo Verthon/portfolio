@@ -10,6 +10,9 @@ export default component$(() => {
   return (
     <Container>
       <h1>Latest posts</h1>
+      <p>
+        All of my long-form thoughts on programming
+      </p>
       <Resource
         value={articlesResource}
         onResolved={(articles) => <ArticlesList list={articles} />}

@@ -5,12 +5,12 @@ import {
   getModules,
 } from '~/blog/infrastructure/services/mdx-file'
 
-type ReceivedArticeType = Awaited<
+type ReceivedArticleType = Awaited<
   ReturnType<typeof fetchMdxFiles>
 >[number]['metadata']['article_type']
 
-const formatArticleType = (articleType: ReceivedArticeType) => {
-  const map: Record<ReceivedArticeType, ArticleItem['articleType']> = {
+const formatArticleType = (articleType: ReceivedArticleType) => {
+  const map: Record<ReceivedArticleType, ArticleItem['articleType']> = {
     featured: 'featured',
     regular: 'default',
   }

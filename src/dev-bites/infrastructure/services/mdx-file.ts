@@ -4,7 +4,8 @@ type ModuleWithFrontmatter = {
     description: string
     date: string
     excerpt: string
-    article_type: 'featured' | 'regular'
+    dev_bite_type: 'featured' | 'regular'
+    last_updated: string
   }
 }
 
@@ -21,7 +22,8 @@ const isFrontmatter = (obj: unknown): obj is ModuleWithFrontmatter =>
   hasStringProperty(obj, 'title') &&
   hasStringProperty(obj, 'description') &&
   hasStringProperty(obj, 'date') &&
-  hasStringProperty(obj, 'article_type')
+  hasStringProperty(obj, 'dev_bite_type') &&
+  hasStringProperty(obj, 'excerpt')
 
 export const isModuleWithFrontmatter = (
   obj: unknown
@@ -30,7 +32,7 @@ export const isModuleWithFrontmatter = (
 }
 
 export const getModules = () => {
-  const modules = import.meta.glob('/src/routes/blog/**/index.mdx', {
+  const modules = import.meta.glob('/src/routes/dev-bites/**/index.mdx', {
     eager: true,
   })
 
@@ -62,7 +64,7 @@ export const fetchMdxFiles = async ({
     }[]
   >((acc, [path, module]) => {
     if (isModuleWithFrontmatter(module)) {
-      const { title, description, date, excerpt, article_type } =
+      const { title, description, date, excerpt, dev_bite_type, last_updated } =
         module.frontmatter
       acc.push({
         path,
@@ -71,7 +73,8 @@ export const fetchMdxFiles = async ({
           description: description,
           date: date,
           excerpt: excerpt,
-          article_type: article_type,
+          dev_bite_type: dev_bite_type,
+          last_updated: last_updated,
         },
       })
     }

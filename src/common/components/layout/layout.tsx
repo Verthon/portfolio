@@ -11,8 +11,9 @@ export default component$(() => {
         <Container>
           <Nav
             links={[
-              { type: 'regular', slug: 'home' },
-              { type: 'regular', slug: 'blog' },
+              { type: 'regular', slug: 'home', name: 'home' },
+              { type: 'regular', slug: 'blog', name: 'blog' },
+              { type: 'regular', slug: 'dev-bites', name: 'dev bites' },
             ]}
           />
           <Slot />
