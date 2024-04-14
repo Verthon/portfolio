@@ -1,0 +1,261 @@
+---
+title: 'Modern Webpack Boilerplate: Part 3: Asset Handling, Unit Testing, and Bundle Analysis'
+description: In Part 3 of Modern Webpack Boilerplate series, we detail the integration of asset management, Jest for unit-testing, CSS configurations, and the addition of a bundle analyzer to monitor build sizes.
+excerpt: 'In Part 3 of Modern Webpack Boilerplate series, we detail the integration of asset management, Jest for unit-testing, CSS configurations, and the addition of a bundle analyzer to monitor build sizes.'
+tags: react, webpack, testing
+date: 2024-04-14
+article_type: regular
+---
+
+import ArticleWrapper from '~/blog/components/article-wrapper/article-wrapper'
+import ArticleHeader from '~/blog/components/article-header/article-header'
+import ArticleContent from '~/blog/components/article-content/article-content'
+
+<ArticleWrapper>
+<ArticleHeader>
+## Modern Webpack Boilerplate: Part 3: Asset Handling, Unit Testing, and Bundle Analysis
+</ArticleHeader>
+
+<ArticleContent>
+
+**Recap of Part 2**: In the previous installment, we integrated Babel and React into our Webpack setup, enhancing our modern SPA boilerplate.
+We configured Babel to support the latest JavaScript features, TypeScript, and React JSX.
+Additionally, we implemented environment variable management using dotenv and refined our Webpack configuration for handling .tsx files.
+
+### Unit testing setup
+
+For unit tests we will use Jest which is one of most popular solutions on the market.
+
+**Install following dev-dependencies**:
+
+```shell
+npm i -D jest @types/jest @swc/core @swc/jest
+```
+
+**Jest configuration file** Create `jest.config.js` in the root of the project.
+Following config will tell jest to transform `ts|js|tsx|jsx` files with `swc-jest`
+**Note:** swc-jest does not perform type checking in your tests.
+
+```javascript
+// jest.config.js
+/** @type {import('@jest/types').Config.InitialOptions} */
+const config = {
+  transform: {
+    '^.+\\.(t|j)sx?$': '@swc/jest',
+  },
+  resetMocks: true,
+  setupFilesAfterEnv: ['<rootDir>/testSetup.ts'],
+  verbose: true,
+}
+
+module.exports = config
+```
+
+**Environment Configuration for Testing**
+Introduce an `env.test` file to manage test-specific environment variables:
+
+```
+//.env.test
+
+ENVIRONMENT_NAME=test
+```
+
+**Setting Up Environment Variables**: Configure a setup file to load the appropriate environment variables before all tests:
+
+```typescript
+// test.setup.ts
+import { loadEnvs } from './config/env'
+
+beforeAll(() => {
+  process.env.NODE_ENV = 'test'
+
+  loadEnvs()
+})
+```
+
+**Verify Environment Configuration**
+In order to confirm the behaviour of loading test envs we could create a dummy test
+
+```typescript
+// src/example.spec.ts
+describe('example unit test', () => {
+  it('should have the NODE_ENV equal to test', () => {
+    expect(process.env.NODE_ENV).toBe('test')
+  })
+})
+```
+
+**Commands for Running Tests**: Update `package.json` with commands to run and clear the Jest cache:
+
+```json
+"test:unit": "jest",
+"test:unit:clear": "jest --clearCache"
+```
+
+Now the tests can be executed by typing: `npm run test:unit` in the terminal
+
+**Key points**
+
+- the Jest setup is tailored for TypeScript files within the Node.js environment (Jest's default setting)
+- the setup can be easily extended with [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) to cover component tests as well, however it is good to explore alternatives first 👇
+- especially tools that allow testing in the browser like:
+  - [Cypress Component Testing](https://docs.cypress.io/guides/component-testing/overview)
+  - [Storybook Testing](https://storybook.js.org/docs/writing-tests)
+  - [SafeTest](https://netflixtechblog.com/introducing-safetest-a-novel-approach-to-front-end-testing-37f9f88c152d)
+  - [Playright Component Testing](https://playwright.dev/docs/test-components)
+- from my experience in large applications developers often encounter performance issues with React Testing Library due to the rendering of extensive DOM trees and scanning through it.
+- additionally in heavy integration tests Playright or Cypress combined with [msw](https://mswjs.io/docs/integrations/node) for network call interception, tend to perform more efficiently
+
+### Asset handling
+
+Webpack simplifies the management of static assets, all we need to do is to extend `webpack.config.ts` - module.rules
+
+```typescript
+// webpack.config.ts
+module: {
+  rules: [
+    // ... rest of the previous config
+    {
+      test: /\.(png|svg|jpg|jpeg|gif)$/i,
+      type: 'asset/resource',
+    },
+    {
+      test: /\.(woff|woff2|eot|ttf|otf)$/i,
+      type: 'asset/resource',
+    },
+  ]
+}
+```
+
+`asset/resource` will emit the file in the production bundle, this is beneficial because:
+
+- it won't bloat JavaScript bundle size
+- browsers can cache each asset independently
+- emited file will include hash and filename for cache-busting
+
+### CSS setup
+
+Frontend applications are incomplete without styling. To efficiently manage CSS files within a Webpack build, we need to update config.
+
+Install following dependencies:
+
+```bash
+npm i -D style-loader css-loader postcss-loader mini-css-extract-plugin css-minimizer-webpack-plugin postcss postcss-preset-env autoprefixer
+```
+
+* style-loader: Injects CSS into the DOM via `<style>` tags, useful during development for hot module replacement.
+* css-loader: Resolves @import and url() within CSS files as module dependencies, enabling them to be bundled by Webpack.
+* postcss-loader: Integrates PostCSS into the build process, allowing for CSS transformations using plugins.
+* MiniCssExtractPlugin: Extracts CSS into separate files, ideal for production builds to leverage browser caching.
+* CssMinimizerPlugin: Optimizes and minifies CSS, enhancing load times and efficiency in production.
+* postcss: Facilitates the use of advanced CSS through plugins like autoprefixer and postcss-preset-env.
+* postcss-preset-env: Allows the use of future CSS features by compiling them to compatible code today.
+* autoprefixer: Automatically applies vendor prefixes to CSS rules, ensuring cross-browser compatibility based on "Can I Use" data.
+
+Create dedicated file for post-css configuration to not bloat Webpack config file
+
+```javascript
+/**
+ * @type {import('postcss').ProcessOptions}
+ */
+const config = {
+  plugins: [['postcss-preset-env', 'autoprefixer']],
+}
+
+module.exports = config
+```
+
+Lastly the webpack config has to be updated with loaders that were installed previously to handle CSS in JS files.
+In `module.rules` add yet another loaders for css and post-css.
+**Note** We only want to extract the CSS to dedicated files on production build.
+
+```typescript
+// webpack.config.ts
+module: {
+  rules: [
+    // ... rest of the previous config
+    {
+      test: /\.css$/i,
+      use: [
+        mode === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
+        'css-loader',
+        'postcss-loader',
+      ],
+    },
+  ]
+}
+```
+
+Additionally new plugins has to be initialized in the `plugins` array. Additionally we want to run those optimizations only on production builds.
+
+```
+// webpack.config.ts
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
+
+plugins: [
+  mode === "production" && new MiniCssExtractPlugin(),
+	mode === "production" && new CssMinimizerPlugin(),
+]
+```
+
+### Bundle size observability
+
+Applications bundle size tend to grow really fast, it is good idea to observe frequently how much our chunks weight.
+Webpack offers advanced plugin to visualize bundle size in a graphical format.
+
+**Install dependencies**:
+
+```bash
+npm i -D webpack-bundle-analyzer @types/webpack-bundle-analyzer
+```
+
+**Optimize build commands**:
+* regular build, which is faster and can run without issues in the pipelines
+* build-analyze for devs to check the bundle size using `webpack-bundle-analyzer`
+
+Add the following command to your `package.json`, utilizing the `ANALYZE_BUILD` environment variable to toggle the analysis mode:
+
+```json
+"build:analyze": "ANALYZE_BUILD=true npm run build",
+```
+
+**Configure Webpack**:
+Modify your Webpack configuration to conditionally include the BundleAnalyzerPlugin based on the ANALYZE_BUILD flag.
+
+```typescript
+// webpack.config.ts
+import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
+
+const createBundleAnalyzerConfig = () => {
+	const isAnalyzeMode = process.env.ANALYZE_BUILD === 'true';
+	const config: BundleAnalyzerPlugin["opts"] = isAnalyzeMode
+		? { analyzerMode: "server" }
+		: { analyzerMode: "disabled" };
+
+	return config;
+};
+
+const bundleAnalyzerConfig = createBundleAnalyzerConfig();
+
+// in the createWebpackConfig function
+plugins: [
+  //... rest of the config
+
+  mode === "production" &&
+	new BundleAnalyzerPlugin(bundleAnalyzerConfig),
+]
+```
+
+**Execution**:
+* Run `npm run build` for a standard build, suitable for deployment and CI environments like GitHub Actions.
+* Use npm run `build:analyze` to launch a server that provides a detailed breakdown of the bundle, enabling developers to visually assess which parts are contributing most to the size.
+
+This setup ensures that developers have the tools needed to maintain optimal performance and manageability of application bundles efficiently.
+
+That concludes this part. You can review all the details in following PR: https://github.com/Verthon/webpack-react-boilerplate/pull/3/files
+
+Thank you, any feedback is highly appreciated.
+
+</ArticleContent>
+</ArticleWrapper>
