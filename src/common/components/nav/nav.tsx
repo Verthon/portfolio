@@ -19,8 +19,8 @@ type NavProps = {
 }
 
 const siteMetadata = {
-  github: '',
-  linkedin: '',
+  linkedin: 'https://www.linkedin.com/in/krzysztof-sordyl/',
+  github: 'https://github.com/Verthon',
 }
 
 export default component$(({ links }: NavProps) => {
