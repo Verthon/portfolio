@@ -18,10 +18,23 @@ const formatArticleType = (articleType: ReceivedArticleType) => {
   return map[articleType]
 }
 
+const compareByDateDesc = (dateAccessorFn: (item: any) => string) => {
+  return (a: unknown, b: unknown) => {
+    const dateA = new Date(dateAccessorFn(a)).getTime()
+    const dateB = new Date(dateAccessorFn(b)).getTime()
+
+    console.log({ dateA, dateB }, dateAccessorFn(a))
+    return dateB - dateA // For descending order
+  }
+}
+
 export const getAllArticles = async (): Promise<ArticleItem[]> => {
   const modules = await fetchMdxFiles({ getModules })
+  const getDate = (item: (typeof modules)[0]) => item.metadata.date
 
-  return modules.map(({ path, metadata }) => {
+  const sortedModules = modules.sort(compareByDateDesc(getDate))
+
+  return sortedModules.map(({ path, metadata }) => {
     return {
       title: metadata.title,
       excerpt: metadata.excerpt,
@@ -34,10 +47,13 @@ export const getAllArticles = async (): Promise<ArticleItem[]> => {
 
 export const getAllFeaturedArticles = async (): Promise<ArticleItem[]> => {
   const modules = await fetchMdxFiles({ getModules })
+  const getDate = (item: (typeof modules)[0]) => item.metadata.date
 
-  const featuredModules = modules.filter(({ metadata }) => {
-    return metadata.article_type === 'featured'
-  })
+  const featuredModules = modules
+    .filter(({ metadata }) => {
+      return metadata.article_type === 'featured'
+    })
+    .sort(compareByDateDesc(getDate))
 
   return featuredModules.map(({ path, metadata }) => {
     return {
