@@ -1,0 +1,141 @@
+---
+title: Migrating Gatsby 4 website to Qwik City
+published: true
+description: 'Migrating a Gatsby 4 website to Qwik City for improved performance and developer experience.'
+tags: migration, qwik, gatsby, performance
+date: 2024-07-06
+excerpt: My Journey of rewriting this website from old outdated Gatsby to the new hot and shiny Qwik City. Article describes using React in Qwik, deployment process for the static page, mdx support and performance
+article_type: featured
+---
+
+import ArticleWrapper from '~/blog/components/article-wrapper/article-wrapper'
+import ArticleHeader from '~/blog/components/article-header/article-header'
+import ArticleContent from '~/blog/components/article-content/article-content'
+import ArticleImage from '~/blog/components/article-image/article-image'
+
+<ArticleWrapper>
+<ArticleHeader>
+## Migrating Gatsby 4 website to Qwik City
+</ArticleHeader>
+
+<ArticleContent>
+### Motivation
+
+My personal website was using Gatsby 4. I had a choice to upgrade to v5 or switch the another framework. Since the project is relatively small and Gatsby has it’s own issues:
+
+- https://twitter.com/sebastienlorber/status/1694392101281190224
+- https://github.com/gatsbyjs/gatsby/issues/38696
+
+I have decided to try something:
+
+- blazing fast out of the box
+- with good developer-experience
+- with [opinionated routing](https://qwik.builder.io/docs/routing/), so I can expand website capabilities with additional features in future
+- with [mdx support](https://qwik.builder.io/docs/guides/mdx/) for storing articles
+- easily deployable to popular cloud hosting providers
+- allows me to reuse my already implemented React UI and css-modules
+
+Qwik and its framework Qwik City met all of these bullet points. Moreover all the config provided out of the box was enough to suit my needs.
+
+### React components
+
+To use React in Qwik you need to add integration for React. Fortunately, Qwik provides command for it.
+React and Qwik components can not be mixed in the same file.
+
+```bash
+npm run qwik add react
+```
+
+When adding React integration, Qwik installed a lot of dependencies for their examples. Obviously, I don’t want that, so I had to uninstall them manually:
+
+```bash
+npm uninstall @emotion/react @emotion/styled @mui/material @mui/x-data-grid
+```
+
+**Note**: Additionally, you need to wrap your React components (that you are using in Qwik components or pages) with `qwikify$` function.
+
+```tsx
+/** @jsxImportSource react */
+import { qwikify$ } from '@builder.io/qwik-react'
+
+/* rename the original component in my case previously it was Button
+now it is ButtonComponent so that I can reexport it down below as Button
+*/
+
+export const Button = qwikify$(ButtonComponent)
+```
+
+### Tests
+
+Previously in Gatsby, I used jest and cypress for E2E tests.  
+Since Qwik uses Vite under the hood, they recommend to sticking with Vitest.  
+In my case I had very few tests, so the transition was really fast without any issues.  
+Again, Qwik City provides a build-in method to add Vitest automatically:
+
+```bash
+npm run qwik add vitest
+```
+
+At the time I'm writing this article, Qwik City was expecting tests to be in `components` directory, which is not ideal with my folder structure.
+
+To make sure Vitest will pick up any test in the repository, I had to modify the commands in package.json:
+
+```json
+"test.unit": "vitest",
+"test.unit.ui": "vitest --ui",
+```
+
+For my E2E tests, I found they are useless.
+They were simply integration tests, which will be way faster than loading an application per test case over and over again. The idea was to migrate it to Cypress component testing. Fortunately, Qwik City has integration with component testing:
+
+```bash
+npm run qwik add cypress
+```
+
+In my case, I only had to add the import of `global.css` file to `qwik-app/cypress/support/component.ts`
+
+```ts
+import '../../src/global.css'
+```
+
+**Note**: React components won’t work in Cypress tests unless you wrap them with `qwikify$`
+
+However, if you have many React components with tests, migrating them to Qwik right away is a better idea.
+
+Moreover, Qwik Team provides a very useful cheatsheet [cheat sheet for rewriting React code to Qwik](https://qwik.builder.io/docs/guides/react-cheat-sheet/).
+
+### PWA support
+
+Currently, Qwik doesn’t support PWA out of the box. This wasn’t a big deal for my portfolio, so I decided to drop it.
+However, if PWA is a must-have for you app please refer to:  
+https://github.com/QwikCommunity/pwa
+
+### Deployment
+
+Previously my Gatsby website was automatically deployed on any merge to the master branch as production build. Additionally when I was creating branch the preview was created as well.
+
+I want my website to be static for now, Qwik has an automatic command for such a configuration:
+
+```bash
+npm run qiwk add
+```
+
+### Performance
+
+I haven’t done any performance optimization by myself in Qwik. Framework does its magic by shipping the least amount of JavaScript under the hood. As you may expect for a simple blog/portfolio website all Lighthouse performance metrics are green.
+
+<ArticleImage
+  webpImagePath="/blogImages/performance-blog.webp"
+  fallbackImagePath="/blogImages/performance-blog.jpg"
+/>
+
+### Summary
+
+It is worth noting that my portfolio is a simple page that can be static, there is no auth or other features which might be crucial for e-commerce sites.
+I’m not saying that Qwik City is not capable of dealing with advanced features, I’m only noting that portfolio and blog are pretty simple cases for the most part.
+
+I hadn't expected such a quick migration, especially since  hadn’t touched my portfolio for so long.
+
+  </ArticleContent>
+
+</ArticleWrapper>

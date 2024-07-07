@@ -23,8 +23,7 @@ const compareByDateDesc = (dateAccessorFn: (item: any) => string) => {
     const dateA = new Date(dateAccessorFn(a)).getTime()
     const dateB = new Date(dateAccessorFn(b)).getTime()
 
-    console.log({ dateA, dateB }, dateAccessorFn(a))
-    return dateB - dateA // For descending order
+    return dateB - dateA
   }
 }
 
