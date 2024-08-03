@@ -1,0 +1,74 @@
+---
+title: 'How to Measure ESLint Execution Time'
+published: true
+description: 'Resolve issue with storybook chunks being blocked on production'
+tags: linter
+date: 2024-08-03
+excerpt: "Find out how to check which ESLint rules takes a lot of time to scan the project"
+last_updated: 2024-08-03
+dev_bite_type: featured
+---
+
+import DevBiteWrapper from '~/dev-bites/components/dev-bite-wrapper/dev-bite-wrapper'
+import DevBiteHeader from '~/dev-bites/components/dev-bite-header/dev-bite-header'
+import DevBiteContent from '~/dev-bites/components/dev-bite-content/dev-bite-content'
+
+<DevBiteWrapper>
+<DevBiteHeader>
+## How to Measure ESLint Execution Time
+</DevBiteHeader>
+
+<DevBiteContent>
+
+**Last updated**: 03.08.2024
+
+**Context**:
+
+- Environment: SPA React Application
+- Dependencies:
+  - ESLint version: `"eslint": "8.56.0"`
+
+**Problem**:
+
+Determine which ESLint rules are slowing down your project.
+
+**Solution:**
+
+Add a new command that lists the least performant rules first
+
+
+
+```json
+// in package.json "scripts" section
+"lint:performance": "TIMING=1 eslint --ext .ts,.tsx .",
+```
+
+It will print out something like this in your terminal:
+```bash
+Rule                              | Time (ms) | Relative
+:---------------------------------|----------:|--------:
+import/no-cycle                   |  1985.921 |    81.4%
+import/namespace                  |   285.814 |    11.7%
+@typescript-eslint/no-unused-vars |    45.128 |     1.8%
+react/display-name                |    25.642 |     1.1%
+import/no-unresolved              |    18.698 |     0.8%
+react/no-direct-mutation-state    |    11.240 |     0.5%
+react/require-render-return       |     8.157 |     0.3%
+react/prop-types                  |     6.825 |     0.3%
+react/jsx-no-target-blank         |     3.364 |     0.1%
+react/no-deprecated               |     2.761 |     0.1%
+```
+
+In my case it turns out that `import/no-cycle` is the most resource-intensive rule.
+With that said, we need to make a decision, either:
+* disable the rule and run it separately manually e.g `"lint:import-no-cycle": "eslint --rule 'import/no-cycle:error' --ext .ts,.tsx ."`
+* leave it as is if the cost is acceptable
+* find a faster and compliant alternative to ESLint like: [OxLint](https://oxc.rs/docs/guide/usage/linter.html) or [Biome](https://biomejs.dev/)
+
+Both options have it's own trade-offs and it should be discussed with the team, which approach is best under specific circumstances.
+
+For an in-depth understanding of profile rule performance visit [ESLint's official documentation on Profile Rule Performance](https://eslint.org/docs/latest/extend/custom-rules#profile-rule-performance).
+
+</DevBiteContent>
+
+</DevBiteWrapper>
