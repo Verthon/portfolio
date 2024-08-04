@@ -8,6 +8,7 @@ import { grid, gridOrientationVertical } from './articles-list.module.css'
 type ArticlesListProps = {
   list: ArticleItemProps[]
   orientation?: 'vertical' | 'horizontal'
+  withBadge?: boolean
 }
 
 const gridClassName: Record<
@@ -19,7 +20,11 @@ const gridClassName: Record<
 }
 
 export default component$(
-  ({ list, orientation = 'horizontal' }: ArticlesListProps) => {
+  ({
+    list,
+    orientation = 'horizontal',
+    withBadge = false,
+  }: ArticlesListProps) => {
     const currentGridClassName = gridClassName[orientation]
 
     return (
@@ -32,6 +37,7 @@ export default component$(
             permalink={item.permalink}
             excerpt={item.excerpt}
             articleType={item.articleType}
+            badgeText={withBadge ? 'blog post' : undefined}
           />
         ))}
       </div>

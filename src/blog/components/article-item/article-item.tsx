@@ -8,13 +8,17 @@ import {
   articleItemExcerpt,
   articleDate,
   articleMeta,
-  articleReadMore
+  articleReadMore,
 } from './article-item.module.css'
+import Badge from '~/common/components/badge/badge'
 
-export type ArticleItemProps = Omit<ArticleItem, 'description'>
+export type ArticleItemProps = { badgeText?: string } & Omit<
+  ArticleItem,
+  'description'
+>
 
 export default component$(
-  ({ date, excerpt, permalink, title }: ArticleItemProps) => {
+  ({ date, excerpt, permalink, title, badgeText }: ArticleItemProps) => {
     return (
       <div class={articleItemWrapper}>
         <article>
@@ -24,6 +28,7 @@ export default component$(
                 <time class={articleDate} dateTime={date}>
                   {date}
                 </time>
+                {badgeText && <Badge variant="primary">{badgeText}</Badge>}
               </div>
               <h2 class={articleItemTitle}>{title}</h2>
               <p class={articleItemExcerpt}>{excerpt}</p>

@@ -10,11 +10,15 @@ import {
   devBiteItemReadMore,
 } from './dev-bite-item.module.css'
 import type { DevBiteItem } from '~/dev-bites/domain/models/dev-bite-item'
+import Badge from '~/common/components/badge/badge'
 
-export type DevBiteItemProps = Omit<DevBiteItem, 'description'>
+export type DevBiteItemProps = { badgesText?: string[] } & Omit<
+  DevBiteItem,
+  'description'
+>
 
 export default component$(
-  ({ date, excerpt, permalink, title }: DevBiteItemProps) => {
+  ({ date, excerpt, permalink, title, badgesText }: DevBiteItemProps) => {
     return (
       <div class={devBiteItemWrapper}>
         <article>
@@ -24,6 +28,10 @@ export default component$(
                 <time class={devBiteDate} dateTime={date}>
                   {date}
                 </time>
+                {badgesText &&
+                  badgesText.map((badgeText) => (
+                    <Badge key={badgeText} variant="secondary">{badgeText}</Badge>
+                  ))}
               </div>
               <h2 class={devBiteItemTitle}>{title}</h2>
               <p class={devBiteItemExcerpt}>{excerpt}</p>

@@ -91,8 +91,12 @@ ul {
   --primary-color: hsl(50.3, 100%, 78.2%);
   --primary-color-50: hsl(50.3, 100%, 96.2%);
   --primary-color-100: hsl(50.3, 100%, 90.2%);
-  --secondary-color: hsl(176.8, 43.9%, 66.5%);
-  --secondary-color-400: hsl(176.8, 43.9%, 86.5%);
+  --primary-color-800: hsl(50.3, 100%, 16.2%);
+  --primary-color-900: hsl(50.3, 100%, 8.2%);
+  --secondary-color: hsl(10, 94%, 60%);
+  --secondary-color-100: hsl(10, 94%, 90.2%);
+  --secondary-color-800: hsl(10, 94%, 16.2%);
+  --secondary-color-900: hsl(10, 94%, 8.2%);
   --white-color: hsl(0, 0%, 100%);
   --black-color: hsl(0, 0, 0%);
 
@@ -176,6 +180,11 @@ ul {
   --code-builtin: hsl(50.3, 100%, 78.2%);
   --primary-color-50: hsl(50.3, 100%, 9.8%);
   --primary-color-100: hsl(50.3, 100%, 15.2%);
+  --primary-color-800: hsl(50.3, 100%, 84.2%);
+  --primary-color-900: hsl(50.3, 100%, 90.2%);
+  --secondary-color-100: hsl(10, 94%, 8.2%);
+  --secondary-color-800: hsl(10, 94%, 82.2%);
+  --secondary-color-900: hsl(10, 94%, 90.2%);
 }
 
 [data-theme='dark'] body {
