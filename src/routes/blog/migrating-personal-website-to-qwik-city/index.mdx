@@ -12,6 +12,7 @@ import ArticleWrapper from '~/blog/components/article-wrapper/article-wrapper'
 import ArticleHeader from '~/blog/components/article-header/article-header'
 import ArticleContent from '~/blog/components/article-content/article-content'
 import ArticleImage from '~/blog/components/article-image/article-image'
+import Alert from '~/common/components/alert/alert'
 
 <ArticleWrapper>
 <ArticleHeader>
@@ -52,7 +53,10 @@ When adding React integration, Qwik installed a lot of dependencies for their ex
 npm uninstall @emotion/react @emotion/styled @mui/material @mui/x-data-grid
 ```
 
-**Note**: Additionally, you need to wrap your React components (that you are using in Qwik components or pages) with `qwikify$` function.
+<Alert variant='info' marginBottomInRems={1}>
+  **Note**: Additionally, you need to wrap your React components (that you are
+  using in Qwik components or pages) with `qwikify$` function.
+</Alert>
 
 ```tsx
 /** @jsxImportSource react */
@@ -98,7 +102,10 @@ In my case, I only had to add the import of `global.css` file to `qwik-app/cypre
 import '../../src/global.css'
 ```
 
-**Note**: React components won’t work in Cypress tests unless you wrap them with `qwikify$`
+<Alert variant='danger' marginBottomInRems={1}>
+  **Note**: React components won’t work in Cypress tests unless you wrap them with `qwikify$`
+</Alert>
+
 
 However, if you have many React components with tests, migrating them to Qwik right away is a better idea.
 
@@ -134,7 +141,7 @@ I haven’t done any performance optimization by myself in Qwik. Framework does 
 It is worth noting that my portfolio is a simple page that can be static, there is no auth or other features which might be crucial for e-commerce sites.
 I’m not saying that Qwik City is not capable of dealing with advanced features, I’m only noting that portfolio and blog are pretty simple cases for the most part.
 
-I hadn't expected such a quick migration, especially since  hadn’t touched my portfolio for so long.
+I hadn't expected such a quick migration, especially since hadn’t touched my portfolio for so long.
 
   </ArticleContent>
 

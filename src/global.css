@@ -97,6 +97,13 @@ ul {
   --secondary-color-100: hsl(10, 94%, 90.2%);
   --secondary-color-800: hsl(10, 94%, 16.2%);
   --secondary-color-900: hsl(10, 94%, 8.2%);
+  --info-color-100: hsl(203, 99%, 90.2%);
+  --info-color: hsl(203, 99%, 66%);
+  --info-color-700: hsl(203, 99%, 24.2%);
+  --info-color-900: hsl(203, 99%, 8.2%);
+  --danger-color-100: hsl(35, 100%, 90.2%);
+  --danger-color: hsl(35, 100%, 78%);
+  --danger-color-700: hsl(35, 100%, 24.2%);
   --white-color: hsl(0, 0%, 100%);
   --black-color: hsl(0, 0, 0%);
 
@@ -185,6 +192,17 @@ ul {
   --secondary-color-100: hsl(10, 94%, 8.2%);
   --secondary-color-800: hsl(10, 94%, 82.2%);
   --secondary-color-900: hsl(10, 94%, 90.2%);
+  --info-color-100: hsl(203, 99%, 8.2%);
+  --info-color: hsl(203, 99%, 66%);
+  --info-color-700: hsl(203, 99%, 76.2%);
+  --info-color-900: hsl(203, 99%, 90.2%);
+  --danger-color-100: hsl(35, 100%, 9.2%);
+  --danger-color: hsl(35, 100%, 78%);
+  --danger-color-700: hsl(35, 100%, 90.2%);
+
+  img {
+    filter: brightness(0.7) contrast(1.2);
+  }
 }
 
 [data-theme='dark'] body {
