@@ -7,6 +7,7 @@ import type { DevBiteItemProps } from '../dev-bite-item/dev-bite-item'
 type DevBitesListProps = {
   list: DevBiteItemProps[]
   orientation?: 'vertical' | 'horizontal'
+  withBadges?: boolean
 }
 
 const gridClassName: Record<
@@ -18,7 +19,11 @@ const gridClassName: Record<
 }
 
 export default component$(
-  ({ list, orientation = 'horizontal' }: DevBitesListProps) => {
+  ({
+    list,
+    orientation = 'horizontal',
+    withBadges = false,
+  }: DevBitesListProps) => {
     const currentGridClassName = gridClassName[orientation]
 
     return (
@@ -32,6 +37,7 @@ export default component$(
             excerpt={item.excerpt}
             devByteType={item.devByteType}
             lastUpdated={item.lastUpdated}
+            badgesText={withBadges ? ['dev-bite'] : undefined}
           />
         ))}
       </div>

@@ -10,7 +10,7 @@ export default component$(() => {
     <Resource
       value={articlesResource}
       onResolved={(articles) => (
-        <ArticlesList list={articles} orientation="vertical" />
+        <ArticlesList list={articles} orientation="vertical" withBadge={true} />
       )}
     />
   )

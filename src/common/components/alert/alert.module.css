@@ -1,0 +1,58 @@
+.alert {
+  padding: 1rem;
+  border-radius: 0.25rem;
+
+  p {
+    margin: 0;
+  }
+}
+
+.alertMarginBottomSmall {
+  margin-bottom: 1rem;
+}
+
+.alertMarginBottomMedium {
+  margin-bottom: 2rem;
+}
+
+.alertMarginBottomLarge {
+  margin-bottom: 3rem;
+}
+
+.alertContainer {
+  display: flex;
+}
+
+.alertIcon {
+  flex-shrink: 0;
+  margin-inline-end: 0.5rem;
+  line-height: 1;
+}
+.alertContent {
+  flex: 1;
+}
+
+.alertInfo {
+  background-color: var(--info-color-100);
+
+  svg {
+    fill: var(--info-color-700);
+  }
+
+  p {
+    color: var(--info-color-700);
+  }
+}
+
+.alertDanger {
+  background-color: var(--danger-color-100);
+
+  svg {
+    fill: var(--danger-color-700);
+    stroke: transparent;
+  }
+
+  p {
+    color: var(--danger-color-700);
+  }
+}
