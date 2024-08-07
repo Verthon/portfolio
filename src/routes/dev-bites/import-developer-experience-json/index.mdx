@@ -1,0 +1,52 @@
+---
+title: 'How to enable autocomplete in JSON files'
+published: true
+description: 'Solve lack of good developer experience when working with the JSON files'
+tags: testing
+date: 2024-08-08
+excerpt: 'Upgrade your developer experience, when working with the JSON files'
+last_updated: 2024-08-08
+dev_bite_type: regular
+---
+
+import DevBiteWrapper from '~/dev-bites/components/dev-bite-wrapper/dev-bite-wrapper'
+import DevBiteHeader from '~/dev-bites/components/dev-bite-header/dev-bite-header'
+import DevBiteContent from '~/dev-bites/components/dev-bite-content/dev-bite-content'
+
+<DevBiteWrapper>
+<DevBiteHeader>
+## How to improve developer-experience when working with JSON
+</DevBiteHeader>
+
+<DevBiteContent>
+
+**Last updated**: 08.08.2024
+
+**Context**:
+
+Any project that uses JSON for the configuration.
+
+**Problem**:
+
+There is no autocomplete in your IDE for JSON files, unlike in TypeScript.
+
+**Solution:**
+
+Use `$schema` field in your JSON file to point to the schema from the metadata file  
+For instance in `package.json`:
+
+```json
+{
+  "$schema": "https://json.schemastore.org/package.json",
+  "name": "test-package"
+}
+```
+
+When you hit cmd + space (ctrl + space for non-macos systems) it will show you all of the possible fields.  
+Moreover, it provides basic validation IDE that will highlight incorrect value for the key.
+
+I'm using schemas from [Schema Store](https://www.schemastore.org/json/) which supports many IDE and even more schemas.
+
+</DevBiteContent>
+
+</DevBiteWrapper>
