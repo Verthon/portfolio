@@ -6,7 +6,7 @@ on:
     branches: [ master ]
 
 jobs:
-  setup:
+  build:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
@@ -24,31 +24,11 @@ jobs:
         cache: 'pnpm'
     - name: Install dependencies
       run: pnpm install --frozen-lockfile
-
-  lint:
-    runs-on: ubuntu-22.04
-    needs: setup
-    steps:
     - name: Run linter
       run: pnpm run lint
-
-  unit-tests:
-    runs-on: ubuntu-22.04
-    needs: setup
-    steps:
     - name: Run unit tests
       run: pnpm run test.unit
-
-  integration-tests:
-    runs-on: ubuntu-22.04
-    needs: setup
-    steps:
     - name: Run integration tests
       run: pnpm run test.component
-
-  build:
-    runs-on: ubuntu-22.04
-    needs: [setup, lint, unit-tests, integration-tests]
-    steps:
     - name: Run build
       run: pnpm run build
