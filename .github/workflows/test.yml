@@ -22,13 +22,31 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'pnpm'
+    - name: Set up Cypress binary cache
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/Cypress
+        key: cypress-${{ runner.os }}-cypress-${{ hashFiles('pnpm-lock.yaml') }}
+        restore-keys: |
+          cypress-${{ runner.os }}-
     - name: Install dependencies
       run: pnpm install --frozen-lockfile
+
     - name: Run linter
       run: pnpm run lint
+
     - name: Run unit tests
       run: pnpm run test.unit
-    - name: Run integration tests
-      run: pnpm run test.component
+    
+    - name: Install Cypress binary
+      run: pnpm exec cypress install
+
+    - name: Setup Cypress and Run integration tests
+      uses: cypress-io/github-action@v6
+      with:
+        install: false
+        command: pnpm run test.component
+    # - name: Run integration tests
+    #   run: pnpm run test.component
     - name: Run build
       run: pnpm run build
