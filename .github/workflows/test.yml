@@ -17,11 +17,13 @@ jobs:
       uses: pnpm/action-setup@v4
       with:
         version: 9
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'pnpm'
+
     - name: Set up Cypress binary cache
       uses: actions/cache@v3
       with:
@@ -29,6 +31,7 @@ jobs:
         key: cypress-${{ runner.os }}-cypress-${{ hashFiles('pnpm-lock.yaml') }}
         restore-keys: |
           cypress-${{ runner.os }}-
+
     - name: Install dependencies
       run: pnpm install --frozen-lockfile
 
@@ -36,7 +39,7 @@ jobs:
       run: pnpm run lint
 
     - name: Run unit tests
-      run: pnpm run test.unit
+      run: pnpm run test.unit.ci
     
     - name: Install Cypress binary
       run: pnpm exec cypress install
@@ -46,7 +49,6 @@ jobs:
       with:
         install: false
         command: pnpm run test.component
-    # - name: Run integration tests
-    #   run: pnpm run test.component
+
     - name: Run build
       run: pnpm run build
