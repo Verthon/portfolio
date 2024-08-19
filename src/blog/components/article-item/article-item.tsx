@@ -18,10 +18,17 @@ export type ArticleItemProps = { badgeText?: string } & Omit<
 >
 
 export default component$(
-  ({ date, excerpt, permalink, title, badgeText }: ArticleItemProps) => {
+  ({
+    date,
+    excerpt,
+    permalink,
+    title,
+    badgeText,
+    articleType,
+  }: ArticleItemProps) => {
     return (
       <div class={articleItemWrapper}>
-        <article>
+        <article data-featured-article={articleType === 'featured' ? 'true' : 'false'}>
           <a class={articleItemLink} href={permalink}>
             <div>
               <div class={articleMeta}>

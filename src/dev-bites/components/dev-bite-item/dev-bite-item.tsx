@@ -18,10 +18,10 @@ export type DevBiteItemProps = { badgesText?: string[] } & Omit<
 >
 
 export default component$(
-  ({ date, excerpt, permalink, title, badgesText }: DevBiteItemProps) => {
+  ({ date, excerpt, permalink, title, badgesText, devByteType }: DevBiteItemProps) => {
     return (
       <div class={devBiteItemWrapper}>
-        <article>
+        <article data-featured-dev-bite={devByteType === 'featured' ? 'true' : 'false'}>
           <a class={devBiteItemLink} href={permalink}>
             <div>
               <div class={devBiteMeta}>

@@ -7,6 +7,7 @@ const config: KnipConfig = {
   prettier: true,
   'github-actions': true,
   typescript: true,
+  playwright: true,
   entry: [
     'src/routes/index.tsx',
     'src/routes/404.tsx',
