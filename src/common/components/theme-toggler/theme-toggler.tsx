@@ -3,7 +3,7 @@ import { component$, useSignal, $, useVisibleTask$ } from '@builder.io/qwik'
 import { createStorageService } from '~/common/infrastructure/services/storage'
 import type { UserTheme } from '~/common/domain/models/user-theme'
 
-import { themeToggler } from './theme-toggler.module.css'
+import { themeToggler, srOnly } from './theme-toggler.module.css'
 
 const updateThemeInStorage = (currentTheme: UserTheme) => {
   const storage = createStorageService<'user-theme-variant'>({
@@ -61,16 +61,22 @@ export default component$(() => {
   })
 
   return (
-    <select
-      class={themeToggler}
-      value={currentTheme.value}
-      onInput$={setCurrentTheme}
-    >
-      {themeOptions.map((option) => (
-        <option value={option.value} key={option.value}>
-          {option.name}
-        </option>
-      ))}
-    </select>
+    <>
+      <label for="theme-select" class={srOnly}>
+        Select Theme
+      </label>
+      <select
+        id="theme-select"
+        class={themeToggler}
+        value={currentTheme.value}
+        onInput$={setCurrentTheme}
+      >
+        {themeOptions.map((option) => (
+          <option value={option.value} key={option.value}>
+            {option.name}
+          </option>
+        ))}
+      </select>
+    </>
   )
 })
