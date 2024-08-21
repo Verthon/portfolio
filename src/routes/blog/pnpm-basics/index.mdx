@@ -12,15 +12,16 @@ import ArticleWrapper from '~/blog/components/article-wrapper/article-wrapper'
 import ArticleHeader from '~/blog/components/article-header/article-header'
 import ArticleContent from '~/blog/components/article-content/article-content'
 import Alert from '~/common/components/alert/alert'
+import Heading from '~/common/components/heading/heading'
 
 <ArticleWrapper>
 <ArticleHeader>
-## Pnpm basics - how to transition quickly
+<Heading tag='h1'>Pnpm basics - how to transition quickly</Heading>
 </ArticleHeader>
 
 <ArticleContent>
-### What is pnpm ?
-A package manager that aims to be:
+<Heading tag='h2' id='what-is-pnpm'>What is pnpm ?</Heading>
+<p>A package manager that aims to be:</p>
 * fast
 * efficient on node_modules size
 * strict
@@ -126,7 +127,7 @@ GitHub actions:
 
 - total install time **npm**: `16s`
 - total install time **pnpm**: `13s`
-  Additionally `pnpm` has to be installed, in my case it takes 1-2 seconds on GitHub action  
+  Additionally `pnpm` has to be installed, in my case it takes 1-2 seconds on GitHub action
 
 Size of the `node_modules` note that it's the only Qwik project on my computer:
 

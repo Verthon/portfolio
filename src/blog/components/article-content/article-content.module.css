@@ -7,17 +7,8 @@
   ol,
   a,
   code,
-  pre,
-  h3 {
+  pre {
     margin-bottom: 1em;
-  }
-
-  h3 {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
-    margin-top: 5rem;
-
-    color: var(--heading-color);
   }
 
   p {
