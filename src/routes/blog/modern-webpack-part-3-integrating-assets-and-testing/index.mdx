@@ -11,10 +11,11 @@ import ArticleWrapper from '~/blog/components/article-wrapper/article-wrapper'
 import ArticleHeader from '~/blog/components/article-header/article-header'
 import ArticleContent from '~/blog/components/article-content/article-content'
 import Alert from '~/common/components/alert/alert'
+import Heading from '~/common/components/heading/heading'
 
 <ArticleWrapper>
 <ArticleHeader>
-## Modern Webpack Boilerplate: Part 3: Asset Handling, Unit Testing, and Bundle Analysis
+<Heading tag='h1'>Modern Webpack Boilerplate: Part 3: Asset Handling, Unit Testing, and Bundle Analysis</Heading>
 </ArticleHeader>
 
 <ArticleContent>
@@ -23,7 +24,9 @@ import Alert from '~/common/components/alert/alert'
 We configured Babel to support the latest JavaScript features, TypeScript, and React JSX.
 Additionally, we implemented environment variable management using dotenv and refined our Webpack configuration for handling .tsx files.
 
-### Unit testing setup
+<Heading tag="h2" id="unit-testing-setup">
+  Unit testing setup
+</Heading>
 
 For unit tests we will use Jest which is one of most popular solutions on the market.
 
@@ -110,7 +113,9 @@ Now the tests can be executed by typing: `npm run test:unit` in the terminal
 - from my experience in large applications developers often encounter performance issues with React Testing Library due to the rendering of extensive DOM trees and scanning through it.
 - additionally in heavy integration tests Playright or Cypress combined with [msw](https://mswjs.io/docs/integrations/node) for network call interception, tend to perform more efficiently
 
-### Asset handling
+<Heading tag="h2" id="asset-handling">
+  Asset handling
+</Heading>
 
 Webpack simplifies the management of static assets, all we need to do is to extend `webpack.config.ts` - module.rules
 
@@ -137,7 +142,9 @@ module: {
 - browsers can cache each asset independently
 - emited file will include hash and filename for cache-busting
 
-### CSS setup
+<Heading tag="h2" id="css-setup">
+  CSS setup
+</Heading>
 
 Frontend applications are incomplete without styling. To efficiently manage CSS files within a Webpack build, we need to update config.
 
@@ -207,7 +214,9 @@ plugins: [
 ]
 ```
 
-### Bundle size observability
+<Heading tag="h2" id="bundle-size-observability">
+  Bundle size observability
+</Heading>
 
 Applications bundle size tend to grow really fast, it is good idea to observe frequently how much our chunks weight.
 Webpack offers advanced plugin to visualize bundle size in a graphical format.

@@ -1,0 +1,58 @@
+.heading {
+  margin-bottom: 1em;
+  position: relative;
+
+  &:hover {
+    a {
+      opacity: 0.9;
+
+      svg {
+        stroke: currentColor;
+      }
+    }
+  }
+
+
+  a {
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    -moz-box-pack: center;
+    justify-content: center;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    margin-top: auto;
+    margin-bottom: auto;
+    transform: translateX(-150%);
+    transition: opacity 250ms;
+    opacity: 0;
+    scroll-margin-top: 20rem;
+    border: 0;
+    background-color: transparent;
+    box-shadow: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.h1 {
+  font-size: 1.75rem;
+}
+
+.h2 {
+  font-size: 1.5rem;
+  line-height: 1.75rem;
+  margin-top: 3rem;
+
+  color: var(--heading-color);
+}
+
+.h3 {
+  font-size: 1.25rem;
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+}
