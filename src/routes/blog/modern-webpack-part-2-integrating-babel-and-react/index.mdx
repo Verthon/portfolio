@@ -10,10 +10,11 @@ article_type: regular
 import ArticleWrapper from '~/blog/components/article-wrapper/article-wrapper'
 import ArticleHeader from '~/blog/components/article-header/article-header'
 import ArticleContent from '~/blog/components/article-content/article-content'
+import Heading from '~/common/components/heading/heading'
 
 <ArticleWrapper>
 <ArticleHeader>
-## Modern Webpack Boilerplate: Part 2: Integrating Babel and React
+<Heading tag='h1'>Modern Webpack Boilerplate: Part 2: Integrating Babel and React</Heading>
 </ArticleHeader>
 
 <ArticleContent>
@@ -25,7 +26,7 @@ up our npm environment, ensuring consistency with Node v20 LTS, and
 introduced a basic TypeScript configuration.
 With a foundational Webpack setup in place, we're now ready to dive into integrating Babel, Webpack Dev Server and React to enhance our SPA's capabilities.
 
-### Babel setup
+<Heading tag='h2' id='babel-setup'>Babel setup</Heading>
 
 In order to use latest JavaScript features, while supporting older browsers, we need to use transpiler. In this configuration step, we will use babel.
 
@@ -103,7 +104,7 @@ module: {
 
 This allow to pass all the files (tsx, ts, js) in src directory through babel and apply changes to use it safely in the browser.
 
-### Environment variables
+<Heading tag='h2' id='environment-variables'>Environment variables</Heading>
 
 To clear any confusion around envs on the frontend, let's clarify one thing: every env listed in .env.prod will be publicly available. If you need a way to hide some sort of API_KEY - you need most likely a backend proxy layer.
 
@@ -209,7 +210,7 @@ Build script - we still need to pass NODE_ENV
 	},
 ```
 
-### React
+<Heading tag='h2' id='react'>React</Heading>
 
 Install React
 

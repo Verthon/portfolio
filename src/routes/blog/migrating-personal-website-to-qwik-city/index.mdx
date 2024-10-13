@@ -13,14 +13,15 @@ import ArticleHeader from '~/blog/components/article-header/article-header'
 import ArticleContent from '~/blog/components/article-content/article-content'
 import ArticleImage from '~/blog/components/article-image/article-image'
 import Alert from '~/common/components/alert/alert'
+import Heading from '~/common/components/heading/heading'
 
 <ArticleWrapper>
 <ArticleHeader>
-## Migrating Gatsby 4 website to Qwik City
+<Heading tag='h1'>Migrating Gatsby 4 website to Qwik City</Heading>
 </ArticleHeader>
 
 <ArticleContent>
-### Motivation
+<Heading tag='h2' id='motivation'>Motivation</Heading>
 
 My personal website was using Gatsby 4. I had a choice to upgrade to v5 or switch the another framework. Since the project is relatively small and Gatsby has it’s own issues:
 
@@ -38,7 +39,7 @@ I have decided to try something:
 
 Qwik and its framework Qwik City met all of these bullet points. Moreover all the config provided out of the box was enough to suit my needs.
 
-### React components
+<Heading tag='h2' id='react-components'>React components</Heading>
 
 To use React in Qwik you need to add integration for React. Fortunately, Qwik provides command for it.
 React and Qwik components can not be mixed in the same file.
@@ -53,7 +54,7 @@ When adding React integration, Qwik installed a lot of dependencies for their ex
 npm uninstall @emotion/react @emotion/styled @mui/material @mui/x-data-grid
 ```
 
-<Alert variant='info' marginBottomInRems={1}>
+<Alert variant="info" marginBottomInRems={1}>
   **Note**: Additionally, you need to wrap your React components (that you are
   using in Qwik components or pages) with `qwikify$` function.
 </Alert>
@@ -69,7 +70,7 @@ now it is ButtonComponent so that I can reexport it down below as Button
 export const Button = qwikify$(ButtonComponent)
 ```
 
-### Tests
+<Heading tag='h2' id='tests'>Tests</Heading>
 
 Previously in Gatsby, I used jest and cypress for E2E tests.  
 Since Qwik uses Vite under the hood, they recommend to sticking with Vitest.  
@@ -102,22 +103,22 @@ In my case, I only had to add the import of `global.css` file to `qwik-app/cypre
 import '../../src/global.css'
 ```
 
-<Alert variant='danger' marginBottomInRems={1}>
-  **Note**: React components won’t work in Cypress tests unless you wrap them with `qwikify$`
+<Alert variant="danger" marginBottomInRems={1}>
+  **Note**: React components won’t work in Cypress tests unless you wrap them
+  with `qwikify$`
 </Alert>
-
 
 However, if you have many React components with tests, migrating them to Qwik right away is a better idea.
 
 Moreover, Qwik Team provides a very useful cheatsheet [cheat sheet for rewriting React code to Qwik](https://qwik.builder.io/docs/guides/react-cheat-sheet/).
 
-### PWA support
+<Heading tag='h2' id='pwa-support'>PWA support</Heading>
 
 Currently, Qwik doesn’t support PWA out of the box. This wasn’t a big deal for my portfolio, so I decided to drop it.
 However, if PWA is a must-have for you app please refer to:  
 https://github.com/QwikCommunity/pwa
 
-### Deployment
+<Heading tag='h2' id='deployment'>Deployment</Heading>
 
 Previously my Gatsby website was automatically deployed on any merge to the master branch as production build. Additionally when I was creating branch the preview was created as well.
 
@@ -127,7 +128,7 @@ I want my website to be static for now, Qwik has an automatic command for such a
 npm run qiwk add
 ```
 
-### Performance
+<Heading tag='h2' id='performance'>Performance</Heading>
 
 I haven’t done any performance optimization by myself in Qwik. Framework does its magic by shipping the least amount of JavaScript under the hood. As you may expect for a simple blog/portfolio website all Lighthouse performance metrics are green.
 
@@ -136,7 +137,7 @@ I haven’t done any performance optimization by myself in Qwik. Framework does 
   fallbackImagePath="/blogImages/performance-blog.jpg"
 />
 
-### Summary
+<Heading tag='h2' id='summary'>Summary</Heading>
 
 It is worth noting that my portfolio is a simple page that can be static, there is no auth or other features which might be crucial for e-commerce sites.
 I’m not saying that Qwik City is not capable of dealing with advanced features, I’m only noting that portfolio and blog are pretty simple cases for the most part.

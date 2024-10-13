@@ -2,22 +2,28 @@ import { component$, Slot } from '@builder.io/qwik'
 
 import LinkIcon from '~/common/components/link-icon/link-icon'
 
-import { heading, anchor } from './heading.module.css'
+import { heading, h1, h2, h3 } from './heading.module.css'
 
 interface HeadingProps {
-  tag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+  tag: 'h1' | 'h2' | 'h3'
   id?: string
   linkLabel?: string
+}
+
+const tagClass = {
+  h1,
+  h2,
+  h3,
 }
 
 export default component$(({ tag, id, linkLabel }: HeadingProps) => {
   const Tag = tag
 
   return (
-    <Tag id={id} class={heading}>
+    <Tag id={id} class={`${heading} ${tagClass[tag]}`}>
       <Slot />
       {id && (
-        <a href={`#${id}`} aria-label={linkLabel} class={anchor}>
+        <a href={`#${id}`} aria-label={linkLabel}>
           <LinkIcon />
         </a>
       )}

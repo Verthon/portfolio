@@ -16,14 +16,15 @@ article_type: featured
 import ArticleWrapper from '~/blog/components/article-wrapper/article-wrapper'
 import ArticleHeader from '~/blog/components/article-header/article-header'
 import ArticleContent from '~/blog/components/article-content/article-content'
+import Heading from '~/common/components/heading/heading'
 
 <ArticleWrapper>
 <ArticleHeader>
-## Code Coverage - more than just a number
+<Heading tag='h1'>Code Coverage - more than just a number</Heading>
 </ArticleHeader>
 
 <ArticleContent>
-### Code coverage
+<Heading tag='h2' id='code-coverage'>Code coverage</Heading>
 
 Code coverage is a set of tools, that examine the percentages of code covered
 by the tests. I’m working with Jest on daily basis, in this article I will use examples from this
@@ -77,18 +78,18 @@ And the test with following metrics
 - functions - 100% (1/1)
 - branches - 0% (0/1)
 
-### What information code coverage gives us ?
+<Heading tag='h2' id='what-information-code-coverage-gives-us'>What information code coverage gives us ?</Heading>
 
 - what parts of application are not covered with tests at all
 - acts as a general guide for further analysis, where there might a be a real need of adding tests
 
-### What information code coverage won’t give you ?
+<Heading tag='h2' id='what-information-code-coverage-wont-give-you'>What information code coverage won’t give you</Heading>
 
 - how much behaviour is covered
 - it tell you nothing about overall tests quality
 - covering code with tests ≠= covering functionality with tests
 
-### The code coverage requirements
+<Heading tag='h2' id='the-code-coverage-requirements'>The code coverage requirements</Heading>
 
 Most of the times there is requirement of having 80% code coverage in order to add new functionality to the codebase.
 

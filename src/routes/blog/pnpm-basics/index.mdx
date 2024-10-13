@@ -35,7 +35,7 @@ Due to efficient centralized store management, `pnpm` is expected to be up to 2x
 
 To understand better the motivation behind the pnpm, please refer to the [official docs](https://pnpm.io/motivation)
 
-### Why pnpm is faster
+<Heading tag='h3' id='why-pnpm-is-faster'>Why pnpm is faster ?</Heading>
 
 The traditional way of installing dependencies with `npm` contains 3 stages:
 
@@ -51,7 +51,7 @@ Once a package is resolved, it immediately starts to fetch it.
 
 For more benchmarks, you can check the [official pnpm benchmarks](https://pnpm.io/benchmarks)
 
-### Small node_modules
+<Heading tag='h3' id='smaller-node-modules'>Smaller node_modules</Heading>
 
 Packages files are stored in a central content-addressable store.  
 Any project can access this store. Only files, that are different between package versions will be added to the store.  
@@ -64,7 +64,7 @@ Let’s consider the following versions of React:
 If hypothetically, the file `jsx-dev-runtime.js` will have the same content in all of these 3 versions, pnpm will store the file **once**.  
 This approach greatly reduces the size of the `node_modules`, especially if you have multiple projects on your machine.
 
-### More strict than npm
+<Heading tag='h3' id='more-strict-than-npm'>More strict than npm</Heading>
 
 Pnpm is stricter than npm.  
 When you install `@testing-library/jest-dom` with npm it will hoist all of its [dependencies](https://www.npmjs.com/package/@testing-library/jest-dom?activeTab=dependencies) to the root of the `node_modules`.  
@@ -90,7 +90,7 @@ Let's take a look at how `pnpm` solves this problem:
 - your app will break if you attempt to import `lodash` like in the npm example
 - `@testing-library/jest-dom` will still have `lodash` to function properly. It will be stored in the `node_modules/.pnpm` directory
 
-### How to migrate
+<Heading tag='h3' id='how-to-migrate'>How to migrate</Heading>
 
 1. install pnpm with the [corepack](https://nodejs.org/api/corepack.html)
 2. rm -rf node_modules
@@ -107,7 +107,7 @@ An official list of the [pnpm continuous integration](https://pnpm.io/continuous
   alias in shell config `.zshrc` alias pn=pnpm
 </Alert>
 
-### Metrics
+<Heading tag='h3' id='metrics'>Metrics</Heading>
 
 During my migration to pnpm, I was using the `9.1.0` version of the pnpm.  
 All of my checks were done with `time npm/pnpm i` on medium-sized Qwik City blog with a ton of mdx, and a fairly standard amount of dependencies.
@@ -134,7 +134,7 @@ Size of the `node_modules` note that it's the only Qwik project on my computer:
 - with **npm**: `260MB	node_modules/`
 - with **pnpm**: `240MB	node_modules/`
 
-### Monorepo
+<Heading tag='h3' id='monorepo'>Monorepo</Heading>
 
 This article won't cover how `pnpm` handles the monorepo setups.  
 I will cover it in an upcoming article, once I get more insights into it in my daily job.
