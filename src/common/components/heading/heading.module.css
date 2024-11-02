@@ -11,32 +11,6 @@
       }
     }
   }
-
-
-  a {
-    color: inherit;
-    display: flex;
-    flex-direction: column;
-    -moz-box-pack: center;
-    justify-content: center;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    bottom: 0px;
-    margin-top: auto;
-    margin-bottom: auto;
-    transform: translateX(-150%);
-    transition: opacity 250ms;
-    opacity: 0;
-    scroll-margin-top: 20rem;
-    border: 0;
-    background-color: transparent;
-    box-shadow: none;
-
-    &:hover {
-      cursor: pointer;
-    }
-  }
 }
 
 .h1 {
@@ -55,4 +29,30 @@
   font-size: 1.25rem;
   margin-top: 3rem;
   margin-bottom: 1.5rem;
+}
+
+.headingLink {
+  margin-bottom: 0 !important;
+  color: var(--heading-color);
+  display: flex;
+  flex-direction: column;
+  -moz-box-pack: center;
+  justify-content: center;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  margin-top: auto;
+  margin-bottom: auto;
+  transform: translateX(-150%);
+  transition: opacity 250ms;
+  opacity: 0;
+  scroll-margin-top: 20rem;
+  border: 0;
+  background-color: transparent;
+  box-shadow: none;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
