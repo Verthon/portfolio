@@ -31,6 +31,10 @@
     color: var(--text-color);
   }
 
+  ol + ul {
+    padding-left: 3rem;
+  }
+
   li {
     margin-bottom: 0.25em;
     color: var(--text-color);
