@@ -10,10 +10,12 @@ import {
   footerSocialsLink,
 } from './footer-socials.module.css'
 
+const currentYear = new Date().getFullYear()
+
 export default component$(() => {
   return (
     <div class={footerSocialsWrapper}>
-      <p>© 2024 All rights reserved.</p>
+      <p>© {currentYear} All rights reserved.</p>
       <div class={footerSocialsLinksWrapper}>
         <a
           class={footerSocialsLink}
