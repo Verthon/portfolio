@@ -1,0 +1,588 @@
+---
+title: Storybook Testing Overview
+published: true
+description: 'Overview of Storybook testing, the alternative to the traditional JSDOM approach for testing the components'
+tags: testing
+date: 2024-12-30
+excerpt: Overview of Storybook testing, the alternative to the traditional JSDOM approach for testing the components. Explores the benefits and drawback of using Storybook tools to test components in many ways.
+article_type: featured
+---
+
+import ArticleWrapper from '~/blog/components/article-wrapper/article-wrapper'
+import ArticleHeader from '~/blog/components/article-header/article-header'
+import ArticleContent from '~/blog/components/article-content/article-content'
+import Heading from '~/common/components/heading/heading'
+import Alert from '~/common/components/alert/alert'
+import ArticleImage from '~/blog/components/article-image/article-image'
+
+<ArticleWrapper>
+<ArticleHeader>
+<Heading tag='h1'>Storybook Testing Overview</Heading>
+</ArticleHeader>
+
+<ArticleContent>
+<Heading tag='h2' id='why-storybook'>Why Storybook ?</Heading>
+
+When you’re building a design system library—or any large UI project—there’s a good chance you’re already using Storybook.
+There are many reasons for that, mainly:
+
+- great collaboration tool, that showcases UI to stakeholders and other team members early
+- ability to display the component in any state needed in the browser
+- free, interactive docs for the components
+- allow devs to build components in isolation (Visual TDD)
+- straightforward deployment
+- optional integration with their SaaS Chromatic - for automating the visual tests
+
+<Heading tag="h2" id="component-tests-in-the-storybook">
+  Component Tests in Storybook
+</Heading>
+
+A few assumptions need to be made:
+
+- project already has setup for Vitest and React testing Library
+- project already has setup for Storybook
+
+<Heading tag="h3" id="how-storybook-component-tests-works">
+  Storybook component tests internals
+</Heading>
+
+1. Each story has a `play` function that runs after the component is rendered. It allows simulating user behavior similar to `userEvent` in RTL .  
+2. Inside of the each `play` function, you have access to well known assertions, and utilities from the RTL and Vitest. It is part of the `@storybook/test` package.  
+3. Each `play` function is executed by a dedicated test runner based on [Jest](https://jestjs.io/) and [Playwright](https://playwright.dev/).  
+4. Finally, `@storybook/addon-interactions` lets us visualize the test in the story and provides a playback mechanism (similar to Cypress/Playwright).
+
+<Alert variant="info" marginBottomInRems={1}>
+  Test runner verifies stories **without** the `play` function for rendering without errors
+</Alert>
+
+In case you need to perform something **before** running the tests [test-hook-api](https://storybook.js.org/docs/writing-tests/test-runner#test-hook-api) got you covered
+
+<Heading tag="h3" id="initial-setup">
+  Initial setup
+</Heading>
+
+1. Install dependencies `pnpm add --save-dev @storybook/test @storybook/addon-interactions`
+2. In `.storybook/main.ts`, add a new entry to the addons array:
+
+```ts
+const config: StorybookConfig = {
+  // rest of your config
+  addons: [
+    // rest of your config
+    '@storybook/addon-interactions',
+  ],
+}
+```
+
+3. Open the storybook `pnpm run storybook`
+4. Add example test based on the `play` function e.g.
+
+```ts
+import { userEvent, within, expect, screen } from '@storybook/test'
+
+export const SwitchLanguageToSpanish: Story = {
+  play: async () => {
+    const canvas = within(document.body)
+
+    const select = canvas.getByRole('textbox')
+    expect(select).toHaveValue('EN')
+    expect(canvas.queryByDisplayValue(/\bES\b/i)).toBe(null)
+
+    await userEvent.click(select)
+    await userEvent.click(screen.getByText(/\bES\b/i))
+
+    await expect(select).toHaveValue('ES')
+    await expect(canvas.queryByDisplayValue(/EN/i)).toBe(null)
+  },
+}
+```
+
+5. Run the test in the Storybook UI under the interactions tab inside of the story
+
+<ArticleImage
+  webpImagePath="/blogImages/storybook-ui-test.webp"
+  fallbackImagePath="/blogImages/storybook-ui-test.jpg"
+  alt="Example of running the tests inside of the Storybook UI"
+  caption="Interactions tests Storybook tab"
+/>
+
+<Heading tag="h3" id="example-test-breakdown">
+  Example test breakdown
+</Heading>
+
+Let's break down the example test from the initial-setup step.
+
+```ts
+import { userEvent, within, expect, screen } from '@storybook/test'
+
+export const SwitchLanguageToSpanish: Story = {
+  play: async () => {
+    const canvas = within(document.body)
+    const user = userEvent.setup()
+
+    const select = canvas.getByRole('textbox')
+    expect(select).toHaveValue('EN')
+    expect(canvas.queryByDisplayValue(/\bES\b/i)).toBe(null)
+
+    await user.click(select)
+    await user.click(screen.getByText(/\bES\b/i))
+
+    expect(select).toHaveValue('ES')
+    expect(canvas.queryByDisplayValue(/EN/i)).toBe(null)
+  },
+}
+```
+
+1. We import RTL like functions and expect from the `@storybook/test`  
+   TypeScript won't show missing expect if you are using Vitest or Jest with [globals](https://vitest.dev/config/#globals) (when you don't have to import it, describe, expect etc.)
+2. Next we define our canvas, think of it as wrapper element of the test container
+   We target the `document.body` because the dropdown is rendered by default in React.Portal
+3. User action is handled like in the RTL by userEvent
+4. Assertions work exactly the same as in regular tests; they’re just imported from `@storybook/test` instead.
+
+Providers (Router, UI Library, etc.) are setup in the Storybook [decorators](https://storybook.js.org/docs/writing-stories/decorators).
+
+Comparing it to the RTL version - will demonstrate the many similarities
+
+```tsx
+import { screen } from "@testing-library/react";
+
+import { LanguageSwitcher } from "./LanguageSwitcher";
+
+export const createUIWrapper = ({ children }: PropsWithChildren) => {
+	const user = userEvent.setup();
+
+	const { rerender, unmount, asFragment, baseElement } = render(
+		<UIProviders>{children}</UIProviders>
+	);
+
+	return {
+		user,
+		rerender,
+		unmount,
+		asFragment,
+		baseElement,
+	};
+};
+
+describe("LanguageSwitcher", () => {
+	it("should switch the language", async () => {
+		const { user } = createUIWrapper({ children: <LanguageSwitcher /> });
+		const select = screen.getByRole("textbox");
+		expect(select).toHaveValue("EN");
+		expect(screen.queryByDisplayValue(/\bES\b/i)).toBe(null);
+
+		await user.click(select);
+		await user.click(screen.getByText(/\bES\b/i));
+
+		expect(select).toHaveValue("ES");
+		expect(screen.queryByDisplayValue(/EN/i)).toBe(null);
+	});
+});
+```
+
+<Heading tag="h3" id="example-test-with-http-request">
+  Example test with HTTP request
+</Heading>
+
+API mocking can be achieved with the [msw](https://mswjs.io/) library.
+We need to install dependencies:
+
+```shell
+pnpm add -D msw msw-storybook-addon
+```
+
+Register it in the Storybook and init msw
+
+```ts
+// .storybook/preview.ts
+import type { Preview } from "@storybook/react";
+import { initialize as initializeMsw, mswLoader } from "msw-storybook-addon";
+
+initializeMsw({ onUnhandledRequest: "warn" });
+
+const preview: Preview = {
+	// rest of your setup
+
+	loaders: [mswLoader],
+};
+
+export default preview;
+```
+
+In my example app I need to mock endpoint `/api/user` to fetch data for profile of 3 different user-roles. This setup will demonstrate the different scenarios.
+
+Scenarios, 3 are positives and one is for server failure
+
+```ts
+type UserScenario = "employee" | "reseller" | "enterprise" | "apiError";
+
+const scenarioHandlers: Record<UserScenario, () => HttpResponse> = {
+	employee: () => HttpResponse.json(employeeUserFixture),
+	reseller: () => HttpResponse.json(resellerUserFixture),
+	enterprise: () => HttpResponse.json(enterpriseUserFixture),
+	apiError: () =>
+		new HttpResponse("Internal Server Error", {
+			status: 500,
+			headers: {
+				"Content-Type": "text/plain",
+			},
+		}),
+};
+
+export function createUserProfileHandler(scenario: UserScenario = "employee") {
+	return http.get(`${apiUrlConfig.baseUrl}${apiUrlConfig.userEndpoint}`, () => {
+		return scenarioHandlers[scenario]();
+	});
+}
+```
+
+Then all we need to do is use handlers in `parameters.msw` field of the Story
+
+```ts
+export const Employee: StoryObj<typeof UserProfile> = {
+	parameters: {
+		msw: {
+			handlers: [createUserProfileHandler("employee")],
+		},
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+
+		const department = await canvas.findByText(/sales/i);
+		const managerName = await canvas.findByText(/alice boss/i);
+
+		expect(department).toBeVisible();
+		expect(managerName).toBeVisible();
+	},
+};
+
+export const Reseller: StoryObj<typeof UserProfile> = {
+	parameters: {
+		msw: {
+			handlers: [createUserProfileHandler("reseller")],
+		},
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+
+		const name = await canvas.findByText(/acme inc./i);
+		const tier = await canvas.findByText(/silver/i);
+		expect(name).toBeVisible();
+		expect(tier).toBeVisible();
+	},
+};
+
+export const Enterprise: StoryObj<typeof UserProfile> = {
+	parameters: {
+		msw: {
+			handlers: [createUserProfileHandler("enterprise")],
+		},
+	},
+
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+
+		const supportEmail = await canvas.findByText(/support@global.com/i);
+
+		expect(supportEmail).toBeVisible();
+	},
+};
+
+export const ErrorState: StoryObj<typeof UserProfile> = {
+	parameters: {
+		msw: {
+			handlers: [createUserProfileHandler("apiError")],
+		},
+	},
+
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+
+		const errorInfo = await canvas.findByText(/an error has occurred: HTTP error! status: 500/i);
+
+		expect(errorInfo).toBeVisible();
+	},
+};
+```
+
+While the tests are extremely oversimplified, the idea remain the same for more real world scenarios.  
+Here is RTL version of the same test case:
+```tsx
+describe("UserProfile", () => {
+	it("should display department and manager name when the current user is an employee", async () => {
+		createTestWrapper({ children: <UserProfile /> });
+
+		const department = await screen.findByText(/sales/i);
+		const managerName = await screen.findByText(/alice boss/i);
+
+		expect(department).toBeVisible();
+		expect(managerName).toBeVisible();
+	});
+
+	it("should display reseller name and tier when the current user is an reseller", async () => {
+		testServer.use(createUserProfileHandler("reseller"));
+		createTestWrapper({ children: <UserProfile /> });
+
+		const name = await screen.findByText(/acme inc./i);
+		const tier = await screen.findByText(/silver/i);
+
+		expect(name).toBeVisible();
+		expect(tier).toBeVisible();
+	});
+
+	it("should display a dedicated support email when the current user is an enterprise", async () => {
+		testServer.use(createUserProfileHandler("enterprise"));
+		createTestWrapper({ children: <UserProfile /> });
+
+		const supportEmail = await screen.findByText(/support@global.com/i);
+
+		expect(supportEmail).toBeVisible();
+	});
+
+	it("should display an error message on server failure", async () => {
+		testServer.use(createUserProfileHandler("apiError"));
+		createTestWrapper({ children: <UserProfile /> });
+
+		const errorInfo = await screen.findByText(
+			/an error has occurred: HTTP error! status: 500/i
+		);
+
+		expect(errorInfo).toBeVisible();
+	});
+});
+```
+
+<Heading tag="h2" id="headless-mode">
+  Headless mode
+</Heading>
+
+Running tests with the visual representation is great in the development. However you might also need to run it in the terminal.  
+We need to add standalone test-runner by installing it:
+```shell
+pnpm add --save-dev @storybook/test-runner concurrently http-server wait-on
+```
+
+Add it to your `package.json` scripts:
+
+```json
+"scripts": {
+	// rest
+	"test:ui": "test-storybook",
+	"test:ui:ci": "concurrently -k -s first -n \"STORYBOOK,TEST\" \"http-server storybook-static --port 6006 --silent\" \"wait-on tcp:127.0.0.1:6006 && time pnpm run test:ui\""
+}
+```
+
+The `test:ui` expects already running storybook.  
+To make sure there is always storybook available in the Github Action we need few more steps:
+1. create production build of the Storybook 
+2. using `concurrently` package spin off the http-server with production build of the storybook
+3. additionally STORYBOOK and TEST labels are added for processes
+4. run the test:ui command with time unix command to measure its execution time
+
+Full log for this part of github action looks like this:
+```shell
+[TEST] > storybook-testing-playground@0.0.0 test:ui /home/runner/work/storybook-testing-playground/storybook-testing-playground
+[TEST] > test-storybook
+[TEST] 
+[TEST] (node:5211) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[TEST] (Use `node --trace-deprecation ...` to show where the warning was created)
+[STORYBOOK] (node:5168) [DEP0066] DeprecationWarning: OutgoingMessage.prototype._headers is deprecated
+[STORYBOOK] (Use `node --trace-deprecation ...` to show where the warning was created)
+[TEST] PASS browser: chromium src/ui/molecules/languageSwitcher/LanguageSwitcher.stories.ts
+[TEST]   molecules/LanguageSwitcher
+[TEST]     DefaultLanguage
+[TEST]       ✓ play-test (85 ms)
+[TEST]     SwitchLanguageToSpanish
+[TEST]       ✓ play-test (52 ms)
+[TEST] 
+[TEST] Test Suites: 1 passed, 1 total
+[TEST] Tests:       2 passed, 2 total
+[TEST] Snapshots:   0 total
+[TEST] Time:        1.336 s
+[TEST] Ran all test suites.
+[TEST] 2.76user 0.55system 0:02.94elapsed 112%CPU (0avgtext+0avgdata 274736maxresident)k
+[TEST] 4200inputs+5560outputs (72major+111257minor)pagefaults 0swaps
+[TEST] wait-on tcp:127.0.0.1:6006 && time pnpm run test:ui exited with code 0
+--> Sending SIGTERM to other processes..
+[STORYBOOK] http-server storybook-static --port 6006 --silent exited with code SIGTERM
+```
+
+<Heading tag="h3" id="quick timing overview">
+  CI Timing overview
+</Heading>
+
+Analyze the results with grain of the salt, since there are only 2 tests in example app.
+The github-action contains following steps:
+* setup pnpm
+* install project deps
+* cache playwright binaries
+* install playwright os-level dependencies
+* run linter
+* run project build
+* run storybook build (needed for our UI tests)
+* run regular unit tests Vitest and RTL
+* run UI tests in storybook using headless mode
+
+Full github-action
+
+```yaml
+name: Build
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix:
+        node-version: [22]
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: 9
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'pnpm'
+    - name: Install dependencies
+      run: pnpm install --frozen-lockfile
+    - name: Cache Playwright binaries
+      uses: actions/cache@v4
+      id: playwright-cache
+      with:
+        path: |
+            ~/.cache/ms-playwright
+        key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
+
+    - run: pnpm exec playwright install --with-deps
+      if: steps.playwright-cache.outputs.cache-hit != 'true'
+
+    - run: pnpm exec playwright install-deps
+    - name: Run linter
+      run: pnpm run lint
+    - name: Run build
+      run: pnpm run build
+    - name: Build Storybook
+      run: pnpm run build-storybook
+    - name: Run unit tests
+      run: time pnpm run test:unit
+    - name: Run browser tests
+      run: time pnpm run test:ui:ci
+```
+
+<Heading tag="h2" id="test-coverage-capabilities">
+  Gathering test coverage capabilities
+</Heading>
+
+If you need to chase the coverage in your organization, Storybook provides a way to include it as well for tools like SonarQube.  
+Storybook provides the instrumentation with [Istanbul](https://istanbul.js.org/) and generates the coverage in the terminal in the following format:
+
+```
+-----------------------------------|---------|----------|---------|---------|-------------------
+File                               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
+-----------------------------------|---------|----------|---------|---------|-------------------
+All files                          |   93.75 |        0 |   91.66 |   92.59 |
+ src                               |     100 |      100 |     100 |     100 |
+  AppProviders.tsx                 |     100 |      100 |     100 |     100 |
+ src/i18n                          |     100 |      100 |     100 |     100 |
+  LocaleProvider.tsx               |     100 |      100 |     100 |     100 |
+  useLocale.ts                     |     100 |      100 |     100 |     100 |
+ src/i18n/context                  |     100 |      100 |     100 |     100 |
+  LocaleContext.ts                 |     100 |      100 |     100 |     100 |
+ src/i18n/hooks                    |    87.5 |        0 |     100 |    87.5 |
+  useCurrentLocale.ts              |     100 |      100 |     100 |     100 |
+  useLocaleContext.ts              |      80 |        0 |     100 |      80 | 8
+ src/i18n/messages                 |   66.66 |      100 |       0 |   66.66 |
+  messages.ts                      |   66.66 |      100 |       0 |   66.66 | 12
+ src/ui/atoms/select               |     100 |      100 |     100 |     100 |
+  Select.tsx                       |     100 |      100 |     100 |     100 |
+ src/ui/molecules/languageSwitcher |     100 |      100 |     100 |     100 |
+  LanguageSwitcher.tsx             |     100 |      100 |     100 |     100 |
+-----------------------------------|---------|----------|---------|---------|-------------------
+```
+
+It creates the `coverage/storybook` folder with common `lcov.info` file for the SonarQube.  
+Additional configuration for the coverage needs to be done in the `.storybook/main.ts` addon config
+
+```ts
+const config = {
+  istanbul: {
+    include: ['src/**/stories/**'],
+  },
+};
+
+addons: [
+    // Other Storybook addons setup
+    {
+      name: '@storybook/addon-coverage',
+      options: config,
+    },
+],
+```
+
+<Heading tag="h2" id="summary">
+  Summary
+</Heading>
+
+**Limitations**:
+
+- testing is tied to the Storybook
+- slower than RTL because of:
+	- need to install the Playwright on CI
+	- starting the storybook to perform the tests
+	- running it in the real browser
+- no easy control over versions of Playwright or Vitest used in the `@storybook/test`
+- shockingly there is no way to set test name yet https://github.com/storybookjs/test-runner/issues/71
+
+**Pros**:
+
+- visual debugging in the browser (with playback mechanism)
+- extensibility for a11y test by adding another addon `@storybook/addon-a11y` (based on axe-core)
+- RTL syntax with helpful matchers like `inTheDocument()` or `isVisible()`
+- runs in a real browser, not a synthetic `JSDOM` environment.
+- the errors are logged also in the browser console
+
+**Problems**:
+
+- using vitest global:true collides with Storybook imports like: `import { expect } from "@storybook/test";`
+  - you will get an error in the browser console: `ReferenceError: expect is not defined`, which can be hard to diagnose
+- for pnpm users, you must install Playwright, which the docs currently don't mention:
+
+```shell
+pnpm exec playwright install
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command "playwright" not found
+```
+
+- for pnpm CI section in the docs is incomplete - I had to add setup for the Playwright in github-action:
+
+```yaml
+    - name: Cache Playwright binaries
+      uses: actions/cache@v4
+      id: playwright-cache
+      with:
+        path: |
+            ~/.cache/ms-playwright
+        key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
+
+    - run: pnpm exec playwright install --with-deps
+      if: steps.playwright-cache.outputs.cache-hit != 'true'
+    - name: Build Storybook
+      run: pnpm run build-storybook
+    - name: Run unit tests
+      run: time pnpm run test:unit
+    - name: Run browser tests
+      run: time pnpm run test:ui:ci
+```
+**Potential great use cases**:
+
+Storybook testing in my opinion, works best for design systems and component libraries. These projects already use Storybook, so adding tests requires minimal extra setup.
+</ArticleContent>
+
+</ArticleWrapper>
