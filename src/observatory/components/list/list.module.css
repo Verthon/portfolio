@@ -1,0 +1,38 @@
+.ol {
+  list-style-type: decimal;
+  list-style-position: outside;
+  margin-left: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 0;
+  color: var(--text-color);
+}
+
+.li {
+  margin-bottom: 1.25rem;
+}
+
+.title {
+  font-weight: 600;
+  color: var(--heading-color);
+  margin-bottom: 0.25rem;
+  line-height: 2.0;
+}
+
+.status {
+  font-weight: 400;
+  margin-inline-start: 0.3rem;
+  font-size: var(--font-size-sm);
+  color: var(--primary-color-800);
+
+  [data-theme='dark'] {
+    color: var(--grey-color-600);
+  }
+}
+
+.preview {
+  font-size: var(--font-size-sm);
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+  line-height: 1.25;
+}

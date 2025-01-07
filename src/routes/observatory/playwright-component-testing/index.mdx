@@ -1,0 +1,57 @@
+---
+title: Playwright Component Testing
+published: true
+description: 'Component Testing in Playwright: Current State and Analysis'
+tags: testing
+date: 2025-01-06
+excerpt: 'An analysis of Playwright Component Testing: current state, trade-offs, and prospects'
+last_updated: 2025-01-06
+---
+
+import Wrapper from '~/observatory/components/wrapper/wrapper'
+import Header from '~/observatory/components/header/header'
+import Content from '~/observatory/components/content/content'
+import Heading from '~/common/components/heading/heading'
+
+<Wrapper>
+<Header>
+# Playwright Component Testing
+</Header>
+
+<Content>
+**Status:** Experimental (since 2022)
+
+<Heading tag='h2' id='overview'>Overview</Heading>
+
+* Cross-framework support (React, Vue, Svelte)
+* Real browser testing environment
+* Unified tooling with E2E tests (Playwright becomes a E2E standard nowadays)
+
+<Heading tag='h2' id="known-issues-and-tradeoffs">Known Issues & Tradeoffs</Heading>
+
+* **Unstable API**: It's still experimental, things are expected to be breaking
+* **Lack of the clear MVP plan**: All the information is scattered in many Github Issues
+* **Lack of a clear roadmap**: Playwright does not share any [public roadmaps](https://github.com/microsoft/playwright/issues/17409)
+* **Rely on prod build**: Currently doesn't support HMR and watch mode, not really friendly for gigantic apps with slow build times
+* **Code coverage**: No support yet like in the Jest/Vitest
+
+<Heading tag='h2' id='adoption-considerations'>Adoption Considerations</Heading>
+
+* **New Projects**: Consider waiting for stable release
+* **Existing Projects**: Consider waiting for stable release
+
+There are also great alternatives, that allow testing components in real browser:
+* [Cypress Component Testing](https://docs.cypress.io/app/component-testing/get-started)
+* [Storybook Component Testing](https://sordyl.dev/blog/storybook-testing-overview/)
+
+<Heading tag='h2' id='resources'>Resources</Heading>
+
+* [Official docs](https://playwright.dev/docs/test-components)
+* [Community call about making it stable](https://github.com/microsoft/playwright/issues/33955#issuecomment-2536986884)
+* [Discussion regarding Playwright and Cypress in Vue land](https://github.com/vuejs/docs/issues/2639)
+* [CLI watch mode discussion](https://github.com/microsoft/playwright/issues/21960#issue-1639745885)
+* [Code Coverage status](https://github.com/microsoft/playwright/issues/14511)
+
+</Content>
+
+</Wrapper>

@@ -1,0 +1,10 @@
+.list {
+  list-style-type: disc;
+  list-style-position: inside;
+  margin: 1rem 0;
+  padding-inline-start: 0.5rem;
+}
+
+.listItem {
+  margin: 0.5rem 0;
+}
