@@ -424,7 +424,12 @@ The github-action contains following steps:
 * run regular unit tests Vitest and RTL
 * run UI tests in storybook using headless mode
 
-Full github-action
+Browser tests using Storybook take almost 5 seconds on CI:  
+`real	0m4.818s` Source: [job](https://github.com/Verthon/storybook-testing-playground/actions/runs/12676936089/job/35331160616)  
+In contrast, the same tests written in RTL (happy-dom) take almost 3 seconds on CI:  
+`real	0m2.723s` Source: [job](https://github.com/Verthon/storybook-testing-playground/actions/runs/12676936089/job/35331160616)
+
+Full github-action:
 
 ```yaml
 name: Build
@@ -580,6 +585,8 @@ pnpm exec playwright install
     - name: Run browser tests
       run: time pnpm run test:ui:ci
 ```
+
+- there are still issues with msw addon integration when using [multiple handlers in one story file](https://github.com/mswjs/msw-storybook-addon/issues/82)
 **Potential great use cases**:
 
 Storybook testing in my opinion, works best for design systems and component libraries. These projects already use Storybook, so adding tests requires minimal extra setup.
