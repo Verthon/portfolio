@@ -1,6 +1,8 @@
 import { component$, Slot } from '@builder.io/qwik'
-import { routeLoader$ } from '@builder.io/qwik-city'
+import { routeLoader$, useLocation } from '@builder.io/qwik-city'
 import type { RequestHandler } from '@builder.io/qwik-city'
+import { generateGoBackMetadata } from '~/blog/application/services/go-back'
+import GoBack from '~/common/components/go-back/go-back'
 
 import Layout from '~/common/components/layout/layout'
 
@@ -22,8 +24,21 @@ export const useServerTimeLoader = routeLoader$(() => {
 })
 
 export default component$(() => {
+  const location = useLocation()
+
+  const goBackMetadata = generateGoBackMetadata({
+    pathname: location.url.pathname,
+  })
+
   return (
     <Layout>
+      {goBackMetadata.shouldRender && (
+        <GoBack
+          q:slot="go-back"
+          href={goBackMetadata.href}
+          text={goBackMetadata.text}
+        />
+      )}
       <Slot />
     </Layout>
   )

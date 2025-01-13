@@ -7,15 +7,20 @@ import Footer from '~/common/components/footer/footer'
 export default component$(() => {
   return (
     <>
-      <main>
+      <header>
         <Container>
           <Nav
             links={[
               { type: 'regular', slug: 'blog', name: 'blog' },
               { type: 'regular', slug: 'dev-bites', name: 'dev bites' },
-              { type: 'regular', 'slug': 'observatory', name: 'observatory' }
+              { type: 'regular', slug: 'observatory', name: 'observatory' },
             ]}
           />
+        </Container>
+      </header>
+      <main>
+        <Container>
+          <Slot name="go-back" />
           <Slot />
         </Container>
       </main>

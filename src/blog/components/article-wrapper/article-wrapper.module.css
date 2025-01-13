@@ -1,5 +1,10 @@
 .articleWrapper {
   max-width: 80rem;
-  margin-top: 8rem;
-  margin-bottom: 8rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+
+  @media screen and (min-width: 520px) {
+    margin-top: 8rem;
+    margin-bottom: 8rem;
+  }
 }

@@ -11,6 +11,7 @@ import {
   articleReadMore,
 } from './article-item.module.css'
 import Badge from '~/common/components/badge/badge'
+import { Link } from '@builder.io/qwik-city'
 
 export type ArticleItemProps = { badgeText?: string } & Omit<
   ArticleItem,
@@ -29,7 +30,7 @@ export default component$(
     return (
       <div class={articleItemWrapper}>
         <article data-featured-article={articleType === 'featured' ? 'true' : 'false'}>
-          <a class={articleItemLink} href={permalink}>
+          <Link class={articleItemLink} href={permalink}>
             <div>
               <div class={articleMeta}>
                 <time class={articleDate} dateTime={date}>
@@ -41,7 +42,7 @@ export default component$(
               <p class={articleItemExcerpt}>{excerpt}</p>
             </div>
             <span class={articleReadMore}>Read article</span>
-          </a>
+          </Link>
         </article>
       </div>
     )
