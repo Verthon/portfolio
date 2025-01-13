@@ -1,4 +1,8 @@
 import { component$ } from '@builder.io/qwik'
+import { Link } from '@builder.io/qwik-city'
+
+import type { DevBiteItem } from '~/dev-bites/domain/models/dev-bite-item'
+import Badge from '~/common/components/badge/badge'
 
 import {
   devBiteItemWrapper,
@@ -9,8 +13,6 @@ import {
   devBiteMeta,
   devBiteItemReadMore,
 } from './dev-bite-item.module.css'
-import type { DevBiteItem } from '~/dev-bites/domain/models/dev-bite-item'
-import Badge from '~/common/components/badge/badge'
 
 export type DevBiteItemProps = { badgesText?: string[] } & Omit<
   DevBiteItem,
@@ -22,7 +24,7 @@ export default component$(
     return (
       <div class={devBiteItemWrapper}>
         <article data-featured-dev-bite={devByteType === 'featured' ? 'true' : 'false'}>
-          <a class={devBiteItemLink} href={permalink}>
+          <Link class={devBiteItemLink} href={permalink}>
             <div>
               <div class={devBiteMeta}>
                 <time class={devBiteDate} dateTime={date}>
@@ -37,7 +39,7 @@ export default component$(
               <p class={devBiteItemExcerpt}>{excerpt}</p>
             </div>
             <span class={devBiteItemReadMore}>Read more</span>
-          </a>
+          </Link>
         </article>
       </div>
     )

@@ -1,0 +1,9 @@
+.goBackLink {
+  display: inline-flex;
+  gap: 0.25rem;
+
+  svg {
+    stroke: currentColor;
+    display: inline;
+  }
+}

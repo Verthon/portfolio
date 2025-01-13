@@ -11,3 +11,10 @@ export const generateNavLink = ({
 
   return slug === 'home' ? '/' : `/${slug}`
 }
+
+export const isNestedPathname = ({ pathname }: { pathname: string }) => {
+  const pathnameWithoutTrailingSlash = pathname.replace(/\/$/, '');
+  const pathNameSegments = pathnameWithoutTrailingSlash.split('/')
+
+  return pathNameSegments.length > 2
+}

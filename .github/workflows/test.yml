@@ -36,7 +36,7 @@ jobs:
 
       - name: Get installed Playwright version
         id: playwright-version
-        run: echo PLAYWRIGHT_VERSION=$(bash playwright-version.sh) >> $GITHUB_ENV
+        run: echo "PLAYWRIGHT_VERSION=$(pnpm exec playwright --version | awk '{print $2}')" >> $GITHUB_ENV
 
       - name: Cache Playwright binaries
         uses: actions/cache@v3
@@ -46,10 +46,12 @@ jobs:
             ~/.cache/ms-playwright
           key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
 
-      - run: pnpm exec playwright install --with-deps
+      - name: Install Playwright Browsers (if cache miss)
+        run: pnpm exec playwright install --with-deps
         if: steps.playwright-cache.outputs.cache-hit != 'true'
 
-      - run: pnpm exec playwright install-deps
+      - name: Ensure Playwright Dependencies
+        run: pnpm exec playwright install-deps
 
       - name: Run E2E tests
         run: pnpm exec playwright test

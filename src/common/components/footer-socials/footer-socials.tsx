@@ -1,4 +1,5 @@
 import { component$ } from '@builder.io/qwik'
+import { Link } from '@builder.io/qwik-city'
 
 import { siteMetadata } from '~/common/application/constants/site-metadata'
 import GithubIcon from '../github-icon/github-icon'
@@ -17,14 +18,14 @@ export default component$(() => {
     <div class={footerSocialsWrapper}>
       <p>© {currentYear} All rights reserved.</p>
       <div class={footerSocialsLinksWrapper}>
-        <a
+        <Link
           class={footerSocialsLink}
           href={siteMetadata.github}
           rel="noopener noreferrer"
         >
           <GithubIcon ariaLabel="Krzysztof Sordyl's GitHub profile" />
-        </a>
-        <a
+        </Link>
+        <Link
           class={footerSocialsLink}
           href={siteMetadata.linkedin}
           rel="noopener noreferrer"
@@ -33,7 +34,7 @@ export default component$(() => {
             ariaLabel="Krzysztof Sordyl linkedin profile"
             color={'current'}
           />
-        </a>
+        </Link>
       </div>
     </div>
   )
