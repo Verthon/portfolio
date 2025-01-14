@@ -1,0 +1,30 @@
+name: Setup Playwright
+description: Install Playwright and dependencies, and cache browsers
+inputs:
+  browser:
+    description: "Browser or project to install (e.g., chromium, Mobile Safari)"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Get Playwright version
+      id: playwright-version
+      shell: bash
+      run: |
+        PLAYWRIGHT_VERSION=$(pnpm exec playwright --version | awk '{print $2}')
+        echo "PLAYWRIGHT_VERSION=$PLAYWRIGHT_VERSION" >> $GITHUB_ENV
+
+    - name: Cache Playwright browser binaries
+      uses: actions/cache@v4
+      id: playwright-cache
+      with:
+        path: ~/.cache/ms-playwright
+        key: "${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}-${{ inputs.browser }}"
+        restore-keys: |
+          ${{ runner.os }}-playwright-
+
+    - name: Install Playwright browsers
+      shell: bash
+      if: steps.playwright-cache.outputs.cache-hit != 'true'
+      run: |
+        pnpm exec playwright install --with-deps ${{ inputs.browser }}

@@ -1,12 +1,8 @@
 import type { PlaywrightTestConfig } from "@playwright/test";
 import { devices } from "@playwright/test";
 
-/**
- * See https://playwright.dev/docs/test-configuration.
- */
 const config: PlaywrightTestConfig = {
   testDir: "./tests",
-  /* Run tests in files in parallel */
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: 2,
@@ -18,17 +14,17 @@ const config: PlaywrightTestConfig = {
   },
   projects: [
     {
-      name: "chromium",
+      name: "Chromium",
       use: {
         ...devices["Desktop Chrome"],
       },
     },
-    // {
-    //   name: 'webkit',
-    //   use: {
-    //     ...devices['Desktop Safari'],
-    //   },
-    // },
+    {
+      name: 'Mobile Safari',
+      use: {
+        ...devices['iPhone 15'],
+      },
+    },
   ],
 
   webServer: {
