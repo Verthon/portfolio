@@ -14,13 +14,13 @@ const config: PlaywrightTestConfig = {
   },
   projects: [
     {
-      name: "Chromium",
+      name: "chromium",
       use: {
         ...devices["Desktop Chrome"],
       },
     },
     {
-      name: 'Mobile Safari',
+      name: 'webkit',
       use: {
         ...devices['iPhone 15'],
       },
