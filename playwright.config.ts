@@ -1,22 +1,22 @@
-import type { PlaywrightTestConfig } from "@playwright/test";
-import { devices } from "@playwright/test";
+import type { PlaywrightTestConfig } from '@playwright/test'
+import { devices } from '@playwright/test'
 
 const config: PlaywrightTestConfig = {
-  testDir: "./tests",
+  testDir: './tests',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: 2,
   workers: process.env.CI ? 1 : undefined,
-  reporter: "html",
+  reporter: 'html',
   use: {
     actionTimeout: 0,
-    trace: "on-first-retry",
+    trace: 'on-first-retry',
   },
   projects: [
     {
-      name: "chromium",
+      name: 'chromium',
       use: {
-        ...devices["Desktop Chrome"],
+        ...devices['Desktop Chrome'],
       },
     },
     {
@@ -28,9 +28,9 @@ const config: PlaywrightTestConfig = {
   ],
 
   webServer: {
-    command: "npm run preview",
+    command: 'npm run preview',
     port: 4173,
   },
-};
+}
 
-export default config;
+export default config

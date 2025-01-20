@@ -4,7 +4,7 @@ published: true
 description: 'Understand the meaning of every of Vitest duration step'
 tags: testing, vitest
 date: 2024-12-22
-excerpt: "Breakdown of each step of duration printed out after running the Vitest tests. Including some hints on how to improve each of the metrics"
+excerpt: 'Breakdown of each step of duration printed out after running the Vitest tests. Including some hints on how to improve each of the metrics'
 last_updated: 2024-12-22
 dev_bite_type: featured
 ---
@@ -17,7 +17,7 @@ import Alert from '~/common/components/alert/alert'
 
 <DevBiteWrapper>
 <DevBiteHeader>
-<Heading tag='h1' id='vitest-timing-breakdown'>Vitest timing breakdown</Heading>
+<Heading tag='h1'>Vitest timing breakdown</Heading>
 </DevBiteHeader>
 
 <DevBiteContent>
@@ -54,34 +54,46 @@ Basic breakdown:
 2. `collect`: file-system scan to gather your test files and import their dependencies
 3. `tests`: time for running only the tests
 4. `transform`: how long it takes for Vitest to transform files (source and tests)
-5. `environment`: overhead for loading the environment  (importing jsdom/happy-dom/node)
+5. `environment`: overhead for loading the environment (importing jsdom/happy-dom/node)
 6. `prepare`: Vitest's internal tasks (setup cache, linking tests files)
 
 Where to search for execution time improvements:
 
 <Alert variant="danger" marginBottomInRems={1}>
-  Please, measure before optimizing: https://vitest.dev/guide/profiling-test-performance.html
+  Please, measure before optimizing:
+  https://vitest.dev/guide/profiling-test-performance.html
 </Alert>
 
-1. `setup`: 
-  - try to move parts of the setup into a global setup/teardown if possible
-  - try to run global fixtures once before all tests, instead of before each test 
+1. `setup`:
+
+- try to move parts of the setup into a global setup/teardown if possible
+- try to run global fixtures once before all tests, instead of before each test
+
 2. `collect`:
-  - keep `testMatch`, `include` and `exclude` precis, to avoid scanning unnecessary files.
-  - in case you have a custom `exclude` or `include` make sure you are using: `import { configDefaults } from 'vitest/config'`
+
+- keep `testMatch`, `include` and `exclude` precis, to avoid scanning unnecessary files.
+- in case you have a custom `exclude` or `include` make sure you are using: `import { configDefaults } from 'vitest/config'`
+
 3. `tests`:
-  - refactor or remove slow or redundant tests
-  - migrate the large DOM tests to tools like Cypress, Playwright, or Storybook UI Testing
-4. `transform`: 
-  - investigate barrel-files transformations (they might pull entire module)
-  - investigate if tweaking babel/swc/typescript setup will help
-  - investigate [optimizeDeps](https://vitest.dev/config/#deps-optimizer) in the config
-5. `environment`: 
-  - if you run your tests with Web API simulations, consider using happy-dom instead of JSDom
-  - discover if setting the different environment in specific tests will improve performance (e.g. when using global jsdom, use node in test without need for jsdom)
+
+- refactor or remove slow or redundant tests
+- migrate the large DOM tests to tools like Cypress, Playwright, or Storybook UI Testing
+
+4. `transform`:
+
+- investigate barrel-files transformations (they might pull entire module)
+- investigate if tweaking babel/swc/typescript setup will help
+- investigate [optimizeDeps](https://vitest.dev/config/#deps-optimizer) in the config
+
+5. `environment`:
+
+- if you run your tests with Web API simulations, consider using happy-dom instead of JSDom
+- discover if setting the different environment in specific tests will improve performance (e.g. when using global jsdom, use node in test without need for jsdom)
+
 6. `prepare`:
-  - reducing the amount of the dependencies used in the project is always beneficial
-  - check for the circular dependencies in the project 
+
+- reducing the amount of the dependencies used in the project is always beneficial
+- check for the circular dependencies in the project
 
 To improve the performance you can check the [dedicated docs](https://vitest.dev/guide/improving-performance.html) on the Vitest documentation
 
@@ -89,7 +101,6 @@ To improve the performance you can check the [dedicated docs](https://vitest.dev
 
 - https://github.com/vitest-dev/vitest/discussions/1770#discussioncomment-3304723
 - https://github.com/vitest-dev/vitest/discussions/1770#discussioncomment-6617381
-
 
 </DevBiteContent>
 

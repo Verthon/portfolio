@@ -30,7 +30,8 @@ export const head: DocumentHead = {
     },
     {
       property: 'og:description',
-      content: 'Concise web development guides, dev-bites, and a tracker for innovative tools.',
+      content:
+        'Concise web development guides, dev-bites, and a tracker for innovative tools.',
     },
     {
       property: 'og:url',

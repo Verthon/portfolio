@@ -19,7 +19,7 @@ export default defineConfig(() => {
     },
     test: {
       include: [...defaultInclude, 'src/**/*.{test,spec}.ts'],
-      exclude: [...defaultExclude, 'tests/**/*']
+      exclude: [...defaultExclude, 'tests/**/*'],
     }
   }
 })

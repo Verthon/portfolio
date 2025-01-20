@@ -2,10 +2,10 @@ name: Setup Playwright
 description: Install Playwright and dependencies, and cache browsers
 inputs:
   browser:
-    description: "Browser or project to install (e.g., chromium, Mobile Safari)"
+    description: 'Browser or project to install (e.g., chromium, Mobile Safari)'
     required: true
 runs:
-  using: "composite"
+  using: 'composite'
   steps:
     - name: Get Playwright version
       id: playwright-version
@@ -19,7 +19,7 @@ runs:
       id: playwright-cache
       with:
         path: ~/.cache/ms-playwright
-        key: "${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}-${{ inputs.browser }}"
+        key: '${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}-${{ inputs.browser }}'
         restore-keys: |
           ${{ runner.os }}-playwright-
 

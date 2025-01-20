@@ -10,8 +10,10 @@ export default component$(({ listItems }: ListProps) => {
   return (
     <ul class={list}>
       {listItems.map((item) => (
-        <li key={item} class={listItem}>{item}</li>
+        <li key={item} class={listItem}>
+          {item}
+        </li>
       ))}
     </ul>
-  );
-});
+  )
+})

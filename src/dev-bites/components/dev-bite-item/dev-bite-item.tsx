@@ -20,10 +20,19 @@ export type DevBiteItemProps = { badgesText?: string[] } & Omit<
 >
 
 export default component$(
-  ({ date, excerpt, permalink, title, badgesText, devByteType }: DevBiteItemProps) => {
+  ({
+    date,
+    excerpt,
+    permalink,
+    title,
+    badgesText,
+    devByteType,
+  }: DevBiteItemProps) => {
     return (
       <div class={devBiteItemWrapper}>
-        <article data-featured-dev-bite={devByteType === 'featured' ? 'true' : 'false'}>
+        <article
+          data-featured-dev-bite={devByteType === 'featured' ? 'true' : 'false'}
+        >
           <Link class={devBiteItemLink} href={permalink}>
             <div>
               <div class={devBiteMeta}>
@@ -32,7 +41,9 @@ export default component$(
                 </time>
                 {badgesText &&
                   badgesText.map((badgeText) => (
-                    <Badge key={badgeText} variant="secondary">{badgeText}</Badge>
+                    <Badge key={badgeText} variant="secondary">
+                      {badgeText}
+                    </Badge>
                   ))}
               </div>
               <h2 class={devBiteItemTitle}>{title}</h2>

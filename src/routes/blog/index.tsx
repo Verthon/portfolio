@@ -25,7 +25,8 @@ export const head: DocumentHead = {
     },
     {
       property: 'og:description',
-      content: 'Insights on frontend architecture, testing strategies, and modern JavaScript development.',
+      content:
+        'Insights on frontend architecture, testing strategies, and modern JavaScript development.',
     },
     {
       property: 'og:type',

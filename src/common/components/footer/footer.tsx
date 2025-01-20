@@ -1,9 +1,6 @@
 import { component$ } from '@builder.io/qwik'
 
-import {
-  footer,
-  footerWrapper,
-} from './footer.module.css'
+import { footer, footerWrapper } from './footer.module.css'
 import FooterSocials from '../footer-socials/footer-socials'
 
 export default component$(() => {

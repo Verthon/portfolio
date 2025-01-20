@@ -3,7 +3,6 @@ import type { KnipConfig } from 'knip'
 const config: KnipConfig = {
   vite: true,
   vitest: true,
-  cypress: true,
   prettier: true,
   'github-actions': true,
   typescript: true,
@@ -13,6 +12,7 @@ const config: KnipConfig = {
     'src/routes/404.tsx',
     'src/routes/dev-bites/{index,layout}.tsx',
     'src/routes/blog/{index,layout}.tsx',
+    'src/routes/observatory/{index,layout}.tsx',
     'src/common/components/router-head/router-head.tsx',
     'src/entry.dev.tsx',
     'src/entry.preview.tsx',
@@ -23,7 +23,6 @@ const config: KnipConfig = {
   project: ['src/**/*.{tsx,ts,mdx}'],
   ignoreDependencies: ['undici', '@qwik-client-manifest', '@qwik-city-plan'],
   ignore: [
-    'src/**/*.spec.cy.tsx',
     //false positives, files are imported in mdx files
     'src/blog/components/article-container/article-container.tsx',
     'src/blog/components/article-content/article-content.tsx',
@@ -37,6 +36,10 @@ const config: KnipConfig = {
     'src/common/components/alert/alert.tsx',
     'src/common/components/danger-icon/danger-icon.tsx',
     'src/common/components/info-icon/info-icon.tsx',
+    'src/observatory/components/container/container.tsx',
+    'src/observatory/components/content/content.tsx',
+    'src/observatory/components/header/header.tsx',
+    'src/observatory/components/wrapper/wrapper.tsx',
   ],
 }
 

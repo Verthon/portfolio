@@ -3,7 +3,6 @@ import type { DocumentHead } from '@builder.io/qwik-city'
 
 import DevBitesPageContent from '~/dev-bites/components/dev-bites-page-content/dev-bites-page-content'
 
-
 export default component$(() => {
   return <DevBitesPageContent />
 })
@@ -13,7 +12,8 @@ export const head: DocumentHead = {
   meta: [
     {
       name: 'description',
-      content: 'All my brief takes on programming problems, packed into bite-sized reads.',
+      content:
+        'All my brief takes on programming problems, packed into bite-sized reads.',
     },
     {
       name: 'author',
@@ -25,7 +25,8 @@ export const head: DocumentHead = {
     },
     {
       property: 'og:description',
-      content: 'All my brief takes on programming problems, packed into bite-sized reads.',
+      content:
+        'All my brief takes on programming problems, packed into bite-sized reads.',
     },
     {
       property: 'og:type',
@@ -40,4 +41,4 @@ export const head: DocumentHead = {
       content: 'Krzysztof Sordyl',
     },
   ],
-};
+}

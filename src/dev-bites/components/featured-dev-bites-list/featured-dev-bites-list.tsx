@@ -10,7 +10,11 @@ export default component$(() => {
     <Resource
       value={devBitesResource}
       onResolved={(devBites) => (
-        <DevBitesList list={devBites} orientation="vertical" withBadges={true} />
+        <DevBitesList
+          list={devBites}
+          orientation="vertical"
+          withBadges={true}
+        />
       )}
     />
   )

@@ -37,11 +37,11 @@ jobs:
       - name: Run linter
         run: pnpm run lint
 
+      - name: Run build
+        run: pnpm run build
+
       - name: Run unit tests
         run: pnpm run test.unit.ci
 
       - name: Run E2E tests for ${{ matrix.project }}
         run: pnpm exec playwright test --project="${{ matrix.project }}"
-
-      - name: Run build
-        run: pnpm run build

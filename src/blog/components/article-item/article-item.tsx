@@ -29,7 +29,9 @@ export default component$(
   }: ArticleItemProps) => {
     return (
       <div class={articleItemWrapper}>
-        <article data-featured-article={articleType === 'featured' ? 'true' : 'false'}>
+        <article
+          data-featured-article={articleType === 'featured' ? 'true' : 'false'}
+        >
           <Link class={articleItemLink} href={permalink}>
             <div>
               <div class={articleMeta}>

@@ -11,10 +11,8 @@ export default component$(() => {
 
   return (
     <Container>
-      <Heading tag='h1'>Latest posts</Heading>
-      <Text>
-        All of my long-form thoughts on programming
-      </Text>
+      <Heading tag="h1">Latest posts</Heading>
+      <Text>All of my long-form thoughts on programming</Text>
       <Resource
         value={articlesResource}
         onResolved={(articles) => <ArticlesList list={articles} />}

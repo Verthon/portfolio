@@ -36,7 +36,7 @@ If you using a React Testing Library in your tests I would suggest to switch for
 
 UserEvent is way better at simulating the user behaviour, `fireEvent` just dispatches the DOM event, when the `userEvent` simulates full interactions - similarly like it is in real browser.
 
-<Heading tag='h2' id='lack-ofusing-setup-for-userEvenet'>Lack of using setup for `userEvent`</Heading>
+<Heading tag='h2' id='lack-of-using-setup-for-userEvenet'>Lack of using setup for `userEvent`</Heading>
 
 It is recommended to invoke `setup` method before the actual component render in test.
 
@@ -68,7 +68,7 @@ await user.click(checkbox) ✅
 expect(screen.getByRole('checkbox')).toBeChecked()
 ```
 
-The only expection from it is `.type` according to the docs:
+The only exception from it is `.type` according to the docs:
 
 _"To be clear, userEvent.type always returns a promise, but you only need to await the promise it returns if you're using the delay option. Otherwise everything runs synchronously and you can ignore the promise"._
 

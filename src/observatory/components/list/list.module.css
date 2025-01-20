@@ -16,7 +16,7 @@
   font-weight: 600;
   color: var(--heading-color);
   margin-bottom: 0.25rem;
-  line-height: 2.0;
+  line-height: 2;
 }
 
 .status {
