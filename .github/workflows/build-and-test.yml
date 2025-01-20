@@ -40,6 +40,12 @@ jobs:
       - name: Run build
         run: pnpm run build
 
+      - name: Install HTML Parser - Tidy
+        run: sudo apt-get install -y tidy
+
+      - name: Validate HTML Files
+        run: find dist -name '*.html' -exec tidy -q -e {} \;
+
       - name: Run unit tests
         run: pnpm run test.unit.ci
 
