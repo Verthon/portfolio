@@ -1,6 +1,12 @@
 import { component$ } from '@builder.io/qwik'
 
-import { notFound, title, link, linksWrapper, text } from './not-found-page-content.module.css'
+import {
+  notFound,
+  title,
+  link,
+  linksWrapper,
+  text,
+} from './not-found-page-content.module.css'
 import { Link } from '@builder.io/qwik-city'
 
 export default component$(() => {

@@ -4,7 +4,7 @@ published: true
 description: 'Resolve issue with storybook chunks being blocked on production'
 tags: linter
 date: 2024-08-03
-excerpt: "Find out how to check which ESLint rules takes a lot of time to scan the project"
+excerpt: 'Find out how to check which ESLint rules takes a lot of time to scan the project'
 last_updated: 2024-08-03
 dev_bite_type: featured
 ---
@@ -12,10 +12,11 @@ dev_bite_type: featured
 import DevBiteWrapper from '~/dev-bites/components/dev-bite-wrapper/dev-bite-wrapper'
 import DevBiteHeader from '~/dev-bites/components/dev-bite-header/dev-bite-header'
 import DevBiteContent from '~/dev-bites/components/dev-bite-content/dev-bite-content'
+import Heading from '~/common/components/heading/heading'
 
 <DevBiteWrapper>
 <DevBiteHeader>
-## How to Measure ESLint Execution Time
+<Heading tag='h1'>How to Measure ESLint Execution Time</Heading>
 </DevBiteHeader>
 
 <DevBiteContent>
@@ -36,14 +37,13 @@ Determine which ESLint rules are slowing down your project.
 
 Add a new command that lists the least performant rules first
 
-
-
 ```json
 // in package.json "scripts" section
 "lint:performance": "TIMING=1 eslint --ext .ts,.tsx .",
 ```
 
 It will print out something like this in your terminal:
+
 ```bash
 Rule                              | Time (ms) | Relative
 :---------------------------------|----------:|--------:
@@ -61,9 +61,10 @@ react/no-deprecated               |     2.761 |     0.1%
 
 In my case it turns out that `import/no-cycle` is the most resource-intensive rule.
 With that said, we need to make a decision, either:
-* disable the rule and run it separately manually e.g `"lint:import-no-cycle": "eslint --rule 'import/no-cycle:error' --ext .ts,.tsx ."`
-* leave it as is if the cost is acceptable
-* find a faster and compliant alternative to ESLint like: [OxLint](https://oxc.rs/docs/guide/usage/linter.html) or [Biome](https://biomejs.dev/)
+
+- disable the rule and run it separately manually e.g `"lint:import-no-cycle": "eslint --rule 'import/no-cycle:error' --ext .ts,.tsx ."`
+- leave it as is if the cost is acceptable
+- find a faster and compliant alternative to ESLint like: [OxLint](https://oxc.rs/docs/guide/usage/linter.html) or [Biome](https://biomejs.dev/)
 
 Both options have it's own trade-offs and it should be discussed with the team, which approach is best under specific circumstances.
 

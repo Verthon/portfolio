@@ -16,7 +16,7 @@
   font-weight: 600;
   color: var(--heading-color);
   margin-bottom: 0.25rem;
-  line-height: 2.0;
+  line-height: 2;
 }
 
 .status {
@@ -35,4 +35,8 @@
   color: var(--text-color);
   margin-bottom: 0.5rem;
   line-height: 1.25;
+}
+
+.link {
+  display: block;
 }

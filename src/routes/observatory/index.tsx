@@ -12,7 +12,8 @@ export const head: DocumentHead = {
   meta: [
     {
       name: 'description',
-      content: 'Tracker of web tools, libraries and frameworks. Focus on implementation trade-offs, real-world constraints and adoption risks.',
+      content:
+        'Tracker of web tools, libraries and frameworks. Focus on implementation trade-offs, real-world constraints and adoption risks.',
     },
     {
       name: 'author',
@@ -24,7 +25,8 @@ export const head: DocumentHead = {
     },
     {
       property: 'og:description',
-      content: 'Tracker of web tools, libraries and frameworks. Focus on implementation trade-offs, real-world constraints and adoption risks.',
+      content:
+        'Tracker of web tools, libraries and frameworks. Focus on implementation trade-offs, real-world constraints and adoption risks.',
     },
     {
       property: 'og:type',
@@ -35,12 +37,13 @@ export const head: DocumentHead = {
       content: 'summary',
     },
     {
-      name: 'twitter:title', 
+      name: 'twitter:title',
       content: 'Observatory • Tracking Promising Web Development Tools',
     },
     {
       name: 'twitter:description',
-      content: 'Tracker of web tools, libraries and frameworks. Focus on implementation trade-offs, real-world constraints and adoption risks.',
+      content:
+        'Tracker of web tools, libraries and frameworks. Focus on implementation trade-offs, real-world constraints and adoption risks.',
     },
   ],
 }

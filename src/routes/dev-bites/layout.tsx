@@ -1,10 +1,8 @@
 import { component$, Slot } from '@builder.io/qwik'
-import { routeLoader$, useLocation } from '@builder.io/qwik-city'
+import { routeLoader$ } from '@builder.io/qwik-city'
 import type { RequestHandler } from '@builder.io/qwik-city'
 
-import GoBack from '~/common/components/go-back/go-back'
 import Layout from '~/common/components/layout/layout'
-import { generateGoBackMetadata } from '~/dev-bites/application/services/go-back'
 
 export const onGet: RequestHandler = async ({ cacheControl }) => {
   // Control caching for this request for best performance and to reduce hosting costs:
@@ -24,22 +22,9 @@ export const useServerTimeLoader = routeLoader$(() => {
 })
 
 export default component$(() => {
-  const location = useLocation()
-  
-    const goBackMetadata = generateGoBackMetadata({
-      pathname: location.url.pathname,
-    })
-  
-    return (
-      <Layout>
-        {goBackMetadata.shouldRender && (
-          <GoBack
-            q:slot="go-back"
-            href={goBackMetadata.href}
-            text={goBackMetadata.text}
-          />
-        )}
-        <Slot />
-      </Layout>
-    )
+  return (
+    <Layout>
+      <Slot />
+    </Layout>
+  )
 })

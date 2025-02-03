@@ -37,11 +37,17 @@ jobs:
       - name: Run linter
         run: pnpm run lint
 
+      - name: Run build
+        run: pnpm run build
+
+      - name: Install HTML Parser - Tidy
+        run: sudo apt-get install -y tidy
+
+      - name: Validate HTML Files
+        run: find dist -name '*.html' -exec tidy -q -e {} \;
+
       - name: Run unit tests
         run: pnpm run test.unit.ci
 
       - name: Run E2E tests for ${{ matrix.project }}
         run: pnpm exec playwright test --project="${{ matrix.project }}"
-
-      - name: Run build
-        run: pnpm run build

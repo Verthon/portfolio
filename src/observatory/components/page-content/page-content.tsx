@@ -10,23 +10,26 @@ const items = [
   {
     title: 'Playwright Component Testing',
     status: 'Experimental' as const,
-    shortPreview: 'Leverage real browsers to test UI components. Currently lacks a clear roadmap to a beta release.',
+    shortPreview:
+      'Leverage real browsers to test UI components. Currently lacks a clear roadmap to a beta release.',
     href: '/observatory/playwright-component-testing',
   },
-];
+]
 
 export default component$(() => {
   return (
     <Container>
       <Heading tag="h1">Observatory</Heading>
       <Text>
-        Tracker for the promising technologies. Straight to the point, without marketing
-        and hype.
+        Tracker for the promising technologies. Straight to the point, without
+        marketing and hype.
       </Text>
 
       <Heading tag="h2">What is it?</Heading>
       <Text>
-      The Observatory tracks implementation trade-offs and technical constraints of web tools. Each analysis focuses on current limitations, adoption risks, and ongoing development status.
+        The Observatory tracks implementation trade-offs and technical
+        constraints of web tools. Each analysis focuses on current limitations,
+        adoption risks, and ongoing development status.
       </Text>
 
       <Text>Here, you’ll find:</Text>

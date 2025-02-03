@@ -11,8 +11,11 @@ export default component$(() => {
 
   return (
     <Container>
-      <Heading tag='h1'>Latest dev bites</Heading>
-      <Text>All my brief takes on programming problems, packed into bite-sized reads.</Text>
+      <Heading tag="h1">Latest dev bites</Heading>
+      <Text>
+        All my brief takes on programming problems, packed into bite-sized
+        reads.
+      </Text>
       <Resource
         value={devBitesResource}
         onResolved={(devBites) => <DevBitesList list={devBites} />}

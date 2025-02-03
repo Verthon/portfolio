@@ -65,4 +65,3 @@ export const getAllFeaturedDevBites = async (): Promise<DevBiteItem[]> => {
     }
   })
 }
-

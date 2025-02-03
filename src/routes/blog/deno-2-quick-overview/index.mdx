@@ -21,11 +21,11 @@ import Alert from '~/common/components/alert/alert'
 
 <ArticleContent>
 <Heading tag='h2' id='javascript-runtimes'>JavaScript runtimes</Heading>
-<p>Deno is a JavaScript runtime, built on [V8](https://v8.dev/), [Rust](https://www.rust-lang.org/) and [Tokio](https://tokio.rs/). Released in 2018, it just hit a major milestone with the release of Deno 2.0 in October 2024.</p>
 
-<Heading tag="h2" id="core-design-principles">
-  Core design principles
-</Heading>
+Deno is a JavaScript runtime, built on [V8](https://v8.dev/), [Rust](https://www.rust-lang.org/) and [Tokio](https://tokio.rs/). Released in 2018, it just hit a major milestone with the release of Deno 2.0 in October 2024.
+
+<Heading tag="h2" id="core-design-principles">Core design principles</Heading>
+
 - Zero config TypeScript support 
 - [ECMA Script
 modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
@@ -43,9 +43,8 @@ only
 - JSR registry like npm but for ESM only 
 - Node.js backward compatibility layer
 
-<Heading tag="h2" id="getting-started">
-  Getting started
-</Heading>
+<Heading tag="h2" id="getting-started">Getting started</Heading>
+
 The easiest way to install Deno is to either use: 
 - Shell `curl -fsSL https://deno.land/install.sh | sh` 
 - Or homebrew `brew install deno`
@@ -57,18 +56,14 @@ Create a Deno project
 
 It will create the project with a simple TypeScript example and a test.
 
-<Heading tag="h3" id="vscode-setup">
-  VSCode setup
-</Heading>
+<Heading tag="h3" id="vscode-setup">VSCode setup</Heading>
 
 To support Deno in VSCode you need to install [official plugin](https://marketplace.visualstudio.com/items?itemName=denoland.vscode-deno)
 Make sure you provide the Deno path to the extension `which deno` and copy it to `deno.path`
 You can autogenerate settings with `cmd + shift + p` or `ctrl + shift + p` and select `Deno initialize Workspace configuration`
 Above step will create `.vscode/settings.json` with base setup for Deno for you.
 
-<Heading tag="h3" id="deno-config-file">
-  Deno config file
-</Heading>
+<Heading tag="h3" id="deno-config-file">Deno config file</Heading>
 
 Deno init created Deno config file `deno.json` with the following contents
 
@@ -98,9 +93,7 @@ Additionally, you can configure other things like:
 We can now run the tests:
 `deno test`
 
-<Heading tag="h2" id="jsr">
-  JSR
-</Heading>
+<Heading tag="h2" id="jsr">JSR</Heading>
 
 JSR is Deno's version of npm - aiming to not replace the npm but to be it's superset.
 You can use it with any JavaScript package manager (pnpm, yarn, npm).

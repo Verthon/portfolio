@@ -33,18 +33,14 @@ There are many reasons for that, mainly:
 - straightforward deployment
 - optional integration with their SaaS Chromatic - for automating the visual tests
 
-<Heading tag="h2" id="component-tests-in-the-storybook">
-  Component Tests in Storybook
-</Heading>
+<Heading tag="h2" id="component-tests-in-the-storybook">Component Tests in Storybook</Heading>
 
 A few assumptions need to be made:
 
 - project already has setup for Vitest and React testing Library
 - project already has setup for Storybook
 
-<Heading tag="h3" id="how-storybook-component-tests-works">
-  Storybook component tests internals
-</Heading>
+<Heading tag="h3" id="how-storybook-component-tests-works">Storybook component tests internals</Heading>
 
 1. Each story has a `play` function that runs after the component is rendered. It allows simulating user behavior similar to `userEvent` in RTL .  
 2. Inside of the each `play` function, you have access to well known assertions, and utilities from the RTL and Vitest. It is part of the `@storybook/test` package.  
@@ -106,9 +102,7 @@ export const SwitchLanguageToSpanish: Story = {
   caption="Interactions tests Storybook tab"
 />
 
-<Heading tag="h3" id="example-test-breakdown">
-  Example test breakdown
-</Heading>
+<Heading tag="h3" id="example-test-breakdown">Example test breakdown</Heading>
 
 Let's break down the example test from the initial-setup step.
 
@@ -181,9 +175,7 @@ describe("LanguageSwitcher", () => {
 });
 ```
 
-<Heading tag="h3" id="example-test-with-http-request">
-  Example test with HTTP request
-</Heading>
+<Heading tag="h3" id="example-test-with-http-request">Example test with HTTP request</Heading>
 
 API mocking can be achieved with the [msw](https://mswjs.io/) library.
 We need to install dependencies:
@@ -353,9 +345,7 @@ describe("UserProfile", () => {
 });
 ```
 
-<Heading tag="h2" id="headless-mode">
-  Headless mode
-</Heading>
+<Heading tag="h2" id="headless-mode">Headless mode</Heading>
 
 Running tests with the visual representation is great in the development. However you might also need to run it in the terminal.  
 We need to add standalone test-runner by installing it:
@@ -408,9 +398,7 @@ Full log for this part of github action looks like this:
 [STORYBOOK] http-server storybook-static --port 6006 --silent exited with code SIGTERM
 ```
 
-<Heading tag="h3" id="quick timing overview">
-  CI Timing overview
-</Heading>
+<Heading tag="h3" id="quick timing overview">CI Timing overview</Heading>
 
 Analyze the results with grain of the salt, since there are only 2 tests in example app.
 The github-action contains following steps:
@@ -482,9 +470,7 @@ jobs:
       run: time pnpm run test:ui:ci
 ```
 
-<Heading tag="h2" id="test-coverage-capabilities">
-  Gathering test coverage capabilities
-</Heading>
+<Heading tag="h2" id="test-coverage-capabilities">Gathering test coverage capabilities</Heading>
 
 If you need to chase the coverage in your organization, Storybook provides a way to include it as well for tools like SonarQube.  
 Storybook provides the instrumentation with [Istanbul](https://istanbul.js.org/) and generates the coverage in the terminal in the following format:
@@ -532,9 +518,7 @@ addons: [
 ],
 ```
 
-<Heading tag="h2" id="summary">
-  Summary
-</Heading>
+<Heading tag="h2" id="summary">Summary</Heading>
 
 **Limitations**:
 

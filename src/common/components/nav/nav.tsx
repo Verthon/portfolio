@@ -33,7 +33,9 @@ export default component$(({ links }: NavProps) => {
       <ul class={menuList}>
         {links.map((link) => (
           <NavItem key={link.slug}>
-            <Link href={generateNavLink({ linkType: link.type, slug: link.slug })}>
+            <Link
+              href={generateNavLink({ linkType: link.type, slug: link.slug })}
+            >
               {link.name}
             </Link>
           </NavItem>
