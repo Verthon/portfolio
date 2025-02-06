@@ -1,0 +1,69 @@
+---
+title: Base UI Headless Components Library
+published: true
+description: 'Base UI Headless Components Library: Current State and Analysis'
+tags: testing
+date: 2025-02-06
+excerpt: 'An analysis of Base UI Headless Components Library: current state, trade-offs, and prospects'
+last_updated: 2025-02-06
+---
+
+import Wrapper from '~/observatory/components/wrapper/wrapper'
+import Header from '~/observatory/components/header/header'
+import Content from '~/observatory/components/content/content'
+import Heading from '~/common/components/heading/heading'
+
+<Wrapper>
+<Header>
+<Heading tag='h1'>Base UI Headless Components Library</Heading>
+</Header>
+
+<Content>
+**Status:** Alpha version (public alpha launch December 2024)
+
+<Heading tag="h2" id="overview">
+  Overview
+</Heading>
+
+- Unstyled components library with around 25+ components available at the moment (more to come)
+- From creators of successful UI libraries: Mui, Radix,Floating UI
+- Naming is quite unfortunate, since first results in Google lead to the deprecated `@mui/base` [it is confusing for users](https://github.com/mui/base-ui/issues/1176)
+- Team is full committed [full-time for the long-term](https://bsky.app/profile/vladmoroz.bsky.social/post/3lcg2iz35v22q)
+- Focused on accessibility (keyboard navigation, focus management, contrast, labeling)
+- Roadmap available [here](https://github.com/orgs/mui/projects/1/views/13)
+
+<Heading tag="h2" id="known-issues-and-tradeoffs">
+  Known Issues & Tradeoffs
+</Heading>
+
+- **Unstable API**: It's still very early phase, things are expected to [be breaking](https://github.com/mui/base-ui/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22breaking%20change%22)
+- **Using dreaded barrel export** [index](https://github.com/mui/base-ui/blob/master/packages/react/src/index.ts) [package.json](https://github.com/mui/base-ui/blob/master/packages/react/package.json#L29) if you are curious why it is bad you can read it [here](https://dev.to/thepassle/a-practical-guide-against-barrel-files-for-library-authors-118c)
+- **Bundle size to be improved** it is connected to the previous point, but there are some duplications between dependencies [issue](https://github.com/mui/base-ui/issues/1246)
+
+<Heading tag="h2" id="adoption-considerations">
+  Adoption Considerations
+</Heading>
+
+- **New Projects**: Consider waiting for beta release
+- **Existing Projects**: Most likely not needed anymore unless you planning adding new components / creating a design-system as separate package
+
+There are also great alternatives, unstyled, a11y focused libraries:
+
+- [Mantine UI Headless](https://mantine.dev/styles/unstyled/)
+- [React Aria](https://react-spectrum.adobe.com/react-aria/index.html)
+- [Ark UI](https://ark-ui.com/) by founders of the Chakra UI
+- [Headless UI](https://headlessui.com/)
+- [Aria kit](https://www.npmjs.com/package/@ariakit/react)
+
+<Heading tag="h2" id="resources">
+  Resources
+</Heading>
+
+- [Official docs](https://base-ui.com/)
+- [React compiler adoption](https://github.com/mui/base-ui/issues/809)
+- [Slot utility discussion](https://github.com/mui/base-ui/issues/1315)
+- [Focus Trap feature request](https://github.com/mui/base-ui/issues/1374)
+
+</Content>
+
+</Wrapper>
