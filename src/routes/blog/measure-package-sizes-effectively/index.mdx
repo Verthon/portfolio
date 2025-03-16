@@ -1,0 +1,124 @@
+---
+title: Measure package sizes effectively
+published: true
+description: Better alternatives for Bundlephobia, to discover real npm package weight
+tags: performance, frontend
+date: 2025-03-16
+excerpt: A small guide to identifying npm packages bundle size. You will learn which tools are providing better insights than Bundlephobia.
+article_type: featured
+# published_at: 2025-03-16
+---
+
+import ArticleWrapper from '~/blog/components/article-wrapper/article-wrapper'
+import ArticleHeader from '~/blog/components/article-header/article-header'
+import ArticleContent from '~/blog/components/article-content/article-content'
+import Heading from '~/common/components/heading/heading'
+import ArticleImage from '~/blog/components/article-image/article-image'
+
+<ArticleWrapper>
+<ArticleHeader>
+<Heading tag='h1'>Measure packages sizes effectively</Heading>
+</ArticleHeader>
+
+<ArticleContent>
+Measuring the package-size and it's impact for our project bundle is very important.  
+Bundlephobia is a popular tool used to analyze the size of packages before adding them to a project. However, it has limitations in terms of accuracy and functionality.  
+This article explores alternative tools that can provide more comprehensive insights into bundle size analysis.
+
+<Heading tag='h2' id='bundlephobia-is-not-dynamic'>Bundlephobia is not dynamic</Heading>
+
+[Bundlephobia](https://bundlephobia.com/package/date-fns@4.1.0) outputs the **entire** size of the package. It is not taking into account of what user is actually importing from it.  
+It gives a good idea of what to expect from the scanned package:
+- whether it is tree-shakeable or not
+- whether it has a side-effects
+- how many dependencies does this package use
+
+<Heading tag='h3' id='bundlephobia-only-approach'>Bundlephobia only approach may lead to overestimates</Heading>
+
+Since it outputs the entire package size, the devs may reject packages based on hasty flat size check.
+
+<ArticleImage
+  webpImagePath="/blogImages/measure-package-sizes-effectively/bundlephobia-results.webp"
+  fallbackImagePath="/blogImages/measure-package-sizes-effectively/bundlephobia-results.jpg"
+  caption="Results for date-fns (version 4.1.0) on Bundlephobia"
+/>
+
+<Heading tag='h2' id='first-alternative-pkg-size'>First alternative: pkg-size</Heading>
+
+Tool made by [Hiroki](https://hirok.io/) author of many great packages like: [tsx](https://www.npmjs.com/package/tsx) [get-tsconfig](https://www.npmjs.com/package/get-tsconfig)
+It is using [WebContainers](https://webcontainers.io/) to install packages in the browser.
+
+- you can install multiple packages at once
+- shows all of the dependencies of the package
+- shows what module system the library exposes (cjs/esm)
+- shows if given packages ship the types
+- allow to download the build for further analysis
+
+I have checked the `date-fns` `format` util - it correctly shows its real weight: 5.7kB (gzipped)
+
+The only downside I found is fact, that rarely it falls into some infinite loop, however refreshing the site always resolves the issue.
+
+<Heading tag='h3' id='pkg-size-general info about the package'>General info about the package</Heading>
+
+<ArticleImage
+  webpImagePath="/blogImages/measure-package-sizes-effectively/pkg-size-result-general.webp"
+  fallbackImagePath="/blogImages/measure-package-sizes-effectively/pkg-size-result-general.jpg"
+  caption="General package info for date-fns (version 4.1.0) on pkg-size"
+/>
+
+<Heading tag='h3' id='pkg-size-actual-bundle-size'>Actual bundle size</Heading>
+
+<ArticleImage
+  webpImagePath="/blogImages/measure-package-sizes-effectively/pkg-size-bundle-size.webp"
+  fallbackImagePath="/blogImages/measure-package-sizes-effectively/pkg-size-bundle-size.jpg"
+  caption="Results for date-fns format util (version 4.1.0) on pkg-size"
+/>
+
+<Heading tag='h2' id='second-alternative-bundlejs'>Second alternative: bundlejs</Heading>
+
+Tool made by [Okiki Ojo](https://okikio.dev)  
+It also installs the dependencies in the browser. It is not as detailed as the pkg-size.
+
+- you can install multiple packages at once
+- sharing feature through the url [date-fns analysis share link](https://bundlejs.com/?q=date-fns%404.1.0&treeshake=%5B%7B+format+%7D%5D)
+- shows the real package size based on the import
+- shows the build outcome
+- allow to tweak the bundler to your needs
+
+I have checked the `date-fns` `format` util - it correctly shows it's real weight: 5.7kB (gzipped)  
+
+Sometimes it cannot fetch the dependecy (in my case was the rare case scenario). [Related Github issue](https://github.com/okikio/bundlejs/issues/70)
+
+<ArticleImage
+  webpImagePath="/blogImages/measure-package-sizes-effectively/bundlejs-results.webp"
+  fallbackImagePath="/blogImages/measure-package-sizes-effectively/bundlejs-results.jpg"
+  caption="Results for date-fns format util (version 4.1.0) on Bundlejs"
+/>
+
+<Heading tag='h2' id='date-fns-example'>Example with date-fns analysis</Heading>
+
+The date-fns is well-known modular and modern date utility library. It is fully tree-shakeable and fits great for our example.  
+For our experiment, we will assume that our application needs just the formatting date functionality.  
+Additionally, the `format` function will be imported from the root-entry point `import { format }  from 'date-fns'`  
+We know from the Bundlephobia that package:
+- is tree-shakeable
+- has 0 dependencies
+- has no side-effects
+
+The **entire** package (minified + gzipped) weight around 17.5kB
+
+Both `pkg-size` and `bundlejs` outputs correct bundle size impact (5.7kB gzipped) when pulling just `format` from `date-fns`.  
+Moreover, both solutions add more insights and result-sharing capabilities for your Team.
+
+<Heading tag='h2' id='summary'>Summary</Heading>
+
+Bundlephobia is still a great tool for the **initial** research, it load really fast, tells most important info about package health right away (tree-shakeable, side-effect, dependencies count).  
+The final decision should be made based on either: [pkg-size](https://pkg-size.dev/) or [bundlejs](https://bundlejs.com/)  
+These tools allow for dynamic analysis based on actual imports, providing a more accurate picture of the real cost of adding a package to your project.  
+Pkg-size and Bundlejs can help in collaborative environments due to their sharing features.
+Since it is highly unlikely from my experience to leverage 100% of the functionality of the library.  
+I will still use Bundlephobia as a preliminary tool to check the initial package's health. Then I would use the `pkg-size` with its deep analysis to make the final decision.
+
+</ArticleContent>
+
+</ArticleWrapper>
