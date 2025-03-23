@@ -1,0 +1,223 @@
+---
+title: RSDoctor Next generation bundler analyzer
+published: true
+description: RSDoctor, modern bundle analyzer for Webpack and RSPack, visualize the building process, find out why build is slow. Discover duplicated packages.
+tags: performance, frontend
+date: 2025-03-23
+excerpt: RSDoctor 1.0 is out, it is a modern bundle analyzer for Webpack and RSPack projects.
+article_type: regular
+# published_at: 2025-03-23
+---
+
+import ArticleWrapper from '~/blog/components/article-wrapper/article-wrapper'
+import ArticleHeader from '~/blog/components/article-header/article-header'
+import ArticleContent from '~/blog/components/article-content/article-content'
+import Heading from '~/common/components/heading/heading'
+import ArticleImage from '~/blog/components/article-image/article-image'
+
+<ArticleWrapper>
+<ArticleHeader>
+<Heading tag='h1'>RSDoctor Next generation bundler analyzer</Heading>
+</ArticleHeader>
+
+<ArticleContent>
+Bundle analysis can be cumbersome in big projects, big bundle, tons of dependencies, multiple chunks generated. Often, the build is so slow, and it is hard to figure out which plugins or loaders slows the build process down.  
+RSDoctor promises to help developers detect the problems mentioned above.
+
+<Heading tag="h2" id="rsdoctor-bundler-support">
+  RSDoctor bundler support
+</Heading>
+
+Analyzer supports the Webpack 5 and its successor rust-based RSPack. It is also ready to use by just installing it on the [RSBuild](https://rsbuild.dev/guide/debug/rsdoctor) with the default settings.  
+Since it is a plugin it is fairly straightforward to add to your project:
+
+**Webpack**:
+
+1. Install dependency `pnpm add @rsdoctor/webpack-plugin -D`
+2. Add it to the plugins
+
+```js
+import { RsdoctorWebpackPlugin } from '@rsdoctor/webpack-plugin'
+
+export const config = {
+  //... rest of the webpack config
+  plugins: [
+    // You will use RSDOCTOR env to include or not RSDoctor in the commands
+    // - we want to register it only when it is true
+    process.env.RSDOCTOR &&
+      new RsdoctorWebpackPlugin({
+        // options https://rsdoctor.dev/config/options/options
+      }),
+  ].filter(Boolean),
+}
+```
+
+3. Add commands to package.json:
+
+```json
+"dev:rsdoctor": "RSDOCTOR=true npm run dev",
+"build:rsdoctor": "RSDOCTOR=true npm run build"
+```
+
+**RSPack**
+
+1. Install dependency `pnpm add @rsdoctor/rspack-plugin -D`
+2. Add it to the plugins
+
+```js
+import { RsdoctorRspackPlugin } from '@rsdoctor/rspack-plugin'
+
+export const config = {
+  //... rest of the webpack config
+  plugins: [
+    // You will use RSDOCTOR env to include or not RSDoctor in the commands
+    // - we want to register it only when it is true
+    process.env.RSDOCTOR &&
+      new RsdoctorRspackPlugin({
+        // options https://rsdoctor.dev/config/options/options
+      }),
+  ].filter(Boolean),
+}
+```
+
+3. Add commands to package.json:
+
+```json
+"dev:rsdoctor": "RSDOCTOR=true npm run dev",
+"build:rsdoctor": "RSDOCTOR=true npm run build"
+```
+
+<Heading tag="h2" id="features-breakdown">
+  RSDoctor features breakdown
+</Heading>
+
+There are 3 main areas of the analysis:
+
+- compile analysis
+  - loaders
+  - plugins
+- bundle size
+- general
+
+Each of them is presented in the UI of RSDoctor in the top-navigation menu
+
+<ArticleImage
+  webpImagePath="/blogImages/rsdoctor-next-gent-bundle-analyzer/rsdoctor-menu.webp"
+  fallbackImagePath="/blogImages/rsdoctor-next-gent-bundle-analyzer/rsdoctor-menu.jpg"
+  width={796}
+  height={414}
+  caption="RSDoctor main areas of the analysis"
+  ariaLabelledBy="rsdoctor-main-areas"
+/>
+
+<Heading tag="h3" id="bundle-size-analysis">
+  Bundle size analysis
+</Heading>
+
+Bundle analysis is the most important feature among the RSDoctor users.  
+UI outputs the most interesting part of the data for the developers:
+
+- total size of the entire bundle (after minification, before compression like gzip)
+- number of files (chunks generated and html)
+- how much weights JS, CSS, HTML and other assets (images, fonts etc)
+- which chunks are initial (loaded immediately when the application starts)
+- list of the duplicated packages in your build
+- tree graph
+
+<ArticleImage
+  webpImagePath="/blogImages/rsdoctor-next-gent-bundle-analyzer/rsdoctor-js-and-total.webp"
+  fallbackImagePath="/blogImages/rsdoctor-next-gent-bundle-analyzer/rsdoctor-js-and-total.jpg"
+  width={1512}
+  height={434}
+  caption="Total size and the JavaScript size of the bundle"
+  ariaLabelledBy="rsdoctor-total"
+/>
+<div style={{ marginBottom: '2rem' }}>
+  <ArticleImage
+    webpImagePath="/blogImages/rsdoctor-next-gent-bundle-analyzer/rsdoctor-css.webp"
+    fallbackImagePath="/blogImages/rsdoctor-next-gent-bundle-analyzer/rsdoctor-css.jpg"
+    width={906}
+    height={374}
+    caption="CSS size of the bundle analysis"
+    ariaLabelledBy="rsdoctor-css-caption"
+  />
+</div>
+
+Tree graph especially is great one, for debugging bundle size, it allows for:
+
+- filtering, searching, sorting the chunks in the output
+- displaying the modules that current chunk depend on
+- find the reason why certain package was included in the bundle
+- displaying the source and bundled sizes of the chunks
+
+The tree graph showed me that the mysterious 8kB chunk adding `node_modules/cross-fetch/dist/browser-ponyfill.js` to my bundle was caused by Supabase.
+
+<ArticleImage
+  webpImagePath="/blogImages/rsdoctor-next-gent-bundle-analyzer/rsdoctor-tree-graph.webp"
+  fallbackImagePath="/blogImages/rsdoctor-next-gent-bundle-analyzer/rsdoctor-tree-graph.jpg"
+  width={1626}
+  height={578}
+  caption="Tree graph breakdown of the react chunk"
+  ariaLabelledBy="rsdoctor-tree-graph"
+/>
+
+<Heading tag="h3" id="compilation-visualization">
+  Compilation Visualization
+</Heading>
+
+Compilation Visualization will be really handy in the old Webpack projects to discover the:
+
+- slow plugins
+- slow loaders
+
+I would suggest to use it only when the build is slow, otherwise I treat it as quick check if things are starting to degrade the build speed.
+
+In our big project on the job-site it allowed us to discover that `Terser` was slow in our use-case, so we have change it to `SWC minifier`
+
+<Heading tag="h3" id="general">
+  General info
+</Heading>
+
+General information page shows a quick simplified summary of the:
+
+- bundle size (total)
+- errors printed during the build
+- warnings printed during the build
+- overview of the machine
+  - CPU
+  - node version
+  - package managers versions
+  - memory usage
+- compile overall time and simple breakdown
+
+It allows to print the bundler config, which is quite overwhelming, however it might be beneficial, to check the defaults of the bundler right away.
+
+<Heading tag="h2" id="summary">
+  Summary
+</Heading>
+
+**Limitations**
+
+- only for RSPack and Webpack users, there is no support for Vite
+- lack of gzipped values in the UI [issue](https://github.com/web-infra-dev/rsdoctor/issues/772)
+- does not support the other extensions for the js files (cjs, mjs) in the bundle [issue](https://github.com/web-infra-dev/rsdoctor/issues/740)
+
+**Pros**
+
+- excellent tree-graph module
+  - shows the reason why certain package was included in the bundle
+  - display the source and bundled sizes of the chunks
+  - outputs which chunks are initial (loaded immediately when the application starts)
+  - draw how the final output structure of the bundle looks like
+- detailed plugins and loaders speed analysis visuals
+- very detailed bundle-size analysis visuals
+- report of duplicated packages
+- ability to set the supported ECMA script for the build artifact
+- bundle alerts based on the  [built-in-rules](https://rsdoctor.dev/guide/rules/rules)
+- you can still use good old `webpack-bundle-analyzer` in RSDoctor [here is how](https://rsdoctor.dev/config/options/options#generatetilegraph)
+
+Tool will be developed in the future, you can check the high-level goals of the [next releases](https://rsdoctor.dev/blog/release/release-note-1_0#next-steps)
+
+</ArticleContent>
+
+</ArticleWrapper>

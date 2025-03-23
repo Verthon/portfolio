@@ -47,6 +47,9 @@ svg {
   display: block;
   max-width: 100%;
 }
+img {
+  height: auto;
+}
 input,
 button,
 textarea,
@@ -160,6 +163,8 @@ ul {
   --text-color: var(--dark-color-400);
   --heading-color: var(--dark-color-600);
 
+  --code-expression-background: hsl(50.3, 20.0%, 95.4%);
+
   --code-background: hsl(
     206.7,
     52.9%,
@@ -199,6 +204,8 @@ ul {
   --danger-color-100: hsl(35, 100%, 9.2%);
   --danger-color: hsl(35, 100%, 78%);
   --danger-color-700: hsl(35, 100%, 90.2%);
+
+  --code-expression-background: hsl(50, 7%, 20%);
 
   img {
     filter: brightness(0.7) contrast(1.2);

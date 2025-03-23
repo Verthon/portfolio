@@ -98,8 +98,11 @@ export const SwitchLanguageToSpanish: Story = {
 <ArticleImage
   webpImagePath="/blogImages/storybook-ui-test.webp"
   fallbackImagePath="/blogImages/storybook-ui-test.jpg"
+	width={2060}
+	height={598}
   alt="Example of running the tests inside of the Storybook UI"
   caption="Interactions tests Storybook tab"
+	ariaLabelledBy="storybook-test-tab"
 />
 
 <Heading tag="h3" id="example-test-breakdown">Example test breakdown</Heading>
@@ -570,7 +573,7 @@ pnpm exec playwright install
       run: time pnpm run test:ui:ci
 ```
 
-- there are still issues with msw addon integration when using [multiple handlers in one story file](https://github.com/mswjs/msw-storybook-addon/issues/82)
+- there are still issues with msw addon integration when using [multiple handlers in one story file](https://github.com/mswjs/msw-storybook-addon/issues/82)  
 **Potential great use cases**:
 
 Storybook testing in my opinion, works best for design systems and component libraries. These projects already use Storybook, so adding tests requires minimal extra setup.
