@@ -40,7 +40,10 @@ Since it outputs the entire package size, the devs may reject packages based on 
 <ArticleImage
   webpImagePath="/blogImages/measure-package-sizes-effectively/bundlephobia-results.webp"
   fallbackImagePath="/blogImages/measure-package-sizes-effectively/bundlephobia-results.jpg"
+  width={890}
+  height={330}
   caption="Results for date-fns (version 4.1.0) on Bundlephobia"
+  ariaLabelledBy='bundlephobia-date-fns-results'
 />
 
 <Heading tag='h2' id='first-alternative-pkg-size'>First alternative: pkg-size</Heading>
@@ -58,12 +61,15 @@ I have checked the `date-fns` `format` util - it correctly shows its real weight
 
 The only downside I found is fact, that rarely it falls into some infinite loop, however refreshing the site always resolves the issue.
 
-<Heading tag='h3' id='pkg-size-general info about the package'>General info about the package</Heading>
+<Heading tag='h3' id='pkg-size-general-info-about-the-package'>General info about the package</Heading>
 
 <ArticleImage
   webpImagePath="/blogImages/measure-package-sizes-effectively/pkg-size-result-general.webp"
   fallbackImagePath="/blogImages/measure-package-sizes-effectively/pkg-size-result-general.jpg"
+  width={1268}
+  height={434}
   caption="General package info for date-fns (version 4.1.0) on pkg-size"
+  ariaLabelledBy='pkg-size-date-fns-results-general'
 />
 
 <Heading tag='h3' id='pkg-size-actual-bundle-size'>Actual bundle size</Heading>
@@ -71,7 +77,10 @@ The only downside I found is fact, that rarely it falls into some infinite loop,
 <ArticleImage
   webpImagePath="/blogImages/measure-package-sizes-effectively/pkg-size-bundle-size.webp"
   fallbackImagePath="/blogImages/measure-package-sizes-effectively/pkg-size-bundle-size.jpg"
+  width={1260}
+  height={376}
   caption="Results for date-fns format util (version 4.1.0) on pkg-size"
+  ariaLabelledBy='pkg-size-date-fns-results'
 />
 
 <Heading tag='h2' id='second-alternative-bundlejs'>Second alternative: bundlejs</Heading>
@@ -87,12 +96,15 @@ It also installs the dependencies in the browser. It is not as detailed as the p
 
 I have checked the `date-fns` `format` util - it correctly shows it's real weight: 5.7kB (gzipped)  
 
-Sometimes it cannot fetch the dependecy (in my case was the rare case scenario). [Related Github issue](https://github.com/okikio/bundlejs/issues/70)
+Sometimes it cannot fetch the dependency (in my case was the rare case scenario). [Related Github issue](https://github.com/okikio/bundlejs/issues/70)
 
 <ArticleImage
   webpImagePath="/blogImages/measure-package-sizes-effectively/bundlejs-results.webp"
   fallbackImagePath="/blogImages/measure-package-sizes-effectively/bundlejs-results.jpg"
+  width={1432}
+  height={836}
   caption="Results for date-fns format util (version 4.1.0) on Bundlejs"
+  ariaLabelledBy='bundlejs-date-fns-results'
 />
 
 <Heading tag='h2' id='date-fns-example'>Example with date-fns analysis</Heading>

@@ -79,6 +79,8 @@
     margin-top: 1em;
     font-weight: 600;
     padding: 0.25rem;
+    background-color: var(--code-expression-background);
+    border-radius: 2px;
   }
 
   a {
