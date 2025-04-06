@@ -1,0 +1,170 @@
+---
+title: React 19 support for web components
+published: true
+description: React 19 introduces full support for the web-components and treats them as first-class citizen. The article discusses the previous version pain points by example.
+tags: performance, frontend
+date: 2025-04-06
+excerpt: React 19 introduces full support for the web-components and treats them as first class-citizen. The article discusses the previous version pain points by example.
+article_type: featured
+# published_at: 2025-04-06
+---
+
+import ArticleWrapper from '~/blog/components/article-wrapper/article-wrapper'
+import ArticleHeader from '~/blog/components/article-header/article-header'
+import ArticleContent from '~/blog/components/article-content/article-content'
+import Heading from '~/common/components/heading/heading'
+import ArticleImage from '~/blog/components/article-image/article-image'
+import Alert from '~/common/components/alert/alert'
+
+<ArticleWrapper>
+<ArticleHeader>
+<Heading tag='h1'>React 19 support for web components</Heading>
+</ArticleHeader>
+
+<ArticleContent>
+Historically React was not a super friendly framework for web-components. The current major brings a lot of improvements including 100% score on [custom elements](https://custom-elements-everywhere.com/libraries/react/results/results.html).  
+I have prepared a little playground with the both:
+
+- react 18 CSR and SSR examples
+- react 19 CSR and SSR examples
+
+SSR is based on the React Router 7. Available [on Github](https://github.com/Verthon/react-with-webcomponents/tree/main)
+
+<Alert variant="danger" marginBottomInRems={1}>
+  **Note**: The implementation of web-component in the repository is just an example. It is not optimized at all.
+</Alert>
+
+<Heading tag='h2' id='before-react-19-era'>Before React 19 era</Heading>
+
+Previous versions of React had issues to support the web-components fully.
+
+<Heading tag='h3' id='unknown-props-treated-as-html-attributes'>Unknown props treated as HTML attributes</Heading>
+
+There is a difference between:
+- HTML attributes
+- HTML properties
+
+When you use the props of the web-component to pass some object, React will treat it as attribute - it will become a string:
+
+```tsx
+<my-web-component theme={{ primary: 'red', secondary: 'green' }}>
+```
+
+In this case, React would attempt to set the theme as an HTML attribute, resulting in:
+
+```tsx
+<my-web-component theme="[object Object]">
+```
+
+The workaround for it was to create a `ref` and set it when the component was mounted
+
+```tsx
+const webComponentRef = useRef(null);
+
+useEffect(() => {
+  if (webComponentRef.current) {
+    webComponentRef.current.theme = { primary: 'red', secondary: 'green' };
+  }
+}, []);
+
+return <my-web-component ref={webComponentRef} />;
+```
+
+<Heading tag='h3' id='event-handling'>Event handling</Heading>
+
+React's synthetic event system couldn't properly handle custom events emitted by web components. You couldn't use the declarative event handling:
+
+
+```tsx
+<my-web-component onCustomEvent={handleCustomEvent} />
+```
+
+Like in the previous problem, there is a workaround with using ref and effect in which you can add event listeners manually:
+
+```tsx
+const webComponentRef = useRef(null);
+
+useEffect(() => {
+  const element = webComponentRef.current;
+  if (element) {
+    element.addEventListener('custom-event', handleCustomEvent);
+    return () => element.removeEventListener('custom-event', handleCustomEvent);
+  }
+}, []);
+
+return <my-web-component ref={webComponentRef} />
+```
+
+<Heading tag='h3' id='ssr-issues'>SSR issues</Heading>
+
+Server-side rendering was problematic due to the:
+
+- potential mismatches between server-rendered content and client hydration
+- shadow dom serialization
+
+```tsx
+// Server-side rendering
+const App = () => <my-web-component initialData={{foo: 'bar'}} />;
+
+// This would render as:
+<my-web-component initialdata="[object Object]"></my-web-component>
+
+// This could cause hydration mismatches and incorrect initialization
+```
+
+I have added the examples of hydration mismatches in SSR and other problems in the [repository](https://github.com/Verthon/react-with-webcomponents/tree/main/ssr-react-18)
+
+<Heading tag='h2' id='in-react-19-era'>In React 19 era</Heading>
+
+The ref-based workaround is no longer needed. You can add callbacks and props like you would normally do in React components.  
+You can check the full [React 19 CSR example here](https://github.com/Verthon/react-with-webcomponents/tree/main/csr-react-19)
+
+<Heading tag='h3' id='props-improvements'>Props improvements</Heading>
+
+Props that match a property on the Custom Element instance will be assigned as properties.  
+We no longer need a `ref` workaround.  
+```tsx
+// will work as expected
+<my-web-component theme={{ primary: 'red', secondary: 'green' }}>
+```
+
+Example with [props](https://github.com/Verthon/react-with-webcomponents/blob/main/csr-react-19/src/theme-toggler/ThemeToggler.tsx)
+
+<Heading tag='h3' id='event-handling-improvements'>Event handling improvements</Heading>
+
+React will now understand every event you emit by adding onEventName callback to the web-component
+
+```
+// web-component emits custom event PascalCase
+
+new CustomEvent('NameChanged');
+
+<my-web-component onNameChanged={handleNameChanged}></my-web-component>
+```
+
+<Heading tag='h3' id='ssr-improvements'>SSR improvements</Heading>
+
+React 19 eliminates the need for many workarounds previously necessary to integrate web components into React.  
+
+- Props passed to a custom element are rendered as attributes if their type is a primitive value (such as a string, number, or the boolean value true)
+- Props with non-primitive types (such as objects, symbols, functions, or false) are omitted, then applied on the client if the custom element instance has a matching property,
+
+You can read more about it in the [source](https://react.dev/blog/2024/12/05/react-19#support-for-custom-elements)
+
+You can check how the example integration works here [react-19-ssr-example](https://github.com/Verthon/react-with-webcomponents/tree/main/ssr-react-19)
+
+<Heading tag='h2' id='summary'>Summary</Heading>
+
+React 19 brings [long awaited support](https://github.com/facebook/react/issues/11347) for the web-components to treat them as first-class citizens.  
+However preparing the web-component for proper SSR support may not be so easy. If the web-component is not prepared for the SSR on the implementation level, you can leverage:
+
+- `use-client` directive if its supported by your framework
+- dynamic import in `useEffect` which will run only on the client and register it there
+
+In case you are interested in SSR and web-components, this is [great resource](https://dev.to/stuffbreaker/web-components-and-ssr-2024-edition-1nel) provides deeper insights.
+
+In short, use React 19 and you are fine with client side rendering. For SSR do the research first if you can integrate it smoothly to your framework.
+
+</ArticleContent>
+
+</ArticleWrapper>
