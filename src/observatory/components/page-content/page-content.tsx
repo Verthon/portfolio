@@ -8,18 +8,18 @@ import ObservatoryList from '~/observatory/components/list/list'
 
 const items = [
   {
+    title: 'Base UI Headless Library',
+    status: 'Beta' as const,
+    shortPreview:
+      'Headless UI library from creators of Radix, Floating UI, and Material UI. Currently at beta',
+    href: '/observatory/base-ui-headless',
+  },
+  {
     title: 'Playwright Component Testing',
     status: 'Experimental' as const,
     shortPreview:
       'Leverage real browsers to test UI components. Currently lacks a clear roadmap to a beta release.',
     href: '/observatory/playwright-component-testing',
-  },
-  {
-    title: 'Base UI Headless Library',
-    status: 'Experimental' as const,
-    shortPreview:
-      'Headless UI library from creators of Radix, Floating UI, and Material UI. Currently at early alpha',
-    href: '/observatory/base-ui-headless',
   }
 ]
 
