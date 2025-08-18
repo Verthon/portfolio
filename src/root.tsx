@@ -23,6 +23,15 @@ export default component$(() => {
         <link rel="manifest" href="/manifest.json" />
         <RouterHead />
         <ServiceWorkerRegister />
+        <script
+          type="speculationrules"
+          dangerouslySetInnerHTML={`{
+            "prerender":[{ "source":"document", "eagerness":"moderate",
+              "where":{ "href_matches": "/(?!logout|admin).*" } }],
+            "prefetch":[{ "source":"document", "eagerness":"moderate",
+              "where":{ "href_matches": "/(?!logout|admin).*" } }]
+          }`}
+        />
       </head>
       <body lang="en">
         <RouterOutlet />
