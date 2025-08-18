@@ -27,9 +27,9 @@ export default component$(() => {
           type="speculationrules"
           dangerouslySetInnerHTML={`{
             "prerender":[{ "source":"document", "eagerness":"moderate",
-              "where":{ "href_matches": "/(?!logout|admin).*" } }],
+              "where":{ "href_matches": "/(?!dev-bites|blog|observatory).*" } }],
             "prefetch":[{ "source":"document", "eagerness":"moderate",
-              "where":{ "href_matches": "/(?!logout|admin).*" } }]
+              "where":{ "href_matches": "/(?!dev-bites|blog|observatory).*" } }]
           }`}
         />
       </head>
