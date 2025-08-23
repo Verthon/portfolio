@@ -1,0 +1,123 @@
+---
+title: 'Design System Pitfalls: Lessons from Integrating at Scale'
+published: true
+description: 'Field notes from a platform engineer on design-system pitfalls in a multi-vendor micro-frontends setup—and lightweight ways to verify and fix them.'
+tags: design-system, micro-frontends, frontend-architecture, accessibility, governance,
+date: 2025-08-23
+excerpt: In large organizations, design systems promise consistency and lower cost—but they often fall into predictable traps. Here’s what to watch and measure.
+article_type: featured
+---
+
+import ArticleWrapper from '~/blog/components/article-wrapper/article-wrapper'
+import ArticleHeader from '~/blog/components/article-header/article-header'
+import ArticleContent from '~/blog/components/article-content/article-content'
+import Heading from '~/common/components/heading/heading'
+import Alert from '~/common/components/alert/alert'
+
+<ArticleWrapper>
+<ArticleHeader>
+<Heading tag='h1'>Design System Pitfalls: Lessons from Integrating at Scale</Heading>
+</ArticleHeader>
+
+<ArticleContent>
+<Heading tag='h2' id='organization-context'>Organization context</Heading>
+
+Big platform for managing and creating establishments
+- 10+ million users 
+- 35+ frontend apps
+- 300+ developers from multiple companies
+- 110+ components in the single design-system package
+- Single Page Application based frontend architecture
+
+My team didn’t own the design-system. We worked as a frontend platform team, enabling product (stream-aligned) teams to focus on their product, rather than the surrounding infrastructure.  
+We were the first integrators of the DS. A ~1-year early-adopter phase helped us to establish list of the DS gaps.
+
+<Heading tag="h2" id="design-system-goals">Design system goals</Heading>
+
+What the DS must deliver for the business, not the tools. These goals define what 'good' looks like and what we hold the DS accountable for.
+
+- Consistent UI/UX across the entire platform
+- Faster time-to-market for product (stream-aligned) teams
+- Lower total cost of ownership through reusable building blocks
+- WCAG compliance and reduced legal/brand risk
+- Scales to new brands and markets (multi-brand ready)
+- Faster onboarding and practical accessibility training
+
+<Heading tag="h2" id="design-system-pitfalls">Pitfalls</Heading>
+
+Observed pitfalls, with focus on impact and how we know (verifiability).
+
+<Heading tag="h3" id="organizational-pitfalls">Organizational pitfalls</Heading>
+
+Governance and collaboration gaps that fragment the system and slow delivery
+
+- Missing clear OKRs/KPIs for the design system
+- Components introduced outside DS review (service designers bypass the core team)
+- Figma files use frames instead of library components (version/variants/tokens mismatch)
+- Teams “hack” the DS without reporting (local wrappers/style overrides)
+- No contribution model; core DS team reduced to two people
+- Unclear inclusion criteria for what belongs in the DS
+- Release cadence mismatched with product teams (biweekly)
+- Component sprawl (110+), risk of a “design-system ghost town”
+
+<Heading tag="h3" id="technical-pitfalls">Technical pitfalls</Heading>
+
+- CSS-in-JS usage forces consumers to pin exact peer versions
+  - Not micro-frontends-friendly: singleton/peer mismatches across host/remotes
+- No browser-based tests
+- a11y checks not enforced and automated in tests
+- No bundle-size guardrails (no budgets)
+- Weak semver discipline: breaking behavioral changes shipped as minors; missing migration guidance
+- Slow/stale dependency updates (security/perf risk)
+- CSR-only / SSR-unsafe: direct browser API usage 
+
+<Heading tag="h2" id="potential-quick-wins">Potential quick wins</Heading>
+
+Changes that I think may have the best ROI for the Team as it is right now.
+
+- Enforce proper SemVer ASAP - to regain developers trust and encourage upgrades
+- Establish browser-based tests for the most-used, bug-prone components - to reduce the regressions
+- Ensure designers use Figma library components that match tokens
+
+<Heading tag="h2" id="lessons-learned">
+  Lessons learned
+</Heading>
+
+What actually worked and what to avoid next time.
+
+
+<Heading tag="h3" id="lessons-learned-what-worked">
+  What worked
+</Heading>
+
+- Storybook as single source of documentation
+  - Tokens
+  - Components with their APIs
+  - Overview of how and when to use given component, best practices (a11y, error, loading states) etc.
+  - Getting started
+  - Architecture Decision Records
+  - Size of the preview aligned with organization responsive breakpoints
+  - Link to Figma designs that match given Component/Token
+  - Changelog
+- Reference app showcasing the real-world composition of components
+- Support channels where devs could easily raise a bug or ask during office hours
+
+<Heading tag="h3" id="lessons-learned-advice">
+  Advice
+</Heading>
+
+- Hard pass on runtime CSS-in-JS when it must be a peer dependency
+- Design tokens ideally must be framework-agnostic
+- In Figma, use only library components - treat Figma and code as a shared language: `Figma = code`
+- Keep the DS core intentionally small (focus on tokens + base UI; limit component count)
+- Plan community contributions upfront using the ecosystem layers [Brad Frost Anatomy of a design system ecosystem](https://bradfrost.com/blog/post/the-design-system-ecosystem/)
+- Updating the dependencies as we develop, otherwise we end up with forced few majors upgrades
+- Frequent releases adjusted to the consumer needs
+- Clear roadmap and transparency about current and upcoming focus
+- Quality over speed, by adding too many things, you are creating expectations hard to revert
+- Common strategy and understanding of purpose, stakeholders should know what value DS brings
+- Listen to your users, encourage an `Iterative improvement culture`
+
+</ArticleContent>
+
+</ArticleWrapper>
