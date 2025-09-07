@@ -7,14 +7,15 @@ import { defaultExclude, defaultInclude } from 'vitest/config';
 export default defineConfig(() => {
   return {
     plugins: [qwikCity(), qwikVite(), tsconfigPaths()],
-    dev: {
-      headers: {
-        'Cache-Control': 'public, max-age=0',
-      },
-    },
     preview: {
       headers: {
         'Cache-Control': 'public, max-age=600',
+      },
+    },
+    server: {
+      headers: {
+        // Don't cache the server response in dev mode
+        "Cache-Control": "public, max-age=0",
       },
     },
     test: {
