@@ -1,0 +1,150 @@
+---
+title: 'Modern Webpack Boilerplate: Part 4: Migration to RsBuild'
+description: 'In Part 4 of Modern Webpack Boilerplate series, we will migrate the boilerplate to a more modern tool: RsBuild'
+excerpt: 'In Part 4 of Modern Webpack Boilerplate series, we will migrate the boilerplate to a more modern tool: RsBuild.'
+tags: react, webpack, RsBuild
+date: 2025-09-07
+article_type: featured
+---
+
+import ArticleWrapper from '~/blog/components/article-wrapper/article-wrapper'
+import ArticleHeader from '~/blog/components/article-header/article-header'
+import ArticleContent from '~/blog/components/article-content/article-content'
+import Alert from '~/common/components/alert/alert'
+import Heading from '~/common/components/heading/heading'
+
+<ArticleWrapper>
+<ArticleHeader>
+<Heading tag='h1'>Modern Webpack Boilerplate: Part 4: Migration to RsBuild</Heading>
+</ArticleHeader>
+
+<ArticleContent>
+
+**Recap of Part 3**: In the previous episode, we have added the setup for:
+- setup for Jest test runner
+- CSS with PostCSS configuration
+- assets handling
+- bundle size observability
+
+As the boilerplate grows, so do:
+
+- new setup code
+- new configuration code
+- new dependencies for plugins and tools
+
+You could ship this as an npm package (like `react-scripts`/`next-scripts`) to hide bundler complexity—but that requires:
+
+- ongoing maintenance and versioning
+- an internal abstraction for bundler setup
+
+<Heading tag="h2" id="alternative">Alternative</Heading>
+
+If we want to proceed with Webpack in this part we will most likely end up with:
+
+- migrate from `babel` to `swc` for faster transforms
+- migrate from `jest` to modern `vitest` test runner
+- enable source maps
+- tune chunk-splitting
+- explore SSR support
+
+Instead, this part migrates the boilerplate to **RsBuild** and evaluates the trade-offs.
+
+<Heading tag="h3" id="why-RsBuild">Why RsBuild ?</Heading>
+
+It is powered by **Rspack** (Webpack-compatible most important API) batteries included like `Vite`.
+It is way faster than Webpack and need way less boilerplate.
+
+<Heading tag="h3" id="vite">Vite</Heading>
+
+Vite is the current "go-to" solution as a build tool for modern web applications.  
+It won't be the part of the comparison, since it needs stable Rolldown to compare with the speed of RsBuild (Rust vs Rust comparison).  
+Moreover the RSPack (bundler encapsulated in RsBuild) has compatible (most important parts) API with Webpack. The migration is typically smoother than switching to Vite.
+
+You can check more about direct benchmarks in [RsPack benchmarks](https://github.com/rspack-contrib/build-tools-performance)
+
+<Heading tag="h2" id="establishing-comparison-metrics">Establishing comparison metrics</Heading>
+
+To compare two tools we need a set of metrics:
+
+1. bundle size
+2. build time (local and CI)
+3. dev-server readiness time
+4. package.json dependency count
+5. overall project size on the machine
+6. install time of the project dependencies (with existing node_modules)
+7. boilerplate lines of code (without node_modules, package-lock.json)
+
+
+<Heading tag="h3" id="environment-controls">Environment controls</Heading>
+- Hardware: MacBook Air M1 (local), GitHub Actions free tier (CI).
+- Node & package manager: Node 22 LTS (22.19.0 at the time), installs with existing `node_modules`
+- Sampling: 5 runs for time-related metrics
+- Tooling:
+  - timing: (`time`)
+  - bundle: stat size and gzipped bundle
+  - size: `du -sh` (project) `jq` for `.dependencies` and `devDependencies`
+  - dev-server readiness: time printed by the bundler, when server is ready
+
+<Alert variant="info">
+  I will create another post with comparison in big real world apps in future
+</Alert>
+
+<Heading tag="h2" id="webpack-results">Webpack results</Heading>
+
+- bundle size: 199.96 KB (**52.2 KB** gzipped)
+- build time: (local and CI)
+  - local: AVG **3.614s** MED **3.574s**
+  - CI: AVG **6.418s** MED **6.387s**
+- dev-server readiness time: AVG **1.024s** MED **1.023s**
+- package.json dependency count:
+  - dependencies: **3**
+  - devDependencies: **31**
+- overall project size on the machine: **212 MB**
+- install time of the project dependencies (with existing node_modules):
+  - local: AVG: **1.556s**, MED: **1.527s**
+  - CI: AVG: **10.981s**, MED: **11.890s**
+- boilerplate lines of code: **285** overall
+
+<Heading tag="h2" id="RsBuild-results">RsBuild results</Heading>
+
+- bundle size: 143.62 KB (**45.62 KB** gzipped) as it removed useless core-js polyfills
+- build time: (local and CI)
+  - local: AVG: **0.865s**, MED: **0.932s**
+  - CI: **1.246s**, MED: **1.242s**
+- dev-server readiness time: 0.04 s, 0.03s, 0.03s, 0.05s, 0.04s
+- package.json dependency count:
+  - dependencies: **3**
+  - devDependencies: **16** (15 deps less)
+- overall project size on the machine: **216 MB** (higher because of RsBuild cache and binaries)
+- install time of the project dependencies (with existing node_modules):
+  - local: **1.358s**, MED: **1.308s**
+  - CI: AVG: **8.527s**, MED: **8.622s**
+- boilerplate lines of code: **256** overall
+
+<Heading tag="h2" id="summary">Summary</Heading>
+
+It was quite obvious that in terms of performance the Webpack and Babel setup will fall short.  
+Migration also improves the business metrics, like:
+
+- faster hotfix recovery, less downtime cost
+- faster releases, shorter time-to-market, ship value sooner
+- lower infra spend (at org scale), better gross margin
+- fewer deps/simpler pipeline, less maintenance time, fewer failures/reruns
+- smaller bundles, cheaper bandwidth/CDN, faster conversions
+- faster dev server/local builds/HMR, less time/money wasted on waiting
+
+<Heading tag="h3" id="tradeoffs">Tradeoffs</Heading>
+
+It has some small tradeoffs:
+
+- doesn't have as huge a plugin ecosystem as Webpack
+- RSPack design goal is not to have 100% compliance with [Webpack API](https://rspack.rs/misc/faq#is-rspack-100-compatible-with-webpack-api)
+- RSPack won't create identical [artifacts like Webpack](https://rspack.rs/misc/faq#can-rspack-be-used-in-production-environments-now-what-are-the-differences-between-production-artifacts-and-webpack)
+- doesn't support the [WASM for browser-side](https://rspack.rs/misc/faq#does-rspack-plan-to-support-wasm-for-browser-side-build)
+
+That concludes this part. You can review all the details in following PR: https://github.com/Verthon/webpack-react-boilerplate/pull/6/files
+The best summary for the PR is removed-to-added code ratio: ` +930 −5,721`
+
+</ArticleContent>
+</ArticleWrapper>
+
