@@ -5,7 +5,7 @@ description: 'Component Testing in Playwright: Current State and Analysis'
 tags: testing
 date: 2025-01-06
 excerpt: 'An analysis of Playwright Component Testing: current state, trade-offs, and prospects'
-last_updated: 2025-01-06
+last_updated: 2025-09-07
 ---
 
 import Wrapper from '~/observatory/components/wrapper/wrapper'
@@ -37,17 +37,20 @@ import Heading from '~/common/components/heading/heading'
 
 <Heading tag="h2" id="adoption-considerations">Adoption Considerations</Heading>
 
-- **New Projects**: Consider waiting for stable release
+- **New Projects**: Consider waiting for beta/stable release
 - **Existing Projects**: Consider waiting for stable release
 
 There are also great alternatives, that allow testing components in real browser:
 
 - [Cypress Component Testing](https://docs.cypress.io/app/component-testing/get-started)
 - [Storybook Component Testing](https://sordyl.dev/blog/storybook-testing-overview/)
+- [Vitest Browser](https://vitest.dev/guide/browser/)
 
 <Heading tag="h2" id="resources">Resources</Heading>
 
 - [Official docs](https://playwright.dev/docs/test-components)
+- [Latest community status check](https://github.com/microsoft/playwright/issues/34751)
+- [Related GH issues](https://github.com/microsoft/playwright/issues?q=is%3Aissue%20state%3Aopen%20component%20label%3Afeature-components)
 - [Community call about making it stable](https://github.com/microsoft/playwright/issues/33955#issuecomment-2536986884)
 - [Discussion regarding Playwright and Cypress in Vue land](https://github.com/vuejs/docs/issues/2639)
 - [CLI watch mode discussion](https://github.com/microsoft/playwright/issues/21960#issue-1639745885)
