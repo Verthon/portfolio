@@ -21,13 +21,13 @@ import Heading from '~/common/components/heading/heading'
 
 Building a Modern React SPA Boilerplate with Webpack 5, Part 1: Setting Up the Basics
 
-<Heading tag='h2' id='what-is-webpack'>What is Webpack</Heading>
+<Heading tag='h2' id='what-is-webpack' linkLabel='Link to heading: What is Webpack'>What is Webpack</Heading>
 
 Webpack is static module bundler - it basically takes your modules (needed to run your app) and turn them into one or more bundles, which are simply static assets.
 
 Bundler starts with scanning your modules, in order to create something called `dependency-graph` . This way Webpack will know, which modules and libraries are needed for the entry-point for your application.
 
-<Heading tag='h2' id='core-concepts'>Core concepts</Heading>
+<Heading tag='h2' id='core-concepts' linkLabel='Link to heading: Core concepts'>Core concepts</Heading>
 
 - Entry - module, where Webpack starts building dependency-graph, in React apps it is often index.ts/js file which imports bootstrap file
 - Output - location where Webpack should place the final bundle
@@ -35,7 +35,7 @@ Bundler starts with scanning your modules, in order to create something called `
 - Plugins - plugins will handle the additional performance optimizations, environment variables, Module Federation etc.
 - Mode - tells Webpack, if you are in dev mode or production, where bundler apply all of its environment based optimizations
 
-<Heading tag='h2' id='why-webpack'>Why Webpack?</Heading>
+<Heading tag='h2' id='why-webpack' linkLabel='Link to heading: Why Webpack?'>Why Webpack?</Heading>
 
 You might be wondering why to use Webpack nowadays, especially with many new bundlers emerging ? There are multiple advantages to still use Webpack:
 
@@ -45,7 +45,7 @@ You might be wondering why to use Webpack nowadays, especially with many new bun
 - Advanced code-splitting and lazy loading with Webpack Magic comments (https://webpack.js.org/api/module-methods/#magic-comments) fetch priorities (https://webpack.js.org/api/module-methods/#webpackfetchpriority) and many more advanced features
 - Module Federation - this topic is very advanced and dedicated rather for big projects - to learn more please refer to this fantastic article: https://scriptedalchemy.medium.com/understanding-webpack-module-federation-a-deep-dive-efe5c55bf366
 
-<Heading tag='h2' id='setting-up-npm'>Setting up npm</Heading>
+<Heading tag='h2' id='setting-up-npm' linkLabel='Link to heading: Setting up npm'>Setting up npm</Heading>
 
 Now we need put the concepts into minimal webpack setup. We assume that repository with initialized npm setup is there. The goal for this section is to:
 
@@ -56,7 +56,7 @@ Now we need put the concepts into minimal webpack setup. We assume that reposito
 - create build script
 - prepare environment variables config
 
-<Heading tag='h2' id='unified-node-version'>Unified Node version</Heading>
+<Heading tag='h2' id='unified-node-version' linkLabel='Link to heading: Unified Node version'>Unified Node version</Heading>
 
 We always want to use Node 20 in this repository. To enforce this, create a new file named `.nvmrc`Run the following command to enforce the use of exact package versions within the project.
 
@@ -68,7 +68,7 @@ Whenever someone using NVM navigate to this project, it will automatically switc
 
 Sometimes it may not work automatically, so it is a good practice to always use `nvm use` before you run npm install command.
 
-<Heading tag='h2' id='additional-setup-for-npm'>Additional setup for npm</Heading>
+<Heading tag='h2' id='additional-setup-for-npm' linkLabel='Link to heading: Additional setup for npm'>Additional setup for npm</Heading>
 
 Run this command to enforce exact versions of packages that will be installed inside of the project.
 
@@ -85,7 +85,7 @@ Additionally it is good practice to add engines to package.json to make our live
  },
 ```
 
-<Heading tag='h2' id='install-dependencies'>Install dependencies</Heading>
+<Heading tag='h2' id='install-dependencies' linkLabel='Link to heading: Install dependencies'>Install dependencies</Heading>
 
 To use Webpack, it is necessary to install it as a dependency in our project, along with some helper packages needed for TypeScript.
 
@@ -93,7 +93,7 @@ To use Webpack, it is necessary to install it as a dependency in our project, al
 npm i -D webpack webpack-cli typescript ts-node @types/node @types/webpack
 ```
 
-<Heading tag='h2' id='base-tsconfig'>Base tsconfig.json</Heading>
+<Heading tag='h2' id='base-tsconfig' linkLabel='Link to heading: Base tsconfig.json'>Base tsconfig.json</Heading>
 
 I strongly recommend fantastic TypeScript resources available on: [https://www.totaltypescript.com](https://www.totaltypescript.com/)
 
@@ -127,7 +127,7 @@ For this boilerplate, the bundler setup will do the job. Create a `tsconfig.json
 }
 ```
 
-<Heading tag='h2' id='add-minimal-webpack-build-configuration'>Add minimal Webpack build configuration</Heading>
+<Heading tag='h2' id='add-minimal-webpack-build-configuration' linkLabel='Link to heading: Add minimal Webpack build configuration'>Add minimal Webpack build configuration</Heading>
 
 Next, create a configuration file for Webpack - `webpack.config.ts` - in the root of the project:
 
@@ -158,7 +158,7 @@ We take advantage of having function as configuration over object to be able to 
 - entry points to entry file index.js
 - output is set to the `dist` folder, we also pass `clean` property, to remove old dist folder whenever you are creating new build
 
-<Heading tag='h2' id='example-entry-file'>Example entry file and build command</Heading>
+<Heading tag='h2' id='example-entry-file' linkLabel='Link to heading: Example entry file and build command'>Example entry file and build command</Heading>
 
 For now, we can stick with a basic `index.js` file to simply test the build command.
 

@@ -37,7 +37,7 @@ You could ship this as an npm package (like `react-scripts`/`next-scripts`) to h
 - ongoing maintenance and versioning
 - an internal abstraction for bundler setup
 
-<Heading tag="h2" id="alternative">Alternative</Heading>
+<Heading tag="h2" id="alternative" linkLabel="Link to heading: Alternative">Alternative</Heading>
 
 If we want to proceed with Webpack in this part we will most likely end up with:
 
@@ -49,12 +49,12 @@ If we want to proceed with Webpack in this part we will most likely end up with:
 
 Instead, this part migrates the boilerplate to **RsBuild** and evaluates the trade-offs.
 
-<Heading tag="h3" id="why-RsBuild">Why RsBuild ?</Heading>
+<Heading tag="h3" id="why-RsBuild" linkLabel="Link to heading: Why RsBuild ?">Why RsBuild ?</Heading>
 
 It is powered by **Rspack** (Webpack-compatible most important API) batteries included like `Vite`.
 It is way faster than Webpack and need way less boilerplate.
 
-<Heading tag="h3" id="vite">Vite</Heading>
+<Heading tag="h3" id="vite" linkLabel="Link to heading: Vite">Vite</Heading>
 
 Vite is the current "go-to" solution as a build tool for modern web applications.  
 It won't be the part of the comparison, since it needs stable Rolldown to compare with the speed of RsBuild (Rust vs Rust comparison).  
@@ -62,7 +62,7 @@ Moreover the RSPack (bundler encapsulated in RsBuild) has compatible (most impor
 
 You can check more about direct benchmarks in [RsPack benchmarks](https://github.com/rspack-contrib/build-tools-performance)
 
-<Heading tag="h2" id="establishing-comparison-metrics">Establishing comparison metrics</Heading>
+<Heading tag="h2" id="establishing-comparison-metrics" linkLabel="Link to heading: Establishing comparison metrics">Establishing comparison metrics</Heading>
 
 To compare two tools we need a set of metrics:
 
@@ -75,7 +75,7 @@ To compare two tools we need a set of metrics:
 7. boilerplate lines of code (without node_modules, package-lock.json)
 
 
-<Heading tag="h3" id="environment-controls">Environment controls</Heading>
+<Heading tag="h3" id="environment-controls" linkLabel="Link to heading: Environment controls">Environment controls</Heading>
 - Hardware: MacBook Air M1 (local), GitHub Actions free tier (CI).
 - Node & package manager: Node 22 LTS (22.19.0 at the time), installs with existing `node_modules`
 - Sampling: 5 runs for time-related metrics
@@ -89,7 +89,7 @@ To compare two tools we need a set of metrics:
   I will create another post with comparison in big real world apps in future
 </Alert>
 
-<Heading tag="h2" id="webpack-results">Webpack results</Heading>
+<Heading tag="h2" id="webpack-results" linkLabel="Link to heading: Webpack results">Webpack results</Heading>
 
 - bundle size: 199.96 KB (**52.2 KB** gzipped)
 - build time: (local and CI)
@@ -105,7 +105,7 @@ To compare two tools we need a set of metrics:
   - CI: AVG: **10.981s**, MED: **11.890s**
 - boilerplate lines of code: **285** overall
 
-<Heading tag="h2" id="RsBuild-results">RsBuild results</Heading>
+<Heading tag="h2" id="RsBuild-results" linkLabel="Link to heading: RsBuild results">RsBuild results</Heading>
 
 - bundle size: 143.62 KB (**45.62 KB** gzipped) as it removed useless core-js polyfills
 - build time: (local and CI)
@@ -121,7 +121,7 @@ To compare two tools we need a set of metrics:
   - CI: AVG: **8.527s**, MED: **8.622s**
 - boilerplate lines of code: **256** overall
 
-<Heading tag="h2" id="summary">Summary</Heading>
+<Heading tag="h2" id="summary" linkLabel="Link to heading: Summary">Summary</Heading>
 
 It was quite obvious that in terms of performance the Webpack and Babel setup will fall short.  
 Migration also improves the business metrics, like:
@@ -133,7 +133,7 @@ Migration also improves the business metrics, like:
 - smaller bundles, cheaper bandwidth/CDN, faster conversions
 - faster dev server/local builds/HMR, less time/money wasted on waiting
 
-<Heading tag="h3" id="tradeoffs">Tradeoffs</Heading>
+<Heading tag="h3" id="tradeoffs" linkLabel="Link to heading: Tradeoffs">Tradeoffs</Heading>
 
 It has some small tradeoffs:
 

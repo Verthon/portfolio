@@ -24,7 +24,7 @@ import Heading from '~/common/components/heading/heading'
 We configured Babel to support the latest JavaScript features, TypeScript, and React JSX.
 Additionally, we implemented environment variable management using dotenv and refined our Webpack configuration for handling .tsx files.
 
-<Heading tag="h2" id="unit-testing-setup">Unit testing setup</Heading>
+<Heading tag="h2" id="unit-testing-setup" linkLabel="Link to heading: Unit testing setup">Unit testing setup</Heading>
 
 For unit tests we will use Jest which is one of most popular solutions on the market.
 
@@ -111,7 +111,7 @@ Now the tests can be executed by typing: `npm run test:unit` in the terminal
 - from my experience in large applications developers often encounter performance issues with React Testing Library due to the rendering of extensive DOM trees and scanning through it.
 - additionally in heavy integration tests Playright or Cypress combined with [msw](https://mswjs.io/docs/integrations/node) for network call interception, tend to perform more efficiently
 
-<Heading tag="h2" id="asset-handling">Asset handling</Heading>
+<Heading tag="h2" id="asset-handling" linkLabel="Link to heading: Asset handling">Asset handling</Heading>
 
 Webpack simplifies the management of static assets, all we need to do is to extend `webpack.config.ts` - module.rules
 
@@ -138,7 +138,7 @@ module: {
 - browsers can cache each asset independently
 - emited file will include hash and filename for cache-busting
 
-<Heading tag="h2" id="css-setup">CSS setup</Heading>
+<Heading tag="h2" id="css-setup" linkLabel="Link to heading: CSS setup">CSS setup</Heading>
 
 Frontend applications are incomplete without styling. To efficiently manage CSS files within a Webpack build, we need to update config.
 
@@ -208,7 +208,7 @@ plugins: [
 ]
 ```
 
-<Heading tag="h2" id="bundle-size-observability">Bundle size observability</Heading>
+<Heading tag="h2" id="bundle-size-observability" linkLabel="Link to heading: Bundle size observability">Bundle size observability</Heading>
 
 Applications bundle size tend to grow really fast, it is good idea to observe frequently how much our chunks weight.
 Webpack offers advanced plugin to visualize bundle size in a graphical format.

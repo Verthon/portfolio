@@ -24,7 +24,7 @@ import ArticleImage from '~/blog/components/article-image/article-image'
 Bundle analysis can be cumbersome in big projects, big bundle, tons of dependencies, multiple chunks generated. Often, the build is so slow, and it is hard to figure out which plugins or loaders slows the build process down.  
 RSDoctor promises to help developers detect the problems mentioned above.
 
-<Heading tag="h2" id="rsdoctor-bundler-support">
+<Heading tag="h2" id="rsdoctor-bundler-support" linkLabel="Link to heading: RSDoctor bundler support">
   RSDoctor bundler support
 </Heading>
 
@@ -87,7 +87,7 @@ export const config = {
 "build:rsdoctor": "RSDOCTOR=true npm run build"
 ```
 
-<Heading tag="h2" id="features-breakdown">
+<Heading tag="h2" id="features-breakdown" linkLabel="Link to heading: RSDoctor features breakdown">
   RSDoctor features breakdown
 </Heading>
 
@@ -110,7 +110,7 @@ Each of them is presented in the UI of RSDoctor in the top-navigation menu
   ariaLabelledBy="rsdoctor-main-areas"
 />
 
-<Heading tag="h3" id="bundle-size-analysis">
+<Heading tag="h3" id="bundle-size-analysis" linkLabel="Link to heading: Bundle size analysis">
   Bundle size analysis
 </Heading>
 
@@ -161,7 +161,7 @@ The tree graph showed me that the mysterious 8kB chunk adding `node_modules/cros
   ariaLabelledBy="rsdoctor-tree-graph"
 />
 
-<Heading tag="h3" id="compilation-visualization">
+<Heading tag="h3" id="compilation-visualization" linkLabel="Link to heading: Compilation Visualization">
   Compilation Visualization
 </Heading>
 
@@ -174,7 +174,7 @@ I would suggest to use it only when the build is slow, otherwise I treat it as q
 
 In our big project on the job-site it allowed us to discover that `Terser` was slow in our use-case, so we have change it to `SWC minifier`
 
-<Heading tag="h3" id="general">
+<Heading tag="h3" id="general" linkLabel="Link to heading: General info">
   General info
 </Heading>
 
@@ -192,7 +192,7 @@ General information page shows a quick simplified summary of the:
 
 It allows to print the bundler config, which is quite overwhelming, however it might be beneficial, to check the defaults of the bundler right away.
 
-<Heading tag="h2" id="summary">
+<Heading tag="h2" id="summary" linkLabel="Link to heading: Summary">
   Summary
 </Heading>
 

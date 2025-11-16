@@ -5,6 +5,7 @@ import type { Icon } from '~/common/infrastructure/models/icon'
 
 type IconProps = Icon & {
   svgPath: string
+  role?: string;
 }
 
 export default component$(
@@ -15,13 +16,14 @@ export default component$(
     ariaLabel,
     color,
     svgPath,
+    role,
   }: IconProps) => {
     return (
       <svg
         width={width}
         height={height}
         fill="none"
-        role="img"
+        role={role}
         aria-label={ariaLabel}
         aria-hidden={ariaHidden}
         viewBox={`0 0 ${width} ${height}`}

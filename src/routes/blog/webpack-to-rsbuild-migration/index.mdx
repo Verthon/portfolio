@@ -20,7 +20,7 @@ import Heading from '~/common/components/heading/heading'
 
 <ArticleContent>
 
-<Heading tag='h2' id='organization-context'>Organization context</Heading>
+<Heading tag='h2' id='organization-context' linkLabel='Link to heading: Organization context'>Organization context</Heading>
 
 Big platform for managing and creating establishments
 - 10+ million users 
@@ -30,7 +30,7 @@ Big platform for managing and creating establishments
 - Single Page Application based frontend architecture
 - micro-frontends based on module-federation for common UI components (headers, sidebars, footers)
 
-<Heading tag='h2' id='problem-space'>Problem space</Heading>
+<Heading tag='h2' id='problem-space' linkLabel='Link to heading: Problem space'>Problem space</Heading>
 
 When our FE platform team formed in May 2023, Webpack was the standard choice. 
 This work was done together with [Jakub](https://www.linkedin.com/in/jtokarzewski/), [Marcin](https://www.linkedin.com/in/marcin-kurka/), and [Mateusz](https://www.linkedin.com/in/mateusz-w-720a0717a/).   
@@ -39,14 +39,14 @@ swap the bundler.
 We needed module federation for our micro-frontend architecture, which ruled out Vite and modern alternatives. 
 The real problem wasn't Webpack itself, it was how we'd implemented starter-kit initially:
 
-<Heading tag='h3' id='problem-space-scattered-ownership'>Scattered ownership</Heading>
+<Heading tag='h3' id='problem-space-scattered-ownership' linkLabel='Link to heading: Scattered ownership'>Scattered ownership</Heading>
 
 - build configs lived in 30+ repositories across independent stream-aligned teams
 - each app, besides its dependencies, got many extra ones for "free" from us
 - module-federation config in each repository
 - security was not great, because stream-aligned teams were not interested in bumping bundler-related packages
 
-<Heading tag='h3' id='problem-space-developer-experience'>Developer experience not good enough</Heading>
+<Heading tag='h3' id='problem-space-developer-experience' linkLabel='Link to heading: Developer experience not good enough'>Developer experience not good enough</Heading>
 
 - HMR took a dozen seconds, scaling with app size
 - slow dev-server startup
@@ -55,7 +55,7 @@ The real problem wasn't Webpack itself, it was how we'd implemented starter-kit 
 
 While smaller apps tolerated this setup, we knew it couldn't last. Every month made the problem worse, more drift, more tech debt.
 
-<Heading tag='h3' id='problem-space-path-forward'>Path forward</Heading>
+<Heading tag='h3' id='problem-space-path-forward' linkLabel='Link to heading: Path forward'>Path forward</Heading>
 
 We knew we needed a scripts package. Next.js does this, CRA did it, nothing revolutionary. But it would let us swap bundlers later without coordinating 30+ teams.  
 The pattern is simple:
@@ -69,11 +69,11 @@ The pattern is simple:
 One package owns the complexity. Consumer apps stay focused on business logic.  
 With first release of the scripts package, we have solved the issue with scattered ownership. Yet, the issue with slow Webpack remains the same; we have to find an alternative.
 
-<Heading tag='h2' id='why-rsbuild'>Why RSBuild</Heading>
+<Heading tag='h2' id='why-rsbuild' linkLabel='Link to heading: Why RSBuild'>Why RSBuild</Heading>
 
 In Q1 2024, we evaluated two serious candidates: Vite and RSBuild.
 
-<Heading tag='h3' id='why-rsbuild-vite-evaluation'>Vite was tempting</Heading>
+<Heading tag='h3' id='why-rsbuild-vite-evaluation' linkLabel='Link to heading: Vite was tempting'>Vite was tempting</Heading>
 
 - Mature and battle-tested on production
 - Massive ecosystem and community momentum
@@ -82,7 +82,7 @@ In Q1 2024, we evaluated two serious candidates: Vite and RSBuild.
 
 But Vite had a dealbreaker: **module federation support was experimental and unstable**. We couldn't risk our federated architecture on an alpha-quality plugin.
 
-<Heading tag='h3' id='why-rsbuild-rsbuild-pros'>RSBuild checked every box</Heading>
+<Heading tag='h3' id='why-rsbuild-rsbuild-pros' linkLabel='Link to heading: RSBuild checked every box'>RSBuild checked every box</Heading>
 
 - compatibility with the most important Webpack APIs
 - many built-in plugins
@@ -94,7 +94,7 @@ But Vite had a dealbreaker: **module federation support was experimental and uns
 You can think of RSBuild as modernized, fast version of CRA, batteries-included.  
 We were early adopters. RSBuild was young (pre-1.0 at the time), with a smaller community than Vite. But the module federation stability and Webpack compatibility made it the pragmatic choice for our constraints.
 
-<Heading tag='h2' id='migration-process'>Migration process</Heading>
+<Heading tag='h2' id='migration-process' linkLabel='Link to heading: Migration process'>Migration process</Heading>
 
 After initial migration to the scripts (still Webpack based) when the clients:
 - initialized the scripts package to their applications
@@ -104,7 +104,7 @@ After initial migration to the scripts (still Webpack based) when the clients:
 
 We were ready for another, less painful migration, to migrate platform from Webpack to RSBuild.
 
-<Heading tag='h3' id='migration-process-experimental-phase'>Phase 1: Experimental Rollout (Q1-Q2 2024)</Heading>
+<Heading tag='h3' id='migration-process-experimental-phase' linkLabel='Link to heading: Phase 1: Experimental Rollout (Q1-Q2 2024)'>Phase 1: Experimental Rollout (Q1-Q2 2024)</Heading>
 
 While RSBuild was still pre-1.0, teams could opt-in with two steps:
 
@@ -116,7 +116,7 @@ While RSBuild was still pre-1.0, teams could opt-in with two steps:
 Fortunately for us, there were 4-5 Teams eager to test RSBuild on the production. It gave us valuable insights and data.  
 We kept it experimental since RSBuild was on 0.x versions. The RSBuild team was working toward stability, which [arrived in August 2024](https://rspack.rs/blog/announcing-1-0) with their 1.0 release.
 
-<Heading tag='h3' id='migration-process-default'>Phase 2: Default Migration</Heading>
+<Heading tag='h3' id='migration-process-default' linkLabel='Link to heading: Phase 2: Default Migration'>Phase 2: Default Migration</Heading>
 
 After RSBuild 1.0, we made it the default bundler. For the remaining apps, migration was even simpler:
 1. bump the scripts version to the new major
@@ -129,9 +129,9 @@ Total migration time 5 minutes, it took them more to gather the data, before/aft
 
 The way how smooth it was, I can't imagine the blood and tears of manual per-repo migrations without scripts.
 
-<Heading tag='h2' id='outcomes'>Outcomes</Heading>
+<Heading tag='h2' id='outcomes' linkLabel='Link to heading: Outcomes'>Outcomes</Heading>
 
-<Heading tag='h3' id='outcomes-performance'>Performance</Heading>
+<Heading tag='h3' id='outcomes-performance' linkLabel='Link to heading: Performance'>Performance</Heading>
 
 We don't have comprehensive data from all teams, but the signal was clear:
 
@@ -141,41 +141,41 @@ We don't have comprehensive data from all teams, but the signal was clear:
 - biggest app (88000 LoC) CI build 30% faster
 - biggest app (88000 LoC) local build around 50% faster
 
-<Heading tag='h3' id='outcomes-developer-experience'>Developer experience</Heading>
+<Heading tag='h3' id='outcomes-developer-experience' linkLabel='Link to heading: Developer experience'>Developer experience</Heading>
 
 - instant HMR
 - local dev-server readiness below 1s even in bigger apps
 - unified tooling for bundle analysis under 1 command (RSDoctor and Webpack bundle analyzer)
-- lack of Vite is no longer a problem <span role="img">😉</span>
+- lack of Vite is no longer a problem <span role="img" aria-label="winking face">😉</span>
 - faster onboarding for devs, less dependencies to reduce cognitive load
 
-<Heading tag='h3' id='outcomes-strategic-impact'>Strategic impact</Heading>
+<Heading tag='h3' id='outcomes-strategic-impact' linkLabel='Link to heading: Strategic impact'>Strategic impact</Heading>
 - ~20-30% reduction in CI compute time across the platform
 - zero rollbacks for phase 2 default migration
 - one package to update instead of 30+ repos with stale dependencies
 - we already added `experimental-vite` option (Vite with Rolldown on the way)
 - time saved NOT doing manual migrations (30+ apps x 8-16 hours)
 
-<Heading tag='h2' id='what-could-go-better'>What could go better</Heading>
+<Heading tag='h2' id='what-could-go-better' linkLabel='Link to heading: What could go better'>What could go better</Heading>
 
-<Heading tag='h3' id='improvements-initial-data-collection'>Initial migration data gathering</Heading>
+<Heading tag='h3' id='improvements-initial-data-collection' linkLabel='Link to heading: Initial migration data gathering'>Initial migration data gathering</Heading>
 
 **Problem:** When teams migrated to scripts (Webpack-based), we didn't force them to capture before/after metrics.  
 **The impact:** We have strong anecdotal evidence but weak quantitative proof. This makes it harder to demonstrate ROI and justify future platform investments.  
 **Potential solution:** Make metrics collection part of the migration script itself. Auto-capture build times, bundle sizes, and CI duration before/after—store in a central dashboard.
 
-<Heading tag='h3' id='improvements-team-reported-ci-metrics'>CI metrics should be infrastructure-level</Heading>
+<Heading tag='h3' id='improvements-team-reported-ci-metrics' linkLabel='Link to heading: CI metrics should be infrastructure-level'>CI metrics should be infrastructure-level</Heading>
 
 **Problem:** We asked teams to manually gather CI metrics. Most didn't. The few who did used inconsistent methods (different runners, state of app etc).  
 **Potential solution:** Build CI analytics into our infrastructure from day one. Aggregate build times, failure rates, and compute costs automatically.
 This allows to track the progress and ongoing measurements, what has changed after few months.
 
-<Heading tag='h3' id='improvements-starter-kit-release'>Scripts should've existed from day one</Heading>
+<Heading tag='h3' id='improvements-starter-kit-release' linkLabel="Link to heading: Scripts should've existed from day one">Scripts should've existed from day one</Heading>
 
 **Problem:** We launched starter kit with inline Webpack configs, then introduced scripts later.  
 **Potential solution:** Abstract early. Maintaining a shared package is easier than coordinating 30+ repo migrations.
 
-<Heading tag='h3' id='improvements-initial-roi'>Lack of ROI calculation framework</Heading>
+<Heading tag='h3' id='improvements-initial-roi' linkLabel='Link to heading: Lack of ROI calculation framework'>Lack of ROI calculation framework</Heading>
 
 **Problem**: We calculated rough impact estimates (240-480 hours saved, 
 20-30% CI reduction) but had no systematic way to track ongoing value 

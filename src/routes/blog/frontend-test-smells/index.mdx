@@ -30,13 +30,13 @@ I strongly encourage you to critique and also review the additional materials at
 
 List of the most common problems in testing, that I have noticed in projects and libraries that I maintain in my regular job:
 
-<Heading tag='h2' id='using-the-fireEvent-for-user-interactions'>Using the `fireEvent` for user interactions</Heading>
+<Heading tag='h2' id='using-the-fireEvent-for-user-interactions' linkLabel='Link to heading: Using the `fireEvent` for user interactions'>Using the `fireEvent` for user interactions</Heading>
 
 If you using a React Testing Library in your tests I would suggest to switch for `userEvent`.
 
 UserEvent is way better at simulating the user behaviour, `fireEvent` just dispatches the DOM event, when the `userEvent` simulates full interactions - similarly like it is in real browser.
 
-<Heading tag='h2' id='lack-of-using-setup-for-userEvenet'>Lack of using setup for `userEvent`</Heading>
+<Heading tag='h2' id='lack-of-using-setup-for-userEvenet' linkLabel='Link to heading: Lack of using setup for `userEvent`'>Lack of using setup for `userEvent`</Heading>
 
 It is recommended to invoke `setup` method before the actual component render in test.
 
@@ -52,7 +52,7 @@ export const createTestWrapper =
 }
 ```
 
-<Heading tag='h2' id='lack-of-using-await-for-user-events'>Lack of using await for the `user events`</Heading>
+<Heading tag='h2' id='lack-of-using-await-for-user-events' linkLabel='Link to heading: Lack of using await for the `user events`'>Lack of using await for the `user events`</Heading>
 
 Simply always await any user interaction
 
@@ -73,14 +73,14 @@ The only exception from it is `.type` according to the docs:
 _"To be clear, userEvent.type always returns a promise, but you only need to await the promise it returns if you're using the delay option. Otherwise everything runs synchronously and you can ignore the promise"._
 
 
-<Heading tag='h2' id='huge-test-cases'>Huge test cases</Heading>
+<Heading tag='h2' id='huge-test-cases' linkLabel='Link to heading: Huge test cases'>Huge test cases</Heading>
 
 On the whole it is quite logical, it is definitely better to break up into several smaller cases - than to test everything in one.
 
 There is absolutely no point in artificially limiting the number of cases.
 
 
-<Heading tag='h2' id='too-many-assertions'>Too many assertions in one test case</Heading>
+<Heading tag='h2' id='too-many-assertions' linkLabel='Link to heading: Too many assertions in one test case'>Too many assertions in one test case</Heading>
 
 It will be problematic to find what exactly failed, while you have a lot of assertions that checks totally different things.
 
@@ -92,12 +92,12 @@ Here it can be helpful to use these techniques:
 - prepare => act => assert
 
 
-<Heading tag='h2' id='lack-of-useful-assertions'>Lack of any assertions or assertion which are useless</Heading>
+<Heading tag='h2' id='lack-of-useful-assertions' linkLabel='Link to heading: Lack of any assertions or assertion which are useless'>Lack of any assertions or assertion which are useless</Heading>
 
 Think of it as something like `expect(true).toBe(true)` or `expect(MightyComponent).toBeDefined()` 😉
 
 
-<Heading tag='h2' id='lack-of-strongly-typed-response-mocks'>Lack of strongly typed response mocks</Heading>
+<Heading tag='h2' id='lack-of-strongly-typed-response-mocks' linkLabel='Link to heading: Lack of strongly typed response mocks'>Lack of strongly typed response mocks</Heading>
 
 In case you are using [msw](https://mswjs.io/).
 I think it is best to aim to be 100% up to date in terms of api responses structure.
@@ -125,7 +125,7 @@ export const regionsDictionary: RegionsDictionaryResponse = [
 ```
 
 
-<Heading tag='h2' id='badly-described-test-cases'>Badly described test cases</Heading>
+<Heading tag='h2' id='badly-described-test-cases' linkLabel='Link to heading: Badly described test cases'>Badly described test cases</Heading>
 
 I see it always in codebases: `should render a component` or `method should return true`
 
@@ -135,53 +135,53 @@ If it is not obvious, then most likely our descriptions are misleading.
 It is crucial to think, up front - what exactly I need to test. What user interaction should I check, the more our description is for humans not 🤖 the better test is.
 
 
-<Heading tag='h2' id='tests-that-sometimes-pass-sometimes-not'>Tests that sometimes pass, sometimes not</Heading>
+<Heading tag='h2' id='tests-that-sometimes-pass-sometimes-not' linkLabel='Link to heading: Tests that sometimes pass, sometimes not'>Tests that sometimes pass, sometimes not</Heading>
 
 If it happens to your unit tests, then most likely it will be caused by some side effects. I often see the problems with time / dates.
 If there is not time for such a debugging I would suggest to just delete those problematic tests
 
 
-<Heading tag='h2' id='logic-in-tests'>Logic in your tests</Heading>
+<Heading tag='h2' id='logic-in-tests' linkLabel='Link to heading: Logic in your tests'>Logic in your tests</Heading>
 
 Even "simple" if statements. It is hard to determine if your logic in test failed or something is wrong with the thing that you are testing.
 
 When someone claims, that if/else logic in test can be removed for some reason, I would try to check if it can be split into two or more test cases.
 
 
-<Heading tag='h2' id='hard-to-write-tests'>It is hard to write any tests</Heading>
+<Heading tag='h2' id='hard-to-write-tests' linkLabel='Link to heading: It is hard to write any tests'>It is hard to write any tests</Heading>
 
 This usually indicates a complicated code, functions that do everything ? React Context that oversees the entire state ?
 
 
-<Heading tag='h2' id='tests-duplication'>Tests duplication</Heading>
+<Heading tag='h2' id='tests-duplication' linkLabel='Link to heading: Tests duplication'>Tests duplication</Heading>
 
 Sometimes it is enough to write only integration test to check user interaction and not necessarily additionally unit-test a component / function that has already been tested in the integration test
 
 
-<Heading tag='h2' id='very-high-coverage'>Very high coverage (90%+)</Heading>
+<Heading tag='h2' id='very-high-coverage' linkLabel='Link to heading: Very high coverage (90%+)'>Very high coverage (90%+)</Heading>
 
 Most often points to implementation testing, or worse, jacking up coverage at all costs, and no longer necessarily focusing on quality and behavioral coverage.
 
 
-<Heading tag='h2' id='very-slow-tests'>Very slow tests</Heading>
+<Heading tag='h2' id='very-slow-tests' linkLabel='Link to heading: Very slow tests'>Very slow tests</Heading>
 
 Especially the typical unit ones, we want developers to get in the habit of running tests often.
 If they are slow, no one will let them go - happily there is always CICD at the end, but it is rather poor consolation when we want to popularize testing.
 
 
-<Heading tag='h2' id='mocking-everything'>Mocking everything</Heading>
+<Heading tag='h2' id='mocking-everything' linkLabel='Link to heading: Mocking everything'>Mocking everything</Heading>
 
 Such a test does not work much, in addition, having in our projects setup msw - mocking axios is in my opinion an average idea - when we have fantastic tools like [msw](https://mswjs.io/) to deal with your api calls easily
 
 
-<Heading tag='h2' id='tests-initially-always-pass'>Tests initially always pass ✅</Heading>
+<Heading tag='h2' id='tests-initially-always-pass' linkLabel='Link to heading: Tests initially always pass ✅'>Tests initially always pass ✅</Heading>
 
 It is quite important to check whether for bad data or for reversal of the studied behavior - the test will correctly fail.
 Then we are sure that we do not fall into the so-called false positive.
 Here I refer to the article by [Vlad Khorikov](https://khorikov.org/posts/2020-01-29-false-positives-negatives/)
 
 
-<Heading tag='h2' id='tests-as-living-documentation'>Tests don't act as living documentation</Heading>
+<Heading tag='h2' id='tests-as-living-documentation' linkLabel="Link to heading: Tests don't act as living documentation">Tests don't act as living documentation</Heading>
 
 Good tests should be easy for the person reading them.
 You can always check it by folding all test cases in your IDE and reading its description only, if it gives you a brief idea what behavior is being tested then everything is fine.
@@ -200,7 +200,7 @@ The guiding principle, of course, is to write tests for people not robots, a goo
 
 
 
-<Heading tag='h2' id='lack-of-any-test'>Lack of any test</Heading>
+<Heading tag='h2' id='lack-of-any-test' linkLabel='Link to heading: Lack of any test'>Lack of any test</Heading>
 
 The biggest red flag that I can think of 🛑 . It is best to start by testing the simplest utils or even (it might be controversial) write empty test cases with detailed business descriptions of the functionality.
 When the time is right, someone can help with writing such tests, or you can learn it yourself.

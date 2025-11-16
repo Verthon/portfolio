@@ -34,11 +34,11 @@ SSR is based on the React Router 7. Available [on Github](https://github.com/Ver
   **Note**: The implementation of web-component in the repository is just an example. It is not optimized at all.
 </Alert>
 
-<Heading tag='h2' id='before-react-19-era'>Before React 19 era</Heading>
+<Heading tag='h2' id='before-react-19-era' linkLabel='Link to heading: Before React 19 era'>Before React 19 era</Heading>
 
 Previous versions of React had issues to support the web-components fully.
 
-<Heading tag='h3' id='unknown-props-treated-as-html-attributes'>Unknown props treated as HTML attributes</Heading>
+<Heading tag='h3' id='unknown-props-treated-as-html-attributes' linkLabel='Link to heading: Unknown props treated as HTML attributes'>Unknown props treated as HTML attributes</Heading>
 
 There is a difference between:
 - HTML attributes
@@ -70,7 +70,7 @@ useEffect(() => {
 return <my-web-component ref={webComponentRef} />;
 ```
 
-<Heading tag='h3' id='event-handling'>Event handling</Heading>
+<Heading tag='h3' id='event-handling' linkLabel='Link to heading: Event handling'>Event handling</Heading>
 
 React's synthetic event system couldn't properly handle custom events emitted by web components. You couldn't use the declarative event handling:
 
@@ -95,7 +95,7 @@ useEffect(() => {
 return <my-web-component ref={webComponentRef} />
 ```
 
-<Heading tag='h3' id='ssr-issues'>SSR issues</Heading>
+<Heading tag='h3' id='ssr-issues' linkLabel='Link to heading: SSR issues'>SSR issues</Heading>
 
 Server-side rendering was problematic due to the:
 
@@ -114,12 +114,12 @@ const App = () => <my-web-component initialData={{foo: 'bar'}} />;
 
 I have added the examples of hydration mismatches in SSR and other problems in the [repository](https://github.com/Verthon/react-with-webcomponents/tree/main/ssr-react-18)
 
-<Heading tag='h2' id='in-react-19-era'>In React 19 era</Heading>
+<Heading tag='h2' id='in-react-19-era' linkLabel='Link to heading: In React 19 era'>In React 19 era</Heading>
 
 The ref-based workaround is no longer needed. You can add callbacks and props like you would normally do in React components.  
 You can check the full [React 19 CSR example here](https://github.com/Verthon/react-with-webcomponents/tree/main/csr-react-19)
 
-<Heading tag='h3' id='props-improvements'>Props improvements</Heading>
+<Heading tag='h3' id='props-improvements' linkLabel='Link to heading: Props improvements'>Props improvements</Heading>
 
 Props that match a property on the Custom Element instance will be assigned as properties.  
 We no longer need a `ref` workaround.  
@@ -130,7 +130,7 @@ We no longer need a `ref` workaround.
 
 Example with [props](https://github.com/Verthon/react-with-webcomponents/blob/main/csr-react-19/src/theme-toggler/ThemeToggler.tsx)
 
-<Heading tag='h3' id='event-handling-improvements'>Event handling improvements</Heading>
+<Heading tag='h3' id='event-handling-improvements' linkLabel='Link to heading: Event handling improvements'>Event handling improvements</Heading>
 
 React will now understand every event you emit by adding onEventName callback to the web-component
 
@@ -142,7 +142,7 @@ new CustomEvent('NameChanged');
 <my-web-component onNameChanged={handleNameChanged}></my-web-component>
 ```
 
-<Heading tag='h3' id='ssr-improvements'>SSR improvements</Heading>
+<Heading tag='h3' id='ssr-improvements' linkLabel='Link to heading: SSR improvements'>SSR improvements</Heading>
 
 React 19 eliminates the need for many workarounds previously necessary to integrate web components into React.  
 
@@ -153,7 +153,7 @@ You can read more about it in the [source](https://react.dev/blog/2024/12/05/rea
 
 You can check how the example integration works here [react-19-ssr-example](https://github.com/Verthon/react-with-webcomponents/tree/main/ssr-react-19)
 
-<Heading tag='h2' id='summary'>Summary</Heading>
+<Heading tag='h2' id='summary' linkLabel='Link to heading: Summary'>Summary</Heading>
 
 React 19 brings [long awaited support](https://github.com/facebook/react/issues/11347) for the web-components to treat them as first-class citizens.  
 However preparing the web-component for proper SSR support may not be so easy. If the web-component is not prepared for the SSR on the implementation level, you can leverage:

@@ -21,7 +21,7 @@ import Heading from '~/common/components/heading/heading'
 </ArticleHeader>
 
 <ArticleContent>
-<Heading tag='h2' id='motivation'>Motivation</Heading>
+<Heading tag='h2' id='motivation' linkLabel='Link to heading: Motivation'>Motivation</Heading>
 
 My personal website was using Gatsby 4. I had a choice to upgrade to v5 or switch the another framework. Since the project is relatively small and Gatsby has it’s own issues:
 
@@ -39,7 +39,7 @@ I have decided to try something:
 
 Qwik and its framework Qwik City met all of these bullet points. Moreover all the config provided out of the box was enough to suit my needs.
 
-<Heading tag='h2' id='react-components'>React components</Heading>
+<Heading tag='h2' id='react-components' linkLabel='Link to heading: React components'>React components</Heading>
 
 To use React in Qwik you need to add integration for React. Fortunately, Qwik provides command for it.
 React and Qwik components can not be mixed in the same file.
@@ -70,7 +70,7 @@ now it is ButtonComponent so that I can reexport it down below as Button
 export const Button = qwikify$(ButtonComponent)
 ```
 
-<Heading tag='h2' id='tests'>Tests</Heading>
+<Heading tag='h2' id='tests' linkLabel='Link to heading: Tests'>Tests</Heading>
 
 Previously in Gatsby, I used jest and cypress for E2E tests.  
 Since Qwik uses Vite under the hood, they recommend to sticking with Vitest.  
@@ -112,13 +112,13 @@ However, if you have many React components with tests, migrating them to Qwik ri
 
 Moreover, Qwik Team provides a very useful cheatsheet [cheat sheet for rewriting React code to Qwik](https://qwik.builder.io/docs/guides/react-cheat-sheet/).
 
-<Heading tag='h2' id='pwa-support'>PWA support</Heading>
+<Heading tag='h2' id='pwa-support' linkLabel='Link to heading: PWA support'>PWA support</Heading>
 
 Currently, Qwik doesn’t support PWA out of the box. This wasn’t a big deal for my portfolio, so I decided to drop it.
 However, if PWA is a must-have for you app please refer to:  
 https://github.com/QwikCommunity/pwa
 
-<Heading tag='h2' id='deployment'>Deployment</Heading>
+<Heading tag='h2' id='deployment' linkLabel='Link to heading: Deployment'>Deployment</Heading>
 
 Previously my Gatsby website was automatically deployed on any merge to the master branch as production build. Additionally when I was creating branch the preview was created as well.
 
@@ -128,7 +128,7 @@ I want my website to be static for now, Qwik has an automatic command for such a
 npm run qiwk add
 ```
 
-<Heading tag='h2' id='performance'>Performance</Heading>
+<Heading tag='h2' id='performance' linkLabel='Link to heading: Performance'>Performance</Heading>
 
 I haven’t done any performance optimization by myself in Qwik. Framework does its magic by shipping the least amount of JavaScript under the hood. As you may expect for a simple blog/portfolio website all Lighthouse performance metrics are green.
 
@@ -141,7 +141,7 @@ I haven’t done any performance optimization by myself in Qwik. Framework does 
   ariaLabelledBy="web-vitals-results"
 />
 
-<Heading tag='h2' id='summary'>Summary</Heading>
+<Heading tag='h2' id='summary' linkLabel='Link to heading: Summary'>Summary</Heading>
 
 It is worth noting that my portfolio is a simple page that can be static, there is no auth or other features which might be crucial for e-commerce sites.
 I’m not saying that Qwik City is not capable of dealing with advanced features, I’m only noting that portfolio and blog are pretty simple cases for the most part.

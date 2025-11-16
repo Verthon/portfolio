@@ -20,11 +20,11 @@ import Alert from '~/common/components/alert/alert'
 </ArticleHeader>
 
 <ArticleContent>
-<Heading tag='h2' id='javascript-runtimes'>JavaScript runtimes</Heading>
+<Heading tag='h2' id='javascript-runtimes' linkLabel='Link to heading: JavaScript runtimes'>JavaScript runtimes</Heading>
 
 Deno is a JavaScript runtime, built on [V8](https://v8.dev/), [Rust](https://www.rust-lang.org/) and [Tokio](https://tokio.rs/). Released in 2018, it just hit a major milestone with the release of Deno 2.0 in October 2024.
 
-<Heading tag="h2" id="core-design-principles">Core design principles</Heading>
+<Heading tag="h2" id="core-design-principles" linkLabel="Link to heading: Core design principles">Core design principles</Heading>
 
 - Zero config TypeScript support 
 - [ECMA Script
@@ -43,7 +43,7 @@ only
 - JSR registry like npm but for ESM only 
 - Node.js backward compatibility layer
 
-<Heading tag="h2" id="getting-started">Getting started</Heading>
+<Heading tag="h2" id="getting-started" linkLabel="Link to heading: Getting started">Getting started</Heading>
 
 The easiest way to install Deno is to either use: 
 - Shell `curl -fsSL https://deno.land/install.sh | sh` 
@@ -56,14 +56,14 @@ Create a Deno project
 
 It will create the project with a simple TypeScript example and a test.
 
-<Heading tag="h3" id="vscode-setup">VSCode setup</Heading>
+<Heading tag="h3" id="vscode-setup" linkLabel="Link to heading: VSCode setup">VSCode setup</Heading>
 
 To support Deno in VSCode you need to install [official plugin](https://marketplace.visualstudio.com/items?itemName=denoland.vscode-deno)
 Make sure you provide the Deno path to the extension `which deno` and copy it to `deno.path`
 You can autogenerate settings with `cmd + shift + p` or `ctrl + shift + p` and select `Deno initialize Workspace configuration`
 Above step will create `.vscode/settings.json` with base setup for Deno for you.
 
-<Heading tag="h3" id="deno-config-file">Deno config file</Heading>
+<Heading tag="h3" id="deno-config-file" linkLabel="Link to heading: Deno config file">Deno config file</Heading>
 
 Deno init created Deno config file `deno.json` with the following contents
 
@@ -93,7 +93,7 @@ Additionally, you can configure other things like:
 We can now run the tests:
 `deno test`
 
-<Heading tag="h2" id="jsr">JSR</Heading>
+<Heading tag="h2" id="jsr" linkLabel="Link to heading: JSR">JSR</Heading>
 
 JSR is Deno's version of npm - aiming to not replace the npm but to be it's superset.
 You can use it with any JavaScript package manager (pnpm, yarn, npm).
@@ -150,7 +150,7 @@ const t = maxBy(
 * JSR Search [Orama](https://orama.com/) based search has significant usability issues, as highlighted by the lack of relevant results and incomplete or deprecated packages appearing in searches. [original issue](https://github.com/jsr-io/jsr/issues/311)
 
 
-<Heading tag="h2" id="standard-library">
+<Heading tag="h2" id="standard-library" linkLabel="Link to heading: Standard library">
   Standard library
 </Heading>
 Sadly, unlike other programming languages, JavaScript still lacks a standard library. Deno Team and its community seem to be filling in this missing part.
@@ -165,7 +165,7 @@ Even if the code is on the JSR you can import some modules to the regular JS pro
 1. `pnpm dlx jsr add @std/encoding`
 2. `import * as _std_encoding from "@std/encoding";`
 
-<Heading tag="h2" id="summary">
+<Heading tag="h2" id="summary" linkLabel="Link to heading: Summary">
   Summary
 </Heading>
 
@@ -173,7 +173,7 @@ Deno will be an ideal "starter" for any JS code challenges like the advent of co
 CLI tools and automation scripts may also really benefit from the Deno security model.  
 I don't expect Deno to gain more popularity in the upcoming years.
 
-<Heading tag="h3" id="advantages">Advantages</Heading>
+<Heading tag="h3" id="advantages" linkLabel="Link to heading: Advantages">Advantages</Heading>
 1. Built in cross-platform binary creation
 2. Security model for files, environment access and network
 3. Complete toolchain, no need for installing linters, formatters, bundlers etc.
@@ -181,7 +181,7 @@ I don't expect Deno to gain more popularity in the upcoming years.
 5. Support for Web API's
 6. LTS versions
 
-<Heading tag="h3" id="tradeoffs">Tradeoffs</Heading>
+<Heading tag="h3" id="tradeoffs" linkLabel="Link to heading: Tradeoffs">Tradeoffs</Heading>
 1. Limited ecosystem compared to the npm registry
 2. Many Node packages still need testing with the compatibility layer
 3. Deno's funding, primarily from venture capital sources
