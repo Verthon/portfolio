@@ -37,6 +37,7 @@
     "@builder.io/qwik": "1.16.0",
     "@builder.io/qwik-city": "1.16.0",
     "@playwright/test": "1.56.1",
+    "@posthog/cli": "0.5.14",
     "@types/eslint": "8.44.8",
     "@types/node": "20.12.7",
     "@typescript-eslint/eslint-plugin": "7.18.0",
@@ -51,5 +52,8 @@
     "vite": "7.1.12",
     "vite-tsconfig-paths": "4.3.2",
     "vitest": "3.2.4"
+  },
+  "dependencies": {
+    "posthog-js": "1.297.2"
   }
 }

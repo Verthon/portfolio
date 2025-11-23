@@ -18,6 +18,9 @@ export default defineConfig(() => {
         "Cache-Control": "public, max-age=0",
       },
     },
+    build: {
+      sourcemap: 'hidden' as const,
+    },
     test: {
       include: [...defaultInclude, 'src/**/*.{test,spec}.ts'],
       exclude: [...defaultExclude, 'tests/**/*'],
