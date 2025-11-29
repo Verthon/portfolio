@@ -15,12 +15,19 @@ const items = [
     href: '/observatory/base-ui-headless',
   },
   {
-    title: 'Playwright Component Testing',
-    status: 'Experimental' as const,
+    title: 'Oxlint JavaScript Plugins',
+    status: 'Technical Preview' as const,
     shortPreview:
-      'Leverage real browsers to test UI components. Currently lacks a clear roadmap to a beta release.',
+      'Extend Oxlint with JavaScript plugins while keeping near-Rust performance. Still experimental',
+    href: '/observatory/oxlint-js-plugins',
+  },
+  {
+    title: 'Playwright Component Testing',
+    status: 'Superseded' as const,
+    shortPreview:
+      'Stalled for ~4 years, no roadmap. Prefer Cypress CT or Vitest Browser',
     href: '/observatory/playwright-component-testing',
-  }
+  },
 ]
 
 export default component$(() => {
@@ -39,7 +46,7 @@ export default component$(() => {
         adoption risks, and ongoing development status.
       </Text>
 
-      <Text>Here, you’ll find:</Text>
+      <Text>Here, you'll find:</Text>
 
       <List
         listItems={[

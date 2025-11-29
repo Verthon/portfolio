@@ -1,0 +1,50 @@
+---
+title: Oxlint JavaScript Plugins
+published: true
+description: 'JavaScript plugins support in Oxlint: Current State and Analysis'
+tags: linter
+date: 2025-11-29
+excerpt: 'An analysis of Oxlint JavaScript Plugins: current state, trade-offs, and prospects'
+last_updated: 2025-11-29
+---
+
+import Wrapper from '~/observatory/components/wrapper/wrapper'
+import Header from '~/observatory/components/header/header'
+import Content from '~/observatory/components/content/content'
+import Heading from '~/common/components/heading/heading'
+
+<Wrapper>
+<Header>
+<Heading tag='h1'>Oxlint JavaScript Plugins</Heading>
+</Header>
+
+<Content>
+**Status:** Technical Preview (since October 2025)
+
+<Heading tag="h2" id="overview" linkLabel='Link to heading: Overview'>Overview</Heading>
+
+Oxlint now supports JavaScript-based plugins, letting you extend the linter while retaining near-Rust performance.
+
+<Heading tag="h2" id="known-issues-and-tradeoffs" linkLabel="Link to heading: Known Issues & Tradeoffs">Known Issues & Tradeoffs</Heading>
+
+- This initial release does not implement all of ESLint's plugin API
+- Performance is good, but it's going to get way better
+- Known issues for Windows users (who is using Windows for web-dev ?)
+- It can't be as fast as native Oxlint rules and plugins
+
+<Heading tag="h2" id="adoption-considerations" linkLabel="Link to heading: Adoption Considerations">Adoption Considerations</Heading>
+
+- **New Projects**: Adopt if you mostly rely on built-in rules. Avoid heavy ESLint plugin assumptions
+- **Existing Projects**: In case you have huge pile of ESLint plugins, consider waiting for stable release. Consider integrating the https://www.npmjs.com/package/eslint-plugin-oxlint to offload rules Oxlint already supports while keeping ESLint for the rest.
+
+<Heading tag="h2" id="resources" linkLabel="Link to heading: Resources">Resources</Heading>
+
+- [Official docs](https://oxc.rs/docs/guide/usage/linter/js-plugins.html)
+- [Initial blogpost](https://oxc.rs/blog/2025-10-09-oxlint-js-plugins)
+- [Official Oxlint linter product plan](https://github.com/oxc-project/oxc/issues/481)
+- [Related GH issues](https://github.com/oxc-project/oxc/discussions/14862)
+- [JS Plugins support for options](https://github.com/oxc-project/oxc/issues/14825)
+
+</Content>
+
+</Wrapper>

@@ -2,10 +2,10 @@
 title: Base UI Headless Components Library
 published: true
 description: 'Base UI Headless Components Library: Current State and Analysis'
-tags: testing
+tags: ui
 date: 2025-02-06
 excerpt: 'An analysis of Base UI Headless Components Library: current state, trade-offs, and prospects'
-last_updated: 2025-10-28
+last_updated: 2025-11-29
 ---
 
 import Wrapper from '~/observatory/components/wrapper/wrapper'
@@ -25,11 +25,13 @@ import Heading from '~/common/components/heading/heading'
   Overview
 </Heading>
 
-- Unstyled components library with around 30+ components available at the moment (more to come)
+- Unstyled components library with around 35+ components available at the moment (more to come)
 - From creators of successful UI libraries: Mui, Radix,Floating UI
 - Team is full committed [full-time for the long-term](https://bsky.app/profile/vladmoroz.bsky.social/post/3lcg2iz35v22q)
 - Focused on accessibility (keyboard navigation, focus management, contrast, labeling)
+- Most likely to be released as stable version [this year](https://github.com/mui/base-ui/issues/2485#issuecomment-3177300365)
 - Roadmap available [here](https://github.com/orgs/mui/projects/1)
+- Docs optimized for the [LLMs](https://base-ui.com/react/overview/quick-start#working-with-llms)
 - MIT license
 
 <Heading tag="h2" id="known-issues-and-tradeoffs" linkLabel="Link to heading: Known Issues & Tradeoffs">
@@ -37,7 +39,7 @@ import Heading from '~/common/components/heading/heading'
 </Heading>
 
 - **Using dreaded barrel export** [index](https://github.com/mui/base-ui/blob/master/packages/react/src/index.ts) [package.json](https://github.com/mui/base-ui/blob/master/packages/react/package.json#L29) if you are curious why it is bad you can read it [here](https://dev.to/thepassle/a-practical-guide-against-barrel-files-for-library-authors-118c)
-- **React only** implementation: no first-class support yet for Vue, Svelte, or Angular—although this aligns with the initial focus on React ecosystems
+- **React only** implementation: no first-class support yet for Vue, Svelte, or Angular - although this aligns with the initial focus on React ecosystems
 
 <Heading tag="h2" id="adoption-considerations" linkLabel="Link to heading: Adoption Considerations">
   Adoption Considerations
@@ -59,6 +61,7 @@ There are also great alternatives, unstyled, a11y focused libraries:
 </Heading>
 
 - [Official docs](https://base-ui.com/)
+- [MCP Server](https://github.com/mui/base-ui/issues/3322)
 - [React compiler adoption](https://github.com/mui/base-ui/issues/809)
 - [Ongoing bugs list](https://github.com/mui/base-ui/issues?q=is%3Aissue%20state%3Aopen%20bug%20label%3A%22type%3A%20bug%22)
 - [Focus Trap feature request](https://github.com/mui/base-ui/issues/1374)
