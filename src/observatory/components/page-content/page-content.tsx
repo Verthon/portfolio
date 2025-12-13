@@ -8,18 +8,18 @@ import ObservatoryList from '~/observatory/components/list/list'
 
 const items = [
   {
-    title: 'Base UI Headless Library',
-    status: 'Beta' as const,
-    shortPreview:
-      'Headless UI library from creators of Radix, Floating UI, and Material UI. Currently at beta',
-    href: '/observatory/base-ui-headless',
-  },
-  {
     title: 'Oxlint JavaScript Plugins',
     status: 'Technical Preview' as const,
     shortPreview:
       'Extend Oxlint with JavaScript plugins while keeping near-Rust performance. Still experimental',
     href: '/observatory/oxlint-js-plugins',
+  },
+  {
+    title: 'Base UI Headless Library',
+    status: 'Stable' as const,
+    shortPreview:
+      'Headless UI library from creators of Radix, Floating UI, and Material UI. It is stable',
+    href: '/observatory/base-ui-headless',
   },
   {
     title: 'Playwright Component Testing',

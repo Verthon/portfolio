@@ -5,7 +5,7 @@ import { Link } from '@builder.io/qwik-city'
 
 type ObservatoryItem = {
   title: string
-  status?: 'Experimental' | 'Beta' | 'Superseded' | 'Technical Preview'
+  status?: 'Experimental' | 'Beta' | 'Superseded' | 'Technical Preview' | 'Stable'
   shortPreview: string
   href: string
 }
