@@ -34,8 +34,8 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "4.11.0",
-    "@builder.io/qwik": "1.16.0",
-    "@builder.io/qwik-city": "1.16.0",
+    "@builder.io/qwik": "1.18.0",
+    "@builder.io/qwik-city": "1.18.0",
     "@playwright/test": "1.56.1",
     "@types/eslint": "8.44.8",
     "@types/node": "20.12.7",
@@ -57,7 +57,9 @@
   },
   "pnpm": {
     "overrides": {
-      "js-yaml": "4.1.1"
+      "js-yaml": "4.1.1",
+      "valibot": "1.2.0",
+      "mdast-util-to-hast": "13.2.1"
     }
   }
 }
