@@ -9,8 +9,8 @@ export const useInitAnalytics = () => {
 
     posthog.init('phc_iV39S2VbjQJAcXSU0fR8bhzwWf3g6nBAqEgMiX9qDFh', {
       cookieless_mode: 'always',
-      api_host: isDev ? 'https://eu.i.posthog.com' : '/ingest',
-      ui_host: 'https://eu.i.posthog.com',
+      api_host: isDev ? 'https://eu.i.posthog.com' : '/ph',
+      ui_host: 'https://eu.posthog.com',
       debug: true,
     })
   })
