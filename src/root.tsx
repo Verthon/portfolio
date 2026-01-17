@@ -31,7 +31,7 @@ export default component$(() => {
             "prefetch":[{ "source":"document", "eagerness":"moderate",
               "where":{ "href_matches": "/(?!dev-bites|blog|observatory).*" } }]
           }`}
-        />
+      />
       </head>
       <body lang="en">
         <RouterOutlet />

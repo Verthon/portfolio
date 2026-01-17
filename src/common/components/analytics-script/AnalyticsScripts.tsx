@@ -5,7 +5,6 @@ posthog.init('phc_iV39S2VbjQJAcXSU0fR8bhzwWf3g6nBAqEgMiX9qDFh', {
   cookieless_mode: 'always',
   api_host: '/ph',
   ui_host: 'https://eu.posthog.com',
-  debug: true,
 });`
   return <script id="analytics" dangerouslySetInnerHTML={analyticsScript} />
 }
