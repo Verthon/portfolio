@@ -18,5 +18,5 @@ export const ThemeScript = () => {
       document.firstElementChild.classList.toggle('dark-mode', theme === 'dark');
     })();
   `
-  return <script dangerouslySetInnerHTML={themeScript} />
+  return <script id="page-theme" dangerouslySetInnerHTML={themeScript} />
 }

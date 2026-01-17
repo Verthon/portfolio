@@ -2,7 +2,7 @@ import { useDocumentHead, useLocation } from '@builder.io/qwik-city'
 
 import { component$ } from '@builder.io/qwik'
 import { ThemeScript } from '../theme-script/theme-script'
-import { useInitAnalytics } from '../analytics-script/useInitAnalytics'
+import { AnalyticsScripts } from '../analytics-script/AnalyticsScripts'
 
 /**
  * The RouterHead component is placed inside of the document `<head>` element.
@@ -10,7 +10,6 @@ import { useInitAnalytics } from '../analytics-script/useInitAnalytics'
 export const RouterHead = component$(() => {
   const head = useDocumentHead()
   const loc = useLocation()
-  useInitAnalytics();
 
   return (
     <>
@@ -38,6 +37,7 @@ export const RouterHead = component$(() => {
       ))}
 
       <ThemeScript />
+      <AnalyticsScripts />
     </>
   )
 })
