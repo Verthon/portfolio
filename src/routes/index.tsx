@@ -13,7 +13,7 @@ export default component$(() => {
 })
 
 export const head: DocumentHead = {
-  title: 'Krzysztof Sordyl • Web Development Insights, Tools, and Tutorials',
+  title: 'Krzysztof Sordyl • Architecture & DX at Scale',
   meta: [
     {
       name: 'author',
@@ -22,16 +22,16 @@ export const head: DocumentHead = {
     {
       name: 'description',
       content:
-        'Web Development tutorials, short dev-bites for busy developers, and a curated tracker for promising web development tools.',
+        'Writing about frontend architecture, developer experience, and scaling tooling across teams in large organizations.',
     },
     {
       property: 'og:title',
-      content: 'Krzysztof Sordyl • Web Development Insights',
+      content: 'Krzysztof Sordyl • Architecture & DX at Scale',
     },
     {
       property: 'og:description',
       content:
-        'Concise web development guides, dev-bites, and a tracker for innovative tools.',
+        'Frontend architecture, developer experience, and scaling tooling across teams in large organizations.',
     },
     {
       property: 'og:url',

@@ -29,12 +29,6 @@
   margin: 4rem 0;
 }
 
-.heroWelcome {
-  font-size: 1rem;
-  font-weight: 300;
-  margin: 0.1rem 0;
-}
-
 @media screen and (min-width: 768px) {
   .heroWelcome {
     font-size: 1.1rem;
@@ -55,20 +49,19 @@
 
 @media screen and (min-width: 1024px) {
   .heroName {
-    font-size: 3rem;
+    font-size: 2.25rem;
   }
 }
 
 @media screen and (min-width: 1366px) {
   .heroName {
     margin: 0.5rem 0 1rem 0;
-    font-size: 3.25rem;
+    font-size: 2.25rem;
   }
 }
 
 .heroHighlight {
-  font-weight: 800;
-  letter-spacing: 1px;
+  font-weight: 700;
 }
 
 .heroDescription {
