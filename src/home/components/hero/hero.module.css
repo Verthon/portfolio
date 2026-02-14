@@ -39,6 +39,7 @@
   font-size: 1.75rem;
   font-weight: 300;
   margin: 0 0 1rem 0;
+  color: var(--black-color);
 }
 
 @media screen and (min-width: 768px) {
@@ -70,7 +71,6 @@
   margin: 0.5rem 0 0.5rem 0;
   font-size: 1rem;
   font-weight: 300;
-  color: var(--dark-color-400);
 }
 
 [data-theme='dark'] .heroDescription {

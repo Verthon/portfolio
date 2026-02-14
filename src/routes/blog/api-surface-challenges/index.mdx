@@ -1,0 +1,104 @@
+---
+title: API surface challenges on a shared platform
+published: true
+description: "Three years maintaining a shared npm library across dozens of apps. What broke wasn't just the code"
+tags: architecture
+date: 2026-02-14
+excerpt: War stories from a shared platform library, Hyrum's Law, and the politics of scaling a core npm package in a big organization.
+article_type: featured
+value_proposition: 'API surface accumulates silently and compounds forever.'
+---
+
+import ArticleWrapper from '~/blog/components/article-wrapper/article-wrapper'
+import ArticleHeader from '~/blog/components/article-header/article-header'
+import ArticleContent from '~/blog/components/article-content/article-content'
+import Alert from '~/common/components/alert/alert'
+import Heading from '~/common/components/heading/heading'
+
+<ArticleWrapper>
+<ArticleHeader>
+<Heading tag='h1'>API surface challenges on a shared platform</Heading>
+</ArticleHeader>
+<ArticleContent>
+
+We built a core npm library during a rushed Vue-to-React platform migration.
+It was meant to stay small: auth, environment config, an API client, basic i18n.
+Within months it was running in thirty-plus applications we did not own.
+We stayed on that team for three years.
+
+The platform had dozens of apps, multiple vendors, and an organization that moved
+slowly by default. We had almost no observability, no idea which versions were
+running where. We ran surveys. Almost nobody responded.
+
+The migration had a hard deadline. Product teams were blocked from shipping until
+the React foundation was ready, so we built the thinnest layer that would unblock
+them.
+
+Five major iterations over three years. Each one improved something, but each one
+also dragged pieces of the first release forward. Some early shortcuts never got
+cleaned up. They became permanent surface area.
+
+<Heading tag='h2' id='standardization-trap' linkLabel='Link to heading: The Standardization Trap'>The Standardization Trap</Heading>
+
+At some point, core became a distribution channel, a proxy for other four packages.
+The architecture group suggested exposing additional internal npm packages through
+it. The logic was simple: one place to pull from, every application already
+installs core, so instant standardization.
+
+The decision was not based on usage data. It was a judgment call. "This feels
+core-ish." "Everyone needs this anyway." The original teams still owned those packages, but it was never their
+first priority. Updates came when they had capacity. Peer dependency alignment,
+tooling upgrades, bundle size reductions: all of it moved slowly.
+
+<Heading tag='h2' id='hyrums-law' linkLabel="Link to heading: Hyrum's Law">Hyrum's Law</Heading>
+
+In the first version, we exposed an ApiService. It had a narrow goal: token
+refresh and basic error handling. We did not intend consumers to extend it.
+We did not expect anyone to depend on Axios directly.
+
+Later, we scanned client repositories, that we had access to. `isAxiosError` checks were scattered across
+applications. Custom interceptors were registered on our instance. Axios types
+leaked into feature code.
+
+This was never part of the documented contract. It was part of the observable
+behavior. At that point, removing Axios meant coordinating dozens of teams and
+refactoring code we did not own. The bundle size savings were marginal compared
+to the migration cost.
+
+So we made Axios a peer dependency: not by design, but because
+the dependency had already escaped our boundary.
+
+The contract was no longer what we intended. It was what the ecosystem had already built on top of.
+
+<Heading tag='h2' id='politics' linkLabel='Link to heading: Politics'>Politics</Heading>
+
+One micro-frontend had a single consumer. We confirmed it through manual
+codebase checks, then contacted the domain team directly to verify no other
+application consumed it. They confirmed none did.
+
+The technical case was simple: inline it. Let the single consumer own it,
+remove the cross-application dependency and the deployment overhead. We brought
+data: usage numbers, deployment impact, maintenance cost.
+
+The proposal was blocked. The argument was "consistency" - no measurable
+requirement, no technical constraint. A stronger organizational position.
+
+The micro-frontend is still exposed today.
+
+<Heading tag='h2' id='summary' linkLabel='Link to heading: Summary'>Summary</Heading>
+
+A large API surface is not just a maintenance problem. Every export is a token
+in someone's mental model of the system. On a platform with thirty-plus
+consumers, that cognitive load compounds across teams - most of whom never read
+your changelog.
+
+We started treating surface area as a cost, not a feature. Smaller boundary,
+fewer assumptions, fewer Hyrum's Law traps.
+
+The standardization trap made this concrete: adding isomorphic capability to the platform is blocked by the internal
+packages we pulled in. Some assume a browser environment. That assumption is now
+baked into the surface area we own.
+
+</ArticleContent>
+
+</ArticleWrapper>

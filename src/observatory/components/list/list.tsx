@@ -22,7 +22,7 @@ export default component$(({ items }: ObservatoryListProps) => {
           <Link href={item.href} class={link}>
             <div class={title}>
               {item.title}
-              {item.status && <span class={status}> — {item.status}</span>}
+              {item.status && <span class={status}> - {item.status}</span>}
             </div>
             <p class={preview}>{item.shortPreview}</p>
           </Link>

@@ -108,7 +108,7 @@ We were ready for another, less painful migration, to migrate platform from Webp
 
 While RSBuild was still pre-1.0, teams could opt-in with two steps:
 
-1. Bump scripts package (minor version—nothing breaking)
+1. Bump scripts package (minor version-nothing breaking)
 2. Set `bundler: "experimental-rsbuild"` in the config file
 
 **That's it. No code changes. No refactoring. No coordination.**
@@ -162,7 +162,7 @@ We don't have comprehensive data from all teams, but the signal was clear:
 
 **Problem:** When teams migrated to scripts (Webpack-based), we didn't force them to capture before/after metrics.  
 **The impact:** We have strong anecdotal evidence but weak quantitative proof. This makes it harder to demonstrate ROI and justify future platform investments.  
-**Potential solution:** Make metrics collection part of the migration script itself. Auto-capture build times, bundle sizes, and CI duration before/after—store in a central dashboard.
+**Potential solution:** Make metrics collection part of the migration script itself. Auto-capture build times, bundle sizes, and CI duration before/after-store in a central dashboard.
 
 <Heading tag='h3' id='improvements-team-reported-ci-metrics' linkLabel='Link to heading: CI metrics should be infrastructure-level'>CI metrics should be infrastructure-level</Heading>
 
