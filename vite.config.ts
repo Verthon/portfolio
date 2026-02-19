@@ -2,7 +2,6 @@ import { defineConfig } from 'vite'
 import { qwikVite } from '@builder.io/qwik/optimizer'
 import { qwikCity } from '@builder.io/qwik-city/vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
-import { defaultExclude, defaultInclude } from 'vitest/config';
 
 export default defineConfig(() => {
   return {
@@ -22,8 +21,8 @@ export default defineConfig(() => {
       sourcemap: 'hidden' as const,
     },
     test: {
-      include: [...defaultInclude, 'src/**/*.{test,spec}.ts'],
-      exclude: [...defaultExclude, 'tests/**/*'],
+      include: ['src/**/*.{test,spec}.ts'],
+      exclude: ['tests/**/*'],
     }
   }
 })

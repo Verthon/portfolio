@@ -1,0 +1,129 @@
+---
+title: Detect hanging async operations in Vitest
+published: true
+description: 'Detect and fix async leaks in Vitest using detectAsyncLeaks. Stop flaky tests caused by hanging promises, unclosed streams, or forgotten timers leaking between test cases'
+tags: testing
+date: 2026-02-19
+excerpt: 'Ever had tests pass locally but randomly fail in CI? A forgotten setInterval or an unclosed stream might be the culprit'
+last_updated: 2026-02-19
+dev_bite_type: featured
+---
+
+import DevBiteWrapper from '~/dev-bites/components/dev-bite-wrapper/dev-bite-wrapper'
+import DevBiteHeader from '~/dev-bites/components/dev-bite-header/dev-bite-header'
+import DevBiteContent from '~/dev-bites/components/dev-bite-content/dev-bite-content'
+import Heading from '~/common/components/heading/heading'
+import Alert from '~/common/components/alert/alert'
+
+<DevBiteWrapper>
+<DevBiteHeader>
+<Heading tag='h1'>Detect hanging async operations in Vitest</Heading>
+</DevBiteHeader>
+
+<DevBiteContent>
+**Last updated:** 19.02.2026
+
+**Context:**
+
+- **Environment:** Any TypeScript/JavaScript project using Vitest
+- **Dependencies:**
+  - Vitest version: `"vitest": "4.1.0"` currently its beta, but it will be stable very soon.
+
+**Problem:**
+
+You have a test that starts an async operation - a setInterval, a web stream, an event listener - but never cleans it up.
+
+The test passes, but that operation keeps running, leaking into subsequent tests and causing random failures in CI that are nearly impossible to reproduce locally.
+
+A MessageChannel opened in a test but never closed. Ports keep listening, leaking into subsequent tests.
+
+```tsx
+export function createChannel() {
+  const { port1, port2 } = new MessageChannel()
+  return {
+    send: (msg: string) => port1.postMessage(msg),
+    onMessage: (fn: (msg: string) => void) => {
+      port2.onmessage = ({ data }) => fn(data)
+    },
+    close: () => {
+      port1.close()
+      port2.close()
+    }
+  }
+}
+```
+
+```tsx
+describe('createChannel', () => {
+  it('should receive sent message', async () => {
+    const channel = createChannel()
+    const fn = vi.fn()
+
+    channel.onMessage(fn)
+    channel.send('hello')
+
+    await vi.waitFor(() => expect(fn).toHaveBeenCalledWith('hello'))
+    // channel.close() never called - ports leak
+  })
+})
+```
+
+**Solution:**
+
+Enable `detectAsyncLeaks` in your config for debugging:
+
+```ts
+// vitest.config.*
+export default defineConfig({
+  test: {
+    detectAsyncLeaks: true,
+  },
+})
+```
+
+Now Vitest will pinpoint the leak:
+
+```bash
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Async Leaks 1 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+MESSAGEPORT leaking in src/createChannel.spec.ts
+  1| export function createChannel() {
+  2|   const { port1, port2 } = new MessageChannel()
+   |                            ^
+  3|   return {
+  4|     send: (msg: string) => port1.postMessage(msg),
+ ❯ createChannel src/createChannel.ts:2:28
+ ❯ src/createChannel.spec.ts:6:21
+```
+
+Fix:
+
+```ts
+describe('createChannel', () => {
+  it('should receive sent message', async () => {
+    const channel = createChannel()
+    const fn = vi.fn()
+
+    channel.onMessage(fn)
+    channel.send('hello')
+
+    await vi.waitFor(() => expect(fn).toHaveBeenCalledWith('hello'))
+    channel.close() // proper cleanup
+  })
+})
+```
+
+<Alert variant="danger" marginBottomInRems={1}>
+  **Performance note:** `detectAsyncLeaks` slows down test execution
+  noticeably. Use it for debugging or in a dedicated CI job - not as default in
+  your main pipeline.
+</Alert>
+
+Further reading:
+
+[Official Docs](https://main.vitest.dev/config/detectasyncleaks)
+
+[Pull request](https://github.com/vitest-dev/vitest/pull/9528)
+
+</DevBiteContent>
+
+</DevBiteWrapper>
