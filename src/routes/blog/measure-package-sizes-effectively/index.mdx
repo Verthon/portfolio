@@ -4,7 +4,10 @@ published: true
 description: Better alternatives for Bundlephobia, to discover real npm package weight
 tags: performance, frontend
 date: 2025-03-16
+last_updated: 2026-03-08
 excerpt: A small guide to identifying npm packages bundle size. You will learn which tools are providing better insights than Bundlephobia.
+og_title: Measure npm package sizes effectively
+og_description: Better alternatives for Bundlephobia, to discover real npm package weight
 article_type: regular
 # published_at: 2025-03-16
 ---
@@ -13,15 +16,16 @@ import ArticleWrapper from '~/blog/components/article-wrapper/article-wrapper'
 import ArticleHeader from '~/blog/components/article-header/article-header'
 import ArticleContent from '~/blog/components/article-content/article-content'
 import Heading from '~/common/components/heading/heading'
+import Alert from '~/common/components/alert/alert'
 import ArticleImage from '~/blog/components/article-image/article-image'
 
 <ArticleWrapper>
 <ArticleHeader>
-<Heading tag='h1'>Measure packages sizes effectively</Heading>
+<Heading tag='h1'>Measure package sizes effectively</Heading>
 </ArticleHeader>
 
 <ArticleContent>
-Measuring the package-size and it's impact for our project bundle is very important.  
+Measuring the package-size and its impact for our project bundle is very important.  
 Bundlephobia is a popular tool used to analyze the size of packages before adding them to a project. However, it has limitations in terms of accuracy and functionality.  
 This article explores alternative tools that can provide more comprehensive insights into bundle size analysis.
 
@@ -47,6 +51,9 @@ Since it outputs the entire package size, the devs may reject packages based on 
 />
 
 <Heading tag='h2' id='first-alternative-pkg-size' linkLabel='Link to heading: First alternative: pkg-size'>First alternative: pkg-size</Heading>
+<Alert variant="danger" marginBottomInRems={1}>
+  **Update:** pkg-size.dev is currently not working. There is an open [GitHub issue](https://github.com/privatenumber/pkg-size.dev/issues/36) tracking this problem. In the meantime, consider using [bundlejs](https://bundlejs.com/) as an alternative.
+</Alert>
 
 Tool made by [Hiroki](https://hirok.io/) author of many great packages like: [tsx](https://www.npmjs.com/package/tsx) [get-tsconfig](https://www.npmjs.com/package/get-tsconfig)
 It is using [WebContainers](https://webcontainers.io/) to install packages in the browser.
@@ -94,7 +101,7 @@ It also installs the dependencies in the browser. It is not as detailed as the p
 - shows the build outcome
 - allow to tweak the bundler to your needs
 
-I have checked the `date-fns` `format` util - it correctly shows it's real weight: 5.7kB (gzipped)  
+I have checked the `date-fns` `format` util - it correctly shows its real weight: 5.7kB (gzipped)  
 
 Sometimes it cannot fetch the dependency (in my case was the rare case scenario). [Related Github issue](https://github.com/okikio/bundlejs/issues/70)
 
@@ -122,16 +129,22 @@ The **entire** package (minified + gzipped) weight around 17.5kB
 Both `pkg-size` and `bundlejs` outputs correct bundle size impact (5.7kB gzipped) when pulling just `format` from `date-fns`.  
 Moreover, both solutions add more insights and result-sharing capabilities for your Team.
 
-<Heading tag='h2' id='summary' linkLabel='Link to heading: Summary'>Summary</Heading>
+<Heading tag='h2' id='which-tool-to-use' linkLabel='Link to heading: Which tool to use for npm bundle size analysis'>Which tool to use for npm bundle size analysis</Heading>
 
 Bundlephobia is still a great tool for the **initial** research, it load really fast, tells most important info about package health right away (tree-shakeable, side-effect, dependencies count).  
-The final decision should be made based on either: [pkg-size](https://pkg-size.dev/) or [bundlejs](https://bundlejs.com/)  
-These tools allow for dynamic analysis based on actual imports, providing a more accurate picture of the real cost of adding a package to your project.  
-Pkg-size and Bundlejs can help in collaborative environments due to their sharing features.
-Since it is highly unlikely from my experience to leverage 100% of the functionality of the library.  
-I will still use Bundlephobia as a preliminary tool to check the initial package's health. Then I would use the `pkg-size` with its deep analysis to make the final decision.
+Until pkg-size.dev is fixed, the final decision should be made based on [bundlejs](https://bundlejs.com/) which allows for dynamic analysis based on actual imports, providing a more accurate picture of the real cost of adding a package to your project.  
+Bundlejs can help in collaborative environments due to its sharing features.
+Since it is highly unlikely from my experience to leverage 100% of the functionality of the library.
 
-Things dying fast so you might also checkout curated list about similar tooling [here](https://github.com/styfle/packagephobia?tab=readme-ov-file#how-is-this-different)
+I will still use Bundlephobia as a preliminary tool to check the initial package's health. Then I would use `bundlejs` with its dynamic import analysis to make the final decision.
+
+Worth mentioning is also [Packagephobia](https://packagephobia.com) - web app that reports the **install size** of a package over time. It focuses on disk footprint rather than bundle size, which can be useful when evaluating CI/CD performance or container image sizes.
+
+The author also provides a great [comparison of similar tooling](https://github.com/styfle/packagephobia?tab=readme-ov-file#how-is-this-different) explaining how Packagephobia differs from Bundlephobia, Cost of Modules, and other alternatives - worth checking out as things in this space change fast.
+
+Lastly, there is [npmx](https://npmx.dev/) - still in alpha, but a promising alternative frontend to the npm registry. It aims to be the unified community effort to fill the gaps left by the largely unmaintained npm website.   
+What makes it stand out for package analysis is its integration with the [e18e](https://e18e.dev/) initiative - it surfaces performance advice directly on package pages. For example, when viewing a package like [chalk](https://npmx.dev/package/chalk), npmx adds warning and suggests more performant alternatives. 
+As it matures, npmx could become the go-to place to evaluate packages at the point of discovery.
 
 </ArticleContent>
 
