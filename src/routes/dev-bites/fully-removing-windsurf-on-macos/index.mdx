@@ -1,0 +1,95 @@
+---
+title: 'Fully removing Windsurf on macOS'
+published: true
+description: 'How to completely remove Windsurf and Codeium leftovers on macOS'
+tags: macos, windsurf
+date: 2026-03-08
+excerpt: 'Moving Windsurf to Bin only removes the app itself. The leftover directories with ~1.75 GB of data stay behind and need manual cleanup.'
+last_updated: 2026-03-08
+dev_bite_type: featured
+---
+
+import DevBiteWrapper from '~/dev-bites/components/dev-bite-wrapper/dev-bite-wrapper'
+import DevBiteHeader from '~/dev-bites/components/dev-bite-header/dev-bite-header'
+import DevBiteContent from '~/dev-bites/components/dev-bite-content/dev-bite-content'
+import Heading from '~/common/components/heading/heading'
+import Alert from '~/common/components/alert/alert'
+
+<DevBiteWrapper>
+<DevBiteHeader>
+<Heading tag='h1'>Fully removing Windsurf on macOS</Heading>
+</DevBiteHeader>
+
+<DevBiteContent>
+@
+**Last updated**: 08.03.2026
+
+**Context**:
+
+- Environment: macOS (tested on macOS Sequoia 15.x)
+- App: Windsurf by Codeium (AI-powered code editor, VS Code fork)
+
+**Problem**:
+
+Moving Windsurf to Bin (right-click → Move to Bin) only removes the app bundle itself. These directories stay on disk, taking up ~1.75 GB or more:
+
+```bash
+~/.windsurf/                                          # extensions (~475 MB)
+~/.codeium/                                           # Codeium AI engine data (~766 MB)
+~/Library/Application Support/Windsurf/               # app data, logs, workspace history (~517 MB)
+~/Library/Caches/com.exafunction.windsurf             # app cache
+~/Library/Caches/com.exafunction.windsurf.ShipIt      # auto-updater cache
+~/Library/HTTPStorages/com.exafunction.windsurf        # HTTP storage
+~/Library/Preferences/com.exafunction.windsurf.plist  # preferences
+~/Library/Preferences/ByHost/com.exafunction.windsurf.ShipIt.*.plist
+```
+
+<Alert variant="info" marginBottomInRems={1}>
+  `~/.codeium` is not VSCodium. It's the Codeium AI engine that Windsurf runs on. Safe to delete once you've uninstalled Windsurf.
+</Alert>
+
+Also check your projects for `.windsurfrules` files if you used Windsurf's rules feature.
+
+**Solution:**
+
+Run this in your terminal to clean up all Windsurf and Codeium leftovers:
+
+```bash
+rm -rf ~/.windsurf
+rm -rf ~/.codeium
+rm -rf ~/Library/Application\ Support/Windsurf
+rm -rf ~/Library/Caches/com.exafunction.windsurf
+rm -rf ~/Library/Caches/com.exafunction.windsurf.ShipIt
+rm -rf ~/Library/HTTPStorages/com.exafunction.windsurf
+rm -f ~/Library/Preferences/com.exafunction.windsurf.plist
+rm -f ~/Library/Preferences/ByHost/com.exafunction.windsurf.ShipIt.*.plist
+```
+
+To verify nothing is left:
+
+```bash
+find ~ -maxdepth 5 \( -name "*windsurf*" -o -name "*Windsurf*" -o -name "*codeium*" \) 2>/dev/null \
+  | grep -v -E "Firefox|\.git"
+```
+
+**Automate with an LLM**
+
+You can paste the following prompt into any LLM (Claude, ChatGPT, etc.) to have it generate or verify the cleanup commands for your specific system:
+
+```
+  Scan my Mac for Windsurf/Codeium leftovers and clean them up.                                                                       
+                                                                                                                                    
+  Check and report sizes for:                                                                                                         
+  - ~/.windsurf                                                                                                                       
+  - ~/.codeium
+  - ~/Library/Application Support/Windsurf
+  - ~/Library/Caches/com.exafunction.windsurf*
+  - ~/Library/HTTPStorages/com.exafunction.windsurf
+  - ~/Library/Preferences/com.exafunction.windsurf*.plist
+
+  Then delete them all. Skip ~/.vscode and ~/.codex.
+```
+
+</DevBiteContent>
+
+</DevBiteWrapper>
