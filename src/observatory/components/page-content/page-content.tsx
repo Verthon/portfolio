@@ -12,21 +12,28 @@ const items = [
     status: 'Technical Preview' as const,
     shortPreview:
       'Extend Oxlint with JavaScript plugins while keeping near-Rust performance. Still experimental',
-    href: '/observatory/oxlint-js-plugins',
+    href: '/observatory/oxlint-js-plugins' as const,
+  },
+  {
+    title: 'Oxc Coverage Instrument',
+    status: 'Experimental' as const,
+    shortPreview:
+      'Istanbul-compatible coverage instrumentation built on the Oxc parser. Experimental on Vitest 4.1.5+',
+    href: '/observatory/oxc-coverage-instrument' as const,
   },
   {
     title: 'Base UI Headless Library',
     status: 'Stable' as const,
     shortPreview:
       'Headless UI library from creators of Radix, Floating UI, and Material UI. It is stable',
-    href: '/observatory/base-ui-headless',
+    href: '/observatory/base-ui-headless' as const,
   },
   {
     title: 'Playwright Component Testing',
     status: 'Superseded' as const,
     shortPreview:
       'Stalled for ~4 years, no roadmap. Prefer Cypress CT or Vitest Browser',
-    href: '/observatory/playwright-component-testing',
+    href: '/observatory/playwright-component-testing' as const,
   },
 ]
 

@@ -1,0 +1,75 @@
+---
+title: oxc-coverage-instrument
+published: true
+description: 'Oxc-powered Istanbul-compatible coverage instrumentation: Current State and Analysis'
+tags: testing
+date: 2026-04-25
+excerpt: 'An analysis of oxc-coverage-instrument: an Oxc-native replacement for babel-plugin-istanbul, 5-33x faster'
+last_updated: 2026-04-25
+---
+
+import Wrapper from '~/observatory/components/wrapper/wrapper'
+import Header from '~/observatory/components/header/header'
+import Content from '~/observatory/components/content/content'
+import Heading from '~/common/components/heading/heading'
+import Alert from '~/common/components/alert/alert'
+
+<Wrapper>
+<Header>
+<Heading tag='h1'>Oxc Coverage Instrument</Heading>
+</Header>
+
+<Content>
+**Status:** v0.3.x, published to crates.io and npm
+
+<Alert variant="info" marginBottomInRems={2}>
+  **Who is this for?** Only projects using `coverage.provider: 'istanbul'` in Vitest (or any other source-instrumentation pipeline). If you're on Vitest's default `provider: 'v8'`, this tool does not apply - V8 coverage is collected by the engine at runtime and never goes through a source-rewriting step.
+</Alert>
+
+<Heading tag="h2" id="overview" linkLabel='Link to heading: Overview'>Overview</Heading>
+
+- Istanbul-compatible coverage instrumentation built on the [Oxc](https://oxc.rs) parser
+- Fills a real gap: any tool on `oxc_parser` previously had to pull in SWC or Babel to emit coverage
+- Verified against `istanbul-lib-instrument` on 25 shared fixtures and 1,061 real TS/TSX/JS files from a production React monorepo
+- Ships a Rust crate, Node.js bindings (napi-rs, 7 platform binaries), and a standalone CLI
+- Vitest integration via `createOxcInstrumenter` - the [`coverage.instrumenter` option](https://vitest.dev/config/coverage.html#coverage-instrumenter) shipped experimentally in [Vitest 4.1.5](https://github.com/vitest-dev/vitest/pull/10119), with stabilization planned for 5.0
+
+<Heading tag="h2" id="performance" linkLabel='Link to heading: Performance'>Performance</Heading>
+
+8-11x faster than babel-plugin-istanbul, 13-15x faster than swc-plugin-coverage-instrument (Rust/WASM), 25-30x faster than istanbul-lib-instrument - measured end-to-end on real libraries (React, lodash, vue, d3, three).
+
+<Heading tag="h2" id="known-issues-and-tradeoffs" linkLabel='Link to heading: Known Issues & Tradeoffs'>Known Issues & Tradeoffs</Heading>
+
+- Two intentional divergences from istanbul: `??=`/`||=`/`&&=` are instrumented as branches, and inferred function names replace `(anonymous_N)`. Both are supersets - a codebase using logical-assignment heavily will see a lower branch % after switching.
+- Vitest's `coverage.instrumenter` option is documented and usable in 4.1.5+, but flagged experimental until 5.0 - the surface may shift before then
+- Operator-level branch channel (`bO`) deferred until a mainstream reporter consumes it
+- Source-instrumentation path only - no V8-coverage equivalent in the Oxc ecosystem yet (see below)
+
+<Heading tag="h2" id="adoption-considerations" linkLabel='Link to heading: Adoption Considerations'>Adoption Considerations</Heading>
+
+- **New Projects**: strong drop-in candidate if you're on Vitest 4.1.5+ with the Istanbul provider - wire it in via the experimental custom-instrumenter API today, expect a stable surface in Vitest 5.0
+- **Existing Projects**: rebaseline branch-coverage thresholds before swapping - the `??=` family adds real branches that previously went uncounted
+- Watch [oxc#21108](https://github.com/oxc-project/oxc/issues/21108) for a possible transfer to the Oxc org
+
+<Heading tag="h2" id="v8-coverage-context" linkLabel='Link to heading: V8 coverage context'>V8 coverage context</Heading>
+
+`oxc-coverage-instrument` lives on the **source-instrumentation** path (the Istanbul lineage). The parallel **V8-coverage** path - runtime collection via the Inspector protocol - is a separate ecosystem worth knowing about when picking a coverage strategy:
+
+- [`@vitest/coverage-v8`](https://vitest.dev/guide/coverage) is the actively maintained V8 provider; since v3.2.0 it uses AST-based remapping that produces Istanbul-equivalent reports, closing the historical "V8 is faster but less precise" gap
+- [`c8`](https://github.com/bcoe/c8) still works but is in maintenance mode; Vitest docs now point at `@vitest/coverage-v8` instead
+- Node 22+ ships [`--experimental-test-coverage`](https://nodejs.org/api/test.html) with built-in lcov/text reporters - usable but emits raw V8 output, so third-party tools are still needed for Istanbul normalization
+- The bridge - [`v8-to-istanbul`](https://github.com/istanbuljs/v8-to-istanbul) - is the only converter from V8's raw output to Istanbul format. 40M weekly downloads, but no npm release in 12+ months and minimal PR activity. **No Rust-native replacement exists**, which is the obvious next gap for the Oxc ecosystem to fill.
+
+<Heading tag="h2" id="resources" linkLabel='Link to heading: Resources'>Resources</Heading>
+
+- [GitHub repo](https://github.com/fallow-rs/oxc-coverage-instrument)
+- [npm package](https://www.npmjs.com/package/oxc-coverage-instrument)
+- [crates.io](https://crates.io/crates/oxc_coverage_instrument)
+- [Vitest `coverage.instrumenter` docs](https://vitest.dev/config/coverage.html#coverage-instrumenter)
+- [Vitest custom instrumenter PR](https://github.com/vitest-dev/vitest/pull/10119)
+- [Oxc org transfer discussion](https://github.com/oxc-project/oxc/issues/21108)
+- [Confirmation about v8 staying as default](https://bsky.app/profile/ariperkkio.dev/post/3mjjuoqn5uc2h)
+
+</Content>
+
+</Wrapper>
