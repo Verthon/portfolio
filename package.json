@@ -30,7 +30,8 @@
     "test.unit": "vitest",
     "test.unit.ci": "vitest run",
     "test.unit.ui": "vitest --ui",
-    "qwik": "qwik"
+    "qwik": "qwik",
+    "type.check": "tsc --noEmit"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.11.0",

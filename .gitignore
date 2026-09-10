@@ -51,3 +51,7 @@ cypress/videos/**/*
 # E2E tests
 playwright-report
 test-results
+
+# Agent files
+
+HANDOFF.md

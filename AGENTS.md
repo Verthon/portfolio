@@ -1,20 +1,13 @@
-Personal blog. Qwik City + MDX. Solo author.
-Content locations
+Personal blog.
 
-Blog posts: src/routes/blog/**/index.mdx
-Dev bites: src/routes/dev-bites/**/index.mdx
-Observatory: src/routes/observatory/**/index.mdx
+Read first
+@CONTEXT.md — what this repo is, and what blog post / dev bite / observatory mean
+@CONVENTIONS.md — code, MDX, and commit conventions
 
-Agent instructions
-All agent definitions live in .llm/agents/. Context files in .llm/context/.
-Available agents (run individually):
+Content lives in `src/routes/{blog,dev-bites,observatory}/<slug>/index.mdx`. Section logic lives in the matching `src/<section>/` module.
 
-SEO Auditor: Read .llm/agents/seo-auditor.md and run the audit
-Content Reviewer: Read .llm/agents/content-reviewer.md and review [path-to-file]
-Tech Auditor: Read .llm/agents/tech-auditor.md and run the audit
+Agents are defined in `.llm/agents/`, their context in `.llm/context/`. Run one by reading its file and following it: `seo-auditor.md`, `content-reviewer.md`, `tech-auditor.md`.
 
 Rules
-
-Never rewrite content without explicit approval
-Propose changes as diffs, don't apply silently
-When editing MDX: preserve all existing component imports and structure
+Never rewrite content without explicit approval — propose a diff, do not apply it silently.
+When editing MDX, preserve all existing component imports and structure.
