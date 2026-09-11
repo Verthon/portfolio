@@ -1,10 +1,10 @@
 .list {
   list-style-type: disc;
   list-style-position: inside;
-  margin: 1rem 0;
-  padding-inline-start: 0.5rem;
+  margin: var(--space-md) 0;
+  padding-inline-start: var(--space-sm);
 }
 
 .listItem {
-  margin: 0.5rem 0;
+  margin: var(--space-sm) 0;
 }

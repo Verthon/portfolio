@@ -3,38 +3,38 @@
   justify-items: center;
   align-items: center;
   flex-direction: column;
-  color: var(--black-color);
+  color: var(--text-strong);
   height: 100%;
 }
 
 @media screen and (min-width: 1024px) {
   .notFound {
-    margin: 2rem;
+    margin: var(--space-lg);
   }
 }
 
 .title {
-  font-size: 2rem;
+  font-size: var(--font-size-4xl);
 }
 
 .linksWrapper {
-  margin: 2rem;
+  margin: var(--space-lg);
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: var(--space-md);
 }
 
 @media screen and (min-width: 1024px) {
   .linksWrapper {
     flex-direction: row;
-    gap: 2rem;
+    gap: var(--space-lg);
   }
 }
 
 .text {
-  margin: 1rem 0;
+  margin: var(--space-md) 0;
 }
 
 .link {
-  color: var(--black-color);
+  color: var(--text-strong);
 }

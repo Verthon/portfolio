@@ -1,5 +1,5 @@
 .container {
-  padding: 0 1rem;
+  padding: 0 var(--space-md);
   width: 100%;
   max-width: 80rem;
   margin: 0 auto;
@@ -7,12 +7,12 @@
 
 @media screen and (min-width: 768px) {
   .container {
-    padding: 0 2rem;
+    padding: 0 var(--space-lg);
   }
 }
 
 @media screen and (min-width: 1024px) {
   .container {
-    padding: 0 3rem;
+    padding: 0 var(--space-xl);
   }
 }

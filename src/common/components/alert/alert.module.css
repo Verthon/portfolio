@@ -1,5 +1,5 @@
 .alert {
-  padding: 1rem;
+  padding: var(--space-md);
   border-radius: 0.25rem;
 
   p {
@@ -8,15 +8,15 @@
 }
 
 .alertMarginBottomSmall {
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-md);
 }
 
 .alertMarginBottomMedium {
-  margin-bottom: 2rem;
+  margin-bottom: var(--space-lg);
 }
 
 .alertMarginBottomLarge {
-  margin-bottom: 3rem;
+  margin-bottom: var(--space-xl);
 }
 
 .alertContainer {
@@ -25,7 +25,7 @@
 
 .alertIcon {
   flex-shrink: 0;
-  margin-inline-end: 0.5rem;
+  margin-inline-end: var(--space-sm);
   line-height: 1;
 }
 .alertContent {
@@ -33,26 +33,26 @@
 }
 
 .alertInfo {
-  background-color: var(--info-color-100);
+  background-color: var(--info-100);
 
   svg {
-    fill: var(--info-color-700);
+    fill: var(--info-700);
   }
 
   p {
-    color: var(--info-color-700);
+    color: var(--info-700);
   }
 }
 
 .alertDanger {
-  background-color: var(--danger-color-100);
+  background-color: var(--danger-100);
 
   svg {
-    fill: var(--danger-color-700);
+    fill: var(--danger-700);
     stroke: transparent;
   }
 
   p {
-    color: var(--danger-color-700);
+    color: var(--danger-700);
   }
 }

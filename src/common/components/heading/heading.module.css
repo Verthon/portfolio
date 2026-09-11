@@ -2,34 +2,36 @@
   margin-bottom: 1em;
   position: relative;
 
-  &:hover {
-    a {
-      opacity: 0.9;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      a {
+        opacity: 0.9;
 
-      svg {
-        stroke: currentColor;
+        svg {
+          stroke: currentColor;
+        }
       }
     }
   }
 }
 
 .h1 {
-  font-size: 1.75rem;
+  font-size: var(--font-size-3xl);
   color: var(--heading-color);
 }
 
 .h2 {
-  font-size: 1.5rem;
+  font-size: var(--font-size-2xl);
   line-height: 1.75rem;
-  margin-top: 3rem;
+  margin-top: var(--space-xl);
 
   color: var(--heading-color);
 }
 
 .h3 {
-  font-size: 1.25rem;
-  margin-top: 3rem;
-  margin-bottom: 1.5rem;
+  font-size: var(--font-size-xl);
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-md);
 }
 
 .headingLink {
@@ -46,7 +48,7 @@
   margin-top: auto;
   margin-bottom: auto;
   transform: translateX(-150%);
-  transition: opacity 250ms;
+  transition: opacity 150ms ease-out;
   opacity: 0;
   scroll-margin-top: 20rem;
   border: 0;

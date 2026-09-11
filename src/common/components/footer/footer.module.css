@@ -1,16 +1,12 @@
 .footer {
   margin-top: auto;
-  border-top: 1px solid var(--grey-color-200);
+  border-top: 1px solid var(--border-subtle);
   color: var(--text-color);
-}
-
-[data-theme='dark'] .footer {
-  border-color: var(--dark-color-400);
 }
 
 .footerWrapper {
   margin: auto;
-  padding: 2rem;
+  padding: var(--space-lg);
 }
 
 .footerContent {
@@ -21,26 +17,26 @@
 
 @media screen and (min-width: 1366px) {
   .footer {
-    padding: 1rem 0 1rem 0;
+    padding: var(--space-md) 0 var(--space-md) 0;
   }
 }
 
 .footerText {
   align-items: center;
-  margin: 0.5rem 0 0.5rem 0;
+  margin: var(--space-sm) 0 var(--space-sm) 0;
 }
 
 .footerText svg {
-  color: var(--black-color);
+  color: var(--text-strong);
   fill: currentColor;
 }
 
 .footerCode {
-  margin: 0 0.5rem 0 0;
+  margin: 0 var(--space-sm) 0 0;
 }
 
 .footerHearth {
-  margin: 0 0.25rem;
+  margin: 0 var(--space-xs);
 }
 
 .footerTech {
@@ -51,5 +47,5 @@
 }
 
 .footerLogo {
-  margin: 0 0 0 0.5rem;
+  margin: 0 0 0 var(--space-sm);
 }

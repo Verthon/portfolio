@@ -1,12 +1,12 @@
 .header {
   h2 {
-    font-size: 2rem;
+    font-size: var(--font-size-4xl);
     letter-spacing: -0.025em;
     line-height: 3rem;
     color: var(--heading-color);
 
     @media screen and (min-width: 520px) {
-      font-size: 2.25rem;
+      font-size: var(--font-size-5xl);
     }
   }
 }

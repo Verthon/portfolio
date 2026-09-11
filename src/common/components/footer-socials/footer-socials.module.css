@@ -9,14 +9,10 @@
 }
 
 .footerSocialsLink {
-  margin-inline-start: 1rem;
-  color: var(--dark-color-700);
+  margin-inline-start: var(--space-md);
+  color: var(--text-strong);
   svg {
     fill: currentColor;
     display: inline;
   }
-}
-
-[data-theme='dark'] .footerSocialsLink {
-  color: var(--white-color);
 }

@@ -1,5 +1,5 @@
 .articlePicture {
-  margin: 2rem 0;
+  margin: var(--space-lg) 0;
 }
 
 .figCaption {

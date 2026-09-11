@@ -1,39 +1,35 @@
 .ol {
   list-style-type: decimal;
   list-style-position: outside;
-  margin-left: 1rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-left: var(--space-md);
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-md);
   padding: 0;
   color: var(--text-color);
 }
 
 .li {
-  margin-bottom: 1.25rem;
+  margin-bottom: var(--space-md);
 }
 
 .title {
   font-weight: 600;
   color: var(--heading-color);
-  margin-bottom: 0.25rem;
+  margin-bottom: var(--space-xs);
   line-height: 2;
 }
 
 .status {
   font-weight: 400;
-  margin-inline-start: 0.3rem;
+  margin-inline-start: var(--space-xs);
   font-size: var(--font-size-sm);
-  color: var(--primary-color-800);
-
-  [data-theme='dark'] {
-    color: var(--grey-color-600);
-  }
+  color: var(--primary-800);
 }
 
 .preview {
   font-size: var(--font-size-sm);
   color: var(--text-color);
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--space-sm);
   line-height: 1.25;
 }
 

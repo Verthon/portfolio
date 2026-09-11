@@ -2,18 +2,12 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  background-color: var(--white-color);
+  background-color: var(--surface);
   background-image: url('./bg-mobile.svg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position-x: right;
-  color: var(--black-color);
-}
-
-[data-theme='dark'] .wrapper {
-  background-color: var(--dark-color-800);
-  background-image: none;
-  color: var(--white-color);
+  color: var(--text-strong);
 }
 
 @media screen and (min-width: 1366px) {
@@ -26,38 +20,38 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  margin: 4rem 0;
+  margin: var(--space-2xl) 0;
 }
 
 @media screen and (min-width: 768px) {
   .heroWelcome {
-    font-size: 1.1rem;
+    font-size: var(--font-size-lg);
   }
 }
 
 .heroName {
-  font-size: 1.75rem;
+  font-size: var(--font-size-3xl);
   font-weight: 300;
-  margin: 0 0 1rem 0;
-  color: var(--black-color);
+  margin: 0 0 var(--space-md) 0;
+  color: var(--text-strong);
 }
 
 @media screen and (min-width: 768px) {
   .heroName {
-    font-size: 2.25rem;
+    font-size: var(--font-size-5xl);
   }
 }
 
 @media screen and (min-width: 1024px) {
   .heroName {
-    font-size: 2.25rem;
+    font-size: var(--font-size-5xl);
   }
 }
 
 @media screen and (min-width: 1366px) {
   .heroName {
-    margin: 0.5rem 0 1rem 0;
-    font-size: 2.25rem;
+    margin: var(--space-sm) 0 var(--space-md) 0;
+    font-size: var(--font-size-5xl);
   }
 }
 
@@ -68,44 +62,40 @@
 .heroDescription {
   max-width: 90%;
   line-height: 1.5;
-  margin: 0.5rem 0 0.5rem 0;
-  font-size: 1rem;
+  margin: var(--space-sm) 0 var(--space-sm) 0;
+  font-size: var(--font-size-md);
   font-weight: 300;
-}
-
-[data-theme='dark'] .heroDescription {
-  color: var(--grey-color);
 }
 
 @media screen and (min-width: 768px) {
   .heroDescription {
-    margin: 0.5rem 0 2rem 0;
+    margin: var(--space-sm) 0 var(--space-lg) 0;
   }
 }
 
 @media screen and (min-width: 1024px) {
   .heroDescription {
     max-width: 500px;
-    font-size: 1.1rem;
+    font-size: var(--font-size-lg);
     padding: 0;
-    margin: 0 0 1rem 0;
+    margin: 0 0 var(--space-md) 0;
   }
 }
 
 .heroBtn {
   align-self: flex-start;
-  margin: 3rem 0;
+  margin: var(--space-xl) 0;
 }
 
 @media screen and (min-width: 1024px) {
   .heroBtn {
-    margin: 2rem 0;
+    margin: var(--space-lg) 0;
   }
 }
 
 @media screen and (min-width: 1366px) {
   .heroBtn {
-    margin: 2rem 0;
+    margin: var(--space-lg) 0;
   }
 }
 

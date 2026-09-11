@@ -4,7 +4,7 @@
   display: flex;
   box-sizing: content-box;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: var(--font-size-md);
   color: var(--text-color);
 }
 

@@ -91,79 +91,56 @@ ul {
 }
 
 :root {
-  --primary-color: hsl(50.3, 100%, 78.2%);
-  --primary-color-50: hsl(50.3, 100%, 96.2%);
-  --primary-color-100: hsl(50.3, 100%, 90.2%);
-  --primary-color-800: hsl(50.3, 100%, 16.2%);
-  --primary-color-900: hsl(50.3, 100%, 8.2%);
-  --secondary-color: hsl(10, 94%, 60%);
-  --secondary-color-100: hsl(10, 94%, 90.2%);
-  --secondary-color-800: hsl(10, 94%, 16.2%);
-  --secondary-color-900: hsl(10, 94%, 8.2%);
-  --info-color-100: hsl(203, 99%, 90.2%);
-  --info-color: hsl(203, 99%, 66%);
-  --info-color-700: hsl(203, 99%, 24.2%);
-  --info-color-900: hsl(203, 99%, 8.2%);
-  --danger-color-100: hsl(35, 100%, 90.2%);
-  --danger-color: hsl(35, 100%, 78%);
-  --danger-color-700: hsl(35, 100%, 24.2%);
-  --white-color: hsl(0, 0%, 100%);
-  --black-color: hsl(0, 0, 0%);
-
-  --error-box-color: hsl(351.6, 53.2%, 92.8%);
-  --error-box-text-color: hsl(351.6, 53.2%, 41.6%);
-  --success-text: hsl(176.1, 44.9%, 21.5%);
-  --default-radius: 2px;
+  --primary: hsl(50.3, 100%, 78.2%);
+  --primary-50: hsl(50.3, 100%, 96.2%);
+  --primary-100: hsl(50.3, 100%, 90.2%);
+  --primary-800: hsl(50.3, 100%, 16.2%);
+  --secondary-100: hsl(10, 94%, 90.2%);
+  --secondary-900: hsl(10, 94%, 8.2%);
+  --info-100: hsl(203, 99%, 90.2%);
+  --info-700: hsl(203, 99%, 24.2%);
+  --danger-100: hsl(35, 100%, 90.2%);
+  --danger-700: hsl(35, 100%, 24.2%);
+  --white: hsl(0, 0%, 100%);
 
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
   --font-size-md: 1rem;
-  --font-size-lg: 1.25rem;
-  --font-size-xl: 1.5rem;
-  --font-size-xxl: 1.75rem;
-  --font-size-2xl: 2rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.75rem;
+  --font-size-4xl: 2rem;
+  --font-size-5xl: 2.25rem;
 
-  --bp-xxsmall: 520px;
-  --bp-xsmall: 768px;
-  --bp-small: 1024px;
-  --bp-medium: 1280px;
-  --bp-large: 1366px;
-  --bp-xlarge: 1536px;
-  --bp-xxlarge: 1920px;
-  --bp-2xlarge: 2560px;
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4rem;
+  --space-3xl: 5rem;
+  --space-4xl: 6rem;
+  --space-5xl: 8rem;
 
-  --shadow-light: 0 1px 1px hsla(206.7, 11.7%, 0%, 0.2);
-  --shadow: 0 1px 3px hsla(206.7, 11.7%, 15.1%, 0.2);
+  --grey-100: hsl(206.7, 52.9%, 96.7%);
+  --grey-200: hsl(206.7, 52.9%, 92.7%);
+  --grey-400: hsl(206.7, 11.7%, 85.1%);
+  --dark-300: hsl(60, 1.7%, 35.1%);
+  --dark-400: hsl(60, 1.9%, 30.4%);
+  --dark-600: hsl(60, 2.9%, 20.6%);
+  --dark-800: hsl(60, 8%, 9.8%);
 
-  --button-padding-xxs: 0.4rem 1rem;
-  --button-padding-xs: 0.5rem 1rem;
-  --button-padding-sm: 0.55rem 1.25rem;
-  --button-padding-md: 0.6rem 1.5rem;
-  --button-padding-lg: 1rem 2rem;
+  --text-color: var(--dark-400);
+  --heading-color: var(--dark-600);
+  --surface: var(--white);
+  --text-strong: var(--dark-600);
+  --text-meta: var(--dark-300);
+  --border-subtle: var(--grey-200);
+  --link-wash: var(--primary-50);
+  --link-underline: var(--primary);
 
-  --grey-color-50: hsl(206.7, 52.9%, 98.3%);
-  --grey-color-100: hsl(206.7, 52.9%, 96.7%);
-  --grey-color-200: hsl(206.7, 52.9%, 92.7%);
-  --grey-color-300: hsl(206.7, 11.7%, 91.4%);
-  --grey-color-400: hsl(206.7, 11.7%, 85.1%);
-  --grey-color-500: hsl(206.7, 11.7%, 82.6%);
-  --grey-color: hsl(206.7, 11.7%, 80.1%);
-  --grey-color-600: hsl(206.7, 11.7%, 80.1%);
-  --grey-color-800: hsl(206.7, 11.7%, 70%);
-  --dark-color-100: hsl(60, 2.3%, 40%);
-  --dark-color-200: hsl(60, 2%, 37.5%);
-  --dark-color-300: hsl(60, 1.7%, 35.1%);
-  --dark-color-400: hsl(60, 1.9%, 30.4%);
-  --dark-color-500: hsl(60, 2.5%, 27.75%);
-  --dark-color: hsl(60, 3.1%, 25.1%);
-  --dark-color-600: hsl(60, 2.9%, 20.6%);
-  --dark-color-700: hsl(60, 3.4%, 17.1%);
-  --dark-color-800: hsl(60, 8%, 9.8%);
-
-  --text-color: var(--dark-color-400);
-  --heading-color: var(--dark-color-600);
-
-  --code-expression-background: hsl(50.3, 20.0%, 95.4%);
+  --code-expression-background: hsl(50.3, 20%, 95.4%);
 
   --code-background: hsl(
     206.7,
@@ -182,28 +159,27 @@ ul {
 }
 
 [data-theme='dark'] {
-  --text-color: var(--grey-color-400);
-  --heading-color: var(--grey-color-100);
+  --text-color: var(--grey-400);
+  --heading-color: var(--grey-100);
+  --surface: var(--dark-800);
+  --text-strong: var(--grey-100);
+  --text-meta: var(--grey-200);
+  --border-subtle: var(--dark-400);
   --code-background: hsl(206.7, 11.7%, 20.6%);
   --code-text: hsl(353, 100%, 85%);
   --code-comment: hsl(199, 13%, 76%);
   --code-keyword: hsl(147, 61%, 69%);
   --code-function: hsl(50.3, 100%, 78.2%);
   --code-builtin: hsl(50.3, 100%, 78.2%);
-  --primary-color-50: hsl(50.3, 100%, 9.8%);
-  --primary-color-100: hsl(50.3, 100%, 15.2%);
-  --primary-color-800: hsl(50.3, 100%, 84.2%);
-  --primary-color-900: hsl(50.3, 100%, 90.2%);
-  --secondary-color-100: hsl(10, 94%, 8.2%);
-  --secondary-color-800: hsl(10, 94%, 82.2%);
-  --secondary-color-900: hsl(10, 94%, 90.2%);
-  --info-color-100: hsl(203, 99%, 8.2%);
-  --info-color: hsl(203, 99%, 66%);
-  --info-color-700: hsl(203, 99%, 76.2%);
-  --info-color-900: hsl(203, 99%, 90.2%);
-  --danger-color-100: hsl(35, 100%, 9.2%);
-  --danger-color: hsl(35, 100%, 78%);
-  --danger-color-700: hsl(35, 100%, 90.2%);
+  --primary-50: hsl(50.3, 100%, 9.8%);
+  --primary-100: hsl(50.3, 100%, 15.2%);
+  --primary-800: hsl(50.3, 100%, 84.2%);
+  --secondary-100: hsl(10, 94%, 8.2%);
+  --secondary-900: hsl(10, 94%, 90.2%);
+  --info-100: hsl(203, 99%, 8.2%);
+  --info-700: hsl(203, 99%, 76.2%);
+  --danger-100: hsl(35, 100%, 9.2%);
+  --danger-700: hsl(35, 100%, 90.2%);
 
   --code-expression-background: hsl(50, 7%, 20%);
 
@@ -213,13 +189,24 @@ ul {
 }
 
 [data-theme='dark'] body {
-  background-color: var(--dark-color-800);
+  background-color: var(--surface);
   background-image: none;
-  color: var(--grey-color-400);
+  color: var(--text-color);
 }
 
 [data-theme='light'] body {
-  background-color: var(--white-color);
+  background-color: var(--surface);
   background-image: none;
-  color: var(--dark-color-400);
+  color: var(--text-color);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

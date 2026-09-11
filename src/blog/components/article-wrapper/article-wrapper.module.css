@@ -1,10 +1,10 @@
 .articleWrapper {
   max-width: 80rem;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-lg);
 
   @media screen and (min-width: 520px) {
-    margin-top: 8rem;
-    margin-bottom: 8rem;
+    margin-top: var(--space-5xl);
+    margin-bottom: var(--space-5xl);
   }
 }

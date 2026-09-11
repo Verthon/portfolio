@@ -3,49 +3,38 @@ version: alpha
 name: Portfolio
 description: Dual-theme personal blog and portfolio. Warm butter-yellow accent over near-neutral warm greys, Inter variable throughout, minimal chrome.
 colors:
-  primary: "hsl(50.3, 100%, 78.2%)"
-  primary-50: "hsl(50.3, 100%, 96.2%)"
-  primary-100: "hsl(50.3, 100%, 90.2%)"
-  primary-800: "hsl(50.3, 100%, 16.2%)"
-  primary-900: "hsl(50.3, 100%, 8.2%)"
-  secondary: "hsl(10, 94%, 60%)"
-  secondary-100: "hsl(10, 94%, 90.2%)"
-  secondary-800: "hsl(10, 94%, 16.2%)"
-  secondary-900: "hsl(10, 94%, 8.2%)"
-  info: "hsl(203, 99%, 66%)"
-  info-100: "hsl(203, 99%, 90.2%)"
-  info-700: "hsl(203, 99%, 24.2%)"
-  info-900: "hsl(203, 99%, 8.2%)"
-  danger: "hsl(35, 100%, 78%)"
-  danger-100: "hsl(35, 100%, 90.2%)"
-  danger-700: "hsl(35, 100%, 24.2%)"
-  neutral: "hsl(0, 0%, 100%)"
-  grey-50: "hsl(206.7, 52.9%, 98.3%)"
-  grey-100: "hsl(206.7, 52.9%, 96.7%)"
-  grey-200: "hsl(206.7, 52.9%, 92.7%)"
-  grey-300: "hsl(206.7, 11.7%, 91.4%)"
-  grey-400: "hsl(206.7, 11.7%, 85.1%)"
-  grey-500: "hsl(206.7, 11.7%, 82.6%)"
-  grey-600: "hsl(206.7, 11.7%, 80.1%)"
-  grey-800: "hsl(206.7, 11.7%, 70%)"
-  dark-100: "hsl(60, 2.3%, 40%)"
-  dark-200: "hsl(60, 2%, 37.5%)"
-  dark-300: "hsl(60, 1.7%, 35.1%)"
-  dark-400: "hsl(60, 1.9%, 30.4%)"
-  dark-500: "hsl(60, 2.5%, 27.75%)"
-  dark-600: "hsl(60, 2.9%, 20.6%)"
-  dark-700: "hsl(60, 3.4%, 17.1%)"
-  dark-800: "hsl(60, 8%, 9.8%)"
-  text: "hsl(60, 1.9%, 30.4%)"
-  heading: "hsl(60, 2.9%, 20.6%)"
-  on-primary: "hsl(50.3, 100%, 16.2%)"
-  on-secondary: "hsl(10, 94%, 8.2%)"
-  code-background: "hsl(206.7, 52.9%, 98.3%)"
-  code-text: "hsl(240, 27%, 38%)"
-  code-comment: "hsl(60, 2%, 32%)"
-  code-keyword: "hsl(0, 65%, 39%)"
-  code-function: "hsl(240, 60%, 52%)"
-  code-expression-background: "hsl(50.3, 20%, 95.4%)"
+  primary: 'hsl(50.3, 100%, 78.2%)'
+  primary-50: 'hsl(50.3, 100%, 96.2%)'
+  primary-100: 'hsl(50.3, 100%, 90.2%)'
+  primary-800: 'hsl(50.3, 100%, 16.2%)'
+  secondary-100: 'hsl(10, 94%, 90.2%)'
+  secondary-900: 'hsl(10, 94%, 8.2%)'
+  info-100: 'hsl(203, 99%, 90.2%)'
+  info-700: 'hsl(203, 99%, 24.2%)'
+  danger-100: 'hsl(35, 100%, 90.2%)'
+  danger-700: 'hsl(35, 100%, 24.2%)'
+  white: 'hsl(0, 0%, 100%)'
+  grey-100: 'hsl(206.7, 52.9%, 96.7%)'
+  grey-200: 'hsl(206.7, 52.9%, 92.7%)'
+  grey-400: 'hsl(206.7, 11.7%, 85.1%)'
+  dark-300: 'hsl(60, 1.7%, 35.1%)'
+  dark-400: 'hsl(60, 1.9%, 30.4%)'
+  dark-600: 'hsl(60, 2.9%, 20.6%)'
+  dark-800: 'hsl(60, 8%, 9.8%)'
+  text-color: '{colors.dark-400}'
+  heading-color: '{colors.dark-600}'
+  text-strong: '{colors.dark-600}'
+  text-meta: '{colors.dark-300}'
+  surface: '{colors.white}'
+  border-subtle: '{colors.grey-200}'
+  link-wash: '{colors.primary-50}'
+  link-underline: '{colors.primary}'
+  code-background: 'hsl(206.7, 52.9%, 98.3%)'
+  code-text: 'hsl(240, 27%, 38%)'
+  code-comment: 'hsl(60, 2%, 32%)'
+  code-keyword: 'hsl(0, 65%, 39%)'
+  code-function: 'hsl(240, 60%, 52%)'
+  code-expression-background: 'hsl(50.3, 20%, 95.4%)'
 typography:
   hero-name:
     fontFamily: Inter
@@ -113,12 +102,25 @@ rounded:
   sm: 4px
   md: 8px
 spacing:
-  xs: 4px
-  sm: 8px
-  md: 16px
-  lg: 32px
-  xl: 48px
-  xxl: 64px
+  xs: 0.25rem
+  sm: 0.5rem
+  md: 1rem
+  lg: 2rem
+  xl: 3rem
+  2xl: 4rem
+  3xl: 5rem
+  4xl: 6rem
+  5xl: 8rem
+fontSize:
+  xs: 0.75rem
+  sm: 0.875rem
+  md: 1rem
+  lg: 1.125rem
+  xl: 1.25rem
+  2xl: 1.5rem
+  3xl: 1.75rem
+  4xl: 2rem
+  5xl: 2.25rem
 breakpoints:
   xxsmall: 520px
   xsmall: 768px
@@ -127,99 +129,97 @@ breakpoints:
   large: 1366px
   xlarge: 1536px
   xxlarge: 1920px
-elevation:
-  light: "0 1px 1px hsla(206.7, 11.7%, 0%, 0.2)"
-  base: "0 1px 3px hsla(206.7, 11.7%, 15.1%, 0.2)"
+elevation: none
 components:
   page-container:
-    backgroundColor: "{colors.neutral}"
-    textColor: "{colors.text}"
-    typography: "{typography.body-md}"
+    backgroundColor: '{colors.surface}'
+    textColor: '{colors.text}'
+    typography: '{typography.body-md}'
     width: 80rem
     padding: 16px
   heading-1:
-    textColor: "{colors.heading}"
-    typography: "{typography.h1}"
+    textColor: '{colors.heading}'
+    typography: '{typography.h1}'
   heading-2:
-    textColor: "{colors.heading}"
-    typography: "{typography.h2}"
+    textColor: '{colors.heading}'
+    typography: '{typography.h2}'
   article-title:
-    textColor: "{colors.heading}"
-    typography: "{typography.article-title}"
+    textColor: '{colors.heading}'
+    typography: '{typography.article-title}'
   article-card:
-    backgroundColor: "{colors.neutral}"
-    textColor: "{colors.text}"
-    typography: "{typography.body-sm}"
-    rounded: "{rounded.md}"
+    backgroundColor: '{colors.surface}'
+    textColor: '{colors.text}'
+    typography: '{typography.body-sm}'
+    rounded: '{rounded.md}'
     width: 37rem
   article-card-meta:
-    textColor: "{colors.dark-300}"
-    typography: "{typography.meta}"
+    textColor: '{colors.dark-300}'
+    typography: '{typography.meta}'
   article-card-title:
-    textColor: "{colors.heading}"
-    typography: "{typography.body-lg}"
+    textColor: '{colors.heading}'
+    typography: '{typography.body-lg}'
   inline-link:
-    backgroundColor: "{colors.primary-50}"
-    textColor: "{colors.text}"
-    typography: "{typography.body-md}"
+    backgroundColor: '{colors.primary-50}'
+    textColor: '{colors.text}'
+    typography: '{typography.body-md}'
   inline-link-underline:
-    backgroundColor: "{colors.primary}"
+    backgroundColor: '{colors.primary}'
     height: 2px
   badge-primary:
-    backgroundColor: "{colors.primary-100}"
-    textColor: "{colors.primary-800}"
-    typography: "{typography.badge}"
-    rounded: "{rounded.sm}"
+    backgroundColor: '{colors.primary-100}'
+    textColor: '{colors.primary-800}'
+    typography: '{typography.badge}'
+    rounded: '{rounded.sm}'
     padding: 4px
   badge-secondary:
-    backgroundColor: "{colors.secondary-100}"
-    textColor: "{colors.secondary-900}"
-    typography: "{typography.badge}"
-    rounded: "{rounded.sm}"
+    backgroundColor: '{colors.secondary-100}'
+    textColor: '{colors.secondary-900}'
+    typography: '{typography.badge}'
+    rounded: '{rounded.sm}'
     padding: 4px
   alert-info:
-    backgroundColor: "{colors.info-100}"
-    textColor: "{colors.info-700}"
-    typography: "{typography.body-md}"
-    rounded: "{rounded.sm}"
+    backgroundColor: '{colors.info-100}'
+    textColor: '{colors.info-700}'
+    typography: '{typography.body-md}'
+    rounded: '{rounded.sm}'
     padding: 16px
   alert-danger:
-    backgroundColor: "{colors.danger-100}"
-    textColor: "{colors.danger-700}"
-    typography: "{typography.body-md}"
-    rounded: "{rounded.sm}"
+    backgroundColor: '{colors.danger-100}'
+    textColor: '{colors.danger-700}'
+    typography: '{typography.body-md}'
+    rounded: '{rounded.sm}'
     padding: 16px
   code-block:
-    backgroundColor: "{colors.code-background}"
-    textColor: "{colors.code-text}"
-    typography: "{typography.code}"
-    rounded: "{rounded.sm}"
+    backgroundColor: '{colors.code-background}'
+    textColor: '{colors.code-text}'
+    typography: '{typography.code}'
+    rounded: '{rounded.sm}'
     padding: 16px
   code-inline:
-    backgroundColor: "{colors.code-expression-background}"
-    textColor: "{colors.text}"
-    rounded: "{rounded.xs}"
+    backgroundColor: '{colors.code-expression-background}'
+    textColor: '{colors.text}'
+    rounded: '{rounded.xs}'
     padding: 4px
   nav-item:
-    textColor: "{colors.text}"
-    typography: "{typography.body-md}"
+    textColor: '{colors.text}'
+    typography: '{typography.body-md}'
     padding: 8px
   theme-toggler:
-    textColor: "{colors.text}"
-    typography: "{typography.body-md}"
+    textColor: '{colors.text}'
+    typography: '{typography.body-md}'
   footer:
-    textColor: "{colors.text}"
-    typography: "{typography.body-md}"
+    textColor: '{colors.text}'
+    typography: '{typography.body-md}'
     padding: 32px
   footer-border:
-    backgroundColor: "{colors.grey-200}"
+    backgroundColor: '{colors.grey-200}'
     height: 1px
   hero-name:
-    textColor: "{colors.heading}"
-    typography: "{typography.hero-name}"
+    textColor: '{colors.heading}'
+    typography: '{typography.hero-name}'
   hero-description:
-    textColor: "{colors.text}"
-    typography: "{typography.body-lg}"
+    textColor: '{colors.text}'
+    typography: '{typography.body-lg}'
 ---
 
 ## Overview
@@ -258,16 +258,34 @@ The palette is a warm-dark neutral ramp, a cool-light grey ramp, and one accent.
 - **Text `hsl(60, 1.9%, 30.4%)` and Heading `hsl(60, 2.9%, 20.6%)`:** Body text
   never goes to pure black. The heading is one step darker than body, which is
   the entire hierarchy signal at the color level — the rest is size and weight.
-- **Neutral `hsl(0, 0%, 100%)`:** Pure white page background in light theme.
-  The dark theme replaces it with `dark-800`.
+- **Surface `hsl(0, 0%, 100%)`:** Pure white page background in light theme.
+  The dark theme replaces it with `dark-800`. Reference `surface`, not `white`.
 
 ### Semantic vs. palette tokens
 
-`text`, `heading`, and the `code-*` tokens are **semantic** — they are the only
-color tokens whose value changes between themes. Everything else in the palette
-is fixed. When building UI, reach for the semantic token; only drop to a raw
-ramp step (`dark-300`, `grey-200`) when there is no semantic equivalent, as the
-article metadata line does.
+The semantic tier is the only tier component CSS may reference. Each of these
+remaps between themes, so a component that uses them needs no `[data-theme]`
+block of its own:
+
+| Token                          | Light                    | Dark                     | Use                             |
+| :----------------------------- | :----------------------- | :----------------------- | :------------------------------ |
+| `text-color`                   | `dark-400`               | `grey-400`               | body copy                       |
+| `heading-color`                | `dark-600`               | `grey-100`               | headings                        |
+| `text-strong`                  | `dark-600`               | `grey-100`               | hero name, nav and footer icons |
+| `text-meta`                    | `dark-300`               | `grey-200`               | article and dev-bite date lines |
+| `surface`                      | `white`                  | `dark-800`               | page and hero background        |
+| `border-subtle`                | `grey-200`               | `dark-400`               | footer hairline, table rules    |
+| `link-wash` / `link-underline` | `primary-50` / `primary` | inverted with the family | inline link treatment           |
+| `code-*`                       | see table below          |                          | code blocks                     |
+
+Reaching past this tier to a raw ramp step (`dark-300`, `grey-200`) in component
+CSS is a **bug, not a fallback** — it is what forced seven components to
+hand-patch their own dark theme. If no semantic token fits, add one here rather
+than referencing the ramp.
+
+The one sanctioned exception is the tinted `-100`/`-800` component pairs
+described below, which are palette references by design because they invert as a
+family.
 
 ### Dark theme
 
@@ -275,15 +293,15 @@ The site ships a `[data-theme]` attribute switch with a user-facing toggler. The
 token values in the front matter are the **light theme**; dark theme remaps a
 small set:
 
-| Token | Light | Dark |
-|:------|:------|:-----|
-| page background | `neutral` (white) | `dark-800` |
-| `text` | `dark-400` | `grey-400` |
-| `heading` | `dark-600` | `grey-100` |
-| `code-background` | `grey-50` | `hsl(206.7, 11.7%, 20.6%)` |
-| `code-text` | `hsl(240, 27%, 38%)` | `hsl(353, 100%, 85%)` |
-| `code-keyword` | dark red | mint `hsl(147, 61%, 69%)` |
-| `code-function` | indigo | `primary` |
+| Token             | Light                | Dark                       |
+| :---------------- | :------------------- | :------------------------- |
+| `surface`         | `white`              | `dark-800`                 |
+| `text-color`      | `dark-400`           | `grey-400`                 |
+| `heading-color`   | `dark-600`           | `grey-100`                 |
+| `code-background` | light grey           | `hsl(206.7, 11.7%, 20.6%)` |
+| `code-text`       | `hsl(240, 27%, 38%)` | `hsl(353, 100%, 85%)`      |
+| `code-keyword`    | dark red             | mint `hsl(147, 61%, 69%)`  |
+| `code-function`   | indigo               | `primary`                  |
 
 The tinted families invert rather than shift: in dark theme `primary-50`
 becomes near-black and `primary-800` becomes near-white, so `badge-primary`
@@ -306,14 +324,28 @@ frequent and a second font download is not worth it.
 Weight does most of the work that a second family would do elsewhere:
 
 - **300 (light)** — hero name and hero description. Only the marketing surface.
-- **400 (regular)** — all body copy and all headings. Headings are *not* bold;
+- **400 (regular)** — all body copy and all headings. Headings are _not_ bold;
   they separate by size and by the darker `heading` color.
 - **500/600** — badges and "read more" affordances. The only emphatic weights in
   the content area.
 - **700** — a single highlighted span inside the hero name. Nothing else.
 
-The scale is deliberately compressed: `0.75 → 0.875 → 1 → 1.25 → 1.5 → 1.75 →
-2rem`. Article titles reach `2.25rem` at ≥520px and carry `-0.025em` tracking —
+The scale is deliberately compressed, and every `font-size` in the codebase
+references one of its steps — there are no literal values left:
+
+| Token           | Value      |
+| :-------------- | :--------- |
+| `font-size-xs`  | `0.75rem`  |
+| `font-size-sm`  | `0.875rem` |
+| `font-size-md`  | `1rem`     |
+| `font-size-lg`  | `1.125rem` |
+| `font-size-xl`  | `1.25rem`  |
+| `font-size-2xl` | `1.5rem`   |
+| `font-size-3xl` | `1.75rem`  |
+| `font-size-4xl` | `2rem`     |
+| `font-size-5xl` | `2.25rem`  |
+
+Article titles reach `font-size-5xl` at ≥520px and carry `-0.025em` tracking —
 the only place negative letter-spacing appears, because it is the only type
 large enough to need it.
 
@@ -331,11 +363,25 @@ prose.
 The page is a flex column with `min-height: 100vh` and the footer pushed down by
 `margin-top: auto`, so short pages still anchor the footer at the bottom.
 
-Breakpoints are defined but used inconsistently across the codebase — most
-component queries hardcode `520px`, `768px`, `1024px`, `1366px` rather than
-referencing the custom properties (CSS custom properties don't work inside media
-queries, which is why). Treat the breakpoint tokens as documentation of intent;
-write the literal value in the query.
+Breakpoints are **not** custom properties — CSS custom properties don't resolve
+inside a media query, so a `--bp-*` token there silently never matches. The
+tokens were removed for that reason. The breakpoint values in the front matter
+are documentation of intent; write the literal value in the query. The codebase
+uses `520px`, `768px`, `1024px` and `1366px`.
+
+Spacing is tokenized on the scale below, and every `padding`, `margin` and `gap`
+references a step — as with type, no literal `rem` values remain:
+
+| Token      | Value     |     | Token       | Value  |
+| :--------- | :-------- | --- | :---------- | :----- |
+| `space-xs` | `0.25rem` |     | `space-xl`  | `3rem` |
+| `space-sm` | `0.5rem`  |     | `space-2xl` | `4rem` |
+| `space-md` | `1rem`    |     | `space-3xl` | `5rem` |
+| `space-lg` | `2rem`    |     | `space-4xl` | `6rem` |
+|            |           |     | `space-5xl` | `8rem` |
+
+The steps above `space-lg` are page-level layout — section rhythm and list
+gutters — not component padding. Use `xs`–`lg` inside a component.
 
 Vertical rhythm is `rem`-based and local to each component. Headings claim
 `3rem` of top margin at h2/h3 and `1em` bottom — generous gaps between sections
@@ -359,19 +405,19 @@ instead.
 
 Radii are small to the point of being nearly square:
 
-- `2px` (`--default-radius`) — inline code spans.
+- `2px` — inline code spans.
 - `4px` — badges, alerts, code blocks.
 - `8px` — article card wrappers, the largest radius in the system.
 
-Nothing is pill-shaped. Nothing is a circle. Buttons carry padding tokens
-(`--button-padding-xxs` through `-lg`) but no standardized radius, because the
-site has almost no buttons — the theme toggler is a bare transparent element
-with no border at all.
+Radii are written literally; there is no radius token, and there are no button
+padding tokens either. Nothing is pill-shaped, nothing is a circle, and the site
+has almost no buttons — the theme toggler is a bare transparent element with no
+border at all.
 
 ## Components
 
 **Inline link** is the most characteristic component and worth stating precisely:
-no `text-decoration`, `color: text` (it does *not* recolor), a `primary-50`
+no `text-decoration`, `color: text` (it does _not_ recolor), a `primary-50`
 background wash implemented as a large inset box-shadow, and a `2px solid
 primary` bottom border. This gives a highlighter-pen effect that survives both
 themes. Reproduce it exactly; do not substitute a conventional underlined blue

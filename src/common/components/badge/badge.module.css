@@ -1,18 +1,18 @@
 .badge {
-  padding: 0.25rem 0.5rem;
+  padding: var(--space-xs) var(--space-sm);
   color: var(--text-color);
-  font-size: 0.75rem;
+  font-size: var(--font-size-xs);
   font-weight: 500;
   line-height: 1;
   border-radius: 0.25rem;
 }
 
 .badgePrimary {
-  background-color: var(--primary-color-100);
-  color: var(--primary-color-800);
+  background-color: var(--primary-100);
+  color: var(--primary-800);
 }
 
 .badgeSecondary {
-  background-color: var(--secondary-color-100);
-  color: var(--secondary-color-900);
+  background-color: var(--secondary-100);
+  color: var(--secondary-900);
 }

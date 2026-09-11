@@ -1,13 +1,13 @@
 .siteNav {
   display: flex;
   flex-direction: column;
-  margin: 1.5rem 0;
+  margin: var(--space-md) 0;
   padding: 0;
   align-items: center;
   width: auto;
   justify-content: space-between;
   position: relative;
-  gap: 0.75rem;
+  gap: var(--space-sm);
 
   @media screen and (min-width: 520px) {
     justify-content: space-between;
@@ -22,7 +22,7 @@
   display: flex;
   justify-content: space-between;
   flex-basis: 25%;
-  font-size: 1rem;
+  font-size: var(--font-size-md);
 }
 
 .menuList {

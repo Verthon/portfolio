@@ -1,6 +1,5 @@
 .devBiteItemWrapper {
   border-radius: 0.5rem;
-  transition: all 0.3s ease 0s;
   max-width: 37rem;
 }
 
@@ -13,38 +12,34 @@
 .devBiteMeta {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-bottom: 0.5rem;
+  gap: var(--space-md);
+  margin-bottom: var(--space-sm);
 }
 
 .devBiteDate {
-  font-size: 0.75rem;
+  font-size: var(--font-size-xs);
   line-height: 1rem;
-  color: var(--dark-color-300);
-}
-
-[data-theme='dark'] .devBiteDate {
-  color: var(--grey-color-200);
+  color: var(--text-meta);
 }
 
 .devBiteItemTitle {
   display: flex;
   align-items: baseline;
-  gap: 0.875rem;
-  font-size: 1.125rem;
+  gap: var(--space-md);
+  font-size: var(--font-size-lg);
   line-height: 1.5;
   color: var(--heading-color);
 }
 
 .devBiteItemExcerpt {
-  margin-top: 1rem;
+  margin-top: var(--space-md);
   line-height: 1.5rem;
-  font-size: 0.875rem;
+  font-size: var(--font-size-sm);
 }
 
 .devBiteItemReadMore {
   display: inline-block;
-  margin-top: 0.5rem;
-  font-size: 0.875rem;
+  margin-top: var(--space-sm);
+  font-size: var(--font-size-sm);
   font-weight: 600;
 }
