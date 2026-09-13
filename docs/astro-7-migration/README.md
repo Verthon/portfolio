@@ -16,12 +16,13 @@ Concretely, this means the migration must preserve, byte-for-byte if possible:
 
 ## Documents
 
-| Doc | Contents |
-| --- | --- |
-| [01-architecture-assessment.md](./01-architecture-assessment.md) | Current architecture: what works, what's over-built, what Qwik costs us |
-| [02-migration-plan.md](./02-migration-plan.md) | Step-by-step Qwik City → Astro 7 plan, phased, with rollback |
-| [03-styling-refresh.md](./03-styling-refresh.md) | Styling change: options compared, recommended token/theme modernization |
-| [04-ai-friendliness-and-agents.md](./04-ai-friendliness-and-agents.md) | AI-readiness audit of the repo, agent/skill inventory needed before, during and after migration |
+| Doc                                                                    | Contents                                                                                                 |
+| ---------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| [01-architecture-assessment.md](./01-architecture-assessment.md)       | Current architecture: what works, what's over-built, what Qwik costs us                                  |
+| [02-migration-plan.md](./02-migration-plan.md)                         | Step-by-step Qwik City → Astro 7 plan, phased, with rollback                                             |
+| [03-styling-refresh.md](./03-styling-refresh.md)                       | Styling change: options compared, recommended token/theme modernization                                  |
+| [04-ai-friendliness-and-agents.md](./04-ai-friendliness-and-agents.md) | AI-readiness audit of the repo, agent/skill inventory needed before, during and after migration          |
+| [05-alternatives-considered.md](./05-alternatives-considered.md)       | Frameworks evaluated and rejected (TanStack Start, staying on Qwik), and Astro 7 confirmed in production |
 
 ## Why Astro 7 is a good fit (summary)
 
@@ -32,7 +33,7 @@ Concretely, this means the migration must preserve, byte-for-byte if possible:
 
 ## Key Astro 7 gotchas relevant to this repo
 
-1. **Markdown pipeline change**: Astro 7 defaults to *Sätteri*, a Rust markdown processor, replacing remark/rehype. **MDX files are not affected the same way** — `@astrojs/mdx` keeps its own processor and supports remark/rehype plugins — but any config we copy from Astro 5/6 tutorials may assume the unified pipeline. Verify syntax-highlighting config against v7 docs.
+1. **Markdown pipeline change**: Astro 7 defaults to _Sätteri_, a Rust markdown processor, replacing remark/rehype. **MDX files are not affected the same way** — `@astrojs/mdx` keeps its own processor and supports remark/rehype plugins — but any config we copy from Astro 5/6 tutorials may assume the unified pipeline. Verify syntax-highlighting config against v7 docs.
 2. **Stricter Rust compiler**: unclosed tags in `.astro` files are errors, invalid HTML is no longer auto-corrected. Only affects new `.astro` files we write, not MDX.
 3. **JSX-style whitespace compression**: spaces between adjacent inline elements can be dropped; check rendered prose around inline `<code>`/links.
 4. **`src/fetch.ts` is reserved** for advanced routing — don't name anything that.

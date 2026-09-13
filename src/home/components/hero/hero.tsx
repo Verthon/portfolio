@@ -19,7 +19,8 @@ export default component$(() => {
           Frontend engineer building internal tooling for dev teams
         </p>
         <p class={heroDescription}>
-           Writing about frontend architecture, developer experience, and making technical decisions, that actually serve the business.
+          Writing about frontend architecture, developer experience, and making
+          technical decisions, that actually serve the business.
         </p>
       </header>
     </div>

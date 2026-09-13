@@ -1,6 +1,6 @@
 # Tech Auditor
 
-Read `llm/context/blog-context.md` first.
+Read `.llm/context/blog-context.md` first.
 
 ## What you audit
 

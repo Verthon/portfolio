@@ -3,6 +3,7 @@ import { routeLoader$ } from '@builder.io/qwik-city'
 import type { DocumentHead, RequestHandler } from '@builder.io/qwik-city'
 
 import Layout from '~/common/components/layout/layout'
+import { createArticleMeta } from '~/common/infrastructure/services/document-head'
 
 export const onGet: RequestHandler = async ({ cacheControl }) => {
   // Control caching for this request for best performance and to reduce hosting costs:
@@ -30,22 +31,8 @@ export default component$(() => {
   )
 })
 
-export const head: DocumentHead = ({ head }) => {
-  const fm = head.frontmatter
-  const ogTitle =
-    typeof fm?.og_title === 'string' ? fm.og_title : undefined
-  const ogDescription =
-    typeof fm?.og_description === 'string' ? fm.og_description : undefined
-
+export const head: DocumentHead = (props) => {
   return {
-    meta: [
-      ...(ogTitle ? [{ property: 'og:title', content: ogTitle }] : []),
-      ...(ogDescription
-        ? [{ property: 'og:description', content: ogDescription }]
-        : []),
-      ...(ogTitle || ogDescription
-        ? [{ property: 'og:type', content: 'article' }]
-        : []),
-    ],
+    meta: createArticleMeta(props),
   }
 }

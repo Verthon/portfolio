@@ -33,7 +33,9 @@ export default component$(({ tag, id, linkLabel }: HeadingProps) => {
       {id && (
         <Link class={headingLink} href={`#${id}`}>
           <LinkIcon />
-          <VisuallyHidden><span>{linkLabel}</span></VisuallyHidden>
+          <VisuallyHidden>
+            <span>{linkLabel}</span>
+          </VisuallyHidden>
         </Link>
       )}
     </Tag>

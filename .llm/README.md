@@ -7,11 +7,11 @@ LLM-agnostic agent definitions for sordyl.dev blog.
 ```
 llm/
 ├── agents/
-│   ├── seo-auditor.md        # SEO audit: frontmatter, schema, linking, extractability
 │   ├── content-reviewer.md   # Content structure: consistency, MDX patterns, broken refs
 │   └── tech-auditor.md       # Infra: RouterHead, sitemap, RSS, a11y, perf
 ├── context/
-│   └── blog-context.md       # Brand voice, niche, content types, anti-slop rules
+│   ├── blog-context.md       # Brand voice, niche, content types, anti-slop rules
+│   └── seo-context.md        # Qwik/MDX SEO specifics for the /seo skill
 └── README.md
 ```
 
@@ -20,17 +20,17 @@ llm/
 ### Claude Code
 
 ```bash
-# Full SEO audit
-claude "Read llm/agents/seo-auditor.md and run the audit"
+# Full SEO audit (skill, not an agent)
+claude "/seo audit all content, read .llm/context/seo-context.md first"
 
 # Review a specific post
-claude "Read llm/agents/content-reviewer.md and review src/routes/blog/design-system-pitfalls/index.mdx"
+claude "Read .llm/agents/content-reviewer.md and review src/routes/blog/design-system-pitfalls/index.mdx"
 
 # Review all content
-claude "Read llm/agents/content-reviewer.md and review all posts"
+claude "Read .llm/agents/content-reviewer.md and review all posts"
 
 # Tech infrastructure audit
-claude "Read llm/agents/tech-auditor.md and run the audit"
+claude "Read .llm/agents/tech-auditor.md and run the audit"
 ```
 
 ### Other LLM CLIs

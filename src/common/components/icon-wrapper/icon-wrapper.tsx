@@ -5,7 +5,7 @@ import type { Icon } from '~/common/infrastructure/models/icon'
 
 type IconProps = Icon & {
   svgPath: string
-  role?: string;
+  role?: string
 }
 
 export default component$(
