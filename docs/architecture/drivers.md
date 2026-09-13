@@ -33,8 +33,7 @@ Ordered. Higher wins a conflict.
 3. **Published URLs don't break.** The one irreversible output: once a URL is
    indexed, a 404 or a bad canonical isn't fixed by redeploying. Slugs are
    permanent, and the discovery surface — sitemap, RSS, canonicals — should be
-   generated from the content, never hand-maintained. Neither a sitemap nor a
-   feed exists yet.
+   generated from the content, never hand-maintained. No feed exists yet.
 4. **The idea-to-published loop stays cheap.** Idea, research, go/no-go,
    skeleton, ping-pong on the draft, language and SEO help, publish. Every stage
    is a conversation I can pick up and drop, not a batch job that returns a
