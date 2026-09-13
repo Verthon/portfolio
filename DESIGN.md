@@ -111,44 +111,25 @@ spacing:
   3xl: 5rem
   4xl: 6rem
   5xl: 8rem
-fontSize:
-  xs: 0.75rem
-  sm: 0.875rem
-  md: 1rem
-  lg: 1.125rem
-  xl: 1.25rem
-  2xl: 1.5rem
-  3xl: 1.75rem
-  4xl: 2rem
-  5xl: 2.25rem
-breakpoints:
-  xxsmall: 520px
-  xsmall: 768px
-  small: 1024px
-  medium: 1280px
-  large: 1366px
-  xlarge: 1536px
-  xxlarge: 1920px
-elevation: none
 components:
   page-container:
     backgroundColor: '{colors.surface}'
-    textColor: '{colors.text}'
+    textColor: '{colors.text-color}'
     typography: '{typography.body-md}'
     width: 80rem
     padding: 16px
   heading-1:
-    textColor: '{colors.heading}'
+    textColor: '{colors.heading-color}'
     typography: '{typography.h1}'
   heading-2:
-    textColor: '{colors.heading}'
+    textColor: '{colors.heading-color}'
     typography: '{typography.h2}'
   article-title:
-    textColor: '{colors.heading}'
+    textColor: '{colors.heading-color}'
     typography: '{typography.article-title}'
   article-card:
     backgroundColor: '{colors.surface}'
-    textColor: '{colors.text}'
+    textColor: '{colors.text-color}'
     typography: '{typography.body-sm}'
     rounded: '{rounded.md}'
     width: 37rem
@@ -156,11 +137,11 @@ components:
     textColor: '{colors.dark-300}'
     typography: '{typography.meta}'
   article-card-title:
-    textColor: '{colors.heading}'
+    textColor: '{colors.heading-color}'
     typography: '{typography.body-lg}'
   inline-link:
     backgroundColor: '{colors.primary-50}'
-    textColor: '{colors.text}'
+    textColor: '{colors.text-color}'
     typography: '{typography.body-md}'
   inline-link-underline:
     backgroundColor: '{colors.primary}'
@@ -197,28 +178,28 @@ components:
     padding: 16px
   code-inline:
     backgroundColor: '{colors.code-expression-background}'
-    textColor: '{colors.text}'
+    textColor: '{colors.text-color}'
     rounded: '{rounded.xs}'
     padding: 4px
   nav-item:
-    textColor: '{colors.text}'
+    textColor: '{colors.text-color}'
     typography: '{typography.body-md}'
     padding: 8px
   theme-toggler:
-    textColor: '{colors.text}'
+    textColor: '{colors.text-color}'
     typography: '{typography.body-md}'
   footer:
-    textColor: '{colors.text}'
+    textColor: '{colors.text-color}'
     typography: '{typography.body-md}'
     padding: 32px
   footer-border:
     backgroundColor: '{colors.grey-200}'
     height: 1px
   hero-name:
-    textColor: '{colors.heading}'
+    textColor: '{colors.heading-color}'
     typography: '{typography.hero-name}'
   hero-description:
-    textColor: '{colors.text}'
+    textColor: '{colors.text-color}'
     typography: '{typography.body-lg}'
 ---
 
@@ -330,20 +311,9 @@ Weight does most of the work that a second family would do elsewhere:
   the content area.
 - **700** — a single highlighted span inside the hero name. Nothing else.
 
-The scale is deliberately compressed, and every `font-size` in the codebase
-references one of its steps — there are no literal values left:
-
-| Token           | Value      |
-| :-------------- | :--------- |
-| `font-size-xs`  | `0.75rem`  |
-| `font-size-sm`  | `0.875rem` |
-| `font-size-md`  | `1rem`     |
-| `font-size-lg`  | `1.125rem` |
-| `font-size-xl`  | `1.25rem`  |
-| `font-size-2xl` | `1.5rem`   |
-| `font-size-3xl` | `1.75rem`  |
-| `font-size-4xl` | `2rem`     |
-| `font-size-5xl` | `2.25rem`  |
+The `--font-size-*` scale (`xs`–`5xl`, values in `src/global.css`) is
+deliberately compressed, and every `font-size` in the codebase references one of
+its steps — there are no literal values left.
 
 Article titles reach `font-size-5xl` at ≥520px and carry `-0.025em` tracking —
 the only place negative letter-spacing appears, because it is the only type
@@ -365,20 +335,13 @@ The page is a flex column with `min-height: 100vh` and the footer pushed down by
 
 Breakpoints are **not** custom properties — CSS custom properties don't resolve
 inside a media query, so a `--bp-*` token there silently never matches. The
-tokens were removed for that reason. The breakpoint values in the front matter
-are documentation of intent; write the literal value in the query. The codebase
-uses `520px`, `768px`, `1024px` and `1366px`.
+tokens were removed for that reason, and the DESIGN.md schema has no breakpoint
+group either. Write the literal value in the query. The codebase uses `520px`,
+`768px`, `1024px` and `1366px`.
 
-Spacing is tokenized on the scale below, and every `padding`, `margin` and `gap`
-references a step — as with type, no literal `rem` values remain:
-
-| Token      | Value     |     | Token       | Value  |
-| :--------- | :-------- | --- | :---------- | :----- |
-| `space-xs` | `0.25rem` |     | `space-xl`  | `3rem` |
-| `space-sm` | `0.5rem`  |     | `space-2xl` | `4rem` |
-| `space-md` | `1rem`    |     | `space-3xl` | `5rem` |
-| `space-lg` | `2rem`    |     | `space-4xl` | `6rem` |
-|            |           |     | `space-5xl` | `8rem` |
+Spacing is tokenized on the `--space-*` scale (`xs`–`5xl`, values in
+`src/global.css`), and every `padding`, `margin` and `gap` references a step — as
+with type, no literal `rem` values remain.
 
 The steps above `space-lg` are page-level layout — section rhythm and list
 gutters — not component padding. Use `xs`–`lg` inside a component.

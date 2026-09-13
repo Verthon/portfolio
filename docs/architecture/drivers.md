@@ -1,7 +1,7 @@
 # Architectural drivers - sordyl.dev
 
 Why this repo has the shape it has. Not a spec - just the things I'd otherwise
-forget and re-litigate.
+forget and re-litigate. Where it actually stands today: `state.md`.
 
 Last reviewed: 2026-09-11.
 
@@ -28,12 +28,11 @@ Ordered. Higher wins a conflict.
    focus visibility and screen-reader sanity are still on me.
 2. **Core Web Vitals stay high, and I have the numbers.** Not a feeling about
    framework defaults — measured, on a real page, by something an agent or I can
-   run on demand. This feeds SEO, so it's not vanity. No such automation exists
-   yet.
+   run on demand. This feeds SEO, so it's not vanity.
 3. **Published URLs don't break.** The one irreversible output: once a URL is
    indexed, a 404 or a bad canonical isn't fixed by redeploying. Slugs are
    permanent, and the discovery surface — sitemap, RSS, canonicals — should be
-   generated from the content, never hand-maintained. No feed exists yet.
+   generated from the content, never hand-maintained.
 4. **The idea-to-published loop stays cheap.** Idea, research, go/no-go,
    skeleton, ping-pong on the draft, language and SEO help, publish. Every stage
    is a conversation I can pick up and drop, not a batch job that returns a
@@ -42,7 +41,7 @@ Ordered. Higher wins a conflict.
    thing that makes them cheap for an LLM: a process doc is the bare minimum an
    agent needs to do the task, not an exhaustive description of it. Models
    generate 500-line markdown by default and it becomes chaos for me and context
-   bloat for them — `DESIGN.md` and `HANDOFF.md` are the warning. I guard this.
+   bloat for them. I've let this slip before, so I guard it.
 
 Not drivers: availability and scaling (the host's problem), runtime security (no
 auth, no input, no DB).

@@ -1,7 +1,7 @@
 # SEO context — sordyl.dev
 
-Repo-specific facts the generic `seo` skill can't know. Read alongside
-`blog-context.md` when running an SEO pass.
+Repo-specific facts the generic `seo` skill can't know. Read `CONTEXT.md`
+alongside it when running an SEO pass.
 
 ## Where content lives
 

@@ -30,3 +30,35 @@ export const createArticleMeta = (
       : []),
   ]
 }
+
+export const createArticleJsonLd = ({ head, url }: DocumentHeadProps) => {
+  const fm = head.frontmatter
+  const title = readString(fm.title) ?? head.title
+  const published = readString(fm.date)
+
+  if (!title || !published) return []
+
+  const person = {
+    '@type': 'Person',
+    '@id': 'https://sordyl.dev/#person',
+    name: 'Krzysztof Sordyl',
+  }
+
+  return [
+    {
+      key: 'article-jsonld',
+      props: { type: 'application/ld+json' },
+      script: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: title,
+        url: url.href,
+        mainEntityOfPage: { '@type': 'WebPage', '@id': url.href },
+        datePublished: published,
+        dateModified: readString(fm.last_updated) ?? published,
+        author: person,
+        publisher: person,
+      }),
+    },
+  ]
+}

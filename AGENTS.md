@@ -2,8 +2,10 @@ Personal blog.
 
 Read first
 @CONTEXT.md — what this repo is, and what blog post / dev bite / observatory mean
-@CONVENTIONS.md — code, MDX, and commit conventions
+@CONVENTIONS.md — code, styling, testing, and commit conventions
+@CONTENT.md — frontmatter, MDX structure, and writing rules
 @docs/architecture/drivers.md — why the system has this shape; read before proposing a structural change
+`docs/architecture/state.md` — where it actually stands against those drivers
 `docs/architecture/decisions/` — the ADR log. Decisions are immutable; supersede, never edit.
 
 Content lives in `src/routes/{blog,dev-bites,observatory}/<slug>/index.mdx`. Section logic lives in the matching `src/<section>/` module.
