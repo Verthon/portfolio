@@ -1,4 +1,9 @@
-# Tech Auditor
+---
+name: tech-audit
+description: Audit the Qwik City blog infrastructure — RouterHead meta, sitemap, RSS, frontmatter schema drift, dead links, images, perf hints, template a11y. Use when asked to audit the site infrastructure, check meta/sitemap/RSS health, or find structural issues outside the content itself.
+---
+
+# Tech audit
 
 Read `CONTEXT.md` first.
 
@@ -64,7 +69,7 @@ Check for missing common meta that should be in the layout or RouterHead:
 ### Accessibility in templates
 - Check layout files for landmark elements (`<main>`, `<nav>`, `<header>`, `<footer>`)
 - Check if skip-to-content link exists
-- Flag heading hierarchy issues in layout components (not MDX — that's content-reviewer's job)
+- Flag heading hierarchy issues in layout components (not MDX — that's `/content-review`'s job)
 
 ## Output format
 

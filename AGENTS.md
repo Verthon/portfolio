@@ -10,9 +10,9 @@ Read first
 
 Content lives in `src/routes/{blog,dev-bites,observatory}/<slug>/index.mdx`. Section logic lives in the matching `src/<section>/` module.
 
-Agents are defined in `.llm/agents/`, their context in `.llm/context/`. Run one by reading its file and following it: `content-reviewer.md`, `tech-auditor.md`.
+Everything an agent runs is a skill: `/content-review`, `/seo`, `/tech-audit`. They live in `.agents/skills/` (tool-agnostic) and are symlinked into `.claude/skills/`.
 
-SEO is a skill, not an agent: `/seo`. It lives in `.agents/skills/seo/` (tool-agnostic) and is symlinked to `.claude/skills/seo`. Vendored verbatim from addyosmani/web-quality-skills — see its `UPSTREAM.md` before changing it. Repo-specific rules go in `.llm/context/seo-context.md`, not in the skill.
+`/seo` is vendored verbatim from addyosmani/web-quality-skills — read its `UPSTREAM.md` before changing it. Repo-specific SEO rules go in `.agents/skills/seo/repo-context.md`, never in `SKILL.md`.
 
 Rules
 Never rewrite content without explicit approval — propose a diff, do not apply it silently.

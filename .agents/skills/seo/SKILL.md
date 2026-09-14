@@ -412,7 +412,7 @@ body {
 
 ## Repo-specific context (sordyl.dev)
 
-Before applying anything above, read `.llm/context/seo-context.md`. It holds the
+Before applying anything above, read `.agents/skills/seo/repo-context.md`. It holds the
 Qwik City `DocumentHead`, MDX frontmatter and JSON-LD facts this skill cannot
 know. Repo-specific rules go in that file, never here — this skill body is kept
 byte-identical to upstream so it stays diffable. See `UPSTREAM.md`.

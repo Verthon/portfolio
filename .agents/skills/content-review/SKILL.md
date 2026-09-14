@@ -14,7 +14,7 @@ Read `CONTEXT.md` (niche, voice, content types) and `CONTENT.md` (writing rules)
 | Concern | Owner |
 |---|---|
 | Frontmatter fields, lengths, date format | `CONTENT.md` |
-| JSON-LD, `og:*`, title/description keywords, generic heading names | `/seo` + `.llm/context/seo-context.md` |
+| JSON-LD, `og:*`, title/description keywords, generic heading names | `/seo` + `.agents/skills/seo/repo-context.md` |
 | `id`/`linkLabel` on headings, raw markdown `#`, skipped levels | `/seo`, `tests/a11y-per-page.spec.ts` |
 | Build, types, lint, format | pre-commit hook, CI |
 
