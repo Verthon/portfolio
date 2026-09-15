@@ -15,16 +15,17 @@ runs:
         echo "PLAYWRIGHT_VERSION=$PLAYWRIGHT_VERSION" >> $GITHUB_ENV
 
     - name: Cache Playwright browser binaries
-      uses: actions/cache@v4
+      uses: actions/cache@v5
       id: playwright-cache
       with:
         path: ~/.cache/ms-playwright
         key: '${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}-${{ inputs.browser }}'
-        restore-keys: |
-          ${{ runner.os }}-playwright-
 
     - name: Install Playwright browsers
       shell: bash
       if: steps.playwright-cache.outputs.cache-hit != 'true'
-      run: |
-        pnpm exec playwright install --with-deps ${{ inputs.browser }}
+      run: pnpm exec playwright install ${{ inputs.browser }}
+
+    - name: Install Playwright system dependencies
+      shell: bash
+      run: pnpm exec playwright install-deps ${{ inputs.browser }}
