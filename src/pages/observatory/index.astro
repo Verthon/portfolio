@@ -1,0 +1,153 @@
+---
+import { getCollection } from 'astro:content'
+import Base from '~/layouts/Base.astro'
+
+const allPosts = await getCollection('observatory')
+const posts = allPosts.sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+)
+---
+
+<Base
+  title="Observatory • Tracking Promising Web Development Tools"
+  description="Tracker of web tools, libraries and frameworks. Focus on implementation trade-offs, real-world constraints and adoption risks."
+>
+  <article class="prose">
+    <h1>Observatory</h1>
+    <p>
+      Tracker for the promising technologies. Straight to the point, without
+      marketing and hype.
+    </p>
+
+    <h2>What is it?</h2>
+    <p>
+      The Observatory tracks implementation trade-offs and technical constraints
+      of web tools. Each analysis focuses on current limitations, adoption
+      risks, and ongoing development status.
+    </p>
+    <p>Here, you'll find:</p>
+    <ul>
+      <li>Short status updates (e.g., beta, stable, experimental)</li>
+      <li>Short overview of each tool</li>
+      <li>Key adoption considerations for projects</li>
+      <li>Links to resources if you want to explore further</li>
+    </ul>
+
+    <h2>Update Frequency</h2>
+    <ul>
+      <li>
+        Major Updates: Quarterly or when a big announcement happens (e.g., major
+        version release, beta release after experimental phase).
+      </li>
+      <li>
+        Minor Tweaks: Ongoing, as issues are reported or new insights arise.
+      </li>
+    </ul>
+
+    <h2>Explore the observatory</h2>
+    <p>
+      Below are the current focus areas. Each links to its dedicated subpage
+      with more details:
+    </p>
+
+    <ol class="observatory-list">
+      {posts.map((post) => (
+        <li>
+          <a class="item-link" href={`/observatory/${post.id}/`}>
+            <span class="item-title">
+              {post.data.title}
+              {post.data.status && (
+                <span class="item-status"> - {post.data.status}</span>
+              )}
+            </span>
+            <p class="item-preview">
+              {post.data.short_preview ?? post.data.excerpt}
+            </p>
+          </a>
+        </li>
+      ))}
+    </ol>
+  </article>
+</Base>
+
+<style>
+  .prose {
+    max-width: 70ch;
+  }
+
+  h1 {
+    color: var(--heading-color);
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  h2 {
+    color: var(--heading-color);
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    line-height: 1.3;
+    margin-top: var(--space-xl);
+  }
+
+  p {
+    color: var(--text-color);
+    line-height: 1.6;
+    margin-top: var(--space-md);
+  }
+
+  ul {
+    list-style-type: disc;
+    list-style-position: outside;
+    margin-top: var(--space-md);
+    margin-left: var(--space-lg);
+    color: var(--text-color);
+  }
+
+  ul li {
+    line-height: 1.6;
+  }
+
+  ul li + li {
+    margin-top: var(--space-sm);
+  }
+
+  .observatory-list {
+    list-style-type: decimal;
+    list-style-position: outside;
+    margin-top: var(--space-md);
+    margin-left: var(--space-md);
+    padding: 0;
+    color: var(--text-color);
+  }
+
+  .observatory-list li + li {
+    margin-top: var(--space-md);
+  }
+
+  .item-link {
+    display: block;
+    color: inherit;
+  }
+
+  .item-title {
+    display: block;
+    color: var(--heading-color);
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  .item-status {
+    margin-inline-start: var(--space-xs);
+    color: var(--primary-800);
+    font-size: var(--font-size-sm);
+    font-weight: 400;
+  }
+
+  .item-preview {
+    margin-top: var(--space-xs);
+    color: var(--text-color);
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+  }
+</style>

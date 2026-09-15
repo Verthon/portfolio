@@ -1,0 +1,83 @@
+---
+title: Base UI Headless Components Library
+published: true
+description: 'Base UI Headless Components Library: Current State and Analysis'
+tags: ui
+date: 2025-02-06
+excerpt: 'An analysis of Base UI Headless Components Library: current state, trade-offs, and prospects'
+last_updated: 2026-08-15
+status: 'Stable'
+short_preview: 'Headless UI library from creators of Radix, Floating UI, and Material UI. It is stable'
+---
+
+import Wrapper from '~/observatory/components/wrapper/wrapper'
+import Header from '~/observatory/components/header/header'
+import ObservatoryContent from '~/observatory/components/content/content'
+import Heading from '~/common/components/heading/heading'
+
+<Wrapper>
+<Header>
+<Heading tag='h1'>Base UI Headless Components Library</Heading>
+</Header>
+
+<ObservatoryContent>
+**Status:** Stable version
+
+<Heading tag="h2" id="overview" linkLabel="Link to heading: Overview">
+  Overview
+</Heading>
+
+- Unstyled components library with around 35+ components available at the moment (more to come)
+- From creators of successful UI libraries: Mui, Radix,Floating UI
+- Team is full committed [full-time for the long-term](https://bsky.app/profile/vladmoroz.bsky.social/post/3lcg2iz35v22q)
+- Focused on accessibility (keyboard navigation, focus management, contrast, labeling)
+- Most likely to be released as stable version [this year](https://github.com/mui/base-ui/issues/2485#issuecomment-3177300365)
+- Roadmap available [here](https://github.com/orgs/mui/projects/1)
+- Docs optimized for the [LLMs](https://base-ui.com/react/overview/quick-start#working-with-llms)
+- MIT license
+- Optimized per component imports to avoid barrel files
+
+<Heading
+  tag="h2"
+  id="known-issues-and-tradeoffs"
+  linkLabel="Link to heading: Known Issues & Tradeoffs"
+>
+  Known Issues & Tradeoffs
+</Heading>
+
+- **React only** implementation: no first-class support yet for Vue, Svelte, or Angular - although this aligns with the initial focus on React ecosystems
+- No official MCP Server
+- Missing React Compiler adoption
+
+<Heading
+  tag="h2"
+  id="adoption-considerations"
+  linkLabel="Link to heading: Adoption Considerations"
+>
+  Adoption Considerations
+</Heading>
+
+- **New Projects**: Go for it, whenever list of components suit your needs and you are using React.
+- **Existing Projects**: Most likely not needed anymore unless you planning adding new components / creating a design-system as separate package
+
+There are also great alternatives, unstyled, a11y focused libraries:
+
+- [Mantine UI Headless](https://mantine.dev/styles/unstyled/)
+- [React Aria](https://react-spectrum.adobe.com/react-aria/index.html)
+- [Ark UI](https://ark-ui.com/) by founders of the Chakra UI
+- [Headless UI](https://headlessui.com/)
+- [Aria kit](https://www.npmjs.com/package/@ariakit/react)
+
+<Heading tag="h2" id="resources" linkLabel="Link to heading: Resources">
+  Resources
+</Heading>
+
+- [Official docs](https://base-ui.com/)
+- [MCP Server](https://github.com/mui/base-ui/issues/3322)
+- [React compiler adoption](https://github.com/mui/base-ui/issues/809)
+- [Ongoing bugs list](https://github.com/mui/base-ui/issues?q=is%3Aissue%20state%3Aopen%20bug%20label%3A%22type%3A%20bug%22)
+- [Focus Trap feature request](https://github.com/mui/base-ui/issues/1374)
+
+</ObservatoryContent>
+
+</Wrapper>

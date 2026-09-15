@@ -1,0 +1,113 @@
+---
+type Props = {
+  href: string
+  title: string
+  excerpt: string
+  date: Date
+  featured?: boolean
+  featuredAttr?: 'data-featured-article' | 'data-featured-dev-bite'
+  ctaLabel: string
+  headingLevel?: 'h2' | 'h3'
+  badgeLabel?: string
+  badgeTone?: 'primary' | 'secondary'
+}
+
+const {
+  href,
+  title,
+  excerpt,
+  date,
+  featured = false,
+  featuredAttr,
+  ctaLabel,
+  headingLevel: Heading = 'h3',
+  badgeLabel,
+  badgeTone = 'primary',
+} = Astro.props
+
+const isoDate = date.toISOString().slice(0, 10)
+---
+
+<article
+  class="article-card"
+  {...(featured && featuredAttr ? { [featuredAttr]: 'true' } : {})}
+>
+  <a class="card-link" href={href}>
+    <p class="meta">
+      <time datetime={isoDate}>{isoDate}</time>
+      {badgeLabel && (
+        <span class="badge" data-tone={badgeTone}>
+          {badgeLabel}
+        </span>
+      )}
+    </p>
+    <Heading class="title">{title}</Heading>
+    <p class="excerpt">{excerpt}</p>
+    <span class="cta">{ctaLabel}</span>
+  </a>
+</article>
+
+<style>
+  .article-card {
+    min-width: 0;
+    max-width: 37rem;
+    border-radius: var(--radius-md);
+  }
+
+  .card-link {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    color: inherit;
+  }
+
+  .meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    margin-bottom: var(--space-sm);
+    color: var(--text-meta);
+    font-size: var(--font-size-xs);
+    line-height: 1rem;
+  }
+
+  .badge {
+    padding: var(--space-xs) var(--space-sm);
+    background-color: var(--primary-100);
+    color: var(--primary-800);
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    line-height: 1;
+    border-radius: var(--radius-sm);
+  }
+
+  .badge[data-tone='secondary'] {
+    background-color: var(--secondary-100);
+    color: var(--secondary-900);
+  }
+
+  .title {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-md);
+    color: var(--heading-color);
+    font-size: var(--font-size-lg);
+    line-height: 1.5;
+  }
+
+  .excerpt {
+    color: var(--text-color);
+    font-size: var(--font-size-sm);
+    line-height: 1.5rem;
+    margin-top: var(--space-md);
+  }
+
+  .cta {
+    display: inline-block;
+    color: var(--text-strong);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    margin-top: var(--space-sm);
+  }
+</style>

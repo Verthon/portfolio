@@ -8,7 +8,7 @@ path `skills/seo/`, MIT.
 
 `SKILL.md` and `references/` are upstream verbatim except the fenced
 `local-addition` block at the end of `SKILL.md`. Keep it that way: repo-specific
-rules belong in `.llm/context/seo-context.md`.
+rules belong in `.agents/skills/seo/repo-context.md`.
 
 To check for upstream changes:
 

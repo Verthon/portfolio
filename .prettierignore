@@ -34,3 +34,7 @@ pnpm-lock.yaml
 package-lock.json
 yarn.lock
 server
+
+# MDX — Prettier's markdown parser re-indents closing JSX tags
+# after lists, producing invalid MDX (prettier#16925)
+**/*.mdx

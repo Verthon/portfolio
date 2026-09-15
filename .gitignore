@@ -13,6 +13,7 @@ node_modules
 .mf
 .rollup.cache
 tsconfig.tsbuildinfo
+.astro
 
 # Logs
 logs
@@ -51,6 +52,9 @@ cypress/videos/**/*
 # E2E tests
 playwright-report
 test-results
+
+# Playwright MCP scratch output
+.playwright-mcp
 
 # Agent files
 

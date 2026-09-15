@@ -1,11 +1,10 @@
-import { Slot, component$ } from '@builder.io/qwik'
+import { h, type ComponentChildren } from 'preact'
+import styles from './article-header.module.css'
 
-import { articleHeader } from './article-header.module.css'
+type ArticleHeaderProps = {
+  children?: ComponentChildren
+}
 
-export default component$(() => {
-  return (
-    <header class={articleHeader}>
-      <Slot />
-    </header>
-  )
-})
+export default function ArticleHeader({ children }: ArticleHeaderProps) {
+  return h('header', { className: styles.articleHeader }, children)
+}

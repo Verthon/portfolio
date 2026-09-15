@@ -1,43 +1,36 @@
-import { component$, Slot } from '@builder.io/qwik'
-
+import { h, type ComponentChildren } from 'preact'
 import LinkIcon from '~/common/components/link-icon/link-icon'
-
-import { heading, headingLink, h1, h2, h3 } from './heading.module.css'
-import { Link } from '@builder.io/qwik-city'
+import styles from './heading.module.css'
 import VisuallyHidden from '../visually-hidden/visually-hidden'
 
-type HeadingProps =
-  | {
-      tag: 'h1' | 'h2' | 'h3'
-      id?: string
-      linkLabel?: string
-    }
-  | {
-      tag: 'h1' | 'h2' | 'h3'
-      id: string
-      linkLabel: string
-    }
-
-const tagClass = {
-  h1,
-  h2,
-  h3,
+type HeadingProps = {
+  tag: 'h1' | 'h2' | 'h3'
+  id?: string
+  linkLabel?: string
+  children?: ComponentChildren
 }
 
-export default component$(({ tag, id, linkLabel }: HeadingProps) => {
-  const Tag = tag
+export default function Heading({
+  tag,
+  id,
+  linkLabel,
+  children,
+}: HeadingProps) {
+  const children_list = [children]
+  if (id) {
+    children_list.push(
+      h(
+        'a',
+        { className: styles.headingLink, href: `#${id}` },
+        h(LinkIcon, null),
+        h(VisuallyHidden, null, h('span', null, linkLabel))
+      )
+    )
+  }
 
-  return (
-    <Tag id={id} class={`${heading} ${tagClass[tag]}`}>
-      <Slot />
-      {id && (
-        <Link class={headingLink} href={`#${id}`}>
-          <LinkIcon />
-          <VisuallyHidden>
-            <span>{linkLabel}</span>
-          </VisuallyHidden>
-        </Link>
-      )}
-    </Tag>
+  return h(
+    tag,
+    { id, className: `${styles.heading} ${styles[tag]}` },
+    ...children_list
   )
-})
+}

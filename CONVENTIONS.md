@@ -6,25 +6,31 @@ Writing and MDX rules live in `CONTENT.md`.
 
 ## Files and naming
 
-kebab-case for files and folders. A component is a folder with `<name>.tsx` plus an optional `<name>.module.css`. A test sits next to its source as `<name>.spec.ts`.
+kebab-case for files and folders. A component is a folder with `<name>.astro`, or `<name>.tsx` plus an optional `<name>.module.css` for the Preact ones. E2e specs live in `tests/` as `<name>.spec.ts`.
 
 ## Module layout
 
-`domain/models/` holds types only and imports from no other layer. `application/services/` holds logic, `application/hooks/` holds Qwik resources. `infrastructure/` holds MDX loading, permalinks, storage, browser APIs. `components/` holds the section's Qwik components.
+`src/pages/` holds routes, `src/content/` holds the MDX and `src/content.config.ts` its schema. Each section (`src/blog/`, `src/dev-bites/`, `src/observatory/`) holds only `components/`; `src/common/components/` holds what they share, and `src/layouts/` the page shells.
 
 Import across modules with the `~/` alias, never a relative path that leaves the current folder.
 
 ## TypeScript
 
-Use `type`, not `interface`. Prefer arrow functions assigned to a `const`. Export components as `export default component$(...)`.
+Use `type`, not `interface`. Prefer arrow functions assigned to a `const`.
+
+Components are `.astro` by default. Reach for a `.tsx` Preact component only when it has to be importable from MDX; export those as `export default function Name(...)`.
 
 ## Styling
 
-CSS Modules only. Import the named class, not the module as a namespace object. Token values live in `src/global.css`; `DESIGN.md` explains which token to reach for and why. Never hardcode a color.
+Scoped `<style>` blocks in the `.astro` component. This is Astro's documented default and keeps styles next to the markup they style. Scoped styles do not reach into child components — use `:global()` or pass a `class` prop when that is actually needed.
+
+Token values live in `src/styles/global.css`; `DESIGN.md` explains which token to reach for and why. Never hardcode a color. Breakpoints are literal pixel values, not tokens — custom properties do not resolve inside a media query.
 
 ## Testing
 
-Vitest for units (`pnpm test.unit.ci`), Playwright for e2e (`pnpm test.e2e`). `tests/a11y-per-page.spec.ts` runs axe on every page, so a new page must pass it.
+Playwright for e2e (`pnpm test.e2e`), covering only what needs a browser: a11y, the theme toggle, featured-article navigation. `tests/a11y-per-page.spec.ts` runs axe on every page, so a new page must pass it. `pnpm build` runs `scripts/check-links.mjs` over `dist/`, which is where build-output checks belong rather than in a browser test.
+
+No unit test runner. The frontmatter logic that used to need one is now `src/content.config.ts`, which Astro validates at build time.
 
 ## Commits
 

@@ -43,36 +43,13 @@
   pre {
     padding: var(--space-md);
     border-radius: 0.25rem;
-    background-color: var(--code-background);
     font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
     overflow-x: auto;
-    color: var(--code-text);
-  }
-
-  :global(pre code .token.comment) {
-    color: var(--code-comment);
-  }
-
-  :global(pre code .token.keyword) {
-    color: var(--code-keyword);
-  }
-
-  :global(pre code .token.function-variable.function) {
-    color: var(--code-function);
-  }
-
-  :global(pre code .token.builtin) {
-    color: var(--code-builtin);
-  }
-
-  :global(pre code .token.function) {
-    color: var(--code-function);
   }
 
   pre code {
     font-weight: 400;
     background-color: transparent;
-    color: var(--code-text);
   }
 
   code {

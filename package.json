@@ -1,63 +1,53 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
   "name": "portfolio",
-  "description": "Portfolio based on Qwik City boilerplate",
-  "engines": {
-    "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
-  },
+  "description": "Personal technical blog built with Astro",
   "engines-annotation": "Mostly required by sharp which needs a Node-API v9 compatible runtime",
   "private": true,
   "trustedDependencies": [
     "sharp"
   ],
+  "dependencies": {
+    "preact": "10.29.8"
+  },
   "type": "module",
   "scripts": {
-    "build": "qwik build",
-    "build.client": "vite build",
-    "build.preview": "vite build --ssr src/entry.preview.tsx",
-    "build.server": "vite build -c adapters/static/vite.config.ts",
-    "build.types": "tsc --incremental --noEmit",
-    "dev": "vite --mode ssr",
-    "dev.debug": "node --inspect-brk ./node_modules/vite/bin/vite.js --mode ssr --force",
-    "fmt": "prettier --write \"src/**/*.{ts,tsx}\"",
-    "fmt.check": "prettier --check \"src/**/*.{ts,tsx}\"",
-    "lint": "eslint \"src/**/*.{ts,tsx}\"",
-    "preview": "qwik build preview && vite preview --open",
+    "dev": "astro dev",
+    "build": "astro build && node scripts/check-links.mjs",
+    "preview": "astro preview",
+    "fmt": "prettier --write 'src/**/*.{ts,tsx,astro,mdx}'",
+    "fmt.check": "prettier --check 'src/**/*.{ts,tsx,astro,mdx}'",
+    "lint": "eslint 'src/**/*.{ts,tsx,astro}'",
     "scan.deadcode": "knip",
-    "start": "vite --open --mode ssr",
-    "test.e2e": "playwright test",
+    "test.e2e": "astro build && playwright test",
     "test.e2e.ui": "playwright test --headed",
-    "test.unit": "vitest",
-    "test.unit.ci": "vitest run",
-    "test.unit.ui": "vitest --ui",
-    "qwik": "qwik",
-    "type.check": "tsc --noEmit"
+    "type.check": "tsc --noEmit",
+    "check.links": "node scripts/check-links.mjs"
   },
   "devDependencies": {
+    "@astrojs/mdx": "8.0.1",
+    "@astrojs/preact": "6.0.5",
+    "@astrojs/rss": "4.0.19",
+    "@astrojs/sitemap": "3.7.4",
     "@axe-core/playwright": "4.11.0",
-    "@builder.io/qwik": "1.19.1",
-    "@builder.io/qwik-city": "1.19.1",
     "@playwright/test": "1.56.1",
     "@types/eslint": "8.44.8",
-    "@types/node": "20.12.7",
-    "@typescript-eslint/eslint-plugin": "7.18.0",
-    "@typescript-eslint/parser": "7.18.0",
-    "@vitest/ui": "4.0.18",
-    "eslint": "8.57.0",
-    "eslint-plugin-qwik": "1.12.0",
+    "@types/node": "24.13.4",
+    "@typescript-eslint/eslint-plugin": "8.70.0",
+    "@typescript-eslint/parser": "8.70.0",
+    "astro": "7.3.2",
+    "astro-eslint-parser": "0.16.3",
+    "eslint": "10.10.0",
+    "eslint-plugin-astro": "3.1.0",
     "knip": "5.42.0",
-    "prettier": "3.4.2",
-    "typescript": "5.5.4",
-    "undici": "7.15.0",
-    "vite": "7.3.1",
-    "vite-tsconfig-paths": "4.3.2",
-    "vitest": "4.1.0-beta.4"
+    "prettier": "3.9.6",
+    "prettier-plugin-astro": "1.0.0",
+    "serve": "14.2.6",
+    "typescript": "5.5.4"
   },
   "pnpm": {
-    "overrides": {
-      "js-yaml": "4.1.1",
-      "valibot": "1.2.0",
-      "mdast-util-to-hast": "13.2.1"
-    }
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
   }
 }

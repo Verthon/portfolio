@@ -1,15 +1,11 @@
-import { Slot, component$ } from '@builder.io/qwik'
-
+import { h, type ComponentChildren } from 'preact'
 import Container from '../container/container'
+import styles from './wrapper.module.css'
 
-import { wrapper } from './wrapper.module.css'
+type WrapperProps = {
+  children?: ComponentChildren
+}
 
-export default component$(() => {
-  return (
-    <div class={wrapper}>
-      <Container>
-        <Slot />
-      </Container>
-    </div>
-  )
-})
+export default function Wrapper({ children }: WrapperProps) {
+  return h('div', { className: styles.wrapper }, h(Container, null, children))
+}

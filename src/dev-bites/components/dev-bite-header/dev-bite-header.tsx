@@ -1,11 +1,10 @@
-import { Slot, component$ } from '@builder.io/qwik'
+import { h, type ComponentChildren } from 'preact'
+import styles from './dev-bite-header.module.css'
 
-import { devBiteHeader } from './dev-bite-header.module.css'
+type DevBiteHeaderProps = {
+  children?: ComponentChildren
+}
 
-export default component$(() => {
-  return (
-    <header class={devBiteHeader}>
-      <Slot />
-    </header>
-  )
-})
+export default function DevBiteHeader({ children }: DevBiteHeaderProps) {
+  return h('header', { className: styles.devBiteHeader }, children)
+}

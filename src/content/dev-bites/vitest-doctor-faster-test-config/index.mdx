@@ -1,0 +1,136 @@
+---
+title: 'Vitest doctor cut our CI test time from 263s to 115s'
+published: true
+description: 'vitest doctor benchmarks your suite under each pool and isolate option. Switching forks to vmThreads cut a 615-file suite from 293s to 45s locally.'
+tags: testing, vitest
+date: 2026-09-09
+excerpt: 'Vitest 5 added a command that measures your suite under alternative configs and tells you which one is fastest. On a 615-file suite it took CI from 263s to 115s'
+last_updated: 2026-09-09
+dev_bite_type: featured
+---
+
+import DevBiteWrapper from '~/dev-bites/components/dev-bite-wrapper/dev-bite-wrapper'
+import DevBiteHeader from '~/dev-bites/components/dev-bite-header/dev-bite-header'
+import DevBiteContent from '~/dev-bites/components/dev-bite-content/dev-bite-content'
+import Heading from '~/common/components/heading/heading'
+import Alert from '~/common/components/alert/alert'
+
+<DevBiteWrapper>
+<DevBiteHeader>
+<Heading tag='h1'>Vitest doctor cut our CI test time from 263s to 115s</Heading>
+</DevBiteHeader>
+
+<DevBiteContent>
+
+**Context:**
+
+- **Environment:** SPA React application, 615 test files / 1813 tests, happy-dom
+- **Dependencies:**
+  - Vitest version: `"vitest": "5.0.0"`
+  - Vitest 5 requires Vite >= 6.4.0 and Node.js >= 22.12.0
+
+**Problem:**
+
+The [duration breakdown](/dev-bites/vitest-timing-breakdown/) tells you `setup` or `environment` dominates, not whether a different `pool` would fix it. You find that out by running the suite under each one and comparing.
+
+**Solution:**
+
+Vitest 5 adds `vitest doctor`.
+
+```bash
+npx vitest doctor
+```
+
+Output:
+
+```bash
+Results (min of 3 runs each)
+
+  baseline (pool: forks · isolate: true)  4.08s
+  pool: 'threads'                         3.64s (-11%)
+  pool: 'vmThreads'                       1.33s (-67%)
+  isolate: false                          1.28s (-69%)
+
+Recommendation: pool: 'vmThreads' (-67%)
+
+  // vitest.config.ts
+  export default defineConfig({
+    test: {
+      pool: 'vmThreads',
+    },
+  })
+```
+
+<Heading
+  tag="h2"
+  id="real-numbers"
+  linkLabel="Link to heading: Real numbers on a 615-file suite"
+>
+  Real numbers on a 615-file suite
+</Heading>
+
+Doctor recommended `pool: 'vmThreads'` over the `forks` we had been running. Local, 615 test files / 1813 tests:
+
+| Pool               | Duration    |
+| ------------------ | ----------- |
+| `forks` (baseline) | **293.59s** |
+| `vmThreads`        | **45s**     |
+
+On CI the same switch, measured on the latest happy-dom environment:
+
+| Run    | Duration    | Breakdown                                                                  |
+| ------ | ----------- | -------------------------------------------------------------------------- |
+| Before | **263.36s** | setup 65%, tests 14%, import 8%, transform 7%, environment 5%              |
+| After  | **114.74s** | setup 40%, tests 26%, transform 16%, worker 13%, import 4%, environment 1% |
+
+That is -56% on CI.
+
+<Heading
+  tag="h2"
+  id="custom-environment-caveat"
+  linkLabel="Link to heading: The custom environment caveat"
+>
+  The custom environment caveat
+</Heading>
+
+If your project uses a custom environment, say a thin wrapper around `happy-dom` that adds a `BroadcastChannel` polyfill for MSW 2.x, doctor skips the `vmThreads` and `vmForks` candidates without reporting why. That was [issue #11192](https://github.com/vitest-dev/vitest/issues/11192), fixed since.
+
+If you hit it, point your config at the built-in environment, run doctor, then switch back:
+
+```ts
+// vitest.config.ts
+export default defineConfig({
+  test: {
+    environment: 'happy-dom', // instead of './custom-happy-dom-environment.ts'
+  },
+})
+```
+
+<Heading
+  tag="h2"
+  id="before-you-switch-pools"
+  linkLabel="Link to heading: Before you switch pools"
+>
+  Before you switch pools
+</Heading>
+
+`vmThreads` does not give each test file a fresh process:
+
+- code relying on process-level globals or native modules can break
+- memory leaks accumulate across files instead of dying with the process
+- a suite that leaks between files will start failing in new ways. [detectAsyncLeaks](/dev-bites/detect-handing-async-operations-in-vitest/) finds those before you commit to the switch
+
+<Alert variant="danger" marginBottomInRems={1}>
+  Do not merge a doctor recommendation without a full CI run. A fast green run
+  can still hide new flakiness.
+</Alert>
+
+**Sources:**
+
+- [vitest doctor - CLI docs](https://vitest.dev/guide/cli.html#vitest-doctor)
+- [Announcing Vitest 5.0](https://vitest.dev/blog/vitest-5.html)
+- [Issue #11192 - doctor ignores vm pools for custom environments](https://github.com/vitest-dev/vitest/issues/11192)
+
+</DevBiteContent>
+
+</DevBiteWrapper>

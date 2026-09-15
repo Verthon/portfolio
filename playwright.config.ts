@@ -28,7 +28,7 @@ const config: PlaywrightTestConfig = {
   ],
 
   webServer: {
-    command: 'npm run preview',
+    command: 'pnpm exec serve dist -l 4173',
     port: 4173,
   },
 }

@@ -1,0 +1,98 @@
+## Featured Blog: api-surface-challenges
+
+<head q:head>
+<meta charset="utf-8" q:head>
+<!--qv q:id=2 q:key=rfW7:uC_0-->
+<!--qv q:key=kU_2-->
+<title q:head>API surface challenges on a shared platform</title>
+<link rel="canonical" href="https://sordyl.dev/blog/api-surface-challenges/" q:id="3" q:head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" q:head>
+<link rel="icon" type="image/x-icon" href="/favicon.ico" q:head>
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" q:head>
+<link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" q:head>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" q:head>
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" q:head>
+<meta name="color-scheme" content="dark light" q:head>
+<meta name="description" content="Three years maintaining a shared npm library across dozens of apps. What broke wasn&#39;t just the code" q:head>
+<meta property="og:type" content="article" q:head>
+<meta property="og:url" content="https://sordyl.dev/blog/api-surface-challenges/" q:head>
+<meta property="og:title" content="API surface challenges on a shared platform" q:head>
+<meta property="og:description" content="War stories from a shared platform library, Hyrum&#39;s Law, and the politics of scaling a core npm package in a big organization." q:head>
+<meta name="twitter:card" content="summary" q:head>
+<meta name="twitter:title" content="API surface challenges on a shared platform" q:head>
+<meta name="twitter:description" content="War stories from a shared platform library, Hyrum&#39;s Law, and the politics of scaling a core npm package in a big organization." q:head>
+<script type="application/ld+json" q:key="article-jsonld" q:id="4" q:head>{"@context":"https://schema.org","@type":"BlogPosting","headline":"API surface challenges on a shared platform","url":"https://sordyl.dev/blog/api-surface-challenges/","mainEntityOfPage":{"@type":"WebPage","@id":"https://sordyl.dev/blog/api-surface-challenges/"},"datePublished":"2026-02-14","dateModified":"2026-02-14","author":{"@type":"Person","@id":"https://sordyl.dev/#person","name":"Krzysztof Sordyl"},"publisher":{"@type":"Person","@id":"https://sordyl.dev/#person","name":"Krzysztof Sordyl"}}</script>
+<!--qv q:key=kU_0-->
+<script id="page-theme" q:key="ae_0" q:head>
+    (function() {
+      const storageTheme = localStorage.getItem('user-theme-variant');
+      
+      if (!storageTheme) {
+        const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.firstElementChild.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+
+## Dev Bite: async-error-handling-with-mocha-tests
+
+<head q:head>
+<meta charset="utf-8" q:head>
+<!--qv q:id=2 q:key=rfW7:uC_0-->
+<!--qv q:key=kU_2-->
+<title q:head>Async Error Handling in Mocha</title>
+<link rel="canonical" href="https://sordyl.dev/dev-bites/async-error-handling-with-mocha-tests/" q:id="3" q:head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" q:head>
+<link rel="icon" type="image/x-icon" href="/favicon.ico" q:head>
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" q:head>
+<link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" q:head>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" q:head>
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" q:head>
+<meta name="color-scheme" content="dark light" q:head>
+<meta name="description" content="Simplify your async testing in Mocha with a concise overview of using Chai-as-Promised, focusing on practical examples for immediate application." q:head>
+<meta property="og:type" content="article" q:head>
+<meta property="og:url" content="https://sordyl.dev/dev-bites/async-error-handling-with-mocha-tests/" q:head>
+<meta property="og:title" content="Async Error Handling in Mocha" q:head>
+<meta property="og:description" content="Simplify your async testing in Mocha with a concise overview of using Chai-as-Promised, focusing on practical examples for immediate application." q:head>
+<meta name="twitter:card" content="summary" q:head>
+<meta name="twitter:title" content="Async Error Handling in Mocha" q:head>
+<meta name="twitter:description" content="Simplify your async testing in Mocha with a concise overview of using Chai-as-Promised, focusing on practical examples for immediate application." q:head>
+<script type="application/ld+json" q:key="article-jsonld" q:id="4" q:head>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Async Error Handling in Mocha","url":"https://sordyl.dev/dev-bites/async-error-handling-with-mocha-tests/","mainEntityOfPage":{"@type":"WebPage","@id":"https://sordyl.dev/dev-bites/async-error-handling-with-mocha-tests/"},"datePublished":"2024-03-09","dateModified":"2024-02-25","author":{"@type":"Person","@id":"https://sordyl.dev/#person","name":"Krzysztof Sordyl"},"publisher":{"@type":"Person","@id":"https://sordyl.dev/#person","name":"Krzysztof Sordyl"}}</script>
+<!--qv q:key=kU_0-->
+<script id="page-theme" q:key="ae_0" q:head>
+    (function() {
+      const storageTheme = localStorage.getItem('user-theme-variant');
+      
+      if (!storageTheme) {
+        const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.firstElementChild.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+
+## Observatory: base-ui-headless
+
+<head q:head>
+<meta charset="utf-8" q:head>
+<!--qv q:id=2 q:key=rfW7:uC_0-->
+<!--qv q:key=kU_2-->
+<title q:head>Base UI Headless Components Library</title>
+<link rel="canonical" href="https://sordyl.dev/observatory/base-ui-headless/" q:id="3" q:head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" q:head>
+<link rel="icon" type="image/x-icon" href="/favicon.ico" q:head>
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" q:head>
+<link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" q:head>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" q:head>
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" q:head>
+<meta name="color-scheme" content="dark light" q:head>
+<meta name="description" content="Base UI Headless Components Library: Current State and Analysis" q:head>
+<meta property="og:type" content="article" q:head>
+<meta property="og:url" content="https://sordyl.dev/observatory/base-ui-headless/" q:head>
+<meta property="og:title" content="Base UI Headless Components Library" q:head>
+<meta property="og:description" content="Base UI Headless Components Library: Current State and Analysis" q:head>
+<meta name="twitter:card" content="summary" q:head>
+<meta name="twitter:title" content="Base UI Headless Components Library" q:head>
+<meta name="twitter:description" content="Base UI Headless Components Library: Current State and Analysis" q:head>
+<script type="application/ld+json" q:key="article-jsonld" q:id="4" q:head>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Base UI Headless Components Library","url":"https://sordyl.dev/observatory/base-ui-headless/","mainEntityOfPage":{"@type":"WebPage","@id":"https://sordyl.dev/observatory/base-ui-headless/"},"datePublished":"2025-02-06","dateModified":"2026-08-15","author":{"@type":"Person","@id":"https://sordyl.dev/#person","name":"Krzysztof Sordyl"},"publisher":{"@type":"Person","@id":"https://sordyl.dev/#person","name":"Krzysztof Sordyl"}}</script>
+<!--qv q:key=kU_0-->
+<script id="page-theme" q:key="ae_0" q:head>
+    (function() {
+      const storageTheme = localStorage.getItem('user-theme-variant');
+      
+      if (!storageTheme) {
+        const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.firstElementChild.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
