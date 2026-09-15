@@ -1,0 +1,62 @@
+---
+---
+
+<label class="theme-toggler">
+  <span class="label-text">Select Theme</span>
+  <select id="theme-select">
+    <option value="system">System mode</option>
+    <option value="dark">Dark mode</option>
+    <option value="light">Light mode</option>
+  </select>
+</label>
+
+<script is:inline>
+  const select = document.getElementById('theme-select')
+  if (select) {
+    select.value = localStorage.getItem('theme') || 'system'
+
+    select.addEventListener('change', () => {
+      const value = select.value
+      if (value === 'system') {
+        localStorage.removeItem('theme')
+      } else {
+        localStorage.setItem('theme', value)
+      }
+      const resolved =
+        value === 'system'
+          ? window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark'
+            : 'light'
+          : value
+      document.documentElement.dataset.theme = resolved
+    })
+  }
+</script>
+
+<style>
+  .theme-toggler {
+    display: inline-flex;
+    align-items: center;
+    color: var(--text-color);
+    font-size: var(--font-size-md);
+  }
+
+  .label-text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  select {
+    background: transparent;
+    color: var(--text-color);
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+  }
+</style>

@@ -1,33 +1,23 @@
-import { component$, Slot } from '@builder.io/qwik'
-
-import {
-  alert,
-  alertInfo,
-  alertDanger,
-  alertIcon,
-  alertContent,
-  alertContainer,
-  alertMarginBottomSmall,
-  alertMarginBottomMedium,
-  alertMarginBottomLarge,
-} from './alert.module.css'
+import { h, type ComponentChildren } from 'preact'
+import styles from './alert.module.css'
 import InfoIcon from '../info-icon/info-icon'
 import DangerIcon from '../danger-icon/danger-icon'
 
 type AlertProps = {
   variant: 'info' | 'danger'
   marginBottomInRems?: 1 | 2 | 3
+  children?: ComponentChildren
 }
 
 const variantClassName = {
-  info: alertInfo,
-  danger: alertDanger,
+  info: styles.alertInfo,
+  danger: styles.alertDanger,
 }
 
 const marginClassName = {
-  1: alertMarginBottomSmall,
-  2: alertMarginBottomMedium,
-  3: alertMarginBottomLarge,
+  1: styles.alertMarginBottomSmall,
+  2: styles.alertMarginBottomMedium,
+  3: styles.alertMarginBottomLarge,
 }
 
 const icon = {
@@ -35,23 +25,25 @@ const icon = {
   danger: DangerIcon,
 }
 
-export default component$(({ variant, marginBottomInRems }: AlertProps) => {
+export default function Alert({
+  variant,
+  marginBottomInRems,
+  children,
+}: AlertProps) {
   const variantClass = variantClassName[variant]
   const marginClass = marginBottomInRems
     ? marginClassName[marginBottomInRems]
     : ''
   const CurrentIcon = icon[variant]
 
-  return (
-    <div class={[alert, variantClass, marginClass].join(' ')}>
-      <div class={alertContainer}>
-        <div class={alertIcon}>
-          <CurrentIcon />
-        </div>
-        <div class={alertContent}>
-          <Slot />
-        </div>
-      </div>
-    </div>
+  return h(
+    'div',
+    { className: [styles.alert, variantClass, marginClass].join(' ') },
+    h(
+      'div',
+      { className: styles.alertContainer },
+      h('div', { className: styles.alertIcon }, h(CurrentIcon, null)),
+      h('div', { className: styles.alertContent }, children)
+    )
   )
-})
+}

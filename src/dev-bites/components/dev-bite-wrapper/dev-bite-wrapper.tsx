@@ -1,15 +1,15 @@
-import { Slot, component$ } from '@builder.io/qwik'
-
+import { h, type ComponentChildren } from 'preact'
 import DevBiteContainer from '../dev-bite-container/dev-bite-container'
+import styles from './dev-bite-wrapper.module.css'
 
-import { devBiteWrapper } from './dev-bite-wrapper.module.css'
+type DevBiteWrapperProps = {
+  children?: ComponentChildren
+}
 
-export default component$(() => {
-  return (
-    <div class={devBiteWrapper}>
-      <DevBiteContainer>
-        <Slot />
-      </DevBiteContainer>
-    </div>
+export default function DevBiteWrapper({ children }: DevBiteWrapperProps) {
+  return h(
+    'div',
+    { className: styles.devBiteWrapper },
+    h(DevBiteContainer, null, children)
   )
-})
+}

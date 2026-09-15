@@ -1,11 +1,10 @@
-import { Slot, component$ } from '@builder.io/qwik'
+import { h, type ComponentChildren } from 'preact'
+import styles from './content.module.css'
 
-import { content } from './content.module.css'
+type ContentProps = {
+  children?: ComponentChildren
+}
 
-export default component$(() => {
-  return (
-    <div class={content}>
-      <Slot />
-    </div>
-  )
-})
+export default function Content({ children }: ContentProps) {
+  return h('div', { className: styles.content }, children)
+}

@@ -1,0 +1,216 @@
+/*
+  Josh's Custom CSS Reset
+  https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+}
+html,
+body {
+  height: 100%;
+}
+html {
+  tab-size: 4;
+}
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    avenir next,
+    avenir,
+    segoe ui,
+    helvetica neue,
+    helvetica,
+    Ubuntu,
+    roboto,
+    noto,
+    arial,
+    sans-serif;
+}
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+img {
+  height: auto;
+}
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+#root,
+#__next {
+  isolation: isolate;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+ul {
+  padding: 0;
+  list-style: none;
+}
+#___gatsby {
+  max-width: 100%;
+  overflow: auto;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/InterVar.woff2') format('woff2');
+}
+
+:root {
+  --primary: hsl(50.3, 100%, 78.2%);
+  --primary-50: hsl(50.3, 100%, 96.2%);
+  --primary-100: hsl(50.3, 100%, 90.2%);
+  --primary-800: hsl(50.3, 100%, 16.2%);
+  --secondary-100: hsl(10, 94%, 90.2%);
+  --secondary-900: hsl(10, 94%, 8.2%);
+  --info-100: hsl(203, 99%, 90.2%);
+  --info-700: hsl(203, 99%, 24.2%);
+  --danger-100: hsl(35, 100%, 90.2%);
+  --danger-700: hsl(35, 100%, 24.2%);
+  --white: hsl(0, 0%, 100%);
+
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.75rem;
+  --font-size-4xl: 2rem;
+  --font-size-5xl: 2.25rem;
+
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4rem;
+  --space-3xl: 5rem;
+  --space-4xl: 6rem;
+  --space-5xl: 8rem;
+
+  --container-max: 80rem;
+
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+
+  --grey-100: hsl(206.7, 52.9%, 96.7%);
+  --grey-200: hsl(206.7, 52.9%, 92.7%);
+  --grey-400: hsl(206.7, 11.7%, 85.1%);
+  --dark-300: hsl(60, 1.7%, 35.1%);
+  --dark-400: hsl(60, 1.9%, 30.4%);
+  --dark-600: hsl(60, 2.9%, 20.6%);
+  --dark-800: hsl(60, 8%, 9.8%);
+
+  --text-color: var(--dark-400);
+  --heading-color: var(--dark-600);
+  --surface: var(--white);
+  --text-strong: var(--dark-600);
+  --text-meta: var(--dark-300);
+  --border-subtle: var(--grey-200);
+  --link-wash: var(--primary-50);
+  --link-underline: var(--primary);
+
+  --code-expression-background: hsl(50.3, 20%, 95.4%);
+}
+
+[data-theme='dark'] {
+  --text-color: var(--grey-400);
+  --heading-color: var(--grey-100);
+  --surface: var(--dark-800);
+  --text-strong: var(--grey-100);
+  --text-meta: var(--grey-200);
+  --border-subtle: var(--dark-400);
+  --primary-50: hsl(50.3, 100%, 9.8%);
+  --primary-100: hsl(50.3, 100%, 15.2%);
+  --primary-800: hsl(50.3, 100%, 84.2%);
+  --secondary-100: hsl(10, 94%, 8.2%);
+  --secondary-900: hsl(10, 94%, 90.2%);
+  --info-100: hsl(203, 99%, 8.2%);
+  --info-700: hsl(203, 99%, 76.2%);
+  --danger-100: hsl(35, 100%, 9.2%);
+  --danger-700: hsl(35, 100%, 90.2%);
+
+  --code-expression-background: hsl(50, 7%, 20%);
+
+  img {
+    filter: brightness(0.7) contrast(1.2);
+  }
+}
+
+[data-theme='dark'] body {
+  background-color: var(--surface);
+  background-image: none;
+  color: var(--text-color);
+}
+
+[data-theme='light'] body {
+  background-color: var(--surface);
+  background-image: none;
+  color: var(--text-color);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.astro-code,
+.astro-code span {
+  color: var(--shiki-light);
+  background-color: var(--shiki-light-bg);
+  font-style: var(--shiki-light-font-style);
+  font-weight: var(--shiki-light-font-weight);
+  text-decoration: var(--shiki-light-text-decoration);
+}
+
+[data-theme='dark'] .astro-code,
+[data-theme='dark'] .astro-code span,
+[data-theme='dark'] .astro-code code {
+  color: var(--shiki-dark);
+  background-color: var(--shiki-dark-bg);
+  font-style: var(--shiki-dark-font-style);
+  font-weight: var(--shiki-dark-font-weight);
+  text-decoration: var(--shiki-dark-text-decoration);
+}

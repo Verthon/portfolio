@@ -1,0 +1,66 @@
+---
+import { getCollection } from 'astro:content'
+import Base from '~/layouts/Base.astro'
+import ArticleCard from '~/components/article-card/article-card.astro'
+
+const allPosts = await getCollection('devBites')
+const posts = allPosts.sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+)
+---
+
+<Base
+  title="Dev-Bites • Krzysztof Sordyl"
+  description="All my brief takes on programming problems, packed into bite-sized reads."
+>
+  <header class="page-header">
+    <h1 class="page-title">Latest dev bites</h1>
+    <p class="page-description">
+      All my brief takes on programming problems, packed into bite-sized reads.
+    </p>
+  </header>
+  <section class="grid">
+    {posts.map((post) => (
+      <ArticleCard
+        href={`/dev-bites/${post.id}/`}
+        title={post.data.title}
+        excerpt={post.data.excerpt}
+        date={post.data.date}
+        ctaLabel="Read more"
+        headingLevel="h2"
+      />
+    ))}
+  </section>
+</Base>
+
+<style>
+  .page-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .page-title {
+    color: var(--heading-color);
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+    line-height: 1.5;
+  }
+
+  .page-description {
+    color: var(--text-color);
+    font-size: var(--font-size-md);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--space-2xl);
+  }
+
+  @media screen and (min-width: 520px) {
+    .grid {
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    }
+  }
+</style>

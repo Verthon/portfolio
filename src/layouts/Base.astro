@@ -1,0 +1,140 @@
+---
+import Nav from '~/components/nav/nav.astro'
+import Footer from '~/components/footer/footer.astro'
+import ThemeToggler from '~/components/theme-toggler.astro'
+import Analytics from '~/components/analytics.astro'
+import '~/styles/global.css'
+
+interface Props {
+  title: string
+  description: string
+  ogTitle?: string
+  ogDescription?: string
+  ogType?: 'website' | 'article'
+}
+
+const {
+  title,
+  description,
+  ogTitle = title,
+  ogDescription = description,
+  ogType = 'website',
+} = Astro.props
+
+const canonical = new URL(Astro.url.pathname, Astro.site).href
+---
+
+<!doctype html>
+<html lang="en-us" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="color-scheme" content="dark light" />
+    <meta name="author" content="Krzysztof Sordyl" />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="Krzysztof Sordyl" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={ogTitle} />
+    <meta name="twitter:description" content={ogDescription} />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/android-chrome-192x192.png"
+    />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="canonical" href={canonical} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link
+      rel="preload"
+      href="/fonts/InterVar.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <script is:inline>
+      const theme =
+        localStorage.getItem('theme') ||
+        (window.matchMedia('(prefers-color-scheme: dark)').matches
+          ? 'dark'
+          : 'light')
+      document.documentElement.dataset.theme = theme
+    </script>
+    <Analytics />
+    <slot name="head" />
+  </head>
+  <body>
+    <header class="site-header">
+      <ThemeToggler />
+      <Nav />
+    </header>
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  body {
+    background-color: var(--surface);
+    color: var(--text-color);
+    font-size: var(--font-size-md);
+  }
+
+  .site-header,
+  main {
+    width: 100%;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-inline: var(--space-md);
+  }
+
+  .site-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-sm);
+    padding-block: var(--space-md);
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xl);
+    padding-block: var(--space-lg) var(--space-3xl);
+  }
+
+  @media (min-width: 768px) {
+    .site-header,
+    main {
+      padding-inline: var(--space-lg);
+    }
+
+    .site-header {
+      flex-direction: row;
+      gap: var(--space-md);
+    }
+
+    main {
+      gap: var(--space-4xl);
+      padding-block: var(--space-xl) var(--space-4xl);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .site-header,
+    main {
+      padding-inline: var(--space-xl);
+    }
+  }
+</style>

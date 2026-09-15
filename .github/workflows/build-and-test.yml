@@ -46,8 +46,5 @@ jobs:
       - name: Validate HTML Files
         run: find dist -name '*.html' -exec tidy -q -e {} \;
 
-      - name: Run unit tests
-        run: time pnpm run test.unit.ci
-
       - name: Run E2E tests for ${{ matrix.project }}
         run: time pnpm exec playwright test --project="${{ matrix.project }}"

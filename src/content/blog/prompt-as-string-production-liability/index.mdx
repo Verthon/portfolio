@@ -1,0 +1,79 @@
+---
+title: Prompt as a string is a production liability
+published: true
+description: 'Why structured output from your LLM provider is not a contract, and what changes when the prompt becomes a typed, testable function. With a small ticket-classifier PoC'
+tags: architecture, ai, llm
+date: 2026-08-10
+excerpt: 'Prompts should be typed functions with tests, not strings you hope work in production'
+value_proposition: 'The contract between your app and the model belongs in the type system'
+article_type: regular
+---
+
+import ArticleWrapper from '~/blog/components/article-wrapper/article-wrapper'
+import ArticleHeader from '~/blog/components/article-header/article-header'
+import ArticleContent from '~/blog/components/article-content/article-content'
+import Alert from '~/common/components/alert/alert'
+import Heading from '~/common/components/heading/heading'
+
+<ArticleWrapper>
+<ArticleHeader>
+<Heading tag='h1'>Prompt as a string is a production liability</Heading>
+</ArticleHeader>
+<ArticleContent>
+
+Prompts work fine in a playground. You write something, the model does what you want, you move on. Then it goes into application code as a string - Java, TypeScript, doesn't matter. No types, no contract, nothing you can test in isolation.
+
+Two recent incidents from a community member, same week.
+
+Team upgraded Gemini Flash from 2.5 to 3. One of several dozen test inputs started coming back with malformed responses, and the downstream pipeline stopped getting the data it needed. They caught it on staging - the structural validation rejected the malformed response - and rolled prod back to 2.5.
+
+Separate incident: team swapped a model to `gemini-flash-lite-latest`, assuming latest meant latest stable. Miss rate jumped to around 10%, pure hallucinations. The Gemini docs are explicit that [latest can resolve to stable, preview, or experimental](https://ai.google.dev/gemini-api/docs/models?hl=en#latest).
+
+Structural validation caught the first one - the response didn't match the expected shape, so the pipeline refused it.
+The second slipped past every shape check because the JSON was well-formed, only the values were wrong.
+
+<Heading
+  tag="h2"
+  id="shape-of-problem"
+  linkLabel="Link to heading: The shape of the problem"
+>
+  The shape of the problem
+</Heading>
+
+Say you're classifying support tickets - category, priority, sentiment, suggested action. You send the model a ticket, ask for JSON, get a string back. On a good day it's the JSON you asked for. On a bad day it's prose ("This looks like a billing issue, probably high priority"), or JSON wrapped in a markdown fence, or JSON with an extra `confidence` field the model invented. `JSON.parse` handles one of those. The rest you patch over with regexes, and the regexes break as soon as the phrasing shifts.
+
+OpenAI, Anthropic and Google all offer a way to pin the response to a JSON schema - the provider constrains the decoder so the model can't drift off-shape. It works most of the time. What it doesn't fix: typing bugs still leak through (priority comes back as `"high"` when your enum expects `High`), the schema lives in one provider's dialect so swapping models means rewriting it, and validation only runs at request time - your tests can't tell you whether the schema will hold under tomorrow's traffic.
+
+Both approaches only tell you whether the response came back in the shape you expected. Neither tells you whether the values are correct, which is the gap the second incident fell through: well-formed JSON, values that weren't in the source ticket. No schema validator can see that.
+
+<Heading
+  tag="h2"
+  id="class-of-tool"
+  linkLabel="Link to heading: What this class of tool gives you"
+>
+  What this class of tool gives you
+</Heading>
+
+The very basic PoC is [on GitHub](https://github.com/Verthon/baml-playground). Two commits, same ticket classifier, before and after. It works even on the free tier Gemini.
+
+- The prompt becomes a function call: typed input, typed output, unit-testable like any other code in the project.
+- Tests come in two flavours: hard asserts that fail the build, soft checks that report without blocking.
+- The parser self-heals small noise: casing slips, single-vs-array, an extra field the model invented.
+
+<Heading
+  tag="h2"
+  id="what-it-doesnt-give-you"
+  linkLabel="Link to heading: What it doesn't give you"
+>
+  What it doesn't give you
+</Heading>
+
+- Catch hallucinations. The parser validates structure, not content. Well-formed JSON with wrong values goes through untouched, which is what the second incident looked like.
+- Fix a completely wrong response. Small noise gets repaired. A response that's nothing like the schema fails - no magic recovery.
+- Make the model deterministic. LLMs aren't deterministic by nature. You can constrain the non-determinism architecturally, not eliminate it.
+
+The fix for the second production case sits at a different layer. If I were running this in prod, a scheduled run - say a morning cron - would exercise the same test suite against a held-out set of real tickets. Soft checks instead of hard asserts, so a drop in classification accuracy gets logged rather than failing a build. The contract on the wire catches shape regressions at request time; the scheduled run catches behavior regressions between model versions.
+
+</ArticleContent>
+
+</ArticleWrapper>

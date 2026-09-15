@@ -1,11 +1,10 @@
-import { Slot, component$ } from '@builder.io/qwik'
+import { h, type ComponentChildren } from 'preact'
+import styles from './article-container.module.css'
 
-import { articleContainer } from './article-container.module.css'
+type ArticleContainerProps = {
+  children?: ComponentChildren
+}
 
-export default component$(() => {
-  return (
-    <div class={articleContainer}>
-      <Slot />
-    </div>
-  )
-})
+export default function ArticleContainer({ children }: ArticleContainerProps) {
+  return h('div', { className: styles.articleContainer }, children)
+}

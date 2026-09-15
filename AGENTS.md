@@ -8,9 +8,9 @@ Read first
 `docs/architecture/state.md` — where it actually stands against those drivers
 `docs/architecture/decisions/` — the ADR log. Decisions are immutable; supersede, never edit.
 
-Content lives in `src/routes/{blog,dev-bites,observatory}/<slug>/index.mdx`. Section logic lives in the matching `src/<section>/` module.
+Content lives in `src/content/{blog,dev-bites,observatory}/<slug>/index.mdx`. Routes live in `src/pages/`, and each section's components in the matching `src/<section>/components/` module.
 
-Everything an agent runs is a skill: `/content-review`, `/seo`, `/tech-audit`. They live in `.agents/skills/` (tool-agnostic) and are symlinked into `.claude/skills/`.
+Everything an agent runs is a skill: `/content-review`, `/seo`, `/grill`. They live in `.agents/skills/` (tool-agnostic) and are symlinked into `.claude/skills/`.
 
 `/seo` is vendored verbatim from addyosmani/web-quality-skills — read its `UPSTREAM.md` before changing it. Repo-specific SEO rules go in `.agents/skills/seo/repo-context.md`, never in `SKILL.md`.
 

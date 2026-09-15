@@ -1,0 +1,106 @@
+---
+import { getCollection } from 'astro:content'
+import Base from '~/layouts/Base.astro'
+import ArticleCard from '~/components/article-card/article-card.astro'
+
+const blogs = await getCollection('blog')
+const featuredArticles = blogs
+  .filter((b) => b.data.article_type === 'featured')
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+
+const devBites = await getCollection('devBites')
+const featuredDevBites = devBites
+  .filter((b) => b.data.dev_bite_type === 'featured')
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+---
+
+<Base
+  title="Krzysztof Sordyl • Architecture & DX at Scale"
+  description="Writing about frontend architecture, developer experience, and scaling tooling across teams in large organizations."
+  ogDescription="Frontend architecture, developer experience, and scaling tooling across teams in large organizations."
+>
+  <section class="hero">
+    <h1 class="hero-name">Welcome, I'm Krzysztof</h1>
+    <p class="hero-tagline">
+      Frontend engineer building internal tooling for dev teams
+    </p>
+    <p class="hero-description">
+      Writing about frontend architecture, developer experience, and making
+      technical decisions, that actually serve the business.
+    </p>
+  </section>
+  <section class="card-column">
+    {featuredArticles.map((post) => (
+      <ArticleCard
+        href={`/blog/${post.id}/`}
+        title={post.data.title}
+        excerpt={post.data.excerpt}
+        date={post.data.date}
+        featured
+        featuredAttr="data-featured-article"
+        ctaLabel="Read article"
+        headingLevel="h2"
+        badgeLabel="blog post"
+      />
+    ))}
+  </section>
+  <section class="card-column">
+    {featuredDevBites.map((post) => (
+      <ArticleCard
+        href={`/dev-bites/${post.id}/`}
+        title={post.data.title}
+        excerpt={post.data.excerpt}
+        date={post.data.date}
+        featured
+        featuredAttr="data-featured-dev-bite"
+        ctaLabel="Read more"
+        headingLevel="h2"
+        badgeLabel="dev-bite"
+        badgeTone="secondary"
+      />
+    ))}
+  </section>
+</Base>
+
+<style>
+  .hero {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .hero-name {
+    color: var(--text-strong);
+    font-size: var(--font-size-4xl);
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .hero-tagline,
+  .hero-description {
+    max-width: 500px;
+    color: var(--text-color);
+    font-size: var(--font-size-lg);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  .card-column {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+    max-width: 37rem;
+  }
+
+  @media (min-width: 520px) {
+    .hero-name {
+      font-size: var(--font-size-5xl);
+    }
+  }
+
+  @media (min-width: 768px) {
+    .card-column {
+      gap: var(--space-2xl);
+    }
+  }
+</style>

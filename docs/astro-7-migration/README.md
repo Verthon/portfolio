@@ -16,6 +16,9 @@ Concretely, this means the migration must preserve, byte-for-byte if possible:
 
 ## Documents
 
+`01`–`05` are the original planning analysis, kept as history. `STATE.md` and
+`REMAINING.md` describe the migration as it actually is.
+
 | Doc                                                                    | Contents                                                                                                 |
 | ---------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | [01-architecture-assessment.md](./01-architecture-assessment.md)       | Current architecture: what works, what's over-built, what Qwik costs us                                  |
@@ -23,6 +26,8 @@ Concretely, this means the migration must preserve, byte-for-byte if possible:
 | [03-styling-refresh.md](./03-styling-refresh.md)                       | Styling change: options compared, recommended token/theme modernization                                  |
 | [04-ai-friendliness-and-agents.md](./04-ai-friendliness-and-agents.md) | AI-readiness audit of the repo, agent/skill inventory needed before, during and after migration          |
 | [05-alternatives-considered.md](./05-alternatives-considered.md)       | Frameworks evaluated and rejected (TanStack Start, staying on Qwik), and Astro 7 confirmed in production |
+| [STATE.md](./STATE.md)                                                 | **Current.** What shipped, and every divergence from the original plan                                   |
+| [REMAINING.md](./REMAINING.md)                                         | **Current.** Open bugs, missing discovery surface, verification gaps, doc debt                           |
 
 ## Why Astro 7 is a good fit (summary)
 

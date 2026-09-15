@@ -1,0 +1,125 @@
+---
+title: Code coverage - more than just a number
+published: true
+description: 'Understanding code coverage: what it is and what it tells us about our code'
+tags: testing
+date: 2023-03-04
+excerpt: Learn how to generate and interpret coverage reports, discerning the true value of these metrics. The article goes beyond the common fixation on coverage percentages, highlighting the traps in over-relying on coverage goals and emphasizing the essence of meaningful testing.
+article_type: regular
+# cover_image: https://direct_url_to_image.jpg
+
+# Use a ratio of 100:42 for best results.
+
+# published_at: 2023-03-04 14:54 +0000
+---
+
+import ArticleWrapper from '~/blog/components/article-wrapper/article-wrapper'
+import ArticleHeader from '~/blog/components/article-header/article-header'
+import ArticleContent from '~/blog/components/article-content/article-content'
+import Heading from '~/common/components/heading/heading'
+
+<ArticleWrapper>
+<ArticleHeader>
+<Heading tag='h1'>Code Coverage - more than just a number</Heading>
+</ArticleHeader>
+
+<ArticleContent>
+<Heading tag='h2' id='code-coverage' linkLabel='Link to heading: Code coverage'>Code coverage</Heading>
+
+Code coverage is a set of tools, that examine the percentages of code covered
+by the tests. I’m working with Jest on daily basis, in this article I will use examples from this
+test framework.
+
+To run coverage report, you can use following command:
+
+```bash
+  jest --coverage
+```
+
+You can see the results right away in your terminal or open nicer GUI with coverage in `src/coverage/lcov-report/index.html`
+
+The metrics
+
+- lines - simply how much of you code is taking part in the tests
+- statements - same as above but it counts only instructions
+- functions - how many functions were called during test
+- branches - all branches of if/else, switches, conditional flows
+
+Lets look at silly example:
+
+```tsx
+// Test case
+
+describe('isErrorRoute - helper to determine if url from input is recognized as error route in routing', () => {
+  it('should', () => {
+    expect(isErrorRoute('https://example.com/error')).toEqual(true)
+    expect(isErrorRoute('https://example.com/error/not-found')).toEqual(true)
+  })
+})
+
+// Implementation
+
+export const isErrorRoute = (url?: string) => {
+  if (!url) {
+    // 1. branch not covered
+    // 2. both 'statements' in line 4 and 5 also not covered
+    console.log('statement')
+    return false
+  }
+
+  return url.includes('/error')
+}
+```
+
+And the test with following metrics
+
+- lines - 60% (3/5)
+- statements - 66.66% (4/6)
+- functions - 100% (1/1)
+- branches - 0% (0/1)
+
+<Heading
+  tag="h2"
+  id="what-information-code-coverage-gives-us"
+  linkLabel="Link to heading: What information code coverage gives us ?"
+>
+  What information code coverage gives us ?
+</Heading>
+
+- what parts of application are not covered with tests at all
+- acts as a general guide for further analysis, where there might a be a real need of adding tests
+
+<Heading
+  tag="h2"
+  id="what-information-code-coverage-wont-give-you"
+  linkLabel="Link to heading: What information code coverage won't give you"
+>
+  What information code coverage won't give you
+</Heading>
+
+- how much behavior is covered
+- it tell you nothing about overall tests quality
+- covering code with tests ≠= covering functionality with tests
+
+<Heading
+  tag="h2"
+  id="the-code-coverage-requirements"
+  linkLabel="Link to heading: The code coverage requirements"
+>
+  The code coverage requirements
+</Heading>
+
+Most of the times there is requirement of having 80% code coverage in order to add new functionality to the codebase.
+
+While I can understand the purpose of it, there is a huge chance, that some developers may focus solely on meeting the 80% threshold, without considering the real purpose of testing.
+
+Common gotchas to spot on for “80% threshold focused” devs:
+
+- Over-reliance on mocks and stubs
+- No assertions in the tests
+- Writing many very similar tests
+- Ignoring code paths that are difficult to test (which may be a crucial parts for functionality)
+- Testing implementation details rather than behavior
+  </ArticleContent>
+
+</ArticleWrapper>

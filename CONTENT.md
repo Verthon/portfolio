@@ -4,7 +4,7 @@ How to write and structure a post. What a blog post / dev bite / observatory not
 
 ## Slugs
 
-Content lives in `src/routes/{blog,dev-bites,observatory}/<slug>/index.mdx`. The slug becomes the URL. Do not rename a slug after publishing.
+Content lives in `src/content/{blog,dev-bites,observatory}/<slug>/index.mdx`. The slug becomes the URL. Do not rename a slug after publishing — nothing checks this, and a rename silently breaks every indexed and external link. If you must move one, map the old path to the new one with Astro's `redirects` config option in `astro.config.mjs` (no such block exists yet — add it).
 
 ## Frontmatter
 

@@ -1,6 +1,5 @@
-import { component$ } from '@builder.io/qwik'
-
-import { articlePicture, figCaption } from './article-image.module.css'
+import { h } from 'preact'
+import styles from './article-image.module.css'
 
 type ArticleImageProps = {
   webpImagePath: string
@@ -12,53 +11,57 @@ type ArticleImageProps = {
   ariaLabelledBy?: string
 }
 
-export default component$(
-  ({
-    fallbackImagePath,
-    webpImagePath,
-    width,
-    height,
-    alt = '',
-    caption,
-    ariaLabelledBy,
-  }: ArticleImageProps) => {
-    if (caption) {
-      return (
-        <figure
-          class="articlePicture"
-          role="group"
-          aria-labelledby={ariaLabelledBy}
-        >
-          <picture>
-            <source type="image/webp" srcset={webpImagePath} />
-            <img
-              loading="lazy"
-              decoding="async"
-              width={width}
-              height={height}
-              src={fallbackImagePath}
-              alt={alt}
-            />
-          </picture>
-          <figcaption class={figCaption} id={ariaLabelledBy}>
-            {caption}
-          </figcaption>
-        </figure>
-      )
-    }
+export default function ArticleImage({
+  fallbackImagePath,
+  webpImagePath,
+  width,
+  height,
+  alt = '',
+  caption,
+  ariaLabelledBy,
+}: ArticleImageProps) {
+  const pictureElement = h(
+    'picture',
+    null,
+    h('source', { type: 'image/webp', srcSet: webpImagePath }),
+    h('img', {
+      loading: 'lazy',
+      decoding: 'async',
+      width,
+      height,
+      src: fallbackImagePath,
+      alt,
+    })
+  )
 
-    return (
-      <picture class={articlePicture}>
-        <source type="image/webp" srcset={webpImagePath} />
-        <img
-          loading="lazy"
-          decoding="async"
-          width={width}
-          height={height}
-          src={fallbackImagePath}
-          alt={alt}
-        />
-      </picture>
+  if (caption) {
+    return h(
+      'figure',
+      {
+        className: styles.articlePicture,
+        role: 'group',
+        'aria-labelledby': ariaLabelledBy,
+      },
+      pictureElement,
+      h(
+        'figcaption',
+        { className: styles.figCaption, id: ariaLabelledBy },
+        caption
+      )
     )
   }
-)
+
+  return h(
+    'picture',
+    { className: styles.articlePicture },
+    h('source', { type: 'image/webp', srcSet: webpImagePath }),
+    h('img', {
+      loading: 'lazy',
+      decoding: 'async',
+      width,
+      height,
+      src: fallbackImagePath,
+      alt,
+    })
+  )
+}
