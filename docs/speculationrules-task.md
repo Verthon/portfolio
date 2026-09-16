@@ -5,7 +5,7 @@ with what rules. Deliberately **out of scope for the Astro 7 migration** — the
 pre-migration hint was dropped rather than ported, as a decision, not an
 oversight.
 
-Owner driver: #2, Core Web Vitals stay high and I have the numbers.
+Owner driver: *Core Web Vitals stay high, and I have the numbers.*
 
 ## What was dropped
 
@@ -40,7 +40,8 @@ rather than assumed.
 ## Questions to answer
 
 1. On a static, zero-JS, CDN-served site with small HTML documents, is there a
-   measurable LCP win from prerendering at all? Get a number — driver #2 says
+   measurable LCP win from prerendering at all? Get a number — the *CWV
+   measured* driver says
    measured on a real page, not a feeling about defaults.
 2. If yes: `prerender` or `prefetch`? Prerender runs the page, which means
    PostHog fires on pages the reader never opens. Check what

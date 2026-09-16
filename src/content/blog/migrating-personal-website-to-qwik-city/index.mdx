@@ -1,6 +1,5 @@
 ---
 title: Migrating Gatsby 4 website to Qwik City
-published: true
 description: 'Migrating a Gatsby 4 website to Qwik City for improved performance and developer experience.'
 tags: migration, qwik, gatsby, performance
 date: 2024-07-06
@@ -11,7 +10,8 @@ article_type: regular
 import ArticleWrapper from '~/blog/components/article-wrapper/article-wrapper'
 import ArticleHeader from '~/blog/components/article-header/article-header'
 import ArticleContent from '~/blog/components/article-content/article-content'
-import ArticleImage from '~/blog/components/article-image/article-image'
+import ArticleImage from '~/blog/components/article-image/article-image.astro'
+import performanceBlog from './performance-blog.jpg'
 import Alert from '~/common/components/alert/alert'
 import Heading from '~/common/components/heading/heading'
 
@@ -147,10 +147,7 @@ npm run qiwk add
 I haven’t done any performance optimization by myself in Qwik. Framework does its magic by shipping the least amount of JavaScript under the hood. As you may expect for a simple blog/portfolio website all Lighthouse performance metrics are green.
 
 <ArticleImage
-  webpImagePath="/blogImages/performance-blog.webp"
-  fallbackImagePath="/blogImages/performance-blog.jpg"
-  width={1772}
-  height={1440}
+  src={performanceBlog}
   alt="performance results in Web Vitals"
   ariaLabelledBy="web-vitals-results"
 />

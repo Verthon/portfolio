@@ -20,5 +20,6 @@
       "~/*": ["./src/*"]
     }
   },
-  "include": ["src", "./*.d.ts", "./*.config.mjs"]
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["dist", "tools", "playwright-report", "test-results"]
 }

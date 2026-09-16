@@ -1,40 +1,16 @@
+dist
+node_modules
+pnpm-lock.yaml
+.astro
+.netlify
+playwright-report
+test-results
+tsconfig.tsbuildinfo
 **/*.log
 **/.DS_Store
-*.
-.vscode/settings.json
-.history
-.yarn
-bazel-*
-bazel-bin
-bazel-out
-bazel-qwik
-bazel-testlogs
-dist
-dist-dev
-lib
-lib-types
-etc
-external
-node_modules
-temp
-tsc-out
-tsdoc-metadata.json
-target
-output
-rollup.config.js
-build
-.cache
-.vscode
-.rollup.cache
-dist
-tsconfig.tsbuildinfo
-vite.config.ts
-.netlify
-pnpm-lock.yaml
-package-lock.json
-yarn.lock
-server
 
-# MDX — Prettier's markdown parser re-indents closing JSX tags
-# after lists, producing invalid MDX (prettier#16925)
+# MDX is never formatted. Do not remove this, and do not run Prettier on an
+# .mdx file by hand — its markdown parser re-indents closing JSX tags after
+# lists, producing invalid MDX that breaks the build (prettier#16925).
+# Fixed once in ca8766d; it will come back the same way.
 **/*.mdx

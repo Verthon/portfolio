@@ -1,0 +1,48 @@
+---
+import { Picture } from 'astro:assets'
+import type { ImageMetadata, ImageOutputFormat } from 'astro'
+
+type Props = {
+  src: ImageMetadata
+  alt?: string
+  caption?: string
+  ariaLabelledBy?: string
+}
+
+const { src, alt = '', caption, ariaLabelledBy } = Astro.props
+
+const formats: ImageOutputFormat[] = ['avif']
+const fallbackFormat = 'webp'
+---
+
+{caption ? (
+  <figure class="article-picture" role="group" aria-labelledby={ariaLabelledBy}>
+    <Picture
+      src={src}
+      alt={alt}
+      formats={formats}
+      fallbackFormat={fallbackFormat}
+    />
+    <figcaption class="fig-caption" id={ariaLabelledBy}>
+      {caption}
+    </figcaption>
+  </figure>
+) : (
+  <Picture
+    class="article-picture"
+    src={src}
+    alt={alt}
+    formats={formats}
+    fallbackFormat={fallbackFormat}
+  />
+)}
+
+<style>
+  .article-picture {
+    margin: var(--space-lg) 0;
+  }
+
+  .fig-caption {
+    text-align: center;
+  }
+</style>

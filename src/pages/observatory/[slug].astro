@@ -15,7 +15,7 @@ const { post } = Astro.props
 const { Content } = await render(post)
 
 const canonical = new URL(Astro.url.pathname, Astro.site).href
-const iso = (d) => d.toISOString().slice(0, 10)
+const iso = (d: Date) => d.toISOString().slice(0, 10)
 const person = {
   '@type': 'Person',
   '@id': 'https://sordyl.dev/#person',

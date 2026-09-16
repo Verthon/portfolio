@@ -11,4 +11,4 @@ Voice: direct, experience-backed, no filler. Titles are concrete, not clickbait.
 
 **Dev bite** — short how-to. One problem, one solution. Body follows a fixed shape: Context, Problem, Solution.
 
-**Observatory** — a tracking note about a web tool that is not yet stable. Records status, trade-offs, and adoption risk. Not a tutorial. Each note states a **Status** and a **Recommendation**.
+**Observatory** — a tracking note about a web tool that is not yet stable. Records status, trade-offs, and adoption risk. Not a tutorial. Each note states a **Status**.

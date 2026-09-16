@@ -36,13 +36,25 @@ export default defineConfig({
   site: SITE,
   trailingSlash: 'always',
   output: 'static',
+  image: {
+    layout: 'constrained',
+    service: {
+      entrypoint: 'astro/assets/services/sharp',
+      config: {
+        // avif q60 matches the compression of the hand-made WebPs this
+        // replaced, at ~20% fewer bytes. See ADR 0005.
+        avif: { quality: 60 },
+        webp: { quality: 80 },
+      },
+    },
+  },
   server: { port: 4173 },
   preview: { port: 4173 },
   markdown: {
     shikiConfig: {
       themes: {
-        light: 'github-light',
-        dark: 'github-dark',
+        light: 'github-light-default',
+        dark: 'github-dark-default',
       },
       defaultColor: false,
     },
@@ -52,9 +64,7 @@ export default defineConfig({
       syntaxHighlight: 'shiki',
       optimize: true,
     }),
-    preact({
-      compat: true,
-    }),
+    preact(),
     sitemap({
       filter: (page) => !page.endsWith('/404/'),
       serialize: (item) => ({
@@ -63,9 +73,4 @@ export default defineConfig({
       }),
     }),
   ],
-  vite: {
-    ssr: {
-      external: ['preact/jsx-runtime'],
-    },
-  },
 })

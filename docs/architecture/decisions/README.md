@@ -9,4 +9,10 @@ old one and link both ways.
 
 Format: what was decided, why, what it costs, what else was considered.
 
-_None yet._
+| Record | Decision |
+| --- | --- |
+| [0001](./0001-astro-over-qwik-and-alternatives.md) | Astro 7 over Qwik City, TanStack Start, and staying put |
+| [0002](./0002-published-urls-do-not-break.md) | URL integrity is enforced at build time |
+| [0003](./0003-oxlint-over-eslint.md) | oxlint over ESLint, and two dependencies that must survive |
+| [0004](./0004-component-tech-split.md) | `.astro` by default, Preact only where MDX imports it |
+| [0005](./0005-images-through-astro-assets.md) | Images go through `astro:assets` |

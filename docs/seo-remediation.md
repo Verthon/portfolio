@@ -4,6 +4,14 @@ Audit run 2026-09-12 with the `/seo` skill (`.claude/skills/seo/`, from
 addyosmani/web-quality-skills) plus `.agents/skills/seo/repo-context.md`.
 Re-verified against the working tree 2026-09-13 — see "Changes since the audit".
 
+> **Partly stale as of 2026-09-16.** The audit ran against the Qwik City site.
+> The Astro 7 migration has since landed, so every file path below naming
+> `src/common/infrastructure/services/document-head.ts`, `createArticleMeta` or
+> `createArticleJsonLd` refers to code that no longer exists — that head logic
+> now lives in `src/layouts/Base.astro` and the three
+> `src/pages/<section>/[slug].astro` files. The *findings* mostly still stand;
+> the *locations* do not. Re-verify a path before acting on it.
+
 Method: static MDX source inspection + live HTTP against https://sordyl.dev.
 No Lighthouse and no Chrome DevTools MCP were available, so nothing here is a
 rendered-page performance claim. Re-run those checks before acting on anything
@@ -27,10 +35,16 @@ Verified 2026-09-13. The audit ran before 73c188c landed.
 
 Everything else below was re-checked and is still open.
 
-## Sequencing decision — read before starting
+## Sequencing decision — resolved
 
-`docs/astro-7-migration/` plans a move off Qwik City. It is **planned, not
-started** — the repo is still Qwik.
+**Resolved 2026-09-16: the Astro 7 migration landed.** Nothing below is blocked
+on it any more, and the framework-coupled items are no longer framework
+questions — they are just work. What the section below argued about is settled;
+it is kept only so the reasoning is not lost.
+
+Since resolved: the sitemap now carries `lastmod`, and JSON-LD ships on all
+three sections. `og:image` is still absent and is now the only open
+framework-coupled item.
 
 The remaining framework-coupled items are `og:image` wiring and the sitemap
 `lastmod`. JSON-LD was decided by default — it shipped in Qwik on 2026-09-12
@@ -76,7 +90,8 @@ by only 3 of 30 files.
 
 ### 2. JSON-LD — shipped, two gaps remain
 
-Generated from frontmatter in `document-head.ts` (driver #3's answer to the
+Generated from frontmatter in `document-head.ts` (the *URLs don't break*
+driver's answer to the
 "generated vs hand-added" question). Remaining:
 
 - All three sections emit `BlogPosting`. `.agents/skills/seo/repo-context.md`
@@ -126,7 +141,8 @@ Author's call, flag only. Longest is
 
 ### 7. RSS feed
 
-`/rss.xml`, `/feed.xml` and `/index.xml` all 404. Driver #3 wants it generated
+`/rss.xml`, `/feed.xml` and `/index.xml` all 404. The *URLs don't break* driver
+wants it generated
 from content. Nothing on skills.sh fits; this is ~40 lines of local code.
 
 ## Not findings — corrections to earlier docs

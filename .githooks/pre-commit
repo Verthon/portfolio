@@ -1,0 +1,25 @@
+#!/bin/sh
+# .mdx is deliberately absent: Prettier corrupts it, see .prettierignore.
+staged=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(tsx?|astro)$')
+
+if [ -n "$staged" ]; then
+  echo "$staged" | xargs -r npx prettier --check || {
+    echo "pre-commit: formatting issues. Run: pnpm fmt"
+    exit 1
+  }
+
+  echo "$staged" | xargs -r pnpm lint --max-warnings 0 || {
+    echo "pre-commit: lint failed."
+    exit 1
+  }
+
+  pnpm type.check || {
+    echo "pre-commit: type-check failed."
+    exit 1
+  }
+fi
+
+pnpm scan.deadcode || {
+  echo "pre-commit: dead code found. Run: pnpm scan.deadcode"
+  exit 1
+}

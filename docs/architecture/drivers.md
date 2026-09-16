@@ -20,7 +20,9 @@ Last reviewed: 2026-09-11.
 
 ## Quality attributes
 
-Ordered. Higher wins a conflict.
+Ordered. Higher wins a conflict. The order is expected to change, so cite a
+driver by name, never by position — "the *published URLs don't break* driver",
+not "driver #3".
 
 1. **Accessible to WCAG 2.1 AA, at minimum.** The EU baseline (EN 301 549) and
    the right outcome for readers with disabilities. `tests/a11y-per-page.spec.ts`

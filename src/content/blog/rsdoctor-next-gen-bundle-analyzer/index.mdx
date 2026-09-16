@@ -1,6 +1,5 @@
 ---
 title: RSDoctor Next generation bundler analyzer
-published: true
 description: RSDoctor, modern bundle analyzer for Webpack and RSPack, visualize the building process, find out why build is slow. Discover duplicated packages.
 tags: performance, frontend
 date: 2025-03-23
@@ -13,7 +12,11 @@ import ArticleWrapper from '~/blog/components/article-wrapper/article-wrapper'
 import ArticleHeader from '~/blog/components/article-header/article-header'
 import ArticleContent from '~/blog/components/article-content/article-content'
 import Heading from '~/common/components/heading/heading'
-import ArticleImage from '~/blog/components/article-image/article-image'
+import ArticleImage from '~/blog/components/article-image/article-image.astro'
+import rsdoctorMenu from './rsdoctor-menu.jpg'
+import rsdoctorJsAndTotal from './rsdoctor-js-and-total.jpg'
+import rsdoctorCss from './rsdoctor-css.jpg'
+import rsdoctorTreeGraph from './rsdoctor-tree-graph.jpg'
 
 <ArticleWrapper>
 <ArticleHeader>
@@ -110,10 +113,7 @@ There are 3 main areas of the analysis:
 Each of them is presented in the UI of RSDoctor in the top-navigation menu
 
 <ArticleImage
-  webpImagePath="/blogImages/rsdoctor-next-gent-bundle-analyzer/rsdoctor-menu.webp"
-  fallbackImagePath="/blogImages/rsdoctor-next-gent-bundle-analyzer/rsdoctor-menu.jpg"
-  width={796}
-  height={414}
+  src={rsdoctorMenu}
   caption="RSDoctor main areas of the analysis"
   ariaLabelledBy="rsdoctor-main-areas"
 />
@@ -137,19 +137,13 @@ UI outputs the most interesting part of the data for the developers:
 - tree graph
 
 <ArticleImage
-  webpImagePath="/blogImages/rsdoctor-next-gent-bundle-analyzer/rsdoctor-js-and-total.webp"
-  fallbackImagePath="/blogImages/rsdoctor-next-gent-bundle-analyzer/rsdoctor-js-and-total.jpg"
-  width={1512}
-  height={434}
+  src={rsdoctorJsAndTotal}
   caption="Total size and the JavaScript size of the bundle"
   ariaLabelledBy="rsdoctor-total"
 />
 <div style={{ marginBottom: '2rem' }}>
   <ArticleImage
-    webpImagePath="/blogImages/rsdoctor-next-gent-bundle-analyzer/rsdoctor-css.webp"
-    fallbackImagePath="/blogImages/rsdoctor-next-gent-bundle-analyzer/rsdoctor-css.jpg"
-    width={906}
-    height={374}
+    src={rsdoctorCss}
     caption="CSS size of the bundle analysis"
     ariaLabelledBy="rsdoctor-css-caption"
   />
@@ -165,10 +159,7 @@ Tree graph especially is great one, for debugging bundle size, it allows for:
 The tree graph showed me that the mysterious 8kB chunk adding `node_modules/cross-fetch/dist/browser-ponyfill.js` to my bundle was caused by Supabase.
 
 <ArticleImage
-  webpImagePath="/blogImages/rsdoctor-next-gent-bundle-analyzer/rsdoctor-tree-graph.webp"
-  fallbackImagePath="/blogImages/rsdoctor-next-gent-bundle-analyzer/rsdoctor-tree-graph.jpg"
-  width={1626}
-  height={578}
+  src={rsdoctorTreeGraph}
   caption="Tree graph breakdown of the react chunk"
   ariaLabelledBy="rsdoctor-tree-graph"
 />
