@@ -35,11 +35,15 @@ jobs:
           browser: ${{ matrix.project }}
 
       - name: Run linter
-        run: time pnpm run lint
+        run: time pnpm run lint src
+
+      - name: Type-check
+        run: time pnpm run type.check
 
       - name: Run build
         run: time pnpm run build
 
+      # Required: validates dist/ HTML. Not an npm dep, see knip.config.ts.
       - name: Install HTML Parser - Tidy
         run: sudo apt-get install -y tidy
 

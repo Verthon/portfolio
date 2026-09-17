@@ -1,42 +1,42 @@
+import { readFileSync } from 'node:fs'
+import { resolve } from 'node:path'
 import test, { expect } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
 
-test('should not have any automatically detectable accessibility issues on the home page', async ({
-  page,
-}) => {
-  await page.goto('/')
+const LOC = /<loc>([^<]*)<\/loc>/g
+const SITEMAP = resolve('dist/sitemap-0.xml')
 
-  const accessibilityScanResults = await new AxeBuilder({ page }).analyze()
+const sitemapPaths = () => {
+  const xml = readFileSync(SITEMAP, 'utf8')
+  const paths = [...xml.matchAll(LOC)].map(([, loc]) => new URL(loc).pathname)
 
-  expect(accessibilityScanResults.violations).toEqual([])
-})
+  if (paths.length === 0) {
+    throw new Error(`${SITEMAP} contains no <loc> entries — run \`pnpm build\``)
+  }
 
-test('should not have any automatically detectable accessibility issues on the blog page', async ({
-  page,
-}) => {
-  await page.goto('/blog')
+  return [...paths, '/404/'].sort()
+}
 
-  const accessibilityScanResults = await new AxeBuilder({ page }).analyze()
+const paths = sitemapPaths()
 
-  expect(accessibilityScanResults.violations).toEqual([])
-})
+for (const scheme of ['light', 'dark'] as const) {
+  test.describe(`${scheme} mode`, () => {
+    test.use({ colorScheme: scheme })
 
-test('should not have any automatically detectable accessibility issues on the dev-bites page', async ({
-  page,
-}) => {
-  await page.goto('/dev-bites')
+    for (const path of paths) {
+      test(`should not have any automatically detectable accessibility issues on ${path}`, async ({
+        page,
+      }) => {
+        await page.goto(path)
 
-  const accessibilityScanResults = await new AxeBuilder({ page }).analyze()
+        await expect(page.locator('html')).toHaveAttribute('data-theme', scheme)
 
-  expect(accessibilityScanResults.violations).toEqual([])
-})
+        const accessibilityScanResults = await new AxeBuilder({
+          page,
+        }).analyze()
 
-test('should not have any automatically detectable accessibility issues on the observatory page', async ({
-  page,
-}) => {
-  await page.goto('/observatory')
-
-  const accessibilityScanResults = await new AxeBuilder({ page }).analyze()
-
-  expect(accessibilityScanResults.violations).toEqual([])
-})
+        expect(accessibilityScanResults.violations).toEqual([])
+      })
+    }
+  })
+}

@@ -1,2 +1,8 @@
-/build/*
+/_astro/*
+  Cache-Control: public, max-age=31536000, s-maxage=31536000, immutable
+
+# InterVar.woff2 comes from public/ and is never content-hashed. Immutable is
+# safe only because replacing it means a new filename — rename to InterVar-v2,
+# never overwrite in place.
+/fonts/*
   Cache-Control: public, max-age=31536000, s-maxage=31536000, immutable

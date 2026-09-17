@@ -1,6 +1,5 @@
 ---
 title: Measure package sizes effectively
-published: true
 description: Better alternatives for Bundlephobia, to discover real npm package weight
 tags: performance, frontend
 date: 2025-03-16
@@ -16,7 +15,11 @@ import ArticleHeader from '~/blog/components/article-header/article-header'
 import ArticleContent from '~/blog/components/article-content/article-content'
 import Heading from '~/common/components/heading/heading'
 import Alert from '~/common/components/alert/alert'
-import ArticleImage from '~/blog/components/article-image/article-image'
+import ArticleImage from '~/blog/components/article-image/article-image.astro'
+import bundlephobiaResults from './bundlephobia-results.jpg'
+import pkgSizeResultGeneral from './pkg-size-result-general.jpg'
+import pkgSizeBundleSize from './pkg-size-bundle-size.jpg'
+import bundlejsResults from './bundlejs-results.jpg'
 
 <ArticleWrapper>
 <ArticleHeader>
@@ -54,10 +57,7 @@ It gives a good idea of what to expect from the scanned package:
 Since it outputs the entire package size, the devs may reject packages based on hasty flat size check.
 
 <ArticleImage
-  webpImagePath="/blogImages/measure-package-sizes-effectively/bundlephobia-results.webp"
-  fallbackImagePath="/blogImages/measure-package-sizes-effectively/bundlephobia-results.jpg"
-  width={890}
-  height={330}
+  src={bundlephobiaResults}
   caption="Results for date-fns (version 4.1.0) on Bundlephobia"
   ariaLabelledBy="bundlephobia-date-fns-results"
 />
@@ -98,10 +98,7 @@ The only downside I found is fact, that rarely it falls into some infinite loop,
 </Heading>
 
 <ArticleImage
-  webpImagePath="/blogImages/measure-package-sizes-effectively/pkg-size-result-general.webp"
-  fallbackImagePath="/blogImages/measure-package-sizes-effectively/pkg-size-result-general.jpg"
-  width={1268}
-  height={434}
+  src={pkgSizeResultGeneral}
   caption="General package info for date-fns (version 4.1.0) on pkg-size"
   ariaLabelledBy="pkg-size-date-fns-results-general"
 />
@@ -115,10 +112,7 @@ The only downside I found is fact, that rarely it falls into some infinite loop,
 </Heading>
 
 <ArticleImage
-  webpImagePath="/blogImages/measure-package-sizes-effectively/pkg-size-bundle-size.webp"
-  fallbackImagePath="/blogImages/measure-package-sizes-effectively/pkg-size-bundle-size.jpg"
-  width={1260}
-  height={376}
+  src={pkgSizeBundleSize}
   caption="Results for date-fns format util (version 4.1.0) on pkg-size"
   ariaLabelledBy="pkg-size-date-fns-results"
 />
@@ -145,10 +139,7 @@ I have checked the `date-fns` `format` util - it correctly shows its real weight
 Sometimes it cannot fetch the dependency (in my case was the rare case scenario). [Related Github issue](https://github.com/okikio/bundlejs/issues/70)
 
 <ArticleImage
-  webpImagePath="/blogImages/measure-package-sizes-effectively/bundlejs-results.webp"
-  fallbackImagePath="/blogImages/measure-package-sizes-effectively/bundlejs-results.jpg"
-  width={1432}
-  height={836}
+  src={bundlejsResults}
   caption="Results for date-fns format util (version 4.1.0) on Bundlejs"
   ariaLabelledBy="bundlejs-date-fns-results"
 />

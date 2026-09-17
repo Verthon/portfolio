@@ -1,6 +1,5 @@
 ---
 title: Storybook Testing Overview
-published: true
 description: 'Overview of Storybook testing, the alternative to the traditional JSDOM approach for testing the components'
 tags: testing
 date: 2024-12-30
@@ -13,7 +12,8 @@ import ArticleHeader from '~/blog/components/article-header/article-header'
 import ArticleContent from '~/blog/components/article-content/article-content'
 import Heading from '~/common/components/heading/heading'
 import Alert from '~/common/components/alert/alert'
-import ArticleImage from '~/blog/components/article-image/article-image'
+import ArticleImage from '~/blog/components/article-image/article-image.astro'
+import storybookUiTest from './storybook-ui-test.jpg'
 
 <ArticleWrapper>
 <ArticleHeader>
@@ -109,10 +109,7 @@ export const SwitchLanguageToSpanish: Story = {
 5. Run the test in the Storybook UI under the interactions tab inside of the story
 
 <ArticleImage
-  webpImagePath="/blogImages/storybook-ui-test.webp"
-  fallbackImagePath="/blogImages/storybook-ui-test.jpg"
-  width={2060}
-  height={598}
+  src={storybookUiTest}
   alt="Example of running the tests inside of the Storybook UI"
   caption="Interactions tests Storybook tab"
   ariaLabelledBy="storybook-test-tab"

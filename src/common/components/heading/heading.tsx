@@ -5,10 +5,8 @@ import VisuallyHidden from '../visually-hidden/visually-hidden'
 
 type HeadingProps = {
   tag: 'h1' | 'h2' | 'h3'
-  id?: string
-  linkLabel?: string
   children?: ComponentChildren
-}
+} & ({ id: string; linkLabel: string } | { id?: never; linkLabel?: never })
 
 export default function Heading({
   tag,

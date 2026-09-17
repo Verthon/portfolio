@@ -1,6 +1,6 @@
 # CONVENTIONS
 
-Code rules not already enforced automatically. Prettier runs on every agent edit (`.claude/settings.json`); the git pre-commit hook re-checks format, lint, and types on staged files.
+Code rules not already enforced automatically. Prettier runs on every agent edit to a `.ts`/`.tsx` file (`.claude/settings.json`); the git pre-commit hook re-checks format, lint, and types on staged `.ts`/`.tsx`/`.astro` files. **Never runs on `.mdx`, by design — see `CONTENT.md`.**
 
 Writing and MDX rules live in `CONTENT.md`.
 
@@ -19,6 +19,12 @@ Import across modules with the `~/` alias, never a relative path that leaves the
 Use `type`, not `interface`. Prefer arrow functions assigned to a `const`.
 
 Components are `.astro` by default. Reach for a `.tsx` Preact component only when it has to be importable from MDX; export those as `export default function Name(...)`.
+
+MDX can import an `.astro` component, but only with the extension spelled out
+(`~/blog/components/article-image/article-image.astro`). Extensionless resolves
+for `.tsx` only. An `.astro` component is the right call in MDX when it needs
+something the Preact ones can't reach — `astro:assets` being the case that
+forced it. See ADR 0005.
 
 ## Styling
 

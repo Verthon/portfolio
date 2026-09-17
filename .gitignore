@@ -1,17 +1,11 @@
 # Build
 /dist
-/lib
-/lib-types
-/server
 
 # Development
 node_modules
 *.local
 
 # Cache
-.cache
-.mf
-.rollup.cache
 tsconfig.tsbuildinfo
 .astro
 
@@ -19,32 +13,12 @@ tsconfig.tsbuildinfo
 logs
 *.log
 npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
 pnpm-debug.log*
-lerna-debug.log*
 
 # Editor
-.vscode/*
-!.vscode/launch.json
-!.vscode/*.code-snippets
-
 .idea
 .DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
 *.sw?
-
-# Yarn
-.yarn/*
-!.yarn/releases
-
-# Cypress
-cypress/downloads/**/*
-cypress/screenshots/**/*
-cypress/videos/**/*
 
 # Netlify
 .netlify
@@ -55,7 +29,3 @@ test-results
 
 # Playwright MCP scratch output
 .playwright-mcp
-
-# Agent files
-
-HANDOFF.md

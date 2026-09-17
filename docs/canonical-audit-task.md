@@ -15,7 +15,7 @@ Related: `docs/seo-remediation.md` (traditional SEO queue),
 here are the same `#person` defect — **that doc owns it**, this one only
 consumes it).
 
-Driver: `docs/architecture/drivers.md` #3 — _"Published URLs don't break. The
+Driver: `docs/architecture/drivers.md` — _"Published URLs don't break. The
 one irreversible output."_ Everything below is that driver, nothing else.
 
 ## What this task does not claim
@@ -85,7 +85,7 @@ Google's sharpest canonical instruction — is verified **by hand**. I verified 
 on 2026-09-15; nothing keeps it true. A serialize bug in `astro.config.mjs`, or
 an RSS feed emitting a different URL shape, would go unnoticed.
 
-Driver #3 says the discovery surface is _generated from content, never
+That driver says the discovery surface is _generated from content, never
 hand-maintained_. A hand-verified invariant over generated files is the same
 failure mode one level up.
 

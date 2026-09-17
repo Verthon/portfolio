@@ -9,9 +9,9 @@ tools"](https://cassidoo.co/post/llm-discoverability/) (2026-01-19). Her
 not claim" before treating any of it as proven.
 
 Related: `docs/seo-remediation.md` (traditional SEO queue; some overlap, noted
-per item). `docs/astro-7-migration/04-ai-friendliness-and-agents.md` proposed
-`llms.txt` and RSS as post-migration work — **this doc supersedes the sequencing
-for those two**, and that doc has been updated to say so.
+per item). The migration planning docs proposed `llms.txt` and RSS as
+post-migration work; **this doc owns the sequencing for those two** and outlived
+them — they were folded into `docs/architecture/decisions/` on 2026-09-16.
 
 ## What this task does not claim
 
@@ -45,10 +45,8 @@ speculative and is only on the list because it costs almost nothing.
 | `llms.txt` | None. |
 | Sitemap | Healthy, 34 URLs, no `lastmod`. |
 
-`docs/seo-remediation.md` and
-`docs/astro-7-migration/04-ai-friendliness-and-agents.md` were corrected on
-2026-09-13 to match the table above; both now defer to this doc for the
-`#person` fix, `llms.txt` and RSS.
+`docs/seo-remediation.md` was corrected on 2026-09-13 to match the table above
+and defers to this doc for the `#person` fix, `llms.txt` and RSS.
 
 ## Queue
 
@@ -123,14 +121,15 @@ adoption among documentation sites, but **no major model provider has publicly
 committed to consuming it** as a retrieval or ranking signal. Treat it as a
 lottery ticket, not a mechanism. Do not let it displace items 1–3.
 
-**Constraint from driver #3** (`docs/architecture/drivers.md` — the discovery
-surface is generated from content, never hand-maintained): if it exists, it is
-generated from the content index at build time, exactly like the sitemap. A
-hand-written `llms.txt` goes stale on the next post and is worse than nothing.
+**Constraint from the *published URLs don't break* driver**
+(`docs/architecture/drivers.md` — the discovery surface is generated from
+content, never hand-maintained): if it exists, it is generated from the content
+index at build time, exactly like the sitemap. A hand-written `llms.txt` goes
+stale on the next post and is worse than nothing.
 
 **Explicitly not doing: `/for-llms`.** The source post recommends a separate
 LLM-oriented page. That is a second content surface, human-hostile by design,
-and it conflicts with driver: *"I won't distort a page for crawlers."* A
+and it conflicts with a stated goal: *"I won't distort a page for crawlers."* A
 generated `llms.txt` is a machine-readable index of pages that already exist —
 that is fine. A parallel prose page written for bots is not.
 
@@ -138,7 +137,8 @@ that is fine. A parallel prose page written for bots is not.
 
 **Why:** not strictly GEO, but it is the same data feeding one more consumer
 surface, it is the standard mechanism for content syndication, and the site
-currently 404s on all three conventional paths. Driver #3 wants it generated
+currently 404s on all three conventional paths. The *URLs don't break* driver
+wants it generated
 from content. `docs/seo-remediation.md` item 7 already carries this.
 
 Listed here because items 4 and 5 are the same build-time-endpoint shape and
@@ -148,41 +148,18 @@ should be done in one sitting.
 
 ## The Astro question
 
-**This is the point that matters most.** Items 2, 4 and 5 are all
-framework-coupled head/endpoint work, and the repo is still Qwik City while
-`docs/astro-7-migration/` sits planned-but-not-started.
+**Resolved 2026-09-16: the migration landed.** The sequencing dilemma this
+section argued about is moot — the repo is Astro 7.3.2 (see
+`docs/architecture/decisions/0001-astro-over-qwik-and-alternatives.md`). Nothing
+here needs building in Qwik, and the 2026-12-13 fallback date is void.
 
-`docs/seo-remediation.md` flagged this sequencing decision and it was never
-resolved — which is why that queue has been sitting. It is now blocking a second
-queue. **Not deciding is itself a decision, and it is costing more than either
-option would.**
+Items 2, 4 and 5 are framework-coupled head/endpoint work, and the Astro forms
+are the near-trivial ones the old framing was holding out for:
+`src/pages/llms.txt.ts` + `getCollection()`, and `@astrojs/rss` (already
+installed, unused, owned by `docs/rss-feed-task.md`).
 
-The honest framing:
-
-- **Doing them in Qwik now** means writing a `routeLoader$`-or-endpoint for
-  `llms.txt` and RSS, plus head extensions, and redoing all of it in Astro
-  later. In Astro these are near-trivial (`src/pages/llms.txt.ts` +
-  `getCollection()`, `@astrojs/rss`); in Qwik they are hand-rolled. The rework
-  is real but small — call it a day, twice.
-- **Waiting for the migration** means the migration has to actually happen.
-  `04-ai-friendliness-and-agents.md` already parked `llms.txt` and RSS behind
-  it once. If it slips another six months, these ship never.
-
-Two things push toward **not waiting**:
-
-1. Item 1 (robots.txt) and item 3 (entity consistency) are framework-agnostic
-   and unblocked *today*. Do them this week regardless of how this resolves.
-2. Item 2 is a **dangling `@id` in already-shipped JSON-LD**. That is a defect in
-   live output, not a new feature. It is worth fixing in Qwik even knowing it
-   gets rewritten.
-
-Recommendation: **do 1, 2 and 3 now in Qwik; hold 4 and 5 for the migration**,
-with a hard condition — if the migration has not started by **2026-12-13**, build
-them in Qwik and eat the rework. Write that date down or it will not hold.
-
-Decide this before starting any code item, and record it here.
-
-**Decision:** _(unresolved — fill in)_
+Item 2 — the dangling `#person` `@id` — is a defect in already-shipped JSON-LD,
+not a new feature, and is the one to do first.
 
 ## Success criteria
 
