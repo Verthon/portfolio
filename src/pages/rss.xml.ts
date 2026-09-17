@@ -2,6 +2,8 @@ import rss from '@astrojs/rss'
 import { getCollection } from 'astro:content'
 import type { APIContext } from 'astro'
 
+import { AUTHOR } from '~/seo/site'
+
 const SECTIONS = [
   ['blog', 'blog'],
   ['devBites', 'dev-bites'],
@@ -34,7 +36,7 @@ export const GET = async (context: APIContext) => {
       `<atom:link href="${self}" rel="self" type="application/rss+xml"/>`,
       lastBuildDate ? `<lastBuildDate>${lastBuildDate}</lastBuildDate>` : '',
     ].join(''),
-    title: 'Krzysztof Sordyl',
+    title: AUTHOR,
     description:
       'Frontend architecture, developer experience, and technical decisions with business impact.',
     site: context.site!,

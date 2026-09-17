@@ -1,19 +1,25 @@
 ---
 import { getCollection } from 'astro:content'
 import Base from '~/layouts/Base.astro'
+import { pageMeta } from '~/seo/meta'
 import ArticleCard from '~/components/article-card/article-card.astro'
 
 const allPosts = await getCollection('blog')
 const posts = allPosts.sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
 )
+
+const meta = pageMeta({
+  title: 'Blog',
+  description:
+    'Technical articles on modern frontend development, testing strategies, and JavaScript ecosystem. Featuring detailed guides on testing, architecture and frontend solutions.',
+  ogDescription:
+    'Insights on frontend architecture, testing strategies, and modern JavaScript development.',
+  pathname: Astro.url.pathname,
+})
 ---
 
-<Base
-  title="Blog • Krzysztof Sordyl"
-  description="Technical articles on modern frontend development, testing strategies, and JavaScript ecosystem. Featuring detailed guides on testing, architecture and frontend solutions."
-  ogDescription="Insights on frontend architecture, testing strategies, and modern JavaScript development."
->
+<Base meta={meta}>
   <header class="page-header">
     <h1 class="page-title">Latest posts</h1>
     <p class="page-description">All of my long-form thoughts on programming</p>

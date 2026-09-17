@@ -1,3 +1,5 @@
+import { AUTHOR, PERSON_ID } from './site'
+
 type ArticleJsonLdInput = {
   title: string
   canonical: string
@@ -5,14 +7,12 @@ type ArticleJsonLdInput = {
   lastUpdated?: Date
 }
 
-const PERSON_ID = 'https://sordyl.dev/#person'
-
 const iso = (date: Date) => date.toISOString().slice(0, 10)
 
 const person = {
   '@type': 'Person',
   '@id': PERSON_ID,
-  name: 'Krzysztof Sordyl',
+  name: AUTHOR,
 }
 
 export const createArticleJsonLd = ({

@@ -43,7 +43,7 @@ Token values live in `src/styles/global.css`; `DESIGN.md` explains which token t
 
 Playwright for e2e (`pnpm test.e2e`), covering only what needs a browser: a11y, the theme toggle, featured-article navigation. `tests/a11y-per-page.spec.ts` runs axe on every page, so a new page must pass it. `pnpm build` runs `scripts/check-links.mjs` and `scripts/check-feed.mjs` over `dist/`, which is where build-output checks belong rather than in a browser test.
 
-No unit test runner. The frontmatter logic that used to need one is now `src/content.config.ts`, which Astro validates at build time.
+Vitest for pure functions (`pnpm test.unit`), co-located as `<name>.test.ts` — `tests/` stays e2e. Frontmatter needs no test: `src/content.config.ts` validates it at build time.
 
 ## Commits
 

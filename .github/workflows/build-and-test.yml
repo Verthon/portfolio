@@ -40,6 +40,9 @@ jobs:
       - name: Type-check
         run: time pnpm run type.check
 
+      - name: Run unit tests
+        run: time pnpm run test.unit
+
       - name: Run build
         run: time pnpm run build
 

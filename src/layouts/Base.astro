@@ -3,25 +3,16 @@ import Nav from '~/components/nav/nav.astro'
 import Footer from '~/components/footer/footer.astro'
 import ThemeToggler from '~/components/theme-toggler.astro'
 import Analytics from '~/components/analytics.astro'
+import { AUTHOR } from '~/seo/site'
+import type { PageMeta } from '~/seo/meta'
 import '~/styles/global.css'
 
-interface Props {
-  title: string
-  description: string
-  ogTitle?: string
-  ogDescription?: string
-  ogType?: 'website' | 'article'
+type Props = {
+  meta: PageMeta
 }
 
-const {
-  title,
-  description,
-  ogTitle = title,
-  ogDescription = description,
-  ogType = 'website',
-} = Astro.props
-
-const canonical = new URL(Astro.url.pathname, Astro.site).href
+const { meta } = Astro.props
+const { title, description, ogTitle, ogDescription, ogType, canonical } = meta
 ---
 
 <!doctype html>
@@ -31,13 +22,13 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="color-scheme" content="dark light" />
-    <meta name="author" content="Krzysztof Sordyl" />
+    <meta name="author" content={AUTHOR} />
     <meta name="description" content={description} />
     <meta property="og:title" content={ogTitle} />
     <meta property="og:description" content={ogDescription} />
     <meta property="og:url" content={canonical} />
     <meta property="og:type" content={ogType} />
-    <meta property="og:site_name" content="Krzysztof Sordyl" />
+    <meta property="og:site_name" content={AUTHOR} />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={ogTitle} />
     <meta name="twitter:description" content={ogDescription} />
@@ -56,7 +47,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href
     <link
       rel="alternate"
       type="application/rss+xml"
-      title="Krzysztof Sordyl"
+      title={AUTHOR}
       href="/rss.xml"
     />
     <link

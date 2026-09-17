@@ -4,7 +4,9 @@ import preact from '@astrojs/preact'
 import sitemap from '@astrojs/sitemap'
 import { readdirSync, readFileSync } from 'node:fs'
 
-export const SITE = 'https://sordyl.dev'
+import { SITE_URL as SITE } from './src/seo/site.ts'
+
+export { SITE }
 
 const SECTIONS = [
   ['blog', 'blog'],

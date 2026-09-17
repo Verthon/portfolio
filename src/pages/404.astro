@@ -1,8 +1,15 @@
 ---
 import Base from '~/layouts/Base.astro'
+import { pageMeta } from '~/seo/meta'
+
+const meta = pageMeta({
+  title: 'Not Found',
+  description: 'Page not found',
+  pathname: Astro.url.pathname,
+})
 ---
 
-<Base title="Not Found" description="Page not found">
+<Base meta={meta}>
   <h1>404 - Page Not Found</h1>
   <p>Sorry, the page you're looking for doesn't exist.</p>
   <a href="/">Go back home</a>

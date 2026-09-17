@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content'
 import Base from '~/layouts/Base.astro'
 import ArticleCard from '~/components/article-card/article-card.astro'
+import { homeMeta } from '~/seo/meta'
 
 const blogs = await getCollection('blog')
 const featuredArticles = blogs
@@ -12,13 +13,16 @@ const devBites = await getCollection('devBites')
 const featuredDevBites = devBites
   .filter((b) => b.data.dev_bite_type === 'featured')
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+
+const meta = homeMeta({
+  description:
+    'Writing about frontend architecture, developer experience, and scaling tooling across teams in large organizations.',
+  ogDescription:
+    'Frontend architecture, developer experience, and scaling tooling across teams in large organizations.',
+})
 ---
 
-<Base
-  title="Krzysztof Sordyl • Architecture & DX at Scale"
-  description="Writing about frontend architecture, developer experience, and scaling tooling across teams in large organizations."
-  ogDescription="Frontend architecture, developer experience, and scaling tooling across teams in large organizations."
->
+<Base meta={meta}>
   <section class="hero">
     <h1 class="hero-name">Welcome, I'm Krzysztof</h1>
     <p class="hero-tagline">

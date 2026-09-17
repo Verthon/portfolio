@@ -1,18 +1,23 @@
 ---
 import { getCollection } from 'astro:content'
 import Base from '~/layouts/Base.astro'
+import { pageMeta } from '~/seo/meta'
 import ArticleCard from '~/components/article-card/article-card.astro'
 
 const allPosts = await getCollection('devBites')
 const posts = allPosts.sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
 )
+
+const meta = pageMeta({
+  title: 'Dev Bites',
+  description:
+    'All my brief takes on programming problems, packed into bite-sized reads.',
+  pathname: Astro.url.pathname,
+})
 ---
 
-<Base
-  title="Dev-Bites • Krzysztof Sordyl"
-  description="All my brief takes on programming problems, packed into bite-sized reads."
->
+<Base meta={meta}>
   <header class="page-header">
     <h1 class="page-title">Latest dev bites</h1>
     <p class="page-description">

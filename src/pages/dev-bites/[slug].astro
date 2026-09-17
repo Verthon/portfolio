@@ -2,7 +2,7 @@
 import { getCollection, render } from 'astro:content'
 import Article from '~/layouts/Article.astro'
 import Base from '~/layouts/Base.astro'
-import { createArticleJsonLd } from '~/seo/article-json-ld'
+import { articleMeta } from '~/seo/meta'
 
 export async function getStaticPaths() {
   const posts = await getCollection('devBites')
@@ -15,31 +15,15 @@ export async function getStaticPaths() {
 const { post } = Astro.props
 const { Content } = await render(post)
 
-const canonical = new URL(Astro.url.pathname, Astro.site).href
-
-const jsonLd = createArticleJsonLd({
-  title: post.data.title,
-  canonical,
-  date: post.data.date,
-  lastUpdated: post.data.last_updated,
-})
+const meta = articleMeta(post, Astro.url.pathname)
 ---
 
-<Base
-  title={post.data.title}
-  description={post.data.description}
-  ogTitle={post.data.og_title || post.data.title}
-  ogDescription={post.data.og_description || post.data.description}
-  ogType="article"
->
+<Base meta={meta}>
   <Fragment slot="head">
-    <meta
-      property="article:published_time"
-      content={post.data.date.toISOString()}
-    />
+    <meta property="article:published_time" content={meta.publishedTime} />
     <script
       type="application/ld+json"
-      set:html={JSON.stringify(jsonLd)}
+      set:html={JSON.stringify(meta.jsonLd)}
       is:inline
     ></script>
   </Fragment>

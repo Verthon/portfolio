@@ -1,17 +1,22 @@
 ---
 import { getCollection } from 'astro:content'
 import Base from '~/layouts/Base.astro'
+import { pageMeta } from '~/seo/meta'
 
 const allPosts = await getCollection('observatory')
 const posts = allPosts.sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
 )
+
+const meta = pageMeta({
+  title: 'Observatory',
+  description:
+    'Tracker of web tools, libraries and frameworks. Focus on implementation trade-offs, real-world constraints and adoption risks.',
+  pathname: Astro.url.pathname,
+})
 ---
 
-<Base
-  title="Observatory • Tracking Promising Web Development Tools"
-  description="Tracker of web tools, libraries and frameworks. Focus on implementation trade-offs, real-world constraints and adoption risks."
->
+<Base meta={meta}>
   <article class="prose">
     <h1>Observatory</h1>
     <p>

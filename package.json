@@ -12,19 +12,21 @@
   },
   "type": "module",
   "scripts": {
-    "dev": "astro dev",
     "build": "astro build && node scripts/check-links.mjs && node scripts/check-feed.mjs",
-    "preview": "astro preview",
+    "check.feed": "node scripts/check-feed.mjs",
+    "check.links": "node scripts/check-links.mjs",
+    "dev": "astro dev",
     "fmt": "prettier --write 'src/**/*.{ts,tsx,astro}'",
     "fmt.check": "prettier --check 'src/**/*.{ts,tsx,astro}'",
     "lint": "oxlint --config ./oxlint.config.ts",
+    "prepare": "git config core.hooksPath .githooks",
+    "preview": "astro preview",
     "scan.deadcode": "knip",
     "test.e2e": "astro build && playwright test",
     "test.e2e.ui": "playwright test --headed",
-    "type.check": "astro check",
-    "check.links": "node scripts/check-links.mjs",
-    "check.feed": "node scripts/check-feed.mjs",
-    "prepare": "git config core.hooksPath .githooks"
+    "test.unit": "vitest run",
+    "test.unit.watch": "vitest",
+    "type.check": "astro check"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.10",
@@ -44,7 +46,8 @@
     "prettier-plugin-astro": "1.0.0",
     "serve": "14.2.6",
     "sharp": "0.35.4",
-    "typescript": "5.5.4"
+    "typescript": "5.5.4",
+    "vitest": "5.0.1"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
