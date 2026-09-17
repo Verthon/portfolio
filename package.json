@@ -12,9 +12,10 @@
   },
   "type": "module",
   "scripts": {
-    "build": "astro build && node scripts/check-links.mjs && node scripts/check-feed.mjs",
-    "check.feed": "node scripts/check-feed.mjs",
-    "check.links": "node scripts/check-links.mjs",
+    "analyze.bundle": "ANALYZE=true astro build",
+    "build": "astro build && node scripts/check-links.ts && node scripts/check-feed.ts",
+    "check.feed": "node scripts/check-feed.ts",
+    "check.links": "node scripts/check-links.ts",
     "dev": "astro dev",
     "fmt": "prettier --write 'src/**/*.{ts,tsx,astro}'",
     "fmt.check": "prettier --check 'src/**/*.{ts,tsx,astro}'",
@@ -46,6 +47,7 @@
     "prettier-plugin-astro": "1.0.0",
     "serve": "14.2.6",
     "sharp": "0.35.4",
+    "sonda": "0.14.0",
     "typescript": "5.5.4",
     "vitest": "5.0.1"
   },

@@ -29,3 +29,6 @@ test-results
 
 # Playwright MCP scratch output
 .playwright-mcp
+
+# Sonda bundle reports
+.sonda

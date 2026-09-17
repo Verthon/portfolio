@@ -35,7 +35,7 @@ jobs:
           browser: ${{ matrix.project }}
 
       - name: Run linter
-        run: time pnpm run lint src
+        run: time pnpm run lint src scripts
 
       - name: Type-check
         run: time pnpm run type.check

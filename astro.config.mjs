@@ -1,4 +1,5 @@
 import { defineConfig } from 'astro/config'
+import sonda from 'sonda/astro'
 import mdx from '@astrojs/mdx'
 import preact from '@astrojs/preact'
 import sitemap from '@astrojs/sitemap'
@@ -6,7 +7,7 @@ import { readdirSync, readFileSync } from 'node:fs'
 
 import { SITE_URL as SITE } from './src/seo/site.ts'
 
-export { SITE }
+const ANALYZE = process.env.ANALYZE === 'true'
 
 const SECTIONS = [
   ['blog', 'blog'],
@@ -52,6 +53,7 @@ export default defineConfig({
   },
   server: { port: 4173 },
   preview: { port: 4173 },
+  vite: { build: { sourcemap: ANALYZE } },
   markdown: {
     shikiConfig: {
       themes: {
@@ -62,6 +64,18 @@ export default defineConfig({
     },
   },
   integrations: [
+    ...(ANALYZE
+      ? [
+          sonda({
+            format: ['html', 'json'],
+            filename: 'sonda_[env]',
+            server: true,
+            gzip: true,
+            brotli: true,
+            open: false,
+          }),
+        ]
+      : []),
     mdx({
       syntaxHighlight: 'shiki',
       optimize: true,

@@ -1,8 +1,13 @@
 import type { KnipConfig } from 'knip'
 
 const config: KnipConfig = {
-  entry: ['src/pages/**/*.{ts,tsx,astro}', 'src/layouts/**/*.astro'],
-  project: ['src/**/*.{tsx,ts,astro,mdx}'],
+  entry: [
+    'src/pages/**/*.{ts,tsx,astro}',
+    'src/layouts/**/*.astro',
+    // Build-output checks, run by the `build` script rather than imported.
+    'scripts/*.ts',
+  ],
+  project: ['src/**/*.{tsx,ts,astro,mdx}', 'scripts/*.ts'],
   ignoreDependencies: [
     // Invoked as a string in playwright.config.ts, which knip can't see.
     'serve',

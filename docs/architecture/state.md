@@ -8,7 +8,7 @@ Last checked: 2026-09-17.
 | Driver                  | Status                                     | Gap                                       |
 | ----------------------- | ------------------------------------------ | ----------------------------------------- |
 | Accessible (WCAG AA)    | axe runs per sitemap URL, both themes      | manual keyboard/SR pass is unautomated; oxlint a11y covers 7 rules ([0003](./decisions/0003-oxlint-over-eslint.md)) |
-| CWV measured            | responsive images via `astro:assets` ([0005](./decisions/0005-images-through-astro-assets.md)); `/_astro/*` + `/fonts/*` immutable-cached | no on-demand runner — numbers above are build-time byte counts, not field CWV |
+| CWV measured            | responsive images via `astro:assets` ([0005](./decisions/0005-images-through-astro-assets.md)); `/_astro/*` + `/fonts/*` immutable-cached; `pnpm analyze.bundle` + PostHog field vitals ([0006](./decisions/0006-core-web-vitals-are-measured-not-gated.md)) | no lab LCP/CLS runner; field p75 needs traffic to mean anything. Gating declined, not missing ([0006](./decisions/0006-core-web-vitals-are-measured-not-gated.md)) |
 | URLs don't break        | `trailingSlash`, `lastmod`, `check-links` gate the build ([0002](./decisions/0002-published-urls-do-not-break.md)); canonical↔sitemap set-equality and absolute self-links now asserted too | accepted: nothing catches a deliberate delete/rename (below) |
 | Machine discovery       | JSON-LD ships on all 3 sections; RSS at `/rss.xml`, discoverable and build-checked | `#person` `@id` dangles; no `llms.txt`. `og:image` declined, not missing (below) |
 | Cheap publish loop      | skills in `.agents/skills/`                | no corpus index for content triage        |

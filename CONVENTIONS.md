@@ -41,9 +41,17 @@ Token values live in `src/styles/global.css`; `DESIGN.md` explains which token t
 
 ## Testing
 
-Playwright for e2e (`pnpm test.e2e`), covering only what needs a browser: a11y, the theme toggle, featured-article navigation. `tests/a11y-per-page.spec.ts` runs axe on every page, so a new page must pass it. `pnpm build` runs `scripts/check-links.mjs` and `scripts/check-feed.mjs` over `dist/`, which is where build-output checks belong rather than in a browser test.
+Playwright for e2e (`pnpm test.e2e`), covering only what needs a browser: a11y, the theme toggle, featured-article navigation. `tests/a11y-per-page.spec.ts` runs axe on every page, so a new page must pass it. `pnpm build` runs `scripts/check-links.ts` and `scripts/check-feed.ts` over `dist/`, which is where build-output checks belong rather than in a browser test.
 
 Vitest for pure functions (`pnpm test.unit`), co-located as `<name>.test.ts` — `tests/` stays e2e. Frontmatter needs no test: `src/content.config.ts` validates it at build time.
+
+The build-output rules live in `src/build-checks/` as pure functions over an
+in-memory `Map<path, contents>` of `dist/`, so every rule — including the
+cross-file ones like canonical/sitemap parity — is testable from a hand-written
+map. `scripts/*.ts` are thin runners: glob `dist`, call the rule, print timings,
+exit. Keep I/O and timing in the runner and the rules pure. They run under Node's
+native type stripping, which is why their imports spell out the `.ts` extension
+(`allowImportingTsExtensions` in `tsconfig.json`).
 
 ## Commits
 
