@@ -13,7 +13,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && node scripts/check-links.mjs",
+    "build": "astro build && node scripts/check-links.mjs && node scripts/check-feed.mjs",
     "preview": "astro preview",
     "fmt": "prettier --write 'src/**/*.{ts,tsx,astro}'",
     "fmt.check": "prettier --check 'src/**/*.{ts,tsx,astro}'",
@@ -23,6 +23,7 @@
     "test.e2e.ui": "playwright test --headed",
     "type.check": "astro check",
     "check.links": "node scripts/check-links.mjs",
+    "check.feed": "node scripts/check-feed.mjs",
     "prepare": "git config core.hooksPath .githooks"
   },
   "devDependencies": {

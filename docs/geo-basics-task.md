@@ -32,21 +32,22 @@ So: everything below is justified on **mechanism**, not on her result. Items are
 ranked by how well-established the mechanism is. Item 4 is explicitly
 speculative and is only on the list because it costs almost nothing.
 
-## Current state (verified 2026-09-13)
+## Current state (verified 2026-09-17)
 
 | Surface | State |
 | --- | --- |
 | `public/robots.txt` | `User-agent: * / Allow: /` + sitemap. No AI-crawler rules either way. |
-| JSON-LD | **Exists.** `createArticleJsonLd` in `src/common/infrastructure/services/document-head.ts`, wired into all three section layouts. Emits `BlogPosting` + a `Person` with `@id: https://sordyl.dev/#person`. |
+| JSON-LD | **Exists.** Emitted inline by each `src/pages/<section>/[slug].astro` via `<Fragment slot="head">`. `BlogPosting` + a `Person` with `@id: https://sordyl.dev/#person`. |
 | `Person.sameAs` | Absent. The `@id` is declared but never resolved to an entity with external links. |
-| Home page JSON-LD | None. `src/routes/index.tsx` sets meta only. |
+| Home page JSON-LD | None. `src/pages/index.astro` sets meta only. |
 | Per-section `@type` | All three sections emit `BlogPosting`. |
 | RSS | None. `/rss.xml`, `/feed.xml`, `/index.xml` all 404. |
 | `llms.txt` | None. |
-| Sitemap | Healthy, 34 URLs, no `lastmod`. |
+| Sitemap | Healthy, 34 URLs, **carries `lastmod`** (`astro.config.mjs` reads `last_updated ?? date`). |
 
-`docs/seo-remediation.md` was corrected on 2026-09-13 to match the table above
-and defers to this doc for the `#person` fix, `llms.txt` and RSS.
+`docs/seo-remediation.md` defers to this doc for the `#person` fix, `llms.txt`
+and RSS. It carries its own staleness banner — the Astro migration invalidated
+its file paths, not its findings.
 
 ## Queue
 
@@ -91,8 +92,9 @@ a canonical entity and never delivers one. That is the actual bug.
   referenced everywhere, is the point of `@id`.
 - Consider `WebSite` on the home page too, for the site-level entity.
 
-**Cost:** extend `document-head.ts`, add a head to `src/routes/index.tsx`.
-Framework-coupled — see "The Astro question".
+**Cost:** add a `<Fragment slot="head">` with the `Person` (and optionally
+`WebSite`) JSON-LD to `src/pages/index.astro`. The article pages already
+reference the `@id` and need no change.
 
 ### 3. Entity consistency pass (off-site)
 

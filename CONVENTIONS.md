@@ -10,7 +10,14 @@ kebab-case for files and folders. A component is a folder with `<name>.astro`, o
 
 ## Module layout
 
-`src/pages/` holds routes, `src/content/` holds the MDX and `src/content.config.ts` its schema. Each section (`src/blog/`, `src/dev-bites/`, `src/observatory/`) holds only `components/`; `src/common/components/` holds what they share, and `src/layouts/` the page shells.
+`src/pages/` holds routes, `src/content/` holds the MDX and `src/content.config.ts` its schema. Each section (`src/blog/`, `src/dev-bites/`, `src/observatory/`) holds only `components/`, and `src/layouts/` the page shells.
+
+Anything not owned by one section lands in one of two buckets, by what it is rather than by how many places use it:
+
+- `src/common/components/` — leaf primitives. `heading`, `alert`, `visually-hidden`, the icons. No layout opinion, no site knowledge. MDX imports come from here (today `heading` and `alert`), never from chrome.
+- `src/components/` — site chrome. `nav`, `footer`, `theme-toggler`, `analytics`, `article-card`. Composites that know about the site, used by `src/layouts/` and the index pages, never from MDX.
+
+Don't collapse these two. A primitive moving into chrome, or chrome moving into `common/`, makes "common" mean both *shared* and *site-wide* at once, which is what the split exists to avoid.
 
 Import across modules with the `~/` alias, never a relative path that leaves the current folder.
 
@@ -34,7 +41,7 @@ Token values live in `src/styles/global.css`; `DESIGN.md` explains which token t
 
 ## Testing
 
-Playwright for e2e (`pnpm test.e2e`), covering only what needs a browser: a11y, the theme toggle, featured-article navigation. `tests/a11y-per-page.spec.ts` runs axe on every page, so a new page must pass it. `pnpm build` runs `scripts/check-links.mjs` over `dist/`, which is where build-output checks belong rather than in a browser test.
+Playwright for e2e (`pnpm test.e2e`), covering only what needs a browser: a11y, the theme toggle, featured-article navigation. `tests/a11y-per-page.spec.ts` runs axe on every page, so a new page must pass it. `pnpm build` runs `scripts/check-links.mjs` and `scripts/check-feed.mjs` over `dist/`, which is where build-output checks belong rather than in a browser test.
 
 No unit test runner. The frontmatter logic that used to need one is now `src/content.config.ts`, which Astro validates at build time.
 

@@ -13,7 +13,9 @@ permanent after publishing — never rename one. URLs carry a trailing slash
 ## Frontmatter that carries SEO weight
 
 Required: `title`, `description`, `date`, `excerpt`, `tags`.
-Optional: `published`, `last_updated`, `og_title`, `og_description`.
+Optional: `last_updated`, `og_title`, `og_description`. Observatory notes also
+require `status`. There is no draft flag — anything on `master` is built,
+listed and indexed.
 
 - `title` — under 60 chars, concrete, no clickbait.
 - `description` — 120-160 chars, primary keyword sits naturally.
@@ -47,9 +49,8 @@ want `TechArticle` and `Article`. Flag it, don't change it.
 ## Known gaps
 
 - No `og:image` on any page.
-- No RSS feed and no `llms.txt`. Both are new features, not migration
-  regressions — neither existed before. `docs/geo-basics-task.md` and
-  `docs/rss-feed-task.md` own them.
+- No `llms.txt`. A new feature, not a migration regression — it did not exist
+  before. `docs/geo-basics-task.md` owns it.
 - The `#person` `@id` dangles — nothing defines the node it points at.
 - No Core Web Vitals automation (the *CWV measured* driver).
 
@@ -58,6 +59,12 @@ carries `lastmod` (`astro.config.mjs` regex-reads `last_updated ?? date` from
 the raw MDX at config load). Canonicals are on every page and
 `scripts/check-links.mjs` fails the build on a broken internal link, a bad
 canonical, or a sitemap coverage mismatch.
+
+RSS shipped 2026-09-17: `/rss.xml` over all three collections, `<link
+rel="alternate">` in `Base.astro`, icon in the nav and footer, and
+`scripts/check-feed.mjs` gating the build. The feed is intentionally absent from
+the sitemap — it is not a page and has no canonical, so a `<loc>` would fail the
+set-equality check. Do not report either as a gap.
 
 ## Rules for an SEO pass
 
