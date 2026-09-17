@@ -5,7 +5,7 @@ description: Editorial review of a post that rules can't enforce — restated do
 
 # Content review
 
-Editorial pass over a blog post, dev bite, or observatory note. Six checks, all judgment calls.
+Editorial pass over a blog post, dev bite, or observatory note. Seven checks, all judgment calls.
 
 Read `CONTEXT.md` (niche, voice, content types) and `CONTENT.md` (writing rules) before the first file.
 
@@ -63,6 +63,23 @@ A heading with under ~2 sentences beneath it. Either it needs content or it shou
 
 This blog is frontend architecture and DX. A post with no code example is unusual and usually means a claim is being asserted rather than shown. Flag it unless the piece is genuinely non-technical — a career or process post doesn't need code.
 
+### 7. Case study shape
+
+Only for a post that narrates work the author actually did — a migration, a rollout, a decision that went wrong, years spent maintaining something. Skip it for reference and overview posts; they never claimed to be case studies.
+
+Read `references/case-study-shape.md` before applying this one. The short version — the post must leave the reader knowing:
+
+- the constraints in force before the solution appears
+- why this approach, and what was rejected
+- which calls were the author's own, and which weren't
+- what actually changed, in numbers or a named consequence
+
+Flag the axis that's missing, not the heading. A narrative that carries all four is stronger than a checklist that answers them.
+
+The two that fail most often: **no rejected alternative** (one solution presented as the only one — there was no decision to learn from), and **asserted impact** ("this improved DX" is an opinion of your own work, not an outcome).
+
+Most of this work is under NDA. That blocks the employer, product, client and internal system names — it does not block ratios, magnitudes, or before/after deltas. Ask for the de-identified number ("the surface roughly quadrupled over five iterations"), never the absolute. An irreversible consequence — what is now impossible, what is still running years later — counts as impact on its own where no number was ever the author's to publish. Vagueness is still a flag: "significantly larger" is the absence of a number, not a redacted one.
+
 ## Output
 
 Per file, only what fails. Cite `path:line`. Skip a check that passes rather than printing a checkmark for it — a clean review is a short review.
@@ -83,6 +100,12 @@ FIRST PARAGRAPH
 
 CODE
   No code examples in a post about component API design.
+
+CASE STUDY SHAPE
+  No rejected alternative anywhere. The token layer is presented as the only
+  option — say what you considered instead and why it lost.
+  L112 — "this made the system much healthier" asserts impact. 40 unused
+  components down to what? Build time from 12 minutes to what?
 ```
 
 ## Rules

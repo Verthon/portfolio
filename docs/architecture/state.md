@@ -10,7 +10,7 @@ Last checked: 2026-09-17.
 | Accessible (WCAG AA)    | axe runs per sitemap URL, both themes      | manual keyboard/SR pass is unautomated; oxlint a11y covers 7 rules ([0003](./decisions/0003-oxlint-over-eslint.md)) |
 | CWV measured            | responsive images via `astro:assets` ([0005](./decisions/0005-images-through-astro-assets.md)); `/_astro/*` + `/fonts/*` immutable-cached | no on-demand runner — numbers above are build-time byte counts, not field CWV |
 | URLs don't break        | `trailingSlash`, `lastmod`, `check-links` gate the build ([0002](./decisions/0002-published-urls-do-not-break.md)); canonical↔sitemap set-equality and absolute self-links now asserted too | accepted: nothing catches a deliberate delete/rename (below) |
-| Machine discovery       | JSON-LD ships on all 3 sections; RSS at `/rss.xml`, discoverable and build-checked | `#person` `@id` dangles; no `llms.txt`, no `og:image` |
+| Machine discovery       | JSON-LD ships on all 3 sections; RSS at `/rss.xml`, discoverable and build-checked | `#person` `@id` dangles; no `llms.txt`. `og:image` declined, not missing (below) |
 | Cheap publish loop      | skills in `.agents/skills/`                | no corpus index for content triage        |
 | Docs stay short         | migration folder folded into ADRs 2026-09-16 | —                                       |
 
@@ -30,15 +30,45 @@ reintroduce the deleted hardcoded URL list; it rotted on every new post.
 `CONTEXT.md` defines as a tracking note, not an article. Changing structured
 data on indexed pages is not a silent edit — decide deliberately.
 
+**`og:image` declined 2026-09-17 — a decision, not a gap.** No page emits
+`og:image` or `twitter:image`, and none will until there is a reason. It is not
+an SEO signal: Google's
+[Google Images docs](https://developers.google.com/search/docs/appearance/google-images)
+list `og:image` only as a way to influence *which* image is selected, and image
+selection is "completely automated" — it appears nowhere as a ranking input.
+`docs/seo-remediation.md` ranked it HIGH, which miscategorised a social-sharing
+feature as an SEO one.
+
+What it actually buys is a picture on a shared-link card. `og:title`,
+`og:description`, `og:url` and `twitter:card` already ship from `Base.astro`, so
+a shared link renders as a titled card either way — the image is the only part
+missing. The author does not currently share posts, and jvns.ca and
+simonwillison.net both ship no `og:image` at all (verified from their HTML,
+2026-09-17), so it is not a baseline expectation for a technical blog.
+
+Not the reason to skip it: page weight. `og:image` is a `<meta>` tag no browser
+ever fetches — only a platform crawler does, on a share. It has zero cost to
+readers and no CWV impact. If that argument resurfaces as a reason to keep
+declining, it is wrong; the reasons above are the real ones.
+
+Revisit if posts start being shared regularly. The cheap form is one static
+1200x630 PNG referenced from `Base.astro` — what sarasoueidan.com does — not
+per-post generation, which needs satori + resvg and cuts against the *cheap
+publish loop* driver. Whatever ships must assert the asset exists in `dist`
+(`docs/canonical-audit-task.md` item 5).
+
 **`llms.txt` is a new feature, not migration debt.** It did not exist on the Qwik
 site, so nothing was lost and no indexed URL is at risk. Owned by
 `docs/geo-basics-task.md`.
 
 **RSS shipped 2026-09-17.** `/rss.xml`, one combined feed over all three
 collections, `<link rel="alternate">` in `Base.astro` plus an icon in the nav and
-footer. Rationale and the comparison against other feeds: `docs/rss-feed-task.md`,
-which stays open until the feed is validated against the W3C service — that needs
-a public URL, so it is blocked on deploy.
+footer. Validated clean against the W3C Feed Validation Service on 2026-09-17,
+live. `pubDate` is `date` and never `last_updated`, so an edited post does not
+resurface as unread; the sitemap's `lastmod` answers the opposite question and
+keeps `last_updated ?? date`. `guid isPermaLink="true"` is hardcoded by
+`@astrojs/rss` and not configurable — harmless while the *published URLs don't
+break* driver holds, since the guid only changes if a URL does.
 
 The feed is deliberately *not* in the canonical/sitemap equality assertion. A feed
 is not a page and emits no canonical, so a `<loc>` for it would fail the

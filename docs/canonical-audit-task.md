@@ -10,10 +10,10 @@ Fixed 2026-09-15, plus a build-time checker so it cannot recur. That fix exposed
 a wider question — what else asserts a URL, and does anything verify those
 assertions agree?
 
-Related: `docs/seo-remediation.md` (traditional SEO queue),
-`docs/geo-basics-task.md` (answer-engine legibility; item 2 there and item 3
-here are the same `#person` defect — **that doc owns it**, this one only
-consumes it).
+Related: `docs/geo-basics-task.md` (answer-engine legibility; item 2 there and
+item 3 here are the same `#person` defect — **that doc owns it**, this one only
+consumes it). The traditional-SEO queue (`docs/seo-remediation.md`) is closed
+and deleted.
 
 Driver: `docs/architecture/drivers.md` — _"Published URLs don't break. The
 one irreversible output."_ Everything below is that driver, nothing else.
@@ -49,7 +49,7 @@ override.
 | JSON-LD `url` / `mainEntityOfPage` | Reuse the same `canonical` expression per section page. Consistent.                                                                                                                 |
 | `#person` `@id`                    | **Dangles.** All three section pages reference `https://sordyl.dev/#person`; nothing defines it. Migration carried the defect from Qwik. Owned by `docs/geo-basics-task.md` item 2. |
 | Search Console                     | Not set up. No visibility into Google-_selected_ canonicals.                                                                                                                        |
-| `og:image`                         | None on any page.                                                                                                                                                                   |
+| `og:image`                         | None on any page — declined by decision 2026-09-17, see `state.md`.                                                                                                                                                                   |
 
 ## Queue
 
@@ -66,9 +66,11 @@ The same script asserts set-equality between `<link rel=canonical>` across
 `dist/**/*.html` and `<loc>` in `sitemap-0.xml`, in both directions, with
 `/404/` as the single exemption. A missing sitemap also fails the build.
 
-The RSS extension is still owed: when a feed ships, its URLs join this
-assertion in the same change. That obligation now lives with
-`docs/rss-feed-task.md`.
+The RSS feed shipped 2026-09-17 and is deliberately **not** in this assertion.
+A feed emits no canonical, so a `<loc>` for `/rss.xml` would fail the
+set-equality check in both directions. The 30 URLs inside the feed are asserted
+by `scripts/check-feed.mjs` instead. The obligation as originally written was
+based on a wrong assumption about the shape.
 
 ### 3. Consume the `#person` fix — do not duplicate it
 
@@ -108,7 +110,10 @@ no `og:image`. When one is added it becomes another absolute URL that can rot,
 in a surface nothing currently validates. Flagged now so it ships _with_ a check
 rather than acquiring one later.
 
-Also carried by `docs/seo-remediation.md` and `state.md` as an open gap.
+**`og:image` was declined on 2026-09-17** (`docs/architecture/state.md`), so this
+item is dormant rather than pending — there is nothing to verify until that
+decision is reversed. Kept because the obligation attaches to whatever ships it,
+whenever that happens.
 
 **Do:** when adding it, assert the referenced asset exists in `dist` — same
 script, same pattern as item 1.
@@ -118,7 +123,7 @@ script, same pattern as item 1.
 ## Dependency note
 
 Items 1 and 2 are done. Item 3 is blocked on `geo-basics-task.md` item 2. Item
-4 needs production access. Item 5 is latent until `og:image` exists.
+4 needs production access. Item 5 is dormant — `og:image` is declined, not pending.
 
 Everything still open here is either off-repo (item 4) or waiting on another
 doc's decision (items 3 and 5). Nothing in this queue is blocked on local code.

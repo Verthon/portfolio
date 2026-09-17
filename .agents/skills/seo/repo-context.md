@@ -39,16 +39,20 @@ A component's `slot="head"` does not reach past its immediate parent, so each
 `Base.astro` — that is where `article:published_time` and the JSON-LD script
 are emitted, not inside `Article.astro`.
 
-JSON-LD ships on all three sections. The three `[slug].astro` files are
-byte-identical apart from the collection name, and all three currently emit
-`@type: 'BlogPosting'` with a shared `#person` node for author and publisher.
+JSON-LD ships on all three sections, built by `src/seo/article-json-ld.ts` and
+called from each `[slug].astro`. All three emit `@type: 'BlogPosting'` with a
+shared `#person` node for author and publisher.
 
-Open question, do not "fix" silently: dev bites and observatory notes arguably
-want `TechArticle` and `Article`. Flag it, don't change it.
+Settled 2026-09-17, do not re-report: all three sections stay `BlogPosting`.
+Google treats `Article`, `NewsArticle` and `BlogPosting` as interchangeable for
+the Article rich result, and `TechArticle` is not in that documented set, so
+per-section types would buy nothing.
 
 ## Known gaps
 
-- No `og:image` on any page.
+- No `og:image` on any page — **declined by decision** 2026-09-17, not a gap.
+  It is not an SEO signal, and `og:title`/`og:description` already ship. See
+  `docs/architecture/state.md`. Do not re-report it as a finding.
 - No `llms.txt`. A new feature, not a migration regression — it did not exist
   before. `docs/geo-basics-task.md` owns it.
 - The `#person` `@id` dangles — nothing defines the node it points at.

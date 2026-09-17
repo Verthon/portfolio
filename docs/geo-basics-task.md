@@ -8,10 +8,13 @@ tools"](https://cassidoo.co/post/llm-discoverability/) (2026-01-19). Her
 *mechanisms* are mostly right; her *evidence* is not — see "What this task does
 not claim" before treating any of it as proven.
 
-Related: `docs/seo-remediation.md` (traditional SEO queue; some overlap, noted
-per item). The migration planning docs proposed `llms.txt` and RSS as
-post-migration work; **this doc owns the sequencing for those two** and outlived
-them — they were folded into `docs/architecture/decisions/` on 2026-09-16.
+Related: `docs/canonical-audit-task.md` (URL integrity). The traditional-SEO
+queue that used to live in `docs/seo-remediation.md` is closed and the doc is
+deleted — its one surviving decision (`og:image`, declined) is in
+`docs/architecture/state.md`. The migration planning docs proposed `llms.txt`
+and RSS as post-migration work; **this doc owns the sequencing for those two**
+and outlived them — they were folded into `docs/architecture/decisions/` on
+2026-09-16.
 
 ## What this task does not claim
 
@@ -41,13 +44,12 @@ speculative and is only on the list because it costs almost nothing.
 | `Person.sameAs` | Absent. The `@id` is declared but never resolved to an entity with external links. |
 | Home page JSON-LD | None. `src/pages/index.astro` sets meta only. |
 | Per-section `@type` | All three sections emit `BlogPosting`. |
-| RSS | None. `/rss.xml`, `/feed.xml`, `/index.xml` all 404. |
+| RSS | **Shipped 2026-09-17.** `/rss.xml`, all three collections, W3C-valid. `/feed.xml` and `/index.xml` 404 by decision — no alias convention exists. |
 | `llms.txt` | None. |
 | Sitemap | Healthy, 34 URLs, **carries `lastmod`** (`astro.config.mjs` reads `last_updated ?? date`). |
 
-`docs/seo-remediation.md` defers to this doc for the `#person` fix, `llms.txt`
-and RSS. It carries its own staleness banner — the Astro migration invalidated
-its file paths, not its findings.
+This doc owns the `#person` fix and `llms.txt`. The former SEO queue deferred
+both here before it was closed.
 
 ## Queue
 
@@ -135,18 +137,14 @@ and it conflicts with a stated goal: *"I won't distort a page for crawlers."* A
 generated `llms.txt` is a machine-readable index of pages that already exist —
 that is fine. A parallel prose page written for bots is not.
 
-### 5. RSS feed
+### 5. RSS feed — DONE 2026-09-17
 
-**Why:** not strictly GEO, but it is the same data feeding one more consumer
-surface, it is the standard mechanism for content syndication, and the site
-currently 404s on all three conventional paths. The *URLs don't break* driver
-wants it generated
-from content. `docs/seo-remediation.md` item 7 already carries this.
+Shipped. `src/pages/rss.xml.ts`, discoverable from the head and the nav/footer,
+gated by `scripts/check-feed.mjs`, validated clean at the W3C service. See
+`docs/architecture/state.md`.
 
-Listed here because items 4 and 5 are the same build-time-endpoint shape and
-should be done in one sitting.
-
-**Cost:** ~40 lines. Framework-coupled.
+Kept in this list because item 4 (`llms.txt`) is the same build-time-endpoint
+shape — read `rss.xml.ts` before writing it.
 
 ## The Astro question
 
@@ -157,8 +155,9 @@ here needs building in Qwik, and the 2026-12-13 fallback date is void.
 
 Items 2, 4 and 5 are framework-coupled head/endpoint work, and the Astro forms
 are the near-trivial ones the old framing was holding out for:
-`src/pages/llms.txt.ts` + `getCollection()`, and `@astrojs/rss` (already
-installed, unused, owned by `docs/rss-feed-task.md`).
+`src/pages/llms.txt.ts` + `getCollection()`. The `@astrojs/rss` half of this
+shipped on 2026-09-17 — see `docs/architecture/state.md`; `src/pages/rss.xml.ts`
+is the worked example of the endpoint shape.
 
 Item 2 — the dangling `#person` `@id` — is a defect in already-shipped JSON-LD,
 not a new feature, and is the one to do first.

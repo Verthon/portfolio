@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content'
 import Article from '~/layouts/Article.astro'
 import Base from '~/layouts/Base.astro'
+import { createArticleJsonLd } from '~/seo/article-json-ld'
 
 export async function getStaticPaths() {
   const posts = await getCollection('devBites')
@@ -15,24 +16,13 @@ const { post } = Astro.props
 const { Content } = await render(post)
 
 const canonical = new URL(Astro.url.pathname, Astro.site).href
-const iso = (d: Date) => d.toISOString().slice(0, 10)
-const person = {
-  '@type': 'Person',
-  '@id': 'https://sordyl.dev/#person',
-  name: 'Krzysztof Sordyl',
-}
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'BlogPosting',
-  headline: post.data.title,
-  url: canonical,
-  mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
-  datePublished: iso(post.data.date),
-  dateModified: iso(post.data.last_updated ?? post.data.date),
-  author: person,
-  publisher: person,
-}
+const jsonLd = createArticleJsonLd({
+  title: post.data.title,
+  canonical,
+  date: post.data.date,
+  lastUpdated: post.data.last_updated,
+})
 ---
 
 <Base
