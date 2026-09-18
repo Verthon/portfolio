@@ -112,7 +112,7 @@ signal moot for the one agent it is aimed at. Shape taken, inconsistency not.
 to appear in these features"*
 ([AI features](https://developers.google.com/search/docs/appearance/ai-features)),
 and peer adoption is 7 of 40 — skewed toward SEO-plugin defaults and
-consultancies. See `docs/geo-basics-task.md`.
+consultancies. See `docs/entity-consistency-task.md`.
 
 ## What supersedes this
 
@@ -128,3 +128,11 @@ contentsignals.org now describes itself as a guide to the AIPREF proposal.
 When AIPREF lands, supersede this record rather than editing it. The likely
 change is mechanical — `Content-Signal` becomes `Content-Usage`, the same
 policy in the standardised spelling.
+
+---
+
+*Note, 2026-09-18: `docs/geo-basics-task.md`, referenced above as the source of
+this decision's framing, was deleted when its queue closed the same day. The
+references are left as written — they record what that doc proposed at the time
+this was decided. Its surviving open work is in
+`docs/entity-consistency-task.md`.*

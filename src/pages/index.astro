@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content'
 import Base from '~/layouts/Base.astro'
 import ArticleCard from '~/components/article-card/article-card.astro'
 import { homeMeta } from '~/seo/meta'
+import { createSiteJsonLd } from '~/seo/site-json-ld'
 
 const blogs = await getCollection('blog')
 const featuredArticles = blogs
@@ -23,6 +24,13 @@ const meta = homeMeta({
 ---
 
 <Base meta={meta}>
+  <Fragment slot="head">
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(createSiteJsonLd())}
+      is:inline
+    ></script>
+  </Fragment>
   <section class="hero">
     <h1 class="hero-name">Welcome, I'm Krzysztof</h1>
     <p class="hero-tagline">

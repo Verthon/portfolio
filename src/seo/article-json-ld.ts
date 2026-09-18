@@ -1,4 +1,4 @@
-import { AUTHOR, PERSON_ID } from './site'
+import { PERSON_ID, WEBSITE_ID } from './site'
 
 type ArticleJsonLdInput = {
   title: string
@@ -8,12 +8,6 @@ type ArticleJsonLdInput = {
 }
 
 const iso = (date: Date) => date.toISOString().slice(0, 10)
-
-const person = {
-  '@type': 'Person',
-  '@id': PERSON_ID,
-  name: AUTHOR,
-}
 
 export const createArticleJsonLd = ({
   title,
@@ -28,6 +22,6 @@ export const createArticleJsonLd = ({
   mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
   datePublished: iso(date),
   dateModified: iso(lastUpdated ?? date),
-  author: person,
-  publisher: person,
+  author: { '@id': PERSON_ID },
+  isPartOf: { '@id': WEBSITE_ID },
 })

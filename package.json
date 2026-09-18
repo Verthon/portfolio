@@ -13,8 +13,9 @@
   "type": "module",
   "scripts": {
     "analyze.bundle": "ANALYZE=true astro build",
-    "build": "astro build && node scripts/check-links.ts && node scripts/check-feed.ts",
+    "build": "astro build && node scripts/check-links.ts && node scripts/check-feed.ts && node scripts/check-json-ld.ts",
     "check.feed": "node scripts/check-feed.ts",
+    "check.json-ld": "node scripts/check-json-ld.ts",
     "check.links": "node scripts/check-links.ts",
     "dev": "astro dev",
     "fmt": "prettier --write 'src/**/*.{ts,tsx,astro}'",

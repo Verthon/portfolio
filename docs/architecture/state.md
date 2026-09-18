@@ -69,8 +69,8 @@ same pattern as the link rules in `src/build-checks/links.ts`, since an
 validates.
 
 **`llms.txt` is a new feature, not migration debt.** It did not exist on the Qwik
-site, so nothing was lost and no indexed URL is at risk. Owned by
-`docs/geo-basics-task.md`.
+site, so nothing was lost and no indexed URL is at risk. Declined 2026-09-18 —
+reasoning in `docs/entity-consistency-task.md`.
 
 **RSS shipped 2026-09-17.** `/rss.xml`, one combined feed over all three
 collections, `<link rel="alternate">` in `Base.astro` plus an icon in the nav and

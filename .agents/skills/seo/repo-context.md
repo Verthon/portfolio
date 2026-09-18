@@ -53,9 +53,12 @@ per-section types would buy nothing.
 - No `og:image` on any page — **declined by decision** 2026-09-17, not a gap.
   It is not an SEO signal, and `og:title`/`og:description` already ship. See
   `docs/architecture/state.md`. Do not re-report it as a finding.
-- No `llms.txt`. A new feature, not a migration regression — it did not exist
-  before. `docs/geo-basics-task.md` owns it.
-- The `#person` `@id` dangles — nothing defines the node it points at.
+- No `llms.txt` — **declined by decision** 2026-09-18, not a gap. Google
+  documents it as unnecessary for AI features and no provider has committed to
+  consuming it. See `docs/entity-consistency-task.md`. Do not re-report it.
+- The `#person` `@id` resolves as of 2026-09-18 — `src/seo/site-json-ld.ts`
+  defines the node, `src/build-checks/json-ld.ts` fails the build if any
+  referenced `@id` does not resolve to exactly one definition. Not a gap.
 - No Core Web Vitals automation (the *CWV measured* driver).
 
 Done, do not re-report as gaps: the sitemap exists, covers all pages and
