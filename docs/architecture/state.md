@@ -3,18 +3,18 @@
 Where the repo stands against `drivers.md`. Volatile by design — drivers say why,
 this says what's missing today. One line per gap, no prose.
 
-Last checked: 2026-09-17.
+Last checked: 2026-09-18.
 
 | Driver                  | Status                                     | Gap                                       |
 | ----------------------- | ------------------------------------------ | ----------------------------------------- |
 | Accessible (WCAG AA)    | axe runs per sitemap URL, both themes      | manual keyboard/SR pass is unautomated; oxlint a11y covers 7 rules ([0003](./decisions/0003-oxlint-over-eslint.md)) |
 | CWV measured            | responsive images via `astro:assets` ([0005](./decisions/0005-images-through-astro-assets.md)); `/_astro/*` + `/fonts/*` immutable-cached; `pnpm analyze.bundle` + PostHog field vitals ([0006](./decisions/0006-core-web-vitals-are-measured-not-gated.md)) | no lab LCP/CLS runner; field p75 needs traffic to mean anything. Gating declined, not missing ([0006](./decisions/0006-core-web-vitals-are-measured-not-gated.md)) |
-| URLs don't break        | `trailingSlash`, `lastmod`, `check-links` gate the build ([0002](./decisions/0002-published-urls-do-not-break.md)); canonical↔sitemap set-equality and absolute self-links now asserted too | accepted: nothing catches a deliberate delete/rename (below) |
+| URLs don't break        | `trailingSlash`, `lastmod`, `check-links` gate the build ([0002](./decisions/0002-published-urls-do-not-break.md)); canonical↔sitemap set-equality and absolute self-links now asserted too | accepted: nothing catches a deliberate delete/rename (below); no Search Console, so Google-*selected* canonicals are unobserved (needs prod DNS) |
 | Machine discovery       | JSON-LD ships on all 3 sections; RSS at `/rss.xml`, discoverable and build-checked | `#person` `@id` dangles; no `llms.txt`. `og:image` declined, not missing (below) |
 | Cheap publish loop      | skills in `.agents/skills/`                | no corpus index for content triage        |
 | Docs stay short         | migration folder folded into ADRs 2026-09-16 | —                                       |
 
-The *URLs don't break* gap is accepted, not open. `scripts/check-links.mjs`
+The *URLs don't break* gap is accepted, not open. `src/build-checks/links.ts`
 validates `dist/` against itself, so a page that stops generating vanishes from
 both sides of the diff and the build stays green. A content-derived assertion
 (every `index.mdx` has a built page and a `<loc>`) was considered on 2026-09-16
@@ -23,6 +23,15 @@ deletion by construction, and the repo has one committer who runs the build. The
 version that would cover deletion is a committed snapshot of shipped URLs —
 worth revisiting only if a post is ever retired or a slug renamed. Do not
 reintroduce the deleted hardcoded URL list; it rotted on every new post.
+
+The three link rules were verified on 2026-09-18 by reintroducing each defect
+into a copy of `dist/` and confirming the runner exits 1: a missing trailing
+slash, an absolute self-link, and a sitemap `<loc>` diverging from the canonical
+set (which fires in both directions). `trailingSlash: 'always'` is a house
+convention, not a Google requirement — no external tool will ever report a
+violation, which is why the gate is local. `rel=canonical` is likewise a hint,
+not a directive; the value is that every signal agrees, leaving nothing to
+override.
 
 ## Open items
 
@@ -54,8 +63,10 @@ declining, it is wrong; the reasons above are the real ones.
 Revisit if posts start being shared regularly. The cheap form is one static
 1200x630 PNG referenced from `Base.astro` — what sarasoueidan.com does — not
 per-post generation, which needs satori + resvg and cuts against the *cheap
-publish loop* driver. Whatever ships must assert the asset exists in `dist`
-(`docs/canonical-audit-task.md` item 5).
+publish loop* driver. Whatever ships must assert the asset exists in `dist` —
+same pattern as the link rules in `src/build-checks/links.ts`, since an
+`og:image` is one more absolute URL that can rot in a surface nothing currently
+validates.
 
 **`llms.txt` is a new feature, not migration debt.** It did not exist on the Qwik
 site, so nothing was lost and no indexed URL is at risk. Owned by
@@ -72,8 +83,8 @@ break* driver holds, since the guid only changes if a URL does.
 
 The feed is deliberately *not* in the canonical/sitemap equality assertion. A feed
 is not a page and emits no canonical, so a `<loc>` for it would fail the
-set-equality check in `scripts/check-links.mjs`. The 30 URLs inside the feed are
-covered instead by `scripts/check-feed.mjs`, which also asserts item count against
+set-equality check in `src/build-checks/links.ts`. The 30 URLs inside the feed are
+covered instead by `src/build-checks/feed.ts`, which also asserts item count against
 `src/content/*/*/index.mdx`, RFC-822 `pubDate`s, sort order, and that the head
 `rel="alternate"` resolves.
 

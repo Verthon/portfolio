@@ -9,6 +9,8 @@ import { SITE_URL as SITE } from './src/seo/site.ts'
 
 const ANALYZE = process.env.ANALYZE === 'true'
 
+const BROWSER_TARGET = ['chrome107', 'edge107', 'firefox104', 'safari16']
+
 const SECTIONS = [
   ['blog', 'blog'],
   ['dev-bites', 'dev-bites'],
@@ -53,7 +55,17 @@ export default defineConfig({
   },
   server: { port: 4173 },
   preview: { port: 4173 },
-  vite: { build: { sourcemap: ANALYZE } },
+  vite: {
+    build: {
+      // The supported browser floor. This is what Vite's default
+      // 'baseline-widely-available' resolved to in Vite 8 — pinned literally so
+      // a Vite upgrade cannot raise the floor without showing up in a diff.
+      // See ADR 0008.
+      target: BROWSER_TARGET,
+      sourcemap: ANALYZE,
+    },
+    css: { target: BROWSER_TARGET },
+  },
   markdown: {
     shikiConfig: {
       themes: {
@@ -69,6 +81,8 @@ export default defineConfig({
           sonda({
             format: ['html', 'json'],
             filename: 'sonda_[env]',
+            // A static build only fires `astro:build:setup` with
+            // target 'server'. Without this, Sonda silently emits nothing.
             server: true,
             gzip: true,
             brotli: true,

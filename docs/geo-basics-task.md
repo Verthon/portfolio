@@ -8,10 +8,11 @@ tools"](https://cassidoo.co/post/llm-discoverability/) (2026-01-19). Her
 *mechanisms* are mostly right; her *evidence* is not — see "What this task does
 not claim" before treating any of it as proven.
 
-Related: `docs/canonical-audit-task.md` (URL integrity). The traditional-SEO
-queue that used to live in `docs/seo-remediation.md` is closed and the doc is
-deleted — its one surviving decision (`og:image`, declined) is in
-`docs/architecture/state.md`. The migration planning docs proposed `llms.txt`
+The traditional-SEO queue that used to live in `docs/seo-remediation.md` is
+closed and the doc deleted — its one surviving decision (`og:image`, declined)
+is in `docs/architecture/state.md`. The URL-integrity queue
+(`docs/canonical-audit-task.md`) closed the same way on 2026-09-18; **this doc
+still owns the `#person` fix** (item 2), which that queue only consumed. The migration planning docs proposed `llms.txt`
 and RSS as post-migration work; **this doc owns the sequencing for those two**
 and outlived them — they were folded into `docs/architecture/decisions/` on
 2026-09-16.
@@ -93,6 +94,11 @@ a canonical entity and never delivers one. That is the actual bug.
   not duplicate the full `Person` on every page — one canonical definition,
   referenced everywhere, is the point of `@id`.
 - Consider `WebSite` on the home page too, for the site-level entity.
+- Assert it at build time: every referenced `@id` resolves to exactly one
+  defined node. Inherited from the closed URL-integrity queue, which treated
+  `mainEntityOfPage` and `author.@id` as URL assertions like any other. Same
+  shape as the rules in `src/build-checks/` — a pure function over the `dist`
+  map, called from a thin runner.
 
 **Cost:** add a `<Fragment slot="head">` with the `Person` (and optionally
 `WebSite`) JSON-LD to `src/pages/index.astro`. The article pages already

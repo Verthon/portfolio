@@ -16,35 +16,46 @@ default and is a server-side project toggle, not a change to
 [Sonda](https://sonda.dev) over the build and writes `.sonda/sonda_server.{html,json}`,
 gitignored. The JSON carries exact uncompressed/gzip/brotli bytes per asset.
 
-Baseline on the day this was decided — the whole site's client JavaScript:
+Baseline on the day this was decided — what the Preact integration emits into
+`dist/_astro/`:
 
 | File | Raw | Gzip | Brotli |
 | --- | --- | --- | --- |
-| `preact.module.js` | 10,521 | 4,458 | 4,072 |
-| `signals.module.js` | 9,463 | 3,633 | 3,336 |
-| `client.js` | 2,746 | 1,422 | 1,253 |
-| **Total** | **22,730** | **9,513** | **8,661** |
+| `preact.module.js` | 10,470 | 4,412 | 4,037 |
+| `signals.module.js` | 9,411 | 3,592 | 3,297 |
+| `client.js` | 2,702 | 1,385 | 1,224 |
+| **Total emitted** | **22,583** | **9,389** | **8,558** |
+| **Total shipped to readers** | **0** | **0** | **0** |
+
+**These files are emitted but never referenced.** No built HTML page links any
+of them, and no `client:*` directive exists anywhere in `src/` — every Preact
+component is a build-time template that never hydrates (ADR 0004). Per-page
+JavaScript is zero bytes, not 8.6 KB.
+
+Verify with:
+
+```
+grep -rho 'src="/_astro/[^"]*\.js"' dist --include="*.html" | sort -u
+```
+
+Empty output means the zero still holds. Re-run it after adding any `client:*`
+directive, or any config that injects a client script — Astro's `prefetch`
+option is the one most likely to be reached for, and it adds ~956 bytes brotli
+to all pages.
 
 Nothing asserts against these numbers. That is the decision, not an omission.
 
-## Sonda needs `server: true` or it silently does nothing
-
-A static build fires `astro:build:setup` once with `target: 'server'`, never
-`'client'`, and Sonda's Astro integration returns early on that target unless
-`server: true`. With its documented default config: no report, no warning, empty
-`.sonda/`, exit 0.
-
-So the report is nominally the *server* bundle. The three client assets above
-are in it, among ~100 `dist/.prerender/` chunks that are deleted after the build
-and shipped to nobody — filter on `dist/_astro/` when reading the JSON.
+The report is nominally the *server* bundle — the three client assets above are
+in it among ~100 `dist/.prerender/` chunks that are deleted after the build and
+shipped to nobody. Filter on `dist/_astro/` when reading the JSON.
 
 ## Why not gate it
 
 A budget that fails the build was the obvious move and is wrong here:
 
-- **Per-page JS is flat as content grows.** Astro ships zero JS per page; the
-  three files above do not change when a post is added. A total-`dist/` budget
-  would fail on the next post for reasons unrelated to performance.
+- **Per-page JS is flat as content grows.** It is zero, and stays zero when a
+  post is added. A total-`dist/` budget would fail on the next post for reasons
+  unrelated to performance — it would be measuring images and HTML, not JS.
 - **One committer who runs the build.** A tripwire only fires when you already
   know you changed something.
 - **A threshold that goes red on a legitimate Astro minor gets bumped without
@@ -90,3 +101,22 @@ as the bottleneck, per
 [cwv-superpowers](https://github.com/corewebvitals/cwv-superpowers) — but
 PostHog's `$web_vitals` events carry metric values without attribution, so there
 is nothing to write it against yet.
+
+## Correction, 2026-09-18
+
+The byte table above originally ran under the heading "the whole site's client
+JavaScript" and gave a total of 8,661 bytes brotli, with no shipped-to-readers
+row. That framing was wrong: it counted files the Preact integration emits into
+`dist/_astro/` but that no HTML page references, so it overstated the JavaScript
+actually delivered to a reader by the entire amount. The true figure is zero.
+
+Corrected in place rather than superseded — the decision (measure, don't gate)
+is unchanged and the "why not gate it" reasoning holds. Only a factual baseline
+was wrong. The raw numbers also shifted slightly against a current build; they
+are re-measured above.
+
+Found while costing Astro's `prefetch` option for
+[`docs/speculationrules-task.md`](../../speculationrules-task.md), where the
+difference decided the outcome: adding ~956 bytes brotli to an 8.6 KB budget is
+a rounding error, but adding it to zero means shipping a site's first
+JavaScript.

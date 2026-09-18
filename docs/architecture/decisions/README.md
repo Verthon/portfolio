@@ -17,3 +17,5 @@ Format: what was decided, why, what it costs, what else was considered.
 | [0004](./0004-component-tech-split.md) | `.astro` by default, Preact only where MDX imports it |
 | [0005](./0005-images-through-astro-assets.md) | Images go through `astro:assets` |
 | [0006](./0006-core-web-vitals-are-measured-not-gated.md) | Core Web Vitals are measured, not gated |
+| [0007](./0007-ai-crawler-policy.md) | AI crawlers may cite, not train |
+| [0008](./0008-browser-support-floor-is-pinned.md) | The browser support floor is pinned, not inherited |
