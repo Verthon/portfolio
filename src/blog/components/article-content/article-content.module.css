@@ -52,4 +52,9 @@
     box-shadow: inset 0 0 0 20em var(--link-wash);
     border-bottom: 2px solid var(--link-underline);
   }
+
+  a:focus-visible {
+    box-shadow: inset 0 0 0 20em var(--primary-100);
+    outline-offset: 1px;
+  }
 }

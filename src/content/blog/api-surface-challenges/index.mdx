@@ -38,13 +38,7 @@ Five major iterations over three years. Each one improved something, but each on
 also dragged pieces of the first release forward. Some early shortcuts never got
 cleaned up. They became permanent surface area.
 
-<Heading
-  tag="h2"
-  id="standardization-trap"
-  linkLabel="Link to heading: The Standardization Trap"
->
-  The Standardization Trap
-</Heading>
+<Heading tag="h2" id="standardization-trap" linkLabel="Link to heading: The Standardization Trap">The Standardization Trap</Heading>
 
 At some point, core became a distribution channel, a proxy for other four packages.
 The architecture group suggested exposing additional internal npm packages through
@@ -56,9 +50,7 @@ core-ish." "Everyone needs this anyway." The original teams still owned those pa
 first priority. Updates came when they had capacity. Peer dependency alignment,
 tooling upgrades, bundle size reductions: all of it moved slowly.
 
-<Heading tag="h2" id="hyrums-law" linkLabel="Link to heading: Hyrum's Law">
-  Hyrum's Law
-</Heading>
+<Heading tag="h2" id="hyrums-law" linkLabel="Link to heading: Hyrum's Law">Hyrum's Law</Heading>
 
 In the first version, we exposed an ApiService. It had a narrow goal: token
 refresh and basic error handling. We did not intend consumers to extend it.
@@ -78,9 +70,7 @@ the dependency had already escaped our boundary.
 
 The contract was no longer what we intended. It was what the ecosystem had already built on top of.
 
-<Heading tag="h2" id="politics" linkLabel="Link to heading: Politics">
-  Politics
-</Heading>
+<Heading tag="h2" id="politics" linkLabel="Link to heading: Politics">Politics</Heading>
 
 One micro-frontend had a single consumer. We confirmed it through manual
 codebase checks, then contacted the domain team directly to verify no other
@@ -95,9 +85,7 @@ requirement, no technical constraint. A stronger organizational position.
 
 The micro-frontend is still exposed today.
 
-<Heading tag="h2" id="summary" linkLabel="Link to heading: Summary">
-  Summary
-</Heading>
+<Heading tag="h2" id="summary" linkLabel="Link to heading: Summary">Summary</Heading>
 
 A large API surface is not just a maintenance problem. Every export is a token
 in someone's mental model of the system. On a platform with thirty-plus

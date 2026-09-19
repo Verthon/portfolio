@@ -95,15 +95,18 @@ const rssUrl = '/rss.xml'
 
   .socials {
     display: flex;
+    gap: var(--space-md);
   }
 
   .icon-link {
-    margin-inline-start: var(--space-md);
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-xs);
     color: var(--text-strong);
   }
 
   .icon-link svg {
-    display: inline;
+    flex: none;
     fill: currentColor;
   }
 

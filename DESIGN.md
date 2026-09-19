@@ -403,7 +403,57 @@ function-variable, builtin — everything else falls back to `code-text`. Blocks
 scroll horizontally (`overflow-x: auto`); they never wrap.
 
 **Heading anchors** are hidden buttons positioned `translateX(-150%)` at
-`opacity: 0`, fading in on heading hover. Never visible by default.
+`opacity: 0`, fading in on heading hover. Never visible by default — but the
+`:focus-visible` reveal must sit **outside** any `@media (hover: hover)` block.
+See Focus below; this was a live 2.4.7 failure.
+
+## Focus
+
+`--focus-ring` is `--primary-800`, 2px, at 2px offset. Accent-colored rather
+than browser-blue on purpose: focus should read as the same kind of event a link
+already is, and a blue ring would be the only second hue on the page.
+
+```css
+/* global.css — anything with its own box */
+:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+  border-radius: var(--radius-xs);
+}
+
+/* article-content.module.css — prose links keep the outline AND deepen */
+a:focus-visible {
+  box-shadow: inset 0 0 0 20em var(--primary-100);
+  outline-offset: 1px;
+}
+```
+
+Prose links take a tighter offset so the outline hugs inline text. They keep the
+outline because the wash deepening alone is imperceptible — see the ratios
+below.
+
+### Measured ratios
+
+Computed from the HSL values in `global.css` (plain WCAG relative luminance) on
+2026-09-18. Recompute rather than trusting this table if the palette moves.
+
+| Value                              | vs white | vs `dark-800` |
+| :--------------------------------- | :------- | :------------ |
+| `primary` raw                      | **1.18** | —             |
+| `primary-800` (light, `l=16.2%`)   | **9.45** | —             |
+| `primary-800` (dark, `l=84.2%`)    | —        | **15.27**     |
+| `primary-100` vs `primary-50`      | **1.05** | —             |
+| `text-color` on `primary-100`      | **7.60** | —             |
+
+Two consequences:
+
+1. **Raw `primary` cannot be a stroke that needs contrast.** At 1.18 it is
+   invisible on white. Use `primary-800`, already the badge foreground, so it is
+   existing vocabulary rather than a new value.
+2. **A one-rung wash step cannot carry a state change.** `primary-50` →
+   `primary-100` is 1.05 — a 6% lightness step, imperceptible. The wash can
+   reinforce a state; it cannot *be* the state. This is the one place the
+   site's wash pattern is insufficient on its own.
 
 ## Do's and Don'ts
 
@@ -429,3 +479,8 @@ scroll horizontally (`overflow-x: auto`); they never wrap.
   do not evaluate. Write the literal pixel value.
 - Don't hardcode a hex or hsl value in a component. Every color in use has a
   token; if one doesn't, add it to `:root` and to this file.
+- Don't let a one-rung wash step be a state's only signal — it measures 1.05.
+  Pair it with an outline or a border.
+- Don't write a `:hover` reveal without a `:focus-visible` sibling outside the
+  `(hover: hover)` block. Keyboard users then focus an invisible element, and
+  axe does not catch it.

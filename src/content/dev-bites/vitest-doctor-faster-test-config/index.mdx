@@ -60,13 +60,7 @@ Recommendation: pool: 'vmThreads' (-67%)
   })
 ```
 
-<Heading
-  tag="h2"
-  id="real-numbers"
-  linkLabel="Link to heading: Real numbers on a 615-file suite"
->
-  Real numbers on a 615-file suite
-</Heading>
+<Heading tag="h2" id="real-numbers" linkLabel="Link to heading: Real numbers on a 615-file suite">Real numbers on a 615-file suite</Heading>
 
 Doctor recommended `pool: 'vmThreads'` over the `forks` we had been running. Local, 615 test files / 1813 tests:
 
@@ -84,13 +78,7 @@ On CI the same switch, measured on the latest happy-dom environment:
 
 That is -56% on CI.
 
-<Heading
-  tag="h2"
-  id="custom-environment-caveat"
-  linkLabel="Link to heading: The custom environment caveat"
->
-  The custom environment caveat
-</Heading>
+<Heading tag="h2" id="custom-environment-caveat" linkLabel="Link to heading: The custom environment caveat">The custom environment caveat</Heading>
 
 If your project uses a custom environment, say a thin wrapper around `happy-dom` that adds a `BroadcastChannel` polyfill for MSW 2.x, doctor skips the `vmThreads` and `vmForks` candidates without reporting why. That was [issue #11192](https://github.com/vitest-dev/vitest/issues/11192), fixed since.
 
@@ -105,13 +93,7 @@ export default defineConfig({
 })
 ```
 
-<Heading
-  tag="h2"
-  id="before-you-switch-pools"
-  linkLabel="Link to heading: Before you switch pools"
->
-  Before you switch pools
-</Heading>
+<Heading tag="h2" id="before-you-switch-pools" linkLabel="Link to heading: Before you switch pools">Before you switch pools</Heading>
 
 `vmThreads` does not give each test file a fresh process:
 

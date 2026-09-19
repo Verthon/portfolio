@@ -147,6 +147,13 @@ ul {
   --link-underline: var(--primary);
 
   --code-expression-background: hsl(50.3, 20%, 95.4%);
+
+  --code-background: hsl(206.7, 52.9%, 98.3%);
+  --code-border: var(--grey-200);
+
+  --focus-ring: var(--primary-800);
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
 }
 
 [data-theme='dark'] {
@@ -168,6 +175,8 @@ ul {
 
   --code-expression-background: hsl(50, 7%, 20%);
 
+  --code-border: var(--dark-600);
+
   img {
     filter: brightness(0.7) contrast(1.2);
   }
@@ -185,6 +194,12 @@ ul {
   color: var(--text-color);
 }
 
+:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+  border-radius: var(--radius-xs);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -199,18 +214,28 @@ ul {
 .astro-code,
 .astro-code span {
   color: var(--shiki-light);
-  background-color: var(--shiki-light-bg);
   font-style: var(--shiki-light-font-style);
   font-weight: var(--shiki-light-font-weight);
   text-decoration: var(--shiki-light-text-decoration);
+}
+
+/* Shiki emits --shiki-*-bg on the block and every token span. Applying it to
+   the spans paints an opaque rectangle per token over the block's own surface,
+   which shows as banding that stops short of the padding. Only pre paints. */
+pre.astro-code {
+  background-color: var(--code-background);
+  border: 1px solid var(--code-border);
 }
 
 [data-theme='dark'] .astro-code,
 [data-theme='dark'] .astro-code span,
 [data-theme='dark'] .astro-code code {
   color: var(--shiki-dark);
-  background-color: var(--shiki-dark-bg);
   font-style: var(--shiki-dark-font-style);
   font-weight: var(--shiki-dark-font-weight);
   text-decoration: var(--shiki-dark-text-decoration);
+}
+
+[data-theme='dark'] pre.astro-code {
+  background-color: var(--shiki-dark-bg);
 }

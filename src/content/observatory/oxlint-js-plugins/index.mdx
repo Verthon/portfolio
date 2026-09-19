@@ -22,39 +22,23 @@ import Heading from '~/common/components/heading/heading'
 <ObservatoryContent>
 **Status:** Technical Preview (since October 2025)
 
-<Heading tag="h2" id="overview" linkLabel="Link to heading: Overview">
-  Overview
-</Heading>
+<Heading tag="h2" id="overview" linkLabel="Link to heading: Overview">Overview</Heading>
 
 Oxlint now supports JavaScript-based plugins, letting you extend the linter while retaining near-Rust performance.
 
-<Heading
-  tag="h2"
-  id="known-issues-and-tradeoffs"
-  linkLabel="Link to heading: Known Issues & Tradeoffs"
->
-  Known Issues & Tradeoffs
-</Heading>
+<Heading tag="h2" id="known-issues-and-tradeoffs" linkLabel="Link to heading: Known Issues & Tradeoffs">Known Issues & Tradeoffs</Heading>
 
 - This initial release does not implement all of ESLint's plugin API
 - Performance is good, but it's going to get way better
 - Known issues for Windows users (who is using Windows for web-dev ?)
 - It can't be as fast as native Oxlint rules and plugins
 
-<Heading
-  tag="h2"
-  id="adoption-considerations"
-  linkLabel="Link to heading: Adoption Considerations"
->
-  Adoption Considerations
-</Heading>
+<Heading tag="h2" id="adoption-considerations" linkLabel="Link to heading: Adoption Considerations">Adoption Considerations</Heading>
 
 - **New Projects**: Adopt if you mostly rely on built-in rules. Avoid heavy ESLint plugin assumptions
 - **Existing Projects**: In case you have huge pile of ESLint plugins, consider waiting for stable release. Consider integrating the https://www.npmjs.com/package/eslint-plugin-oxlint to offload rules Oxlint already supports while keeping ESLint for the rest.
 
-<Heading tag="h2" id="resources" linkLabel="Link to heading: Resources">
-  Resources
-</Heading>
+<Heading tag="h2" id="resources" linkLabel="Link to heading: Resources">Resources</Heading>
 
 - [Official docs](https://oxc.rs/docs/guide/usage/linter/js-plugins.html)
 - [Initial blogpost](https://oxc.rs/blog/2025-10-09-oxlint-js-plugins)

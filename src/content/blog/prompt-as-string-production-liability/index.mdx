@@ -31,13 +31,7 @@ Separate incident: team swapped a model to `gemini-flash-lite-latest`, assuming 
 Structural validation caught the first one - the response didn't match the expected shape, so the pipeline refused it.
 The second slipped past every shape check because the JSON was well-formed, only the values were wrong.
 
-<Heading
-  tag="h2"
-  id="shape-of-problem"
-  linkLabel="Link to heading: The shape of the problem"
->
-  The shape of the problem
-</Heading>
+<Heading tag="h2" id="shape-of-problem" linkLabel="Link to heading: The shape of the problem">The shape of the problem</Heading>
 
 Say you're classifying support tickets - category, priority, sentiment, suggested action. You send the model a ticket, ask for JSON, get a string back. On a good day it's the JSON you asked for. On a bad day it's prose ("This looks like a billing issue, probably high priority"), or JSON wrapped in a markdown fence, or JSON with an extra `confidence` field the model invented. `JSON.parse` handles one of those. The rest you patch over with regexes, and the regexes break as soon as the phrasing shifts.
 
@@ -45,13 +39,7 @@ OpenAI, Anthropic and Google all offer a way to pin the response to a JSON schem
 
 Both approaches only tell you whether the response came back in the shape you expected. Neither tells you whether the values are correct, which is the gap the second incident fell through: well-formed JSON, values that weren't in the source ticket. No schema validator can see that.
 
-<Heading
-  tag="h2"
-  id="class-of-tool"
-  linkLabel="Link to heading: What this class of tool gives you"
->
-  What this class of tool gives you
-</Heading>
+<Heading tag="h2" id="class-of-tool" linkLabel="Link to heading: What this class of tool gives you">What this class of tool gives you</Heading>
 
 The very basic PoC is [on GitHub](https://github.com/Verthon/baml-playground). Two commits, same ticket classifier, before and after. It works even on the free tier Gemini.
 
@@ -59,13 +47,7 @@ The very basic PoC is [on GitHub](https://github.com/Verthon/baml-playground). T
 - Tests come in two flavours: hard asserts that fail the build, soft checks that report without blocking.
 - The parser self-heals small noise: casing slips, single-vs-array, an extra field the model invented.
 
-<Heading
-  tag="h2"
-  id="what-it-doesnt-give-you"
-  linkLabel="Link to heading: What it doesn't give you"
->
-  What it doesn't give you
-</Heading>
+<Heading tag="h2" id="what-it-doesnt-give-you" linkLabel="Link to heading: What it doesn't give you">What it doesn't give you</Heading>
 
 - Catch hallucinations. The parser validates structure, not content. Well-formed JSON with wrong values goes through untouched, which is what the second incident looked like.
 - Fix a completely wrong response. Small noise gets repaired. A response that's nothing like the schema fails - no magic recovery.

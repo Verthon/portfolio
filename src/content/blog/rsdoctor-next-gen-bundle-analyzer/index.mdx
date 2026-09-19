@@ -27,13 +27,7 @@ import rsdoctorTreeGraph from './rsdoctor-tree-graph.jpg'
 Bundle analysis can be cumbersome in big projects, big bundle, tons of dependencies, multiple chunks generated. Often, the build is so slow, and it is hard to figure out which plugins or loaders slows the build process down.  
 RSDoctor promises to help developers detect the problems mentioned above.
 
-<Heading
-  tag="h2"
-  id="rsdoctor-bundler-support"
-  linkLabel="Link to heading: RSDoctor bundler support"
->
-  RSDoctor bundler support
-</Heading>
+<Heading tag="h2" id="rsdoctor-bundler-support" linkLabel="Link to heading: RSDoctor bundler support">RSDoctor bundler support</Heading>
 
 Analyzer supports the Webpack 5 and its successor rust-based RSPack. It is also ready to use by just installing it on the [RSBuild](https://rsbuild.dev/guide/debug/rsdoctor) with the default settings.  
 Since it is a plugin it is fairly straightforward to add to your project:
@@ -94,13 +88,7 @@ export const config = {
 "build:rsdoctor": "RSDOCTOR=true npm run build"
 ```
 
-<Heading
-  tag="h2"
-  id="features-breakdown"
-  linkLabel="Link to heading: RSDoctor features breakdown"
->
-  RSDoctor features breakdown
-</Heading>
+<Heading tag="h2" id="features-breakdown" linkLabel="Link to heading: RSDoctor features breakdown">RSDoctor features breakdown</Heading>
 
 There are 3 main areas of the analysis:
 
@@ -118,13 +106,7 @@ Each of them is presented in the UI of RSDoctor in the top-navigation menu
   ariaLabelledBy="rsdoctor-main-areas"
 />
 
-<Heading
-  tag="h3"
-  id="bundle-size-analysis"
-  linkLabel="Link to heading: Bundle size analysis"
->
-  Bundle size analysis
-</Heading>
+<Heading tag="h3" id="bundle-size-analysis" linkLabel="Link to heading: Bundle size analysis">Bundle size analysis</Heading>
 
 Bundle analysis is the most important feature among the RSDoctor users.  
 UI outputs the most interesting part of the data for the developers:
@@ -164,13 +146,7 @@ The tree graph showed me that the mysterious 8kB chunk adding `node_modules/cros
   ariaLabelledBy="rsdoctor-tree-graph"
 />
 
-<Heading
-  tag="h3"
-  id="compilation-visualization"
-  linkLabel="Link to heading: Compilation Visualization"
->
-  Compilation Visualization
-</Heading>
+<Heading tag="h3" id="compilation-visualization" linkLabel="Link to heading: Compilation Visualization">Compilation Visualization</Heading>
 
 Compilation Visualization will be really handy in the old Webpack projects to discover the:
 
@@ -181,9 +157,7 @@ I would suggest to use it only when the build is slow, otherwise I treat it as q
 
 In our big project on the job-site it allowed us to discover that `Terser` was slow in our use-case, so we have change it to `SWC minifier`
 
-<Heading tag="h3" id="general" linkLabel="Link to heading: General info">
-  General info
-</Heading>
+<Heading tag="h3" id="general" linkLabel="Link to heading: General info">General info</Heading>
 
 General information page shows a quick simplified summary of the:
 
@@ -199,9 +173,7 @@ General information page shows a quick simplified summary of the:
 
 It allows to print the bundler config, which is quite overwhelming, however it might be beneficial, to check the defaults of the bundler right away.
 
-<Heading tag="h2" id="summary" linkLabel="Link to heading: Summary">
-  Summary
-</Heading>
+<Heading tag="h2" id="summary" linkLabel="Link to heading: Summary">Summary</Heading>
 
 **Limitations**
 

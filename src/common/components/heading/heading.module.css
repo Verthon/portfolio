@@ -58,4 +58,12 @@
   &:hover {
     cursor: pointer;
   }
+
+  &:focus-visible {
+    opacity: 0.9;
+
+    svg {
+      stroke: currentColor;
+    }
+  }
 }
