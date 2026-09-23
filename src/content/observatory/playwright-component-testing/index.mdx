@@ -4,9 +4,9 @@ description: 'Component Testing in Playwright: Current State and Analysis'
 tags: testing
 date: 2025-01-06
 excerpt: 'An analysis of Playwright Component Testing: current state, trade-offs, and prospects'
-last_updated: 2025-10-28
-status: 'Superseded'
-short_preview: 'Stalled for ~4 years, no roadmap. Prefer Cypress CT or Vitest Browser'
+last_updated: 2026-09-19
+status: 'Stable'
+short_preview: 'Stable since 1.62 (July 2026). New stories/galleries model; experimental-ct packages frozen'
 ---
 
 import Wrapper from '~/observatory/components/wrapper/wrapper'
@@ -20,9 +20,9 @@ import Heading from '~/common/components/heading/heading'
 </Header>
 
 <ObservatoryContent>
-**Status:** Experimental (since 2022)
+**Status:** Stable since [1.62](https://playwright.dev/docs/release-notes) (July 2026), on a new stories and galleries model
 
-**Recommendation** Just use the stable [Vitest Browser](https://vitest.dev/guide/browser/) (Starting from Vitest v4)
+**Recommendation** Viable now. On `@playwright/experimental-ct-*`, you are on a frozen package - stay on 1.62 and follow the migration guide. [Vitest Browser](https://vitest.dev/guide/browser/) remains a real alternative, no longer the default answer.
 
 <Heading tag="h2" id="overview" linkLabel="Link to heading: Overview">Overview</Heading>
 
@@ -32,17 +32,14 @@ import Heading from '~/common/components/heading/heading'
 
 <Heading tag="h2" id="known-issues-and-tradeoffs" linkLabel="Link to heading: Known Issues & Tradeoffs">Known Issues & Tradeoffs</Heading>
 
-- **Unstable API**: It's still experimental, things are expected to be breaking
-- **Lack of the clear MVP plan**: All the information is scattered in many Github Issues
-- **Lack of a clear roadmap**: Playwright does not share any [public roadmaps](https://github.com/microsoft/playwright/issues/17409)
-- **Rely on prod build**: Currently doesn't support HMR and watch mode, not really friendly for gigantic apps with slow build times
-- **Code coverage**: No support yet like in the Jest/Vitest
+- **Migration required**: `@playwright/experimental-ct-react`, `-ct-react17` and `-ct-vue` are frozen at 1.62.1 and no longer updated as of [1.63](https://playwright.dev/docs/release-notes). Existing suites need the migration guide
+- **You own the pipeline**: components are built and served by your own dev server - Playwright compiles nothing. More setup, but your plugins, aliases and CSS apply
+- **Code coverage**: not addressed in the docs for the new model
 
 <Heading tag="h2" id="adoption-considerations" linkLabel="Link to heading: Adoption Considerations">Adoption Considerations</Heading>
 
-- **New Projects**: Consider waiting for beta/stable release
-- **Existing Projects**: Consider waiting for stable release
-- Just use the stable Vitest Browser (Starting from Vitest v4)
+- **New Projects**: Adoptable. Framework-agnostic - anything your dev server renders, Playwright can test. Strongest fit if Playwright is already your E2E tool
+- **Existing Projects**: On experimental-ct, budget for the migration. Pin 1.62 until it is done
 
 There are also great alternatives, that allow testing components in real browser:
 
@@ -53,7 +50,7 @@ There are also great alternatives, that allow testing components in real browser
 <Heading tag="h2" id="resources" linkLabel="Link to heading: Resources">Resources</Heading>
 
 - [Official docs](https://playwright.dev/docs/test-components)
-- [Latest community status check](https://github.com/microsoft/playwright/issues/34751)
+- [Community status check from Feb 2025](https://github.com/microsoft/playwright/issues/34751) (closed - the gap before 1.62)
 - [Related GH issues](https://github.com/microsoft/playwright/issues?q=is%3Aissue%20state%3Aopen%20component%20label%3Afeature-components)
 - [Community call about making it stable](https://github.com/microsoft/playwright/issues/33955#issuecomment-2536986884)
 - [Discussion regarding Playwright and Cypress in Vue land](https://github.com/vuejs/docs/issues/2639)

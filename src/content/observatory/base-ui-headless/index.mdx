@@ -1,10 +1,10 @@
 ---
-title: Base UI Headless Components Library
-description: 'Base UI Headless Components Library: Current State and Analysis'
+title: 'Base UI: Headless React Components, Status and Trade-offs'
+description: 'Base UI, the headless React library from the Radix, Floating UI and Material UI teams: stable since v1.0.0, its known gaps, and when to adopt it.'
 tags: ui
 date: 2025-02-06
-excerpt: 'An analysis of Base UI Headless Components Library: current state, trade-offs, and prospects'
-last_updated: 2026-08-15
+excerpt: 'Base UI has been stable since v1.0.0 (December 2025). React only, accessibility-first, MIT. Still missing an official MCP server and React Compiler support.'
+last_updated: 2026-09-23
 status: 'Stable'
 short_preview: 'Headless UI library from creators of Radix, Floating UI, and Material UI. It is stable'
 ---
@@ -20,23 +20,23 @@ import Heading from '~/common/components/heading/heading'
 </Header>
 
 <ObservatoryContent>
-**Status:** Stable version
+**Status:** Stable since v1.0.0 (December 2025), published as `@base-ui/react`
 
 <Heading tag="h2" id="overview" linkLabel="Link to heading: Overview">Overview</Heading>
 
 - Unstyled components library with around 35+ components available at the moment (more to come)
-- From creators of successful UI libraries: Mui, Radix,Floating UI
-- Team is full committed [full-time for the long-term](https://bsky.app/profile/vladmoroz.bsky.social/post/3lcg2iz35v22q)
+- From creators of successful UI libraries: Material UI, Radix, Floating UI
+- Team is fully committed [full-time for the long-term](https://bsky.app/profile/vladmoroz.bsky.social/post/3lcg2iz35v22q)
 - Focused on accessibility (keyboard navigation, focus management, contrast, labeling)
-- Most likely to be released as stable version [this year](https://github.com/mui/base-ui/issues/2485#issuecomment-3177300365)
-- Roadmap available [here](https://github.com/orgs/mui/projects/1)
+- Stable since [v1.0.0](https://www.npmjs.com/package/@base-ui/react) (2025-12-11); [release timeline issue](https://github.com/mui/base-ui/issues/2485) closed 2026-01-06
+- [Public roadmap](https://github.com/orgs/mui/projects/1) on GitHub Projects
 - Docs optimized for the [LLMs](https://base-ui.com/react/overview/quick-start#working-with-llms)
 - MIT license
 - Optimized per component imports to avoid barrel files
 
 <Heading tag="h2" id="known-issues-and-tradeoffs" linkLabel="Link to heading: Known Issues & Tradeoffs">Known Issues & Tradeoffs</Heading>
 
-- **React only** implementation: no first-class support yet for Vue, Svelte, or Angular - although this aligns with the initial focus on React ecosystems
+- **React only** implementation: no first-class support yet for Vue, Svelte, or Angular
 - No official MCP Server
 - Missing React Compiler adoption
 
@@ -45,7 +45,7 @@ import Heading from '~/common/components/heading/heading'
 - **New Projects**: Go for it, whenever list of components suit your needs and you are using React.
 - **Existing Projects**: Most likely not needed anymore unless you planning adding new components / creating a design-system as separate package
 
-There are also great alternatives, unstyled, a11y focused libraries:
+Unstyled, a11y-focused alternatives:
 
 - [Mantine UI Headless](https://mantine.dev/styles/unstyled/)
 - [React Aria](https://react-spectrum.adobe.com/react-aria/index.html)
