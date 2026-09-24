@@ -4,9 +4,9 @@ description: 'JavaScript plugins support in Oxlint: Current State and Analysis'
 tags: linter
 date: 2025-11-29
 excerpt: 'An analysis of Oxlint JavaScript Plugins: current state, trade-offs, and prospects'
-last_updated: 2025-11-29
-status: 'Technical Preview'
-short_preview: 'Extend Oxlint with JavaScript plugins while keeping near-Rust performance. Still experimental'
+last_updated: 2026-09-24
+status: 'Alpha'
+short_preview: 'Run ESLint plugins inside Oxlint. Alpha since March 2026 with almost the full ESLint API, but no Vue, Svelte or Angular templates yet'
 ---
 
 import Wrapper from '~/observatory/components/wrapper/wrapper'
@@ -20,31 +20,34 @@ import Heading from '~/common/components/heading/heading'
 </Header>
 
 <ObservatoryContent>
-**Status:** Technical Preview (since October 2025)
+**Status:** Alpha since March 2026, after a technical preview from October 2025
 
 <Heading tag="h2" id="overview" linkLabel="Link to heading: Overview">Overview</Heading>
 
-Oxlint now supports JavaScript-based plugins, letting you extend the linter while retaining near-Rust performance.
+- Runs ESLint v9+ plugins and custom JS/TS rules inside Oxlint, alongside 650+ native Rust rules
+- [Alpha since 2026-03-11](https://oxc.rs/blog/2026-03-11-oxlint-js-plugins-alpha) - upstream calls it ready for adoption in real-world projects
+- Conformance as of the alpha post: 100% of ESLint's own 33,006 rule tests, and 99.6-100% on react-hooks, ESLint Stylistic, Testing Library, SonarJS and e18e
 
 <Heading tag="h2" id="known-issues-and-tradeoffs" linkLabel="Link to heading: Known Issues & Tradeoffs">Known Issues & Tradeoffs</Heading>
 
-- This initial release does not implement all of ESLint's plugin API
-- Performance is good, but it's going to get way better
-- Known issues for Windows users (who is using Windows for web-dev ?)
-- It can't be as fast as native Oxlint rules and plugins
+- No custom template syntax (Vue, Svelte, Angular) - tracked in [oxc#19918](https://github.com/oxc-project/oxc/issues/19918)
+- No custom type-aware rules - typescript-eslint's rules exist natively via [type-aware linting](https://oxc.rs/docs/guide/usage/linter/type-aware.html)
+- Windows out-of-memory errors: [#19395](https://github.com/oxc-project/oxc/issues/19395) and [#19480](https://github.com/oxc-project/oxc/issues/19480) closed May-June 2026, but a repeat was reported on 1.68.0, and [oxc#19918](https://github.com/oxc-project/oxc/issues/19918) says a full fix needs an allocator overhaul
+- JS rules can't match native Rust rules on speed
 
 <Heading tag="h2" id="adoption-considerations" linkLabel="Link to heading: Adoption Considerations">Adoption Considerations</Heading>
 
-- **New Projects**: Adopt if you mostly rely on built-in rules. Avoid heavy ESLint plugin assumptions
-- **Existing Projects**: In case you have huge pile of ESLint plugins, consider waiting for stable release. Consider integrating the https://www.npmjs.com/package/eslint-plugin-oxlint to offload rules Oxlint already supports while keeping ESLint for the rest.
+- **New Projects**: Adopt. Lean on native rules, add JS plugins for the gaps. Hold off if you lint Vue, Svelte or Angular templates.
+- **Existing Projects**: Trial a full switch with the [ESLint migration guide](https://oxc.rs/docs/guide/usage/linter/migrate-from-eslint.html). If a plugin blocks you, [eslint-plugin-oxlint](https://www.npmjs.com/package/eslint-plugin-oxlint) still lets you offload the rules Oxlint covers and keep ESLint for the rest.
 
 <Heading tag="h2" id="resources" linkLabel="Link to heading: Resources">Resources</Heading>
 
 - [Official docs](https://oxc.rs/docs/guide/usage/linter/js-plugins.html)
 - [Initial blogpost](https://oxc.rs/blog/2025-10-09-oxlint-js-plugins)
+- [Alpha announcement](https://oxc.rs/blog/2026-03-11-oxlint-js-plugins-alpha)
 - [Official Oxlint linter product plan](https://github.com/oxc-project/oxc/issues/481)
 - [Related GH issues](https://github.com/oxc-project/oxc/discussions/14862)
-- [JS Plugins support for options](https://github.com/oxc-project/oxc/issues/14825)
+- [Milestone 3 tracking issue](https://github.com/oxc-project/oxc/issues/19918)
 
 </ObservatoryContent>
 
