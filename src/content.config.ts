@@ -55,6 +55,7 @@ const observatory = defineCollection({
     tags: z.string(),
     status: z.enum([
       'Experimental',
+      'Alpha',
       'Beta',
       'Superseded',
       'Technical Preview',

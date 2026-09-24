@@ -10,7 +10,7 @@ Content lives in `src/content/{blog,dev-bites,observatory}/<slug>/index.mdx`. Th
 
 Required: `title`, `description`, `date`, `excerpt`, `tags`.
 Optional: `last_updated`, `og_title`, `og_description`.
-Observatory notes also require `status`.
+Observatory notes also require `status` — see `src/content/observatory/CONTEXT.md` for the vocabulary and the rest of the observatory's rules.
 Blog posts also take `article_type: featured | regular`; dev bites take `dev_bite_type: featured | regular`. Only `featured` reaches the home page.
 
 `value_proposition` (blog, optional) is a drafting gate, not a rendered field:
