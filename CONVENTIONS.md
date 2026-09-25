@@ -1,6 +1,6 @@
 # CONVENTIONS
 
-Code rules not already enforced automatically. Prettier runs on every agent edit to a `.ts`/`.tsx` file (`.claude/settings.json`); the git pre-commit hook re-checks format, lint, and types on staged `.ts`/`.tsx`/`.astro` files. **Never runs on `.mdx`, by design — see `CONTENT.md`.**
+Code rules not already enforced automatically. Prettier runs on every agent edit to a `.ts`/`.tsx` file (`.claude/settings.json`); the git pre-commit hook re-checks format, lint, and types on staged `.ts`/`.tsx`/`.astro` files, and runs stylelint (`pnpm lint.css`) on staged `.css`/`.astro` files. **Never runs on `.mdx`, by design — see `CONTENT.md`.**
 
 Writing and MDX rules live in `CONTENT.md`.
 
@@ -37,7 +37,7 @@ forced it. See ADR 0005.
 
 Scoped `<style>` blocks in the `.astro` component. This is Astro's documented default and keeps styles next to the markup they style. Scoped styles do not reach into child components — use `:global()` or pass a `class` prop when that is actually needed.
 
-Token values live in `src/styles/global.css`; `DESIGN.md` explains which token to reach for and why. Never hardcode a color. Breakpoints are literal pixel values, not tokens — custom properties do not resolve inside a media query.
+Token values live in `src/styles/global.css`; `DESIGN.md` explains which token to reach for and why. Never hardcode a color — stylelint rejects hex, named, and color-function values outside `global.css`. It also rejects CSS features below the ADR 0008 floor, read from `src/browser-target.ts`, the same constant `astro.config.mjs` uses. Breakpoints are literal pixel values, not tokens — custom properties do not resolve inside a media query.
 
 ## Testing
 

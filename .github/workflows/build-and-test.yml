@@ -37,6 +37,9 @@ jobs:
       - name: Run linter
         run: time pnpm run lint src scripts
 
+      - name: Run stylelint
+        run: time pnpm run lint.css 'src/**/*.{css,astro}'
+
       - name: Type-check
         run: time pnpm run type.check
 

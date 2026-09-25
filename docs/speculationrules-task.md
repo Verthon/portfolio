@@ -1,13 +1,13 @@
-# Speculation Rules — ready to implement
+# Speculation Rules — implemented
 
 Whether sordyl.dev should ship a `<script type="speculationrules">` hint, and
-with what rules. Researched and decided 2026-09-18; **not yet implemented.**
+with what rules. Researched and decided 2026-09-18; implemented 2026-09-25.
 
 Owner driver: *Core Web Vitals stay high, and I have the numbers.*
 
-## What's left
+## What shipped
 
-Add a prefetch speculation-rules block to `src/layouts/Base.astro`:
+A prefetch speculation-rules block in `src/layouts/Base.astro`:
 
 ```astro
 <script
@@ -38,8 +38,7 @@ Two things this shape is load-bearing about, both verified by building it:
 Verified working: with this block in `Base.astro`, `dist/` contains
 `{"prefetch":[{"source":"document","where":{"href_matches":"/*"},"eagerness":"moderate"}]}`,
 and hovering a nav link in Chromium issues a request carrying
-`Sec-Purpose: prefetch`. Reverted afterwards — this doc is the deliverable, the
-edit is not applied.
+`Sec-Purpose: prefetch`.
 
 After implementing, re-check that
 `grep -rho 'src="/_astro/[^"]*\.js"' dist --include="*.html" | sort -u` still

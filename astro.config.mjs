@@ -5,11 +5,10 @@ import preact from '@astrojs/preact'
 import sitemap from '@astrojs/sitemap'
 import { readdirSync, readFileSync } from 'node:fs'
 
+import { BROWSER_TARGET } from './src/browser-target.ts'
 import { SITE_URL as SITE } from './src/seo/site.ts'
 
 const ANALYZE = process.env.ANALYZE === 'true'
-
-const BROWSER_TARGET = ['chrome107', 'edge107', 'firefox104', 'safari16']
 
 const SECTIONS = [
   ['blog', 'blog'],

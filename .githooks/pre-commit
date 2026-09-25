@@ -19,6 +19,15 @@ if [ -n "$staged" ]; then
   }
 fi
 
+staged_css=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(css|astro)$')
+
+if [ -n "$staged_css" ]; then
+  echo "$staged_css" | xargs -r pnpm lint.css --max-warnings 0 || {
+    echo "pre-commit: stylelint failed."
+    exit 1
+  }
+fi
+
 pnpm scan.deadcode || {
   echo "pre-commit: dead code found. Run: pnpm scan.deadcode"
   exit 1
