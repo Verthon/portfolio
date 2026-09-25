@@ -43,7 +43,6 @@ Fast pages for readers on mobile data; good CWV feeds SEO.
 | p75 LCP             | 2.5s  | 2.5s   |
 | p75 INP             | 200ms | 200ms  |
 | p75 CLS             | 0.1   | 0.1    |
-| per-page JS shipped | 1 KB  | 0 B    |
 
 Debt metrics - lower always better. Not gated: ADR 0006.
 Outranked by the cheap-publish-loop constraint, which is why.

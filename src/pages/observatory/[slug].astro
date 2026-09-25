@@ -15,7 +15,7 @@ export async function getStaticPaths() {
 const { post } = Astro.props
 const { Content } = await render(post)
 
-const meta = articleMeta(post, Astro.url.pathname)
+const meta = articleMeta(post, Astro.url.pathname, 'observatory')
 ---
 
 <Base meta={meta}>

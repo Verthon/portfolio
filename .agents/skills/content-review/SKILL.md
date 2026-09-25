@@ -9,6 +9,8 @@ Editorial pass over a blog post, dev bite, or observatory note. Seven checks, al
 
 Read `CONTEXT.md` (niche, voice, content types) and `CONTENT.md` (writing rules) before the first file.
 
+Get compass `strategy.md` with `repo-router`. Name the pillar the post is evidence for. If none, flag it and ask before the checks.
+
 ## Not in scope
 
 | Concern | Owner |

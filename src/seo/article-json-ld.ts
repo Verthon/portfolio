@@ -15,7 +15,6 @@ export const createArticleJsonLd = ({
   date,
   lastUpdated,
 }: ArticleJsonLdInput) => ({
-  '@context': 'https://schema.org',
   '@type': 'BlogPosting',
   headline: title,
   url: canonical,

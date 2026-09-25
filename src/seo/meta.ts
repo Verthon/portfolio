@@ -1,6 +1,7 @@
 import { buildTitle, homeTitle } from './title'
 import { SITE_URL } from './site'
 import { createArticleJsonLd } from './article-json-ld'
+import { createBreadcrumbJsonLd } from './breadcrumb-json-ld'
 
 type ArticleData = {
   title: string
@@ -20,6 +21,14 @@ export type PageMeta = {
   canonical: string
   jsonLd?: object
   publishedTime?: string
+}
+
+export type Section = 'blog' | 'dev-bites' | 'observatory'
+
+const SECTIONS: Record<Section, { name: string; pathname: string }> = {
+  blog: { name: 'Blog', pathname: '/blog/' },
+  'dev-bites': { name: 'Dev Bites', pathname: '/dev-bites/' },
+  observatory: { name: 'Observatory', pathname: '/observatory/' },
 }
 
 type PageMetaInput = {
@@ -57,11 +66,16 @@ export const pageMeta = ({
   }
 }
 
-export const articleMeta = (post: { data: ArticleData }, pathname: string) => {
+export const articleMeta = (
+  post: { data: ArticleData },
+  pathname: string,
+  section: Section
+) => {
   const { title, description, date, last_updated, og_title, og_description } =
     post.data
   const pageTitle = buildTitle(title)
   const canonical = canonicalFor(pathname)
+  const { name: sectionName, pathname: sectionPathname } = SECTIONS[section]
 
   return {
     title: pageTitle,
@@ -70,12 +84,21 @@ export const articleMeta = (post: { data: ArticleData }, pathname: string) => {
     ogDescription: og_description ?? description,
     ogType: 'article' as const,
     canonical,
-    jsonLd: createArticleJsonLd({
-      title,
-      canonical,
-      date,
-      lastUpdated: last_updated,
-    }),
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        createArticleJsonLd({
+          title,
+          canonical,
+          date,
+          lastUpdated: last_updated,
+        }),
+        createBreadcrumbJsonLd([
+          { name: sectionName, url: canonicalFor(sectionPathname) },
+          { name: title, url: canonical },
+        ]),
+      ],
+    },
     publishedTime: date.toISOString(),
   }
 }

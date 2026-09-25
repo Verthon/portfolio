@@ -49,8 +49,13 @@ describe('pageMeta', () => {
   })
 })
 
+const nodeOfType = (jsonLd: unknown, type: string) =>
+  (jsonLd as { '@graph': { '@type': string }[] })['@graph'].find(
+    (node) => node['@type'] === type
+  ) as Record<string, unknown>
+
 describe('articleMeta', () => {
-  const meta = articleMeta(post, '/blog/frontend-test-smells/')
+  const meta = articleMeta(post, '/blog/frontend-test-smells/', 'blog')
 
   it('suffixes the article title', () => {
     expect(meta.title).toBe('Frontend test smells • sordyl.dev')
@@ -70,7 +75,8 @@ describe('articleMeta', () => {
           og_description: 'A punchier social description.',
         },
       },
-      '/blog/frontend-test-smells/'
+      '/blog/frontend-test-smells/',
+      'blog'
     )
 
     expect(withOg.ogTitle).toBe('A punchier social title')
@@ -86,8 +92,7 @@ describe('articleMeta', () => {
   })
 
   it('carries json-ld pointing at the canonical', () => {
-    expect(meta.jsonLd).toMatchObject({
-      '@type': 'BlogPosting',
+    expect(nodeOfType(meta.jsonLd, 'BlogPosting')).toMatchObject({
       headline: 'Frontend test smells',
       url: 'https://sordyl.dev/blog/frontend-test-smells/',
       datePublished: '2025-03-04',
@@ -98,15 +103,72 @@ describe('articleMeta', () => {
   it('uses last_updated for dateModified when present', () => {
     const updated = articleMeta(
       { data: { ...post.data, last_updated: new Date('2025-06-01') } },
-      '/blog/frontend-test-smells/'
+      '/blog/frontend-test-smells/',
+      'blog'
     )
 
-    expect(updated.jsonLd?.datePublished).toBe('2025-03-04')
-    expect(updated.jsonLd?.dateModified).toBe('2025-06-01')
+    const posting = nodeOfType(updated.jsonLd, 'BlogPosting')
+
+    expect(posting.datePublished).toBe('2025-03-04')
+    expect(posting.dateModified).toBe('2025-06-01')
   })
 
   it('keeps the raw title out of the json-ld headline', () => {
-    expect(meta.jsonLd?.headline).not.toContain('sordyl.dev')
+    expect(nodeOfType(meta.jsonLd, 'BlogPosting').headline).not.toContain(
+      'sordyl.dev'
+    )
+  })
+
+  it('puts every node in one graph under a single context', () => {
+    expect(meta.jsonLd['@context']).toBe('https://schema.org')
+    for (const node of meta.jsonLd['@graph']) {
+      expect(node).not.toHaveProperty('@context')
+    }
+  })
+
+  it('carries a breadcrumb from the section to the post', () => {
+    expect(nodeOfType(meta.jsonLd, 'BreadcrumbList')).toEqual({
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Blog',
+          item: 'https://sordyl.dev/blog/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Frontend test smells',
+          item: 'https://sordyl.dev/blog/frontend-test-smells/',
+        },
+      ],
+    })
+  })
+
+  it('names each section by its display name, not its path', () => {
+    const devBite = articleMeta(post, '/dev-bites/some-bite/', 'dev-bites')
+    const observatory = articleMeta(
+      post,
+      '/observatory/some-tool/',
+      'observatory'
+    )
+    const firstCrumb = (jsonLd: unknown) =>
+      (
+        nodeOfType(jsonLd, 'BreadcrumbList').itemListElement as {
+          name: string
+          item: string
+        }[]
+      )[0]
+
+    expect(firstCrumb(devBite.jsonLd)).toMatchObject({
+      name: 'Dev Bites',
+      item: 'https://sordyl.dev/dev-bites/',
+    })
+    expect(firstCrumb(observatory.jsonLd)).toMatchObject({
+      name: 'Observatory',
+      item: 'https://sordyl.dev/observatory/',
+    })
   })
 })
 
