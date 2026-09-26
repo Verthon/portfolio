@@ -1,9 +1,14 @@
 ---
-title: 'Design System Pitfalls: Lessons from Integrating at Scale'
-description: 'Field notes from a platform engineer on design-system pitfalls in a multi-vendor micro-frontends setup-and lightweight ways to verify and fix them.'
-tags: design-system, micro-frontends, frontend-architecture, accessibility, governance,
+title: 'What Broke When 30+ Apps Consumed One Design System'
+description: 'Three design-system decisions the DS team treated as internal, how each became a problem for 30+ consuming apps, and what would have caught it.'
+tags: design-system, micro-frontends, frontend-architecture, accessibility
 date: 2025-08-23
-excerpt: In large organizations, design systems promise consistency and lower cost-but they often fall into predictable traps. Here’s what to watch and measure.
+last_updated: 2026-09-26
+excerpt: An accessibility fix shipped as a minor, styled-components as a module federation singleton, and a Webpack-only react-pdf import. What each cost 30+ consuming apps, and what would have caught it.
+value_proposition: "Design-system writing comes from
+the owner's side. This shows, from the consuming side, three internal DS
+decisions that became every app's problem, and the reference app with tests that
+would have caught them"
 article_type: featured
 ---
 
@@ -15,7 +20,7 @@ import Alert from '~/common/components/alert/alert'
 
 <ArticleWrapper>
 <ArticleHeader>
-<Heading tag='h1'>Design System Pitfalls: Lessons from Integrating at Scale</Heading>
+<Heading tag='h1'>What Broke When 30+ Apps Consumed One Design System</Heading>
 </ArticleHeader>
 
 <ArticleContent>
@@ -24,17 +29,17 @@ import Alert from '~/common/components/alert/alert'
 Big platform for managing and creating establishments
 
 - 10+ million users
-- 35+ frontend apps
+- 30+ frontend apps
 - 300+ developers from multiple companies
 - 110+ components in the single design-system package
 - Single Page Application based frontend architecture
 
-My team didn’t own the design-system. We worked as a frontend platform team, enabling product (stream-aligned) teams to focus on their product, rather than the surrounding infrastructure.  
-We were the first integrators of the DS. A ~1-year early-adopter phase helped us to establish list of the DS gaps.
+My team didn't own the design system. We worked as a frontend platform team, enabling product (stream-aligned) teams to focus on their product, rather than the surrounding infrastructure.  
+We were the first integrators of the DS. A ~1-year early-adopter phase helped us establish a list of the DS gaps.
 
 <Heading tag="h2" id="design-system-goals" linkLabel="Link to heading: Design system goals">Design system goals</Heading>
 
-What the DS must deliver for the business, not the tools. These goals define what 'good' looks like and what we hold the DS accountable for.
+What the DS must deliver for the business. These goals define what 'good' looks like and what we hold the DS accountable for.
 
 - Consistent UI/UX across the entire platform
 - Faster time-to-market for product (stream-aligned) teams
@@ -43,73 +48,108 @@ What the DS must deliver for the business, not the tools. These goals define wha
 - Scales to new brands and markets (multi-brand ready)
 - Faster onboarding and practical accessibility training
 
-<Heading tag="h2" id="design-system-pitfalls" linkLabel="Link to heading: Pitfalls">Pitfalls</Heading>
+<Heading tag="h2" id="design-system-pitfalls" linkLabel="Link to heading: Three decisions that became every app's problem">Three decisions that became every app's problem</Heading>
 
-Observed pitfalls, with focus on impact and how we know (verifiability).
+Each of these was something the DS treated as internal, and consumers depended on anyway. That's [Hyrum's Law](https://www.hyrumslaw.com/) from the consumer's side. The owner's side is in [API surface challenges on a shared platform](/blog/api-surface-challenges/).
 
-<Heading tag="h3" id="organizational-pitfalls" linkLabel="Link to heading: Organizational pitfalls">Organizational pitfalls</Heading>
+<Heading tag="h3" id="accessibility-fix-shipped-as-a-minor" linkLabel="Link to heading: An accessibility fix shipped as a minor">An accessibility fix shipped as a minor</Heading>
 
-Governance and collaboration gaps that fragment the system and slow delivery
+The DS came with a reference app showing how its components fit together on a real page.
 
-- Missing clear OKRs/KPIs for the design system
-- Components introduced outside DS review (service designers bypass the core team)
-- Figma files use frames instead of library components (version/variants/tokens mismatch)
-- Teams “hack” the DS without reporting (local wrappers/style overrides)
-- No contribution model; core DS team reduced to two people
-- Unclear inclusion criteria for what belongs in the DS
-- Release cadence mismatched with product teams (biweekly)
-- Component sprawl (110+), risk of a “design-system ghost town”
+A minor release moved Button from `disabled` to `aria-disabled="true"`, with clicks blocked inside the component. The change was right for accessibility. Teams were under pressure to ship a11y fixes, and it went out as non-breaking, as if the attribute were an internal detail.
 
-<Heading tag="h3" id="technical-pitfalls" linkLabel="Link to heading: Technical pitfalls">Technical pitfalls</Heading>
+After the bump, the unit tests in my service failed. jest-dom's `toBeDisabled` ignores `aria-disabled` by design ([jest-dom #144](https://github.com/testing-library/jest-dom/issues/144)). As far as I could tell, the app itself was fine.
 
-- CSS-in-JS usage forces consumers to pin exact peer versions
-  - Not micro-frontends-friendly: singleton/peer mismatches across host/remotes
-- No browser-based tests
-- a11y checks not enforced and automated in tests
-- No bundle-size guardrails (no budgets)
-- Weak semver discipline: breaking behavioral changes shipped as minors; missing migration guidance
-- Slow/stale dependency updates (security/perf risk)
-- CSR-only / SSR-unsafe: direct browser API usage
+```tsx
+// before
+expect(button).toBeDisabled()
+// after
+expect(button).toHaveAttribute('aria-disabled', 'true')
+```
 
-<Heading tag="h2" id="potential-quick-wins" linkLabel="Link to heading: Potential quick wins">Potential quick wins</Heading>
+I rewrote about 15 assertions by hand. The minor also broke its own promise that upgrading is safe. There was no migration note, so every team with `toBeDisabled` assertions hit the same failures and fixed them alone.
 
-Changes that I think may have the best ROI for the Team as it is right now.
+What would have caught it:
 
-- Enforce proper SemVer ASAP - to regain developers trust and encourage upgrades
-- Establish browser-based tests for the most-used, bug-prone components - to reduce the regressions
-- Ensure designers use Figma library components that match tokens
+- A major version, with the migration above in the changelog.
+- The reference app with tests written the way consumers write theirs. The DS's CI would have failed before the release.
 
-<Heading tag="h2" id="lessons-learned" linkLabel="Link to heading: Lessons learned">Lessons learned</Heading>
+<Heading tag="h3" id="styled-components-as-a-shared-singleton" linkLabel="Link to heading: styled-components as a shared singleton">styled-components as a shared singleton</Heading>
 
-What actually worked and what to avoid next time.
+The DS styled its components with styled-components. That choice predates micro-frontends, and it was reasonable then. The DS promise was that consumers never write CSS, so the styling engine counted as internal.
 
-<Heading tag="h3" id="lessons-learned-what-worked" linkLabel="Link to heading: What worked">What worked</Heading>
+Then the platform moved to micro-frontends. Header, sidebar and footer are separate projects, loaded into every app with module federation. styled-components had to be shared as a [singleton](https://module-federation.io/configure/shared#singleton) between each app and those micro-frontends.
 
-- Storybook as single source of documentation
-  - Tokens
-  - Components with their APIs
-  - Overview of how and when to use given component, best practices (a11y, error, loading states) etc.
-  - Getting started
-  - Architecture Decision Records
-  - Size of the preview aligned with organization responsive breakpoints
-  - Link to Figma designs that match given Component/Token
-  - Changelog
-- Reference app showcasing the real-world composition of components
-- Support channels where devs could easily raise a bug or ask during office hours
+No app could upgrade it on its own, and the platform team avoided touching it. Teams also wrote local style overrides, so consumers wrote CSS after all.
 
-<Heading tag="h3" id="lessons-learned-advice" linkLabel="Link to heading: Advice">Advice</Heading>
+We asked the DS team to move to Panda CSS. Its syntax is close to styled-components, and it has a [migration guide](https://panda-css.com/docs/migration/styled-components). We offered to help. The answer was no: no time, too big, not enough people. The DS wasn't open to outside contributions, and org politics played a part.
 
-- Hard pass on runtime CSS-in-JS when it must be a peer dependency
-- Design tokens ideally must be framework-agnostic
-- In Figma, use only library components - treat Figma and code as a shared language: `Figma = code`
-- Keep the DS core intentionally small (focus on tokens + base UI; limit component count)
-- Plan community contributions upfront using the ecosystem layers [Brad Frost Anatomy of a design system ecosystem](https://bradfrost.com/blog/post/the-design-system-ecosystem/)
-- Updating the dependencies as we develop, otherwise we end up with forced few majors upgrades
-- Frequent releases adjusted to the consumer needs
-- Clear roadmap and transparency about current and upcoming focus
-- Quality over speed, by adding too many things, you are creating expectations hard to revert
-- Common strategy and understanding of purpose, stakeholders should know what value DS brings
-- Listen to your users, encourage an `Iterative improvement culture`
+Looking back, I think "too big" was the rational answer. The DS had no browser or visual tests, so nobody could prove 110+ components looked the same after a migration. [Linear's move off styled-components](https://www.skovhus.dev/blog/moving-linear-from-styled-components-to-stylex) needed ~100k lines of tooling and was 58% done after about six months.
+
+As of writing, the DS still hasn't migrated. We configure the singleton in one place. Upgrading it would be a disaster, so we don't try. The platform team keeps a dependency it doesn't own and waits for the DS to remove it.
+
+What would have prevented it:
+
+- Re-evaluating the DS's runtime dependencies when the architecture changed.
+- Browser and visual tests on the DS, so a styling migration can be verified.
+
+<Heading tag="h3" id="react-pdf-webpack-entry-in-every-consumer" linkLabel="Link to heading: react-pdf's Webpack entry in every consumer">react-pdf's Webpack entry in every consumer</Heading>
+
+Some DS components render PDFs with react-pdf. The DS imported its Webpack 4 entry, the setup the [react-pdf v5 README](https://github.com/wojtekmaj/react-pdf/blob/v5.x/README.md#configure-pdfjs-worker) recommended for Webpack users:
+
+```ts
+import { Document, Page } from 'react-pdf/dist/esm/entry.webpack'
+```
+
+The DS treated that entry as its own build detail. Our apps ran Vitest and Rsbuild, and the first test that touched a PDF component failed:
+
+```
+failed to resolve import worker-loader!./pdf.worker.entry.js
+```
+
+We needed two workarounds: an alias back to the plain `react-pdf` entry for Vitest, and react-pdf in [Rsbuild `externals`](https://rsbuild.rs/config/output/externals) for the build. Both live in the shared scripts package from our [Rsbuild migration](/blog/webpack-to-rsbuild-migration/), so every app got the fix as soon as we found the problem.
+
+The DS team had no capacity to upgrade react-pdf, so the workarounds stayed. Then the CI security scanner flagged an advisory in the old version. Every app had to add its own `overrides` entry in `package.json` to force a newer react-pdf major, one the DS had never been tested against, on top of the bundler and Vitest workarounds. One fix in the DS would have removed all of it.
+
+With no browser tests, nobody trusted a react-pdf upgrade in the DS. It came months later, pushed by the advisory and by us wanting the workarounds gone.
+
+What would have caught it:
+
+- A reference app on the same stack as consumers, with tests. The DS's reference app ran on the DS team's own setup.
+- No bundler-specific entry imports in the DS.
+
+<Heading tag="h2" id="what-to-establish-first" linkLabel="Link to heading: What to establish first">What to establish first</Heading>
+
+The DS was still worth having. Storybook was the single source of docs, the reference app existed, and office hours worked. At 30+ apps, I'd take it with these flaws over no DS.
+
+If you own a DS:
+
+- Treat behaviour that consumer tests can see as API. Changing it is a major, with a migration note.
+- Keep a reference app on your consumers' stack, with tests.
+- Don't import bundler-specific entries.
+- Re-evaluate runtime dependencies when the architecture changes.
+
+If you integrate one:
+
+- Keep every workaround in one package you own.
+- Configure shared singletons in one place.
+- When you ask the DS team to migrate, bring a way to verify the result, not only a path. Our migration guide and offer of help had no tests behind them, and "too big" was the rational no.
+
+<Heading tag="h2" id="other-gaps" linkLabel="Link to heading: Other gaps">Other gaps</Heading>
+
+**Organization**
+
+- A core DS team of two, with no contribution model. That's the "no capacity" behind styled-components and react-pdf. Brad Frost's [ecosystem layers](https://bradfrost.com/blog/post/the-design-system-ecosystem/) are one way to plan contributions upfront.
+- Figma files used frames instead of library components, so design and code drifted.
+- No KPIs for the DS, so nobody could show whether it met the goals above.
+
+**Architecture**
+
+- The DS tried to cover every case. Components went through review, but each one grew a prop per consumer variant, some existed for only a few clients, and the package passed 110. Tokens and base components weren't exposed, so composing and styling your own variant to the design, shadcn-style, wasn't an option.
+- No automated a11y checks in the DS's tests, although its most disruptive release was an a11y fix.
+- No bundle-size budgets.
+- No dead-code detection, such as [knip](https://knip.dev/).
+- TypeScript that could have been stricter.
 
 </ArticleContent>
 
