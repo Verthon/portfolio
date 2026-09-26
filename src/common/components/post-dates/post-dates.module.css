@@ -1,0 +1,5 @@
+.postDates {
+  margin-top: var(--space-sm);
+  font-size: var(--font-size-sm);
+  color: var(--text-meta);
+}

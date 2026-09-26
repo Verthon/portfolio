@@ -71,3 +71,6 @@ Version-specific facts (requirements, defaults) belong in **Context**, where the
 Run `/content-review` for the editorial pass and `/seo` for metadata and
 structured data. Preview locally — check heading anchors and that components
 render.
+
+Rewrote or materially changed a published post? Set `last_updated` — it is the
+only thing that moves `dateModified` and the sitemap's `lastmod`.

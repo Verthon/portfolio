@@ -5,7 +5,7 @@ description: Editorial review of a post that rules can't enforce — restated do
 
 # Content review
 
-Editorial pass over a blog post, dev bite, or observatory note. Seven checks, all judgment calls.
+Editorial pass over a blog post, dev bite, or observatory note. Nine checks, all judgment calls.
 
 Read `CONTEXT.md` (niche, voice, content types) and `CONTENT.md` (writing rules) before the first file.
 
@@ -82,6 +82,21 @@ The two that fail most often: **no rejected alternative** (one solution presente
 
 Most of this work is under NDA. That blocks the employer, product, client and internal system names — it does not block ratios, magnitudes, or before/after deltas. Ask for the de-identified number ("the surface roughly quadrupled over five iterations"), never the absolute. An irreversible consequence — what is now impossible, what is still running years later — counts as impact on its own where no number was ever the author's to publish. Vagueness is still a flag: "significantly larger" is the absence of a number, not a redacted one.
 
+### 8. Scannable story sections
+
+A section that tells what happened reads fast when it has this shape:
+
+- Short sentences, one fact each. Split any sentence that carries two.
+- Prose for the story: what happened, what broke, what it cost.
+- Bullets for the fix, the checks, or "what would have caught it", one line each.
+- Code for the before/after, not a sentence describing it.
+
+Flag a fix list written as a paragraph, and a story broken into bullets. Run `/no-ai-slop` in detect mode on the section and include its findings under this check. Don't restate its patterns here.
+
+### 9. Universal prescriptions
+
+The author's calls held in one context. Flag "never", "always", "you should", and bare imperatives stated as rules for every reader. Suggest the version tied to the context it held in, or to its trade-off. Don't ask for advice lists to be ranked either. Readers adjust them to their own case.
+
 ## Output
 
 Per file, only what fails. Cite `path:line`. Skip a check that passes rather than printing a checkmark for it — a clean review is a short review.
@@ -102,6 +117,10 @@ FIRST PARAGRAPH
 
 CODE
   No code examples in a post about component API design.
+
+SCANNABLE
+  L88-91 — "what would have caught it" is one paragraph. Two bullets: the version signal, the reference-app test.
+  L84 — colon reveal ("The real cost: …"), per /no-ai-slop. State it plainly.
 
 CASE STUDY SHAPE
   No rejected alternative anywhere. The token layer is presented as the only

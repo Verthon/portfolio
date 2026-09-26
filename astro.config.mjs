@@ -3,12 +3,22 @@ import sonda from 'sonda/astro'
 import mdx from '@astrojs/mdx'
 import preact from '@astrojs/preact'
 import sitemap from '@astrojs/sitemap'
+import githubLightDefault from '@shikijs/themes/github-light-default'
 import { readdirSync, readFileSync } from 'node:fs'
 
 import { BROWSER_TARGET } from './src/browser-target.ts'
 import { SITE_URL as SITE } from './src/seo/site.ts'
 
 const ANALYZE = process.env.ANALYZE === 'true'
+
+const lightCodeTheme = {
+  ...githubLightDefault,
+  tokenColors: githubLightDefault.tokenColors.map((token) =>
+    token.scope?.includes?.('comment')
+      ? { ...token, settings: { ...token.settings, foreground: '#59636e' } }
+      : token
+  ),
+}
 
 const SECTIONS = [
   ['blog', 'blog'],
@@ -68,7 +78,7 @@ export default defineConfig({
   markdown: {
     shikiConfig: {
       themes: {
-        light: 'github-light-default',
+        light: lightCodeTheme,
         dark: 'github-dark-default',
       },
       defaultColor: false,

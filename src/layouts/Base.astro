@@ -82,11 +82,12 @@ const { title, description, ogTitle, ogDescription, ogType, canonical } = meta
     <slot name="head" />
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header">
       <ThemeToggler />
       <Nav />
     </header>
-    <main>
+    <main id="main-content" tabindex="-1">
       <slot />
     </main>
     <Footer />
@@ -94,6 +95,27 @@ const { title, description, ogTitle, ogDescription, ogType, canonical } = meta
 </html>
 
 <style>
+  .skip-link {
+    position: absolute;
+    top: var(--space-sm);
+    left: var(--space-sm);
+    z-index: 1;
+    padding: var(--space-xs) var(--space-sm);
+    background-color: var(--surface);
+    color: var(--text-strong);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    transform: translateY(-200%);
+  }
+
+  .skip-link:focus {
+    transform: none;
+  }
+
+  main:focus {
+    outline: none;
+  }
+
   body {
     background-color: var(--surface);
     color: var(--text-color);
