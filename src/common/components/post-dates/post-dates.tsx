@@ -1,5 +1,4 @@
 import { h } from 'preact'
-import styles from './post-dates.module.css'
 
 type PostDatesProps = {
   date: string | Date
@@ -15,7 +14,7 @@ export default function PostDates({ date, lastUpdated }: PostDatesProps) {
 
   return h(
     'p',
-    { className: styles.postDates },
+    null,
     'Published ',
     h('time', { dateTime: published }, published),
     updated && updated !== published

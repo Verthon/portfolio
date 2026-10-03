@@ -15,24 +15,24 @@ import Heading from '~/common/components/heading/heading'
 import Alert from '~/common/components/alert/alert'
 
 <DevBiteWrapper>
-<DevBiteHeader>
+<DevBiteHeader frontmatter={frontmatter}>
 <Heading tag='h1'>Vitest doctor cut our CI test time from 263s to 115s</Heading>
 </DevBiteHeader>
 
 <DevBiteContent>
 
-**Context:**
+<Heading tag="h2" id="context" linkLabel="Link to heading: A 615-file suite on happy-dom">A 615-file suite on happy-dom</Heading>
 
 - **Environment:** SPA React application, 615 test files / 1813 tests, happy-dom
 - **Dependencies:**
   - Vitest version: `"vitest": "5.0.0"`
   - Vitest 5 requires Vite >= 6.4.0 and Node.js >= 22.12.0
 
-**Problem:**
+<Heading tag="h2" id="problem" linkLabel="Link to heading: The breakdown can't pick a pool">The breakdown can't pick a pool</Heading>
 
 The [duration breakdown](/dev-bites/vitest-timing-breakdown/) tells you `setup` or `environment` dominates, not whether a different `pool` would fix it. You find that out by running the suite under each one and comparing.
 
-**Solution:**
+<Heading tag="h2" id="solution" linkLabel="Link to heading: Let vitest doctor benchmark the pools">Let vitest doctor benchmark the pools</Heading>
 
 Vitest 5 adds `vitest doctor`.
 
@@ -106,7 +106,7 @@ export default defineConfig({
   can still hide new flakiness.
 </Alert>
 
-**Sources:**
+<Heading tag="h2" id="sources" linkLabel="Link to heading: Sources">Sources</Heading>
 
 - [vitest doctor - CLI docs](https://vitest.dev/guide/cli.html#vitest-doctor)
 - [Announcing Vitest 5.0](https://vitest.dev/blog/vitest-5.html)

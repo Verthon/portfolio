@@ -14,25 +14,23 @@ import DevBiteContent from '~/dev-bites/components/dev-bite-content/dev-bite-con
 import Heading from '~/common/components/heading/heading'
 
 <DevBiteWrapper>
-<DevBiteHeader>
+<DevBiteHeader frontmatter={frontmatter}>
 <Heading tag='h1'>How to Measure ESLint Execution Time</Heading>
 </DevBiteHeader>
 
 <DevBiteContent>
 
-**Last updated**: 03.08.2024
-
-**Context**:
+<Heading tag="h2" id="context" linkLabel="Link to heading: A React SPA on ESLint 8">A React SPA on ESLint 8</Heading>
 
 - Environment: SPA React Application
 - Dependencies:
   - ESLint version: `"eslint": "8.56.0"`
 
-**Problem**:
+<Heading tag="h2" id="problem" linkLabel="Link to heading: Which rules slow the lint run down?">Which rules slow the lint run down?</Heading>
 
 Determine which ESLint rules are slowing down your project.
 
-**Solution:**
+<Heading tag="h2" id="solution" linkLabel="Link to heading: Profile rules with TIMING=1">Profile rules with TIMING=1</Heading>
 
 Add a new command that lists the least performant rules first
 

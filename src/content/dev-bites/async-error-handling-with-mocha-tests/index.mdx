@@ -13,21 +13,20 @@ import DevBiteContent from '~/dev-bites/components/dev-bite-content/dev-bite-con
 import Heading from '~/common/components/heading/heading'
 
 <DevBiteWrapper>
-<DevBiteHeader>
+<DevBiteHeader frontmatter={frontmatter}>
 <Heading tag='h1'>Async Error Handling in Mocha with Chai tests</Heading>
 </DevBiteHeader>
 
 <DevBiteContent>
-**Last updated:** 25.02.2024
 
-**Context:**
+<Heading tag="h2" id="context" linkLabel="Link to heading: An ESM Node.js project on Mocha and Chai">An ESM Node.js project on Mocha and Chai</Heading>
 
 - **Environment:** ESM, Node.js 20, TypeScript project.
 - **Dependencies:**
   - Mocha version: `"mocha": "10.3.0"`
   - Chai version: `"chai": "4.4.1"`
 
-**Problem:**
+<Heading tag="h2" id="problem" linkLabel="Link to heading: Chai's throw assertion fails on an async function">Chai's throw assertion fails on an async function</Heading>
 
 Consider a service attempting to create a new database resource. If initial business validation fails, an error is thrown. To test this behavior, you might write:
 
@@ -51,11 +50,11 @@ Test will fail with following error:
       at process.processImmediate (node:internal/timers:478:21)
 ```
 
-**Root cause:**
+<Heading tag="h3" id="root-cause" linkLabel="Link to heading: Why: expect receives a promise, not a function">Why: expect receives a promise, not a function</Heading>
 
 The test incorrectly attempts to use `expect().to.throw` with a promise returned by an async function, which is not supported by Chai's `expect` directly.
 
-**Solution:**
+<Heading tag="h2" id="solution" linkLabel="Link to heading: Assert with chai-as-promised">Assert with chai-as-promised</Heading>
 
 - install `chai-as-promised` and use it in your test
 
@@ -84,7 +83,7 @@ You can read more about chai as promised: [here](https://www.npmjs.com/package/c
 
 There is also Github issue about native support for promise in Chai: [here](https://github.com/chaijs/chai/issues/1570)
 
-**Alternative:**
+<Heading tag="h3" id="alternative" linkLabel="Link to heading: Without the plugin: try/catch">Without the plugin: try/catch</Heading>
 
 You could also leverage the approach without `chai-as-promised` simply by wrapping the test in try catch block
 

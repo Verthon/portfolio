@@ -16,14 +16,13 @@ type IconProps = Icon & {
 const iconDefaults: Icon = {
   height: 24,
   width: 24,
-  ariaHidden: false,
 }
 
 export default function IconWrapper({
   height = iconDefaults.height,
   width = iconDefaults.width,
-  ariaHidden = iconDefaults.ariaHidden,
   ariaLabel,
+  ariaHidden = !ariaLabel,
   color,
   svgPath,
   role,

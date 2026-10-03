@@ -351,3 +351,52 @@ two) are now a recognisable cluster, not isolated dissent.
 - vercel.com/blog — corporate, 604 posts, rotating authors. Strong AI/agents content if you want a company reference.
 - epicweb.dev / kentcdodds.com — round one duplicate.
 - thoughtbot.com/blog, blog.cloudflare.com — corporate, multi-author. Cloudflare is strong on infra/AI if you want a company reference.
+
+# About pages
+
+Scan date: 2026-09-26. Question: does sordyl.dev need an `/about` page, and what
+should it hold? 46 blogs checked, which is every entry above except the corporate
+ones (Builder.io, Smashing). Pages were fetched directly, and each was summarised
+by the fetch tool's model, so the quotes are close but not guaranteed verbatim.
+
+## Counts
+
+| Shape | Count | Who |
+| --- | --- | --- |
+| Dedicated page | 32 | Erikson, Comeau, Fowler, Osmani (`/bio`), Goedecke, Orosz, Rees, Frost, Nielsen, Matuzović, Willison, swyx, Wieruch, Dodds, Ubl, Larson, Hebert, Kladov, Wayne, Roberts, Lawson, Nottingham, Leatherman, Valkhof, Evans, Coyier ("Photo & Bio"), Makarevich, Rauch, Kondov, Rascia (`/me`), Holmes, Lengstorf |
+| Bio on the home page | 10 | Ferreira, Robinson, Dorfmeister, Bailey, Kinney, Litt, Fu, Zakharchenko, Webb, Bjarnason |
+| Nothing | 4 | Abramov, Frontend Mastery, Crawshaw, Sanabria |
+
+## What the dedicated pages hold
+
+About half of the 32 say what the site covers or who it's for. The other half are
+credential lists.
+
+- **Credential-only.** Ubl ("CTO of Vercel"), Rauch, Larson, Nottingham, Willison,
+  Osmani, Leatherman. The job title already does the positioning, so the page skips it.
+- **Positioning line plus a sale.** Roberts ("I help teams understand how site-speed
+  affects their business"), Wieruch, Dodds, Matuzović, Orosz. The line is there to
+  set up hire-me, courses, or a subscription.
+- **Positioning line as method.** Makarevich ("Investigates how technology actually
+  works and writes it up with numbers"), Wayne, Evans, Erikson. This is the closest
+  match to sordyl.dev's voice, and Makarevich is the closest peer on every round.
+- **Personality.** Nielsen shows only blog stats. Kondov and Rascia lean on hobbies.
+
+Common extras: headshot (most), `/uses` (Dodds, Leatherman, Lengstorf, Rascia),
+copyable speaker bios (swyx, Leatherman), disclosures (Willison, Fowler).
+
+## Signals outside the peer set
+
+- Google, *Creating helpful, reliable, people-first content*, asks: "background
+  about the author or the site that publishes it, such as through links to an author
+  page or a site's About page?" and "Do bylines lead to further information about the
+  author...?"
+- Google, *Article structured data*, defines `author.url` as "a web page that uniquely
+  identifies the author... an 'about me' page, or a bio page." It suggests marking an
+  internal profile page up with `ProfilePage`.
+
+## Where sordyl.dev stands
+
+- No `/about`. The `#person` node's `url` is the home page.
+- Posts carry no visible byline. The author's name appears only in the nav, the
+  footer, and the JSON-LD.

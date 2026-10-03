@@ -1,4 +1,4 @@
-import { AUTHOR, PERSON_ID, SITE_URL, WEBSITE_ID } from './site'
+import { AUTHOR, PERSON_ID, SITE_NAME, SITE_URL, WEBSITE_ID } from './site'
 
 const PERSON_SAME_AS = [
   'https://github.com/Verthon',
@@ -14,9 +14,9 @@ export const createSiteJsonLd = () => ({
       '@id': PERSON_ID,
       name: AUTHOR,
       url: `${SITE_URL}/`,
-      jobTitle: 'Frontend Engineer',
+      jobTitle: 'Frontend Platform Engineer',
       description:
-        'Frontend engineer building internal tooling for dev teams. Writes about frontend architecture, developer experience, and technical decisions with business impact.',
+        'Frontend platform engineer building internal tooling for dev teams. Writes about frontend architecture, developer experience, and technical decisions with business impact.',
       knowsAbout: [
         'Frontend architecture',
         'Developer experience',
@@ -29,7 +29,8 @@ export const createSiteJsonLd = () => ({
       '@type': 'WebSite',
       '@id': WEBSITE_ID,
       url: `${SITE_URL}/`,
-      name: AUTHOR,
+      name: SITE_NAME,
+      alternateName: AUTHOR,
       description:
         'Frontend architecture, developer experience, and technical decisions with business impact.',
       inLanguage: 'en',

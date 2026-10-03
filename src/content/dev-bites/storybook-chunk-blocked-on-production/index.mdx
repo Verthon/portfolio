@@ -13,30 +13,28 @@ import DevBiteContent from '~/dev-bites/components/dev-bite-content/dev-bite-con
 import Heading from '~/common/components/heading/heading'
 
 <DevBiteWrapper>
-<DevBiteHeader>
+<DevBiteHeader frontmatter={frontmatter}>
 <Heading tag='h1'>Storybook chunk blocked by network policy</Heading>
 </DevBiteHeader>
 
 <DevBiteContent>
 
-**Last updated**: 06.03.2023
-
-**Context**:
+<Heading tag="h2" id="context" linkLabel="Link to heading: Storybook 7 on Webpack 5">Storybook 7 on Webpack 5</Heading>
 
 - Environment: SPA React Application with Webpack as a bundler
 - Dependencies:
   - Webpack version: `"webpack": "5.82.0"`
   - Storybook version: `"storybook": "7.5.3"`
 
-**Problem**:
+<Heading tag="h2" id="problem" linkLabel="Link to heading: A tilde in the chunk name gets blocked">A tilde in the chunk name gets blocked</Heading>
 
 Storybook creates a chunk that has `~` mark in the chunk-name - this could be considered as illegal character in URL (blacklisted at network level).
 
-**Root cause:**
+<Heading tag="h3" id="root-cause" linkLabel="Link to heading: Why the tilde is there">Why the tilde is there</Heading>
 
 By default, Storybook generates its main chunk with Webpack using the pattern: `'[name].[contenthash:8].iframe.bundle.js'`. This results in chunk names such as `runtime~main.35339373.iframe.bundle.js`, where the tilde can be problematic.
 
-**Solution:**
+<Heading tag="h2" id="solution" linkLabel="Link to heading: Drop [name] from the filename">Drop [name] from the filename</Heading>
 
 Simply remove `[name]` part from filename - since we don’t have control over it.
 

@@ -15,20 +15,18 @@ import Heading from '~/common/components/heading/heading'
 import Alert from '~/common/components/alert/alert'
 
 <DevBiteWrapper>
-<DevBiteHeader>
+<DevBiteHeader frontmatter={frontmatter}>
 <Heading tag='h1'>Fully removing Windsurf on macOS</Heading>
 </DevBiteHeader>
 
 <DevBiteContent>
-@
-**Last updated**: 08.03.2026
 
-**Context**:
+<Heading tag="h2" id="context" linkLabel="Link to heading: Windsurf on macOS Sequoia">Windsurf on macOS Sequoia</Heading>
 
 - Environment: macOS (tested on macOS Sequoia 15.x)
 - App: Windsurf by Codeium (AI-powered code editor, VS Code fork)
 
-**Problem**:
+<Heading tag="h2" id="problem" linkLabel="Link to heading: Moving the app to Bin leaves 1.75 GB behind">Moving the app to Bin leaves 1.75 GB behind</Heading>
 
 Moving Windsurf to Bin (right-click → Move to Bin) only removes the app bundle itself. These directories stay on disk, taking up ~1.75 GB or more:
 
@@ -50,7 +48,7 @@ Moving Windsurf to Bin (right-click → Move to Bin) only removes the app bundle
 
 Also check your projects for `.windsurfrules` files if you used Windsurf's rules feature.
 
-**Solution:**
+<Heading tag="h2" id="solution" linkLabel="Link to heading: Delete the leftover directories">Delete the leftover directories</Heading>
 
 Run this in your terminal to clean up all Windsurf and Codeium leftovers:
 
@@ -72,7 +70,7 @@ find ~ -maxdepth 5 \( -name "*windsurf*" -o -name "*Windsurf*" -o -name "*codeiu
   | grep -v -E "Firefox|\.git"
 ```
 
-**Automate with an LLM**
+<Heading tag="h3" id="automate-with-an-llm" linkLabel="Link to heading: Automate with an LLM">Automate with an LLM</Heading>
 
 You can paste the following prompt into any LLM (Claude, ChatGPT, etc.) to have it generate or verify the cleanup commands for your specific system:
 

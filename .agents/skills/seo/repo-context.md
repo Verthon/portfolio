@@ -41,7 +41,9 @@ are emitted, not inside `Article.astro`.
 
 JSON-LD ships on all three sections, built by `src/seo/article-json-ld.ts` and
 called from each `[slug].astro`. All three emit `@type: 'BlogPosting'` with a
-shared `#person` node for author and publisher.
+shared `#person` node as author. No `publisher` and no `description`: Google's
+Article docs recommend neither (checked 2026-09-27), and adding them would only
+be for completeness.
 
 Settled 2026-09-17, do not re-report: all three sections stay `BlogPosting`.
 Google treats `Article`, `NewsArticle` and `BlogPosting` as interchangeable for

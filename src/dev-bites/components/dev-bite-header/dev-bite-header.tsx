@@ -1,22 +1,36 @@
 import { h, type ComponentChildren } from 'preact'
 import PostDates from '~/common/components/post-dates/post-dates'
+import PostMeta, {
+  type PostFrontmatter,
+} from '~/common/components/post-meta/post-meta'
 import styles from './dev-bite-header.module.css'
 
 type DevBiteHeaderProps = {
   children?: ComponentChildren
-  date?: string | Date
-  lastUpdated?: string | Date
+  frontmatter: PostFrontmatter
 }
 
 export default function DevBiteHeader({
   children,
-  date,
-  lastUpdated,
+  frontmatter,
 }: DevBiteHeaderProps) {
+  if (!frontmatter?.date) {
+    throw new Error(
+      'DevBiteHeader needs frontmatter={frontmatter} from the MDX'
+    )
+  }
+
   return h(
     'header',
     { className: styles.devBiteHeader },
     children,
-    date ? h(PostDates, { date, lastUpdated }) : null
+    h(
+      PostMeta,
+      null,
+      h(PostDates, {
+        date: frontmatter.date,
+        lastUpdated: frontmatter.last_updated,
+      })
+    )
   )
 }

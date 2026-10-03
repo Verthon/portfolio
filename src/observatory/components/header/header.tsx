@@ -1,18 +1,31 @@
 import { h, type ComponentChildren } from 'preact'
 import PostDates from '~/common/components/post-dates/post-dates'
+import PostMeta, {
+  type PostFrontmatter,
+} from '~/common/components/post-meta/post-meta'
 import styles from './header.module.css'
 
 type HeaderProps = {
   children?: ComponentChildren
-  date?: string | Date
-  lastUpdated?: string | Date
+  frontmatter: PostFrontmatter
 }
 
-export default function Header({ children, date, lastUpdated }: HeaderProps) {
+export default function Header({ children, frontmatter }: HeaderProps) {
+  if (!frontmatter?.date) {
+    throw new Error('Header needs frontmatter={frontmatter} from the MDX')
+  }
+
   return h(
     'header',
     { className: styles.header },
     children,
-    date ? h(PostDates, { date, lastUpdated }) : null
+    h(
+      PostMeta,
+      null,
+      h(PostDates, {
+        date: frontmatter.date,
+        lastUpdated: frontmatter.last_updated,
+      })
+    )
   )
 }

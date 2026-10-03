@@ -14,23 +14,21 @@ import DevBiteContent from '~/dev-bites/components/dev-bite-content/dev-bite-con
 import Heading from '~/common/components/heading/heading'
 
 <DevBiteWrapper>
-<DevBiteHeader>
+<DevBiteHeader frontmatter={frontmatter}>
 <Heading tag='h1'>How to improve developer-experience when working with JSON</Heading>
 </DevBiteHeader>
 
 <DevBiteContent>
 
-**Last updated**: 08.08.2024
-
-**Context**:
+<Heading tag="h2" id="context" linkLabel="Link to heading: Any project configured with JSON">Any project configured with JSON</Heading>
 
 Any project that uses JSON for the configuration.
 
-**Problem**:
+<Heading tag="h2" id="problem" linkLabel="Link to heading: No autocomplete in JSON files">No autocomplete in JSON files</Heading>
 
 There is no autocomplete in your IDE for JSON files, unlike in TypeScript.
 
-**Solution:**
+<Heading tag="h2" id="solution" linkLabel="Link to heading: Point $schema at a published schema">Point $schema at a published schema</Heading>
 
 Use `$schema` field in your JSON file to point to the schema from the metadata file  
 For instance in `package.json`:

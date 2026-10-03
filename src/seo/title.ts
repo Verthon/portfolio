@@ -1,9 +1,9 @@
+import { AUTHOR, SITE_NAME } from './site'
+
 const SEPARATOR = ' • '
-const SITE_SUFFIX = 'sordyl.dev'
-const AUTHOR = 'Krzysztof Sordyl'
 const HOME_TAGLINE = 'Architecture & DX at Scale'
 
-const SUFFIX = `${SEPARATOR}${SITE_SUFFIX}`
+const SUFFIX = `${SEPARATOR}${SITE_NAME}`
 
 export const buildTitle = (pageTitle: string) => {
   const trimmed = pageTitle.trim()

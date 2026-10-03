@@ -15,21 +15,19 @@ import Heading from '~/common/components/heading/heading'
 import Alert from '~/common/components/alert/alert'
 
 <DevBiteWrapper>
-<DevBiteHeader>
+<DevBiteHeader frontmatter={frontmatter}>
 <Heading tag='h1'>Vitest timing breakdown</Heading>
 </DevBiteHeader>
 
 <DevBiteContent>
 
-**Last updated**: 22.12.2024
-
-**Context**:
+<Heading tag="h2" id="context" linkLabel="Link to heading: A large React SPA on Vitest 2">A large React SPA on Vitest 2</Heading>
 
 - Environment: SPA React Application with Vitest test runner
 - Dependencies:
   - Vitest version: `"vitest": "2.1.8"`
 
-**Problem**:
+<Heading tag="h2" id="problem" linkLabel="Link to heading: The Duration line is hard to read">The Duration line is hard to read</Heading>
 
 Vitest after running tests prints out the `Duration` in the following format:
 
@@ -45,7 +43,7 @@ Test Files 424 passed | 1 skipped(425)
 
 Vitest Team provide basic information about it in their [docs](https://vitest.dev/guide/profiling-test-performance.html#profiling-test-performance)
 
-**Solution:**
+<Heading tag="h2" id="solution" linkLabel="Link to heading: What each phase measures and how to cut it">What each phase measures and how to cut it</Heading>
 
 Basic breakdown:
 
@@ -96,7 +94,7 @@ Where to search for execution time improvements:
 
 To improve the performance you can check the [dedicated docs](https://vitest.dev/guide/improving-performance.html) on the Vitest documentation
 
-**Sources:**
+<Heading tag="h2" id="sources" linkLabel="Link to heading: Sources">Sources</Heading>
 
 - https://github.com/vitest-dev/vitest/discussions/1770#discussioncomment-3304723
 - https://github.com/vitest-dev/vitest/discussions/1770#discussioncomment-6617381
