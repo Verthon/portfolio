@@ -4,7 +4,7 @@ description: 'Use the TIMING env var to rank ESLint rules by execution time, fin
 tags: linter
 date: 2024-08-03
 excerpt: 'Find out how to check which ESLint rules takes a lot of time to scan the project'
-last_updated: 2024-08-03
+last_updated: 2026-10-06
 dev_bite_type: regular
 ---
 
@@ -66,6 +66,8 @@ With that said, we need to make a decision, either:
 Both options have it's own trade-offs and it should be discussed with the team, which approach is best under specific circumstances.
 
 For an in-depth understanding of profile rule performance visit [ESLint's official documentation on Profile Rule Performance](https://eslint.org/docs/latest/extend/custom-rules#profile-rule-performance).
+
+On a flat config (`eslint.config.js`), run `npx @eslint/config-inspector` first to see which rules are enabled and which preset turned each one on. It shows no timings, so `TIMING` is still how you find the slow ones.
 
 </DevBiteContent>
 
