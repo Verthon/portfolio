@@ -4,7 +4,7 @@ description: 'Understand the meaning of every of Vitest duration step'
 tags: testing, vitest
 date: 2024-12-22
 excerpt: 'Breakdown of each step of duration printed out after running the Vitest tests. Including some hints on how to improve each of the metrics'
-last_updated: 2024-12-22
+last_updated: 2026-10-06
 dev_bite_type: regular
 ---
 
@@ -43,16 +43,18 @@ Test Files 424 passed | 1 skipped(425)
 
 Vitest Team provide basic information about it in their [docs](https://vitest.dev/guide/profiling-test-performance.html#profiling-test-performance)
 
+From Vitest 4, `collect` is renamed to `import` and `prepare` is removed.
+
 <Heading tag="h2" id="solution" linkLabel="Link to heading: What each phase measures and how to cut it">What each phase measures and how to cut it</Heading>
 
 Basic breakdown:
 
 1. `setup`: sum of all `setupFiles` elements of your Vitest config file,run for each test file
-2. `collect`: file-system scan to gather your test files and import their dependencies
+2. `collect`: importing your test files and their dependencies
 3. `tests`: time for running only the tests
 4. `transform`: how long it takes for Vitest to transform files (source and tests)
 5. `environment`: overhead for loading the environment (importing jsdom/happy-dom/node)
-6. `prepare`: Vitest's internal tasks (setup cache, linking tests files)
+6. `prepare`: importing Vitest's internal utilities in the worker
 
 Where to search for execution time improvements:
 
