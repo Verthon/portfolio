@@ -3,7 +3,7 @@ import Nav from '~/components/nav/nav.astro'
 import Footer from '~/components/footer/footer.astro'
 import ThemeToggler from '~/components/theme-toggler.astro'
 import Analytics from '~/components/analytics.astro'
-import { AUTHOR, SITE_NAME } from '~/seo/site'
+import { AUTHOR } from '~/seo/site'
 import type { PageMeta } from '~/seo/meta'
 import '~/styles/global.css'
 
@@ -28,7 +28,7 @@ const { title, description, ogTitle, ogDescription, ogType, canonical } = meta
     <meta property="og:description" content={ogDescription} />
     <meta property="og:url" content={canonical} />
     <meta property="og:type" content={ogType} />
-    <meta property="og:site_name" content={SITE_NAME} />
+    <meta property="og:site_name" content={AUTHOR} />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={ogTitle} />
     <meta name="twitter:description" content={ogDescription} />

@@ -8,7 +8,7 @@ Last checked: 2026-09-25.
 | ---------------------- | ------------------------------------------ | ----------------------------------------- |
 | Accessibility          | axe runs per sitemap URL, both themes      | manual keyboard/SR pass not done. oxlint a11y covers 7 rules ([0003](./decisions/0003-oxlint-over-eslint.md)) |
 | Performance            | responsive AVIF images ([0005](./decisions/0005-images-through-astro-assets.md)), immutable-cached assets, PostHog field vitals ([0006](./decisions/0006-core-web-vitals-are-measured-not-gated.md)) | no lab LCP/CLS runner. Field p75 needs traffic |
-| URL stability          | `trailingSlash`, `lastmod`, `check-links` gate the build ([0002](./decisions/0002-published-urls-do-not-break.md)) | accepted: a deliberate delete or rename passes the build. No Search Console |
+| URL stability          | `trailingSlash`, `lastmod`, `check-links` gate the build ([0002](./decisions/0002-published-urls-do-not-break.md)) | accepted: a deliberate delete or rename passes the build |
 | Machine discovery      | JSON-LD on all 3 sections, `@id`s build-checked. RSS at `/rss.xml`, build-checked | observatory emits `BlogPosting` for a tracking note. Changing it on indexed pages is a deliberate call |
 | Cheap publish loop     | skills in `.agents/skills/`                | no corpus index for content triage        |
 | Agent context budget   | migration folder folded into ADRs 2026-09-16 | —                                       |
