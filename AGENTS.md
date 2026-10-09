@@ -10,7 +10,7 @@ Read first
 
 Content lives in `src/content/{blog,dev-bites,observatory}/<slug>/index.mdx`. Routes live in `src/pages/`, and each section's components in the matching `src/<section>/components/` module.
 
-Everything an agent runs is a skill: `/content-review`, `/seo`, `/grill`. They live in `.agents/skills/` (tool-agnostic) and are symlinked into `.claude/skills/`.
+Everything an agent runs is a skill: `/draft-article`, `/content-review`, `/seo`, `/grill`. They live in `.agents/skills/` (tool-agnostic) and are symlinked into `.claude/skills/`.
 
 `/seo` is vendored verbatim from addyosmani/web-quality-skills — read its `UPSTREAM.md` before changing it. Repo-specific SEO rules go in `.agents/skills/seo/repo-context.md`, never in `SKILL.md`.
 
