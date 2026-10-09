@@ -132,6 +132,7 @@ ul {
   --grey-100: hsl(206.7, 52.9%, 96.7%);
   --grey-200: hsl(206.7, 52.9%, 92.7%);
   --grey-400: hsl(206.7, 11.7%, 85.1%);
+  --grey-600: hsl(206.7, 11.7%, 68%);
   --dark-300: hsl(60, 1.7%, 35.1%);
   --dark-400: hsl(60, 1.9%, 30.4%);
   --dark-600: hsl(60, 2.9%, 20.6%);
@@ -161,7 +162,7 @@ ul {
   --heading-color: var(--grey-100);
   --surface: var(--dark-800);
   --text-strong: var(--grey-100);
-  --text-meta: var(--grey-200);
+  --text-meta: var(--grey-600);
   --border-subtle: var(--dark-400);
   --primary-50: hsl(50.3, 100%, 9.8%);
   --primary-100: hsl(50.3, 100%, 15.2%);

@@ -17,6 +17,7 @@ colors:
   grey-100: 'hsl(206.7, 52.9%, 96.7%)'
   grey-200: 'hsl(206.7, 52.9%, 92.7%)'
   grey-400: 'hsl(206.7, 11.7%, 85.1%)'
+  grey-600: 'hsl(206.7, 11.7%, 68%)'
   dark-300: 'hsl(60, 1.7%, 35.1%)'
   dark-400: 'hsl(60, 1.9%, 30.4%)'
   dark-600: 'hsl(60, 2.9%, 20.6%)'
@@ -253,7 +254,7 @@ block of its own:
 | `text-color`                   | `dark-400`               | `grey-400`               | body copy                       |
 | `heading-color`                | `dark-600`               | `grey-100`               | headings                        |
 | `text-strong`                  | `dark-600`               | `grey-100`               | hero name, nav and footer icons |
-| `text-meta`                    | `dark-300`               | `grey-200`               | article and dev-bite date lines |
+| `text-meta`                    | `dark-300`               | `grey-600`               | article and dev-bite date lines |
 | `surface`                      | `white`                  | `dark-800`               | page and hero background        |
 | `border-subtle`                | `grey-200`               | `dark-400`               | footer hairline, table rules    |
 | `link-wash` / `link-underline` | `primary-50` / `primary` | inverted with the family | inline link treatment           |
@@ -279,6 +280,7 @@ small set:
 | `surface`         | `white`              | `dark-800`                 |
 | `text-color`      | `dark-400`           | `grey-400`                 |
 | `heading-color`   | `dark-600`           | `grey-100`                 |
+| `text-meta`       | `dark-300`           | `grey-600`                 |
 | `code-background` | light grey           | `hsl(206.7, 11.7%, 20.6%)` |
 | `code-text`       | `hsl(240, 27%, 38%)` | `hsl(353, 100%, 85%)`      |
 | `code-keyword`    | dark red             | mint `hsl(147, 61%, 69%)`  |

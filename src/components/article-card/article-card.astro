@@ -1,4 +1,9 @@
 ---
+import {
+  toDisplayDate,
+  toIsoDate,
+} from '~/common/components/post-dates/format-date'
+
 type Props = {
   href: string
   title: string
@@ -25,7 +30,7 @@ const {
   badgeTone = 'primary',
 } = Astro.props
 
-const isoDate = date.toISOString().slice(0, 10)
+const isoDate = toIsoDate(date)
 ---
 
 <article
@@ -34,7 +39,7 @@ const isoDate = date.toISOString().slice(0, 10)
 >
   <a class="card-link" href={href}>
     <p class="meta">
-      <time datetime={isoDate}>{isoDate}</time>
+      <time datetime={isoDate}>{toDisplayDate(date)}</time>
       {badgeLabel && (
         <span class="badge" data-tone={badgeTone}>
           {badgeLabel}
