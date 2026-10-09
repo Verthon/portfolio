@@ -1,0 +1,139 @@
+---
+title: 'Why 30+ Apps Get Their Layout from Micro-Frontends'
+description: 'How a slow release process and several audits a year led 30+ apps to get their shared layout from micro-frontends instead of an npm library, and what it costs.'
+tags: micro-frontends, frontend-architecture, module-federation
+date: 2026-10-09
+excerpt: Roughly 4-6 audits a year can force a layout change into 30+ apps that release over weeks to months. An npm library would leave most of them an audit behind, so the layout ships as runtime remotes.
+value_proposition: "Micro-frontend writing justifies them by team scale. This
+justifies them by a release process slow by design, and shows where the same
+reasoning stops holding: the slowest consumer sets the pace, the architecture
+only decides where that cost lands"
+article_type: featured
+---
+
+import ArticleWrapper from '~/blog/components/article-wrapper/article-wrapper'
+import ArticleHeader from '~/blog/components/article-header/article-header'
+import ArticleContent from '~/blog/components/article-content/article-content'
+import Heading from '~/common/components/heading/heading'
+
+<ArticleWrapper>
+<ArticleHeader frontmatter={frontmatter}>
+<Heading tag='h1'>Why 30+ Apps Get Their Layout from Micro-Frontends</Heading>
+</ArticleHeader>
+
+<ArticleContent>
+Most micro-frontend write-ups justify them by [scaling the organization](https://martinfowler.com/articles/micro-frontends.html) and [team autonomy](https://micro-frontends.org/). Ours exist because of a release process that is slow by design. They were the right call for the shared layout, and the wrong one for a component only one team ever used.
+
+<Heading tag='h2' id='a-release-process-slow-by-design' linkLabel="Link to heading: A release process that's slow by design">A release process that's slow by design</Heading>
+
+The same platform as in [What Broke When 30+ Apps Consumed One Design System](/blog/design-system-pitfalls/):
+
+- 30+ frontend apps, each deployed on its own by a different business unit
+- the apps existed long before anyone asked for micro-frontends
+- a release takes weeks to months, with manual QA and sign-off at every step
+- roughly 4-6 third-party audits a year, at irregular points, accessibility among them
+- any audit can force a change to the shared layout, and every app has to get it
+
+The release process is the organization's choice. It keeps a human in control of each step, and we, the platform team, couldn't change it. So the question was how to get one layout change into 30+ apps without 30+ teams each scheduling a release.
+
+<Heading tag='h2' id='why-not-an-npm-layout-library' linkLabel='Link to heading: Why not an npm layout library'>Why not an npm layout library</Heading>
+
+The obvious option was a layout package on npm. Every app installs it, and we publish a new version after each audit.
+
+That leaves the change in each team's hands, and for a team the upgrade is all risk. The layout might break something in their app, and the compliance fix it carries does nothing for their backlog. "It works, don't touch it" is the rational answer. Some apps couldn't take the upgrade even if they wanted to. A layout release can need a new major of the design system, which is a migration of its own.
+
+Semver can't mark an upgrade as required. A major version tells a team the upgrade might break their app, so they wait.
+
+With a library, audits that frequent and releases that slow would leave most of the 30+ apps at least one audit behind at any given time. Spotify measured the same lag with far more tooling than we had: a new internal framework version "used to take around 200 days to reach 70% of our backend services through organic updates" ([Spotify Engineering](https://engineering.atspotify.com/2023/04/spotifys-shift-to-a-fleet-first-mindset-part-1)). A bot could open the upgrade PR in every repo. Merging and releasing it would still wait on each team.
+
+Those teams did upgrade the shared scripts package from [the RSBuild migration](/blog/webpack-to-rsbuild-migration/). That bump gave them 40% faster local builds, so it paid off for them. A layout bump pays off for the organization.
+
+[Cam Jackson](https://martinfowler.com/articles/micro-frontends.html) rejects npm integration for its "lockstep release process". We rejected it for a different reason. The teams wouldn't upgrade at all.
+
+<Heading tag='h2' id='why-not-iframes-a-backend-driven-ui-or-a-shell' linkLabel='Link to heading: Why not iframes, a backend-driven UI, or a shell'>Why not iframes, a backend-driven UI, or a shell</Heading>
+
+iframes give each piece its own runtime. That isolation is why [micro-frontends.org](https://micro-frontends.org/) advises "Don't share a runtime, even if all teams use the same framework." We had no use for it. The apps already ran the same React version, so the layout could share theirs. With iframes, every frame would load its own copy, and the layout would live in a box with a fixed size. The organization switcher and the dropdowns have to open over the app, and a frame clips them.
+
+Accessibility was a concern too, though we never tested it. A titled iframe is an [accepted WCAG technique](https://www.w3.org/WAI/WCAG22/Techniques/html/H64), so iframes aren't inaccessible by definition. Spotify built its desktop app from iframes and concluded that "making the Desktop application accessible [...] would be nearly impossible" ([Spotify Engineering](https://engineering.atspotify.com/2021/04/building-the-future-of-our-desktop-apps)). With accessibility audits on the calendar, we didn't want to find out.
+
+A backend-driven UI could change the data in the layout. Over the years the layout's markup changed, and so did the design system under it, and a backend can't ship either of those.
+
+The textbook setup is the other way around. One shell app owns the page and the domain, and each team's micro-frontend mounts inside it. Our apps already lived on their own subdomains, like `service1.example.com` and `service2.example.com`, and each released on its own schedule. A shell would have meant moving all 30+ apps into one app on one domain, a migration every team would have had to plan and ship. So the layout went into the apps, instead of the apps going into a shell.
+
+<Heading tag='h2' id='one-release-every-app' linkLabel='Link to heading: One release, every app'>One release, every app</Heading>
+
+Every app and the starter already install one core package. Each micro-frontend sits in it behind a wrapper that handles the loading skeleton and the error handling, so a consumer uses the layout like any other component:
+
+```tsx
+import { Footer } from '@platform/core'
+
+<Footer />
+```
+
+The consumer doesn't need to know it's a micro-frontend. The wrapper ships on npm, but it rarely changes. The footer behind it changes whenever an audit requires it, and no app has to bump anything to get the change.
+
+Consuming apps don't test layout changes. We do, with integration tests and the same manual QA every release goes through. That's enough because the surface is small: a few variants, translations, some toggle states like the dropdowns, and no multistep forms. Teams that want to check a change can see the layout per route in the deployed starter, or in Storybook on every environment. For the consumer it works like a third-party script from a CDN, which never goes through their QA either.
+
+There is no shared state between micro-frontends. A shared store is close to microservices reading one database, where, as Mathias Verraes puts it, the schema becomes "essentially a public API" ([Domain Query](https://verraes.net/2019/05/patterns-for-decoupling-distsys-domain-query/)). Each micro-frontend reads from the same deduplicated API calls and deploys on its own.
+
+The release process is still slow. A layout change takes about as long to reach production as an app release. It goes through that process once, and any lag sits in that one release instead of in 30+ teams' backlogs.
+
+<Heading tag='h2' id='failing-hard-on-purpose' linkLabel='Link to heading: Failing hard on purpose'>Failing hard on purpose</Heading>
+
+A remote loads at runtime, inside someone else's app, so it can fail there. The easy fallback is to render nothing when it doesn't load. We show an error screen instead.
+
+The layout carries official compliance marks and legal text, and it carries functionality. Without it, users can't switch between the organizations they act for. A page without the layout fails the audit or leaves the user stuck, so we treated the micro-frontends as critical from the start.
+
+The error handling lives in the core package, in the same wrapper every app imports:
+
+- each chunk and each `remoteEntry.js` gets a retry policy
+- a failed `remoteEntry.js` is refetched with a cache-busting parameter
+- if the load still fails, the user gets an error screen with a refresh button
+- support escalates to us
+
+In years of production I can't recall a serious incident. The few load failures that reached support were mostly users who lost their connection, on underground transit for example, and a refresh fixed most of them.
+
+<Heading tag='h2' id='remotes-stuck-on-react-18' linkLabel='Link to heading: Remotes stuck on React 18'>Remotes stuck on React 18</Heading>
+
+The core package pins `react` and `react-dom`, and every remote is built against that pin. For years that meant one React version across the whole fleet.
+
+Moving that pin needs the whole fleet to coordinate. A framework major comes every few years. With a library, each of the roughly 4-6 audits a year would have needed the same coordination.
+
+Since the latest core release, consumer apps can run React 18 or 19, though as far as I know none has moved to 19 in production yet. The remotes stay on React 18 until the last consumer has migrated. In our setup a remote runs on the app's React, so a remote on React 19 that called a React 19 API would crash every app still on 18. The slowest app sets the floor for our own code.
+
+The same pin covers styled-components, which the design system styles with (the story is in [What Broke When 30+ Apps Consumed One Design System](/blog/design-system-pitfalls/)). The design system used to ship it as a peer dependency, so every app had to install the pinned version itself. We got the design system team to drop that peer dependency. Apps no longer install it, but it still arrives through the design system, and each app shares it with the remotes as a singleton.
+
+<Heading tag='h2' id='the-remote-nobody-uses' linkLabel='Link to heading: The remote nobody uses'>The remote nobody uses</Heading>
+
+One micro-frontend wasn't part of the shared layout. It was a component for a single team, with no second consumer in sight. We flagged the cost, the stakeholders kept the requirement for "consistency", and we built it. Later we proposed inlining it into its one consumer, and that was blocked too. [API surface challenges on a shared platform](/blog/api-surface-challenges/) tells that part and ends with "The micro-frontend is still exposed today."
+
+It now has zero consumers, as far as anyone can tell. Nothing records which app loads which remote. A designer searched every team's current Figma files and found no use of it, and the one team we knew about confirmed they had dropped it. A design file can't prove what's deployed, though.
+
+It's still deployed. There's no process for retiring a micro-frontend, and the requirement might come back. Removing a remote is also riskier than removing a library. If some app we don't know about still loads it, that app breaks in production, and its team may have no capacity to fix it. The same consumer behavior that ruled out an npm library makes a runtime remote close to permanent.
+
+<Heading tag='h2' id='the-running-costs-of-micro-frontends' linkLabel='Link to heading: The running costs of micro-frontends'>The running costs of micro-frontends</Heading>
+
+The costs that keep running, even where the remotes were the right call:
+
+- Module Federation's shared-module config is easy to get wrong. A version mismatch doesn't fail the build. In our setup it shows up as a console warning at runtime ([shared config docs](https://module-federation.io/configure/shared.html)).
+- styled-components, which the design system chose, still sits in that shared config as a singleton, so each app and the remotes write into one style tag. It's one more version the whole fleet has to agree on.
+- `remoteEntry.js` and its chunks need cache invalidation, which is why the retry and cache-busting logic above exists.
+- The Module Federation runtime ships in every consumer's bundle, and we rarely bump it because we don't trust new versions to keep the retry logic working.
+- We can only use a bundler with solid Module Federation support, which is one reason [the Webpack to RSBuild migration](/blog/webpack-to-rsbuild-migration/) landed on RSBuild.
+- Consumer integration tests stub the remotes, so a team debugging a browser test sees a placeholder `div` where the footer should be.
+- Initializing the core takes extra code, which makes server-side rendering harder later.
+- New members of our team take longer to onboard. A mistake that slips past our tests shows up at runtime in 30+ consumer apps, so there's more to learn before they ship.
+
+<Heading tag='h2' id='right-for-layouts-wrong-for-one-component' linkLabel='Link to heading: Right for layouts, wrong for one component'>Right for layouts, wrong for one component</Heading>
+
+Before exposing anything as a remote today, we'd ask one question. Does every consumer have to get every change, whether its team wants it or not?
+
+For the layout, the answer was yes. Audits decided what changed, and no app could opt out. Remotes turned 30+ upgrades nobody would schedule into one release we owned.
+
+The single-team component fails that test. It had one consumer and nothing to push to anyone else, so the remote brought the runtime cost and none of the benefit. We said so at the time.
+
+The slowest consumer sets the pace either way. With a library, it would have set the date every app became compliant. With remotes, it sets our React version and keeps a remote alive that nobody uses. We chose to carry that cost on the platform team instead of in the organization's compliance.
+
+</ArticleContent>
+
+</ArticleWrapper>

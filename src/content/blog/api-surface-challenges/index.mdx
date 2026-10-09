@@ -3,6 +3,7 @@ title: API surface challenges on a shared platform
 description: 'Three years maintaining a shared npm library across thirty-plus apps we did not own, and how its API surface became permanent by accident.'
 tags: architecture
 date: 2026-02-14
+last_updated: 2026-10-09
 excerpt: War stories from a shared platform library, Hyrum's Law, and the politics of scaling a core npm package in a big organization.
 article_type: featured
 value_proposition: 'API surface accumulates silently and compounds forever.'
@@ -87,6 +88,10 @@ The proposal was blocked. The argument was "consistency" - no measurable
 requirement, no technical constraint. A stronger organizational position.
 
 The micro-frontend is still exposed today.
+
+It now has no known consumers at all. Why the shared layout earned its remotes
+and this one didn't is in
+[Why 30+ Apps Get Their Layout from Micro-Frontends](/blog/micro-frontends-shared-layouts/).
 
 <Heading tag="h2" id="summary" linkLabel="Link to heading: Summary">Summary</Heading>
 
