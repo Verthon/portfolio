@@ -34,7 +34,7 @@
   "devDependencies": {
     "@astrojs/check": "0.9.10",
     "@astrojs/mdx": "8.0.1",
-    "@astrojs/preact": "6.0.5",
+    "@astrojs/preact": "6.0.6",
     "@astrojs/rss": "4.0.19",
     "@astrojs/sitemap": "3.7.4",
     "@axe-core/playwright": "4.11.0",
@@ -42,7 +42,7 @@
     "@shikijs/themes": "4.4.3",
     "@types/node": "24.13.4",
     "@typescript-eslint/parser": "8.70.0",
-    "astro": "7.3.2",
+    "astro": "7.3.8",
     "astro-eslint-parser": "3.1.0",
     "knip": "6.35.1",
     "oxlint": "1.83.0",
