@@ -3,7 +3,7 @@
 Why this repo has the shape it has. Not a spec - just the things I'd otherwise
 forget and re-litigate. Where it actually stands today: `state.md`.
 
-Last reviewed: 2026-09-18.
+Last reviewed: 2026-10-19.
 
 ## Goals
 
@@ -46,6 +46,7 @@ Fast pages for readers on mobile data; good CWV feeds SEO.
 
 Debt metrics - lower always better. Not gated: ADR 0006.
 Outranked by the cheap-publish-loop constraint, which is why.
+Below n = 50 cold navigations (`navigationType = navigate`) per page in 28 days, field percentiles are sample noise and ignored.
 
 ### URL stability
 
