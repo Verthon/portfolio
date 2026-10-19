@@ -9,6 +9,7 @@ const config: PlaywrightTestConfig = {
   workers: process.env.CI ? 4 : undefined,
   reporter: 'html',
   use: {
+    baseURL: 'http://localhost:4173',
     actionTimeout: 0,
     trace: 'on-first-retry',
   },
@@ -29,7 +30,9 @@ const config: PlaywrightTestConfig = {
 
   webServer: {
     command: 'pnpm exec serve dist -l 4173',
-    port: 4173,
+    url: 'http://localhost:4173',
+    reuseExistingServer: !process.env.CI,
+    gracefulShutdown: { signal: 'SIGTERM', timeout: 500 },
   },
 }
 
