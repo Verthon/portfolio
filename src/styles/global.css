@@ -57,6 +57,7 @@ select {
   font: inherit;
 }
 p,
+li,
 h1,
 h2,
 h3,
@@ -64,6 +65,14 @@ h4,
 h5,
 h6 {
   overflow-wrap: break-word;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
 }
 #root,
 #__next {
@@ -175,6 +184,7 @@ ul {
   --danger-700: hsl(35, 100%, 90.2%);
 
   --code-expression-background: hsl(50, 7%, 20%);
+  --code-background: hsl(206.7, 11.7%, 17%);
 
   --code-border: var(--dark-600);
 
@@ -235,8 +245,4 @@ pre.astro-code {
   font-style: var(--shiki-dark-font-style);
   font-weight: var(--shiki-dark-font-weight);
   text-decoration: var(--shiki-dark-text-decoration);
-}
-
-[data-theme='dark'] pre.astro-code {
-  background-color: var(--shiki-dark-bg);
 }

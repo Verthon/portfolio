@@ -35,6 +35,7 @@
   font-size: var(--font-size-xl);
   margin-top: var(--space-xl);
   margin-bottom: var(--space-md);
+  color: var(--heading-color);
 }
 
 .headingLink {

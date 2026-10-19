@@ -1,5 +1,5 @@
 .header {
-  h2 {
+  h1 {
     font-size: var(--font-size-4xl);
     letter-spacing: -0.025em;
     line-height: 3rem;

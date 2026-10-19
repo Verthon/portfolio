@@ -31,10 +31,7 @@ colors:
   link-wash: '{colors.primary-50}'
   link-underline: '{colors.primary}'
   code-background: 'hsl(206.7, 52.9%, 98.3%)'
-  code-text: 'hsl(240, 27%, 38%)'
-  code-comment: 'hsl(60, 2%, 32%)'
-  code-keyword: 'hsl(0, 65%, 39%)'
-  code-function: 'hsl(240, 60%, 52%)'
+  code-border: '{colors.grey-200}'
   code-expression-background: 'hsl(50.3, 20%, 95.4%)'
 typography:
   hero-name:
@@ -45,23 +42,23 @@ typography:
   article-title:
     fontFamily: Inter
     fontSize: 2.25rem
-    fontWeight: 400
+    fontWeight: 600
     lineHeight: 3rem
     letterSpacing: -0.025em
   h1:
     fontFamily: Inter
     fontSize: 1.75rem
-    fontWeight: 400
+    fontWeight: 600
     lineHeight: 1.5
   h2:
     fontFamily: Inter
     fontSize: 1.5rem
-    fontWeight: 400
+    fontWeight: 600
     lineHeight: 1.75rem
   h3:
     fontFamily: Inter
     fontSize: 1.25rem
-    fontWeight: 400
+    fontWeight: 600
     lineHeight: 1.5
   body-lg:
     fontFamily: Inter
@@ -173,7 +170,6 @@ components:
     padding: 16px
   code-block:
     backgroundColor: '{colors.code-background}'
-    textColor: '{colors.code-text}'
     typography: '{typography.code}'
     rounded: '{rounded.sm}'
     padding: 16px
@@ -218,8 +214,8 @@ only loud element is a butter-yellow accent, used sparingly and never as a large
 fill.
 
 There is no chrome to speak of. No cards with borders, no shadows in the
-content flow, no gradients. Structure comes from whitespace, type scale, and a
-single hairline rule above the footer.
+content flow, no gradients. Structure comes from whitespace, type scale, and
+two hairlines: one above the footer, one around code blocks.
 
 ## Colors
 
@@ -275,16 +271,15 @@ The site ships a `[data-theme]` attribute switch with a user-facing toggler. The
 token values in the front matter are the **light theme**; dark theme remaps a
 small set:
 
-| Token             | Light                | Dark                       |
-| :---------------- | :------------------- | :------------------------- |
-| `surface`         | `white`              | `dark-800`                 |
-| `text-color`      | `dark-400`           | `grey-400`                 |
-| `heading-color`   | `dark-600`           | `grey-100`                 |
-| `text-meta`       | `dark-300`           | `grey-600`                 |
-| `code-background` | light grey           | `hsl(206.7, 11.7%, 20.6%)` |
-| `code-text`       | `hsl(240, 27%, 38%)` | `hsl(353, 100%, 85%)`      |
-| `code-keyword`    | dark red             | mint `hsl(147, 61%, 69%)`  |
-| `code-function`   | indigo               | `primary`                  |
+| Token                        | Light                   | Dark                     |
+| :--------------------------- | :---------------------- | :----------------------- |
+| `surface`                    | `white`                 | `dark-800`               |
+| `text-color`                 | `dark-400`              | `grey-400`               |
+| `heading-color`              | `dark-600`              | `grey-100`               |
+| `text-meta`                  | `dark-300`              | `grey-600`               |
+| `code-background`            | light grey              | `hsl(206.7, 11.7%, 17%)` |
+| `code-border`                | `grey-200`              | `dark-600`               |
+| `code-expression-background` | `hsl(50.3, 20%, 95.4%)` | `hsl(50, 7%, 20%)`       |
 
 The tinted families invert rather than shift: in dark theme `primary-50`
 becomes near-black and `primary-800` becomes near-white, so `badge-primary`
@@ -307,10 +302,10 @@ frequent and a second font download is not worth it.
 Weight does most of the work that a second family would do elsewhere:
 
 - **300 (light)** — hero name and hero description. Only the marketing surface.
-- **400 (regular)** — all body copy and all headings. Headings are _not_ bold;
-  they separate by size and by the darker `heading` color.
-- **500/600** — badges and "read more" affordances. The only emphatic weights in
-  the content area.
+- **400 (regular)** — all body copy.
+- **600 (semi-bold)** — all headings, set once in `global.css`. Never 700: it
+  reads heavier than the hierarchy needs.
+- **500/600** — badges and "read more" affordances.
 - **700** — a single highlighted span inside the hero name. Nothing else.
 
 The `--font-size-*` scale (`xs`–`5xl`, values in `src/global.css`) is
@@ -399,9 +394,12 @@ fill and paragraph color both inherit the family's `-700` token. Bottom margin
 is chosen at the call site from three fixed steps (`1rem`, `2rem`, `3rem`)
 rather than being intrinsic.
 
-**Code blocks** are syntax-highlighted with Prism token classes wired to the
-`code-*` tokens. Only five token types are themed — comment, keyword, function,
-function-variable, builtin — everything else falls back to `code-text`. Blocks
+**Code blocks** are highlighted at build time by Shiki with GitHub's themes:
+`github-light-default` and `github-dark-default`, configured in
+`astro.config.mjs`. Token colours come from the theme, not from tokens here; to
+change one, change the theme. The only local override is the light theme's
+comment colour, darkened to `#59636e` to pass AA. The site owns only the block
+surface: `code-background` and `code-border`, applied in `global.css`. Blocks
 scroll horizontally (`overflow-x: auto`); they never wrap.
 
 **Heading anchors** are hidden buttons positioned `translateX(-150%)` at
@@ -439,13 +437,13 @@ below.
 Computed from the HSL values in `global.css` (plain WCAG relative luminance) on
 2026-09-18. Recompute rather than trusting this table if the palette moves.
 
-| Value                              | vs white | vs `dark-800` |
-| :--------------------------------- | :------- | :------------ |
-| `primary` raw                      | **1.18** | —             |
-| `primary-800` (light, `l=16.2%`)   | **9.45** | —             |
-| `primary-800` (dark, `l=84.2%`)    | —        | **15.27**     |
-| `primary-100` vs `primary-50`      | **1.05** | —             |
-| `text-color` on `primary-100`      | **7.60** | —             |
+| Value                            | vs white | vs `dark-800` |
+| :------------------------------- | :------- | :------------ |
+| `primary` raw                    | **1.18** | —             |
+| `primary-800` (light, `l=16.2%`) | **9.45** | —             |
+| `primary-800` (dark, `l=84.2%`)  | —        | **15.27**     |
+| `primary-100` vs `primary-50`    | **1.05** | —             |
+| `text-color` on `primary-100`    | **7.60** | —             |
 
 Two consequences:
 
@@ -454,7 +452,7 @@ Two consequences:
    existing vocabulary rather than a new value.
 2. **A one-rung wash step cannot carry a state change.** `primary-50` →
    `primary-100` is 1.05 — a 6% lightness step, imperceptible. The wash can
-   reinforce a state; it cannot *be* the state. This is the one place the
+   reinforce a state; it cannot _be_ the state. This is the one place the
    site's wash pattern is insufficient on its own.
 
 ## Do's and Don'ts
@@ -475,7 +473,7 @@ Two consequences:
   only `primary-800` is legible on it.
 - Don't introduce a second typeface. Inter plus the monospace stack is the
   whole system.
-- Don't bold headings. Size and the `heading` color carry the hierarchy.
+- Don't set a heading weight per component. Headings are 600 from `global.css`.
 - Don't add shadows to content. The two shadow tokens are legacy, not a scale.
 - Don't reference breakpoint custom properties inside `@media` queries — they
   do not evaluate. Write the literal pixel value.
