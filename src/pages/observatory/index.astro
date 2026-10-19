@@ -1,9 +1,9 @@
 ---
-import { getCollection } from 'astro:content'
+import { getPublishedCollection } from '~/publishing/collection'
 import Base from '~/layouts/Base.astro'
 import { pageMeta } from '~/seo/meta'
 
-const allPosts = await getCollection('observatory')
+const allPosts = await getPublishedCollection('observatory')
 const posts = allPosts.sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
 )

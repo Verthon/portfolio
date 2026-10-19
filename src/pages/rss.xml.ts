@@ -1,5 +1,5 @@
 import rss from '@astrojs/rss'
-import { getCollection } from 'astro:content'
+import { getPublishedCollection } from '~/publishing/collection'
 import type { APIContext } from 'astro'
 
 import { AUTHOR } from '~/seo/site'
@@ -13,7 +13,7 @@ const SECTIONS = [
 export const GET = async (context: APIContext) => {
   const sections = await Promise.all(
     SECTIONS.map(async ([collection, segment]) => {
-      const entries = await getCollection(collection)
+      const entries = await getPublishedCollection(collection)
       return entries.map((entry) => ({
         title: entry.data.title,
         description: entry.data.excerpt,

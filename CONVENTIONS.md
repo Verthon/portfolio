@@ -21,6 +21,8 @@ Don't collapse these two. A primitive moving into chrome, or chrome moving into 
 
 Import across modules with the `~/` alias, never a relative path that leaves the current folder.
 
+Pages read content through `getPublishedCollection` from `~/publishing/collection`, never `getCollection` directly — that is what keeps drafts out of production. `check-drafts` fails the build if one leaks. See ADR 0009.
+
 ## TypeScript
 
 Use `type`, not `interface`. Prefer arrow functions assigned to a `const`.

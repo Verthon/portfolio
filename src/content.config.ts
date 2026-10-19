@@ -27,6 +27,7 @@ const blog = defineCollection({
       tags: z.string(),
       article_type: z.enum(['featured', 'regular']).default('regular'),
       last_updated: z.coerce.date().optional(),
+      draft: z.boolean().optional(),
       value_proposition: z.string().optional(),
       og_title: z.string().optional(),
       og_description: z.string().optional(),
@@ -49,6 +50,7 @@ const devBites = defineCollection({
       tags: z.string(),
       dev_bite_type: z.enum(['featured', 'regular']).default('regular'),
       last_updated: z.coerce.date().optional(),
+      draft: z.boolean().optional(),
       og_title: z.string().optional(),
       og_description: z.string().optional(),
     })
@@ -78,6 +80,7 @@ const observatory = defineCollection({
       ]),
       short_preview: z.string().optional(),
       last_updated: z.coerce.date().optional(),
+      draft: z.boolean().optional(),
       og_title: z.string().optional(),
       og_description: z.string().optional(),
     })

@@ -1,16 +1,16 @@
 ---
-import { getCollection } from 'astro:content'
+import { getPublishedCollection } from '~/publishing/collection'
 import Base from '~/layouts/Base.astro'
 import ArticleCard from '~/components/article-card/article-card.astro'
 import { homeMeta } from '~/seo/meta'
 import { createSiteJsonLd } from '~/seo/site-json-ld'
 
-const blogs = await getCollection('blog')
+const blogs = await getPublishedCollection('blog')
 const featuredArticles = blogs
   .filter((b) => b.data.article_type === 'featured')
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
 
-const devBites = await getCollection('devBites')
+const devBites = await getPublishedCollection('devBites')
 const featuredDevBites = devBites
   .filter((b) => b.data.dev_bite_type === 'featured')
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())

@@ -13,7 +13,8 @@
   "type": "module",
   "scripts": {
     "analyze.bundle": "ANALYZE=true astro build",
-    "build": "astro build && node scripts/check-links.ts && node scripts/check-feed.ts && node scripts/check-json-ld.ts",
+    "build": "astro build && node scripts/check-links.ts && node scripts/check-feed.ts && node scripts/check-drafts.ts && node scripts/check-json-ld.ts",
+    "check.drafts": "node scripts/check-drafts.ts",
     "check.feed": "node scripts/check-feed.ts",
     "check.json-ld": "node scripts/check-json-ld.ts",
     "check.links": "node scripts/check-links.ts",

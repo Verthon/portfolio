@@ -19,3 +19,4 @@ Format: what was decided, why, what it costs, what else was considered.
 | [0006](./0006-core-web-vitals-are-measured-not-gated.md) | Core Web Vitals are measured, not gated |
 | [0007](./0007-ai-crawler-policy.md) | AI crawlers may cite, not train |
 | [0008](./0008-browser-support-floor-is-pinned.md) | The browser support floor is pinned, not inherited |
+| [0009](./0009-drafts-are-filtered-and-build-checked.md) | Drafts are a frontmatter flag, filtered in one place and build-checked |

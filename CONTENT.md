@@ -9,7 +9,7 @@ Content lives in `src/content/{blog,dev-bites,observatory}/<slug>/index.mdx`. Th
 ## Frontmatter
 
 Required: `title`, `description`, `date`, `excerpt`, `tags`.
-Optional: `last_updated`, `og_title`, `og_description`.
+Optional: `last_updated`, `og_title`, `og_description`, `draft`.
 Observatory notes also require `status` — see `src/content/observatory/CONTEXT.md` for the vocabulary and the rest of the observatory's rules.
 Blog posts also take `article_type: featured | regular`; dev bites take `dev_bite_type: featured | regular`. Only `featured` reaches the home page.
 
@@ -23,9 +23,10 @@ Limits: `title` under 60 chars, `description` 120-160, `excerpt` under 200 and
 standalone — it is often the only thing a reader sees. Make `date` the publish
 date.
 
-There is no draft flag. Anything merged to `master` is built, listed, and in the
-sitemap — git is the draft mechanism. A `published` field used to exist but was
-read by nothing, so five posts marked unpublished were live and indexed.
+`draft: true` keeps an entry out of the production build: no route, listing,
+feed item, or sitemap entry. `pnpm dev` still shows it. To publish, delete the
+line and set `date` to that day. Published content needs no `draft: false`.
+The repo is public, so a pushed draft can be read on GitHub. See ADR 0009.
 
 Only one limit is enforced: `title` at 70 chars (`max(70)` in
 `src/content.config.ts`). Past 70 Google discards the title and writes its own, so
