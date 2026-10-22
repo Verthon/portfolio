@@ -57,14 +57,13 @@ const rssUrl = '/rss.xml'
         ></path>
       </svg>
     </a>
-    <a class="icon-link" href={rssUrl} aria-label="RSS feed">
+    <a class="icon-link rss-link" href={rssUrl} aria-label="RSS feed">
       <svg
         width="22"
         height="22"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
-        stroke-width="1.5"
         aria-hidden="true"
         focusable="false"
         xmlns="http://www.w3.org/2000/svg"
@@ -105,6 +104,10 @@ const rssUrl = '/rss.xml'
     align-items: center;
     padding: var(--space-xs);
     color: var(--text-strong);
+  }
+
+  .rss-link svg {
+    stroke-width: 1.5;
   }
 
   @media (min-width: 768px) {

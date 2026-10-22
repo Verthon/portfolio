@@ -53,7 +53,9 @@ jobs:
         run: sudo apt-get install -y tidy
 
       - name: Validate HTML Files
-        run: find dist -name '*.html' -exec tidy -q -e {} \;
+        run: |
+          out=$(find dist -name '*.html' -exec tidy -q -e --gnu-emacs yes --mute-id yes --mute PROPRIETARY_ATTRIBUTE,TRIM_EMPTY_ELEMENT {} + 2>&1)
+          [ -z "$out" ] || { echo "$out"; exit 1; }
 
       - name: Run E2E tests for ${{ matrix.project }}
         run: time pnpm exec playwright test --project="${{ matrix.project }}"
