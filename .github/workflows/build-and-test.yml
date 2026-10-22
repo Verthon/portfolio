@@ -54,7 +54,7 @@ jobs:
 
       - name: Validate HTML Files
         run: |
-          out=$(find dist -name '*.html' -exec tidy -q -e --gnu-emacs yes --mute-id yes --mute PROPRIETARY_ATTRIBUTE,TRIM_EMPTY_ELEMENT {} + 2>&1)
+          out=$(find dist -name '*.html' -exec tidy -q -e --gnu-emacs yes --mute-id yes --mute PROPRIETARY_ATTRIBUTE,TRIM_EMPTY_ELEMENT {} + 2>&1) || true
           [ -z "$out" ] || { echo "$out"; exit 1; }
 
       - name: Run E2E tests for ${{ matrix.project }}
