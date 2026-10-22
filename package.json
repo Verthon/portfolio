@@ -52,7 +52,7 @@
     "prettier": "3.9.6",
     "prettier-plugin-astro": "1.0.0",
     "serve": "14.2.6",
-    "sharp": "0.35.4",
+    "sharp": "0.35.5",
     "sonda": "0.14.0",
     "stylelint": "17.15.0",
     "stylelint-config-html": "2.0.0",
@@ -60,10 +60,5 @@
     "stylelint-no-unsupported-browser-features": "8.1.2",
     "typescript": "5.5.4",
     "vitest": "5.0.1"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild"
-    ]
   }
 }
