@@ -10,7 +10,36 @@ const meta = pageMeta({
 ---
 
 <Base meta={meta}>
-  <h1>404 - Page Not Found</h1>
-  <p>Sorry, the page you're looking for doesn't exist.</p>
-  <a href="/">Go back home</a>
+  <div class="not-found">
+    <h1>404 - Page Not Found</h1>
+    <p>Sorry, the page you're looking for doesn't exist.</p>
+    <p>
+      <a href="/">Go back home</a>
+    </p>
+  </div>
 </Base>
+
+<style>
+  .not-found {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-md);
+  }
+
+  .not-found h1 {
+    margin-bottom: 0;
+  }
+
+  .not-found a {
+    text-decoration: none;
+    color: var(--text-color);
+    background-color: var(--link-wash);
+    border-bottom: 2px solid var(--link-underline);
+  }
+
+  .not-found a:focus-visible {
+    background-color: var(--primary-100);
+    outline-offset: 1px;
+  }
+</style>
