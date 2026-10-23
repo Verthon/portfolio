@@ -11,19 +11,26 @@ type Props = {
 
 const { src, alt = '', caption, ariaLabelledBy } = Astro.props
 
+const captionId =
+  ariaLabelledBy ??
+  `caption-${caption
+    ?.toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '')}`
+
 const formats: ImageOutputFormat[] = ['avif']
 const fallbackFormat = 'webp'
 ---
 
 {caption ? (
-  <figure class="article-picture" role="group" aria-labelledby={ariaLabelledBy}>
+  <figure class="article-picture" aria-labelledby={captionId}>
     <Picture
       src={src}
       alt={alt}
       formats={formats}
       fallbackFormat={fallbackFormat}
     />
-    <figcaption class="fig-caption" id={ariaLabelledBy}>
+    <figcaption class="fig-caption" id={captionId}>
       {caption}
     </figcaption>
   </figure>
@@ -43,6 +50,9 @@ const fallbackFormat = 'webp'
   }
 
   .fig-caption {
+    margin-top: var(--space-sm);
+    color: var(--text-meta);
+    font-size: var(--font-size-sm);
     text-align: center;
   }
 </style>

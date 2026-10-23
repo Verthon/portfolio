@@ -1,13 +1,9 @@
 .postDates {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-xs) var(--space-md);
+  gap: var(--space-xs);
 }
 
 .entry {
   white-space: nowrap;
-}
-
-.updated {
-  color: var(--text-color);
 }

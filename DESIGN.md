@@ -54,12 +54,12 @@ typography:
     fontFamily: Inter
     fontSize: 1.5rem
     fontWeight: 600
-    lineHeight: 1.75rem
+    lineHeight: 1.3
   h3:
     fontFamily: Inter
     fontSize: 1.25rem
     fontWeight: 600
-    lineHeight: 1.5
+    lineHeight: 1.3
   body-lg:
     fontFamily: Inter
     fontSize: 1.1rem
@@ -327,6 +327,15 @@ system. Content columns are constrained independently — article cards cap at
 `37rem`, hero description at `500px` — because a 80rem measure is unreadable for
 prose.
 
+Prose measure is `max-width: 42rem` (672px) on all three content types —
+`article-container`, `dev-bite-container` and the observatory `container`. At
+16px Inter that holds ~80–89 characters on desktop and ~45 at 375px, measured
+2026-10-14. This is above the popular 50–75 rule and kept on purpose: screen
+studies show no speed or comprehension penalty at 75–95, and WCAG's ≤80 is AAA,
+which is not a target ([Shaikh & Chaparro, HFES 2005](https://portfolio.erau.edu/en/publications/the-effects-of-line-length-on-reading-performance-of-online-news-/);
+[Butterick](https://practicaltypography.com/line-length.html): 45–90). Re-measure if
+the body font or size changes.
+
 The page is a flex column with `min-height: 100vh` and the footer pushed down by
 `margin-top: auto`, so short pages still anchor the footer at the bottom.
 
@@ -343,9 +352,22 @@ with type, no literal `rem` values remain.
 The steps above `space-lg` are page-level layout — section rhythm and list
 gutters — not component padding. Use `xs`–`lg` inside a component.
 
-Vertical rhythm is `rem`-based and local to each component. Headings claim
-`3rem` of top margin at h2/h3 and `1em` bottom — generous gaps between sections
-are the primary structural cue in long articles.
+Vertical rhythm is `rem`-based and local to each component. Generous gaps
+between sections are the primary structural cue in long articles, so each
+heading level steps down in top margin:
+
+| Level | Top margin          | Bottom margin       | Line-height |
+| :---- | :------------------ | :------------------ | :---------- |
+| `h2`  | `space-xl` (`3rem`) | `1em` (`1.5rem`)    | `1.3`       |
+| `h3`  | `space-lg` (`2rem`) | `1em` (`1.25rem`)   | `1.3`       |
+
+The top margin is what groups an `h3` under its `h2`: an `h3` closer to the
+text above than an `h2` reads as a subsection. Below a heading the gap is
+smaller than above and larger than the `16px` between paragraphs
+([Butterick](https://practicaltypography.com/space-above-and-below.html)),
+so the steps read 24px below `h2`, 20px below `h3`, 16px between paragraphs.
+Line-height is `1.3`, not the body's, so a two-line heading stays one block.
+Set in `heading.module.css`.
 
 ## Elevation & Depth
 
@@ -355,8 +377,8 @@ surface has none. Depth is communicated by:
 1. **Whitespace** — the dominant separator.
 2. **A single hairline** — `1px solid grey-200` above the footer, switching to
    `dark-400` in dark theme.
-3. **The link highlight wash** — `inset 0 0 0 20em primary-50` box-shadow used
-   as a background fill on inline links.
+3. **The link highlight wash** — a `primary-50` `background-color` on inline
+   links.
 
 If a new component seems to need a shadow, it probably needs more margin
 instead.
@@ -365,12 +387,12 @@ instead.
 
 Radii are small to the point of being nearly square:
 
-- `2px` — inline code spans.
-- `4px` — badges, alerts, code blocks.
-- `8px` — article card wrappers, the largest radius in the system.
+- `--radius-xs` (`2px`) — inline code spans.
+- `--radius-sm` (`4px`) — badges, alerts, code blocks.
+- `--radius-md` (`8px`) — article card wrappers, the largest radius in the system.
 
-Radii are written literally; there is no radius token, and there are no button
-padding tokens either. Nothing is pill-shaped, nothing is a circle, and the site
+Reference the token, never the literal; values live in `global.css`. There are
+no button padding tokens. Nothing is pill-shaped, nothing is a circle, and the site
 has almost no buttons — the theme toggler is a bare transparent element with no
 border at all.
 
@@ -378,8 +400,9 @@ border at all.
 
 **Inline link** is the most characteristic component and worth stating precisely:
 no `text-decoration`, `color: text` (it does _not_ recolor), a `primary-50`
-background wash implemented as a large inset box-shadow, and a `2px solid
-primary` bottom border. This gives a highlighter-pen effect that survives both
+`background-color` wash, and a `2px solid primary` bottom border. Not an inset
+box-shadow: Safari doesn't clip one to a wrapped link's line fragments, so the
+wash bled to the viewport edges. This gives a highlighter-pen effect that survives both
 themes. Reproduce it exactly; do not substitute a conventional underlined blue
 link.
 
@@ -387,6 +410,23 @@ link.
 block with a metadata row (`0.75rem`, `dark-300`), a `1.125rem` title in the
 heading color, a `0.875rem` excerpt, and a `600`-weight "read more". Separation
 between cards is margin only.
+
+**Figure caption** (`ArticleImage`) is `font-size-sm` in `text-meta`, centred,
+`space-sm` below the image — one step quieter than prose so it reads as a label.
+The `<figure>` references its `<figcaption>` with `aria-labelledby`: a
+figcaption does not name its figure unless referenced
+([HTML-AAM](https://www.w3.org/TR/html-aam-1.0/)). The id comes from
+`ariaLabelledBy` or, if omitted, from the caption text.
+
+**Post date line** sits under the `h1` on all three content types
+(`common/components/post-dates`): `Published 16 Mar 2025 · Updated 8 Mar 2026`,
+the second entry only when `last_updated` differs, all in `text-meta` — no part
+is emphasised. The `·` is `aria-hidden`. Dates are `D Mon YYYY` with an English
+month name, formatted at build time and never localised: a named month and
+four-digit year read the same in every country
+([W3C i18n](https://www.w3.org/International/questions/qa-date-format)), and it
+matches the GOV.UK style guide. Cards show the bare published date in the same
+format.
 
 **Alerts** come in `info` and `danger` only. Icon on the left with
 `margin-inline-end: 0.5rem` and `flex-shrink: 0`, content flexing to fill. Icon
@@ -401,6 +441,13 @@ change one, change the theme. The only local override is the light theme's
 comment colour, darkened to `#59636e` to pass AA. The site owns only the block
 surface: `code-background` and `code-border`, applied in `global.css`. Blocks
 scroll horizontally (`overflow-x: auto`); they never wrap.
+
+On mobile, code keeps its `1rem` size: at 375px a block shows ~30 characters
+and nearly every block scrolls. A smaller font doesn't help — at 14px every
+block still overflows — so the size stays readable instead. Scrolling is the
+whole affordance: clipped text is the hint, blocks are keyboard-focusable, and
+there is no scroll fade or copy button (both declined 2026-10-11; posts are
+going light on code).
 
 **Heading anchors** are hidden buttons positioned `translateX(-150%)` at
 `opacity: 0`, fading in on heading hover. Never visible by default — but the
@@ -421,9 +468,9 @@ already is, and a blue ring would be the only second hue on the page.
   border-radius: var(--radius-xs);
 }
 
-/* article-content.module.css — prose links keep the outline AND deepen */
+/* the three prose content modules — links keep the outline AND deepen */
 a:focus-visible {
-  box-shadow: inset 0 0 0 20em var(--primary-100);
+  background-color: var(--primary-100);
   outline-offset: 1px;
 }
 ```

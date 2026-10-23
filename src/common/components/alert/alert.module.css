@@ -1,6 +1,6 @@
 .alert {
   padding: var(--space-md);
-  border-radius: 0.25rem;
+  border-radius: var(--radius-sm);
 
   p {
     margin: 0;

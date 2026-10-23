@@ -87,8 +87,10 @@ const rssUrl = '/rss.xml'
   }
 
   .footer-wrapper {
-    margin: auto;
-    padding: var(--space-lg);
+    width: 100%;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding: var(--space-lg) var(--space-md);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -114,6 +116,12 @@ const rssUrl = '/rss.xml'
   .rss-link svg {
     fill: none;
     stroke-width: 1.5;
+  }
+
+  @media (min-width: 768px) {
+    .footer-wrapper {
+      padding-inline: var(--space-lg);
+    }
   }
 
   @media (min-width: 1366px) {

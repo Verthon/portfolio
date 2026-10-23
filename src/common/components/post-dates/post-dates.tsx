@@ -24,12 +24,9 @@ export default function PostDates({ date, lastUpdated }: PostDatesProps) {
       ? h(
           'span',
           { className: styles.entry },
+          h('span', { 'aria-hidden': 'true' }, '· '),
           'Updated ',
-          h(
-            'time',
-            { dateTime: updated, className: styles.updated },
-            toDisplayDate(lastUpdated)
-          )
+          h('time', { dateTime: updated }, toDisplayDate(lastUpdated))
         )
       : null
   )
