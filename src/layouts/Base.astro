@@ -13,6 +13,7 @@ type Props = {
 
 const { meta } = Astro.props
 const { title, description, ogTitle, ogDescription, ogType, canonical } = meta
+const isHome = Astro.url.pathname === '/'
 ---
 
 <!doctype html>
@@ -86,8 +87,11 @@ const { title, description, ogTitle, ogDescription, ogType, canonical } = meta
       Skip to content
     </a>
     <header class="site-header">
-      <ThemeToggler />
-      <Nav />
+      <a class="wordmark" href="/" aria-current={isHome ? 'page' : undefined}>
+        sordyl.dev
+      </a>
+      <Nav class="header-nav" />
+      <ThemeToggler class="header-theme" />
     </header>
     <main id="main-content" tabindex="-1">
       <slot />
@@ -133,12 +137,31 @@ const { title, description, ogTitle, ogDescription, ogType, canonical } = meta
   }
 
   .site-header {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      'wordmark theme'
+      'nav nav';
     align-items: center;
-    justify-content: space-between;
     gap: var(--space-sm);
     padding-block: var(--space-md);
+  }
+
+  .wordmark {
+    grid-area: wordmark;
+    justify-self: start;
+    padding: var(--space-xs) 0;
+    color: var(--heading-color);
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+  }
+
+  .header-nav {
+    grid-area: nav;
+  }
+
+  .header-theme {
+    grid-area: theme;
   }
 
   main {
@@ -155,7 +178,8 @@ const { title, description, ogTitle, ogDescription, ogType, canonical } = meta
     }
 
     .site-header {
-      flex-direction: row;
+      grid-template-columns: auto 1fr auto;
+      grid-template-areas: 'wordmark nav theme';
       gap: var(--space-md);
     }
 

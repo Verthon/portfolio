@@ -1,7 +1,12 @@
 ---
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = HTMLAttributes<'label'>
+
+const { class: className, ...rest } = Astro.props
 ---
 
-<label class="theme-toggler">
+<label class:list={['theme-toggler', className]} {...rest}>
   <span class="label-text">Select Theme</span>
   <select id="theme-select">
     <option value="system">System mode</option>

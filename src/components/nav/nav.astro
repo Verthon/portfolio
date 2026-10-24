@@ -1,10 +1,16 @@
 ---
+import type { HTMLAttributes } from 'astro/types'
+
 const githubUrl = 'https://github.com/Verthon'
 const linkedinUrl = 'https://www.linkedin.com/in/krzysztof-sordyl/'
 const rssUrl = '/rss.xml'
+
+type Props = HTMLAttributes<'nav'>
+
+const props = Astro.props
 ---
 
-<nav aria-label="Main">
+<nav aria-label="Main" {...props}>
   <a href="/blog/">blog</a>
   <a href="/dev-bites/">dev bites</a>
   <a href="/observatory/">observatory</a>
@@ -82,9 +88,9 @@ const rssUrl = '/rss.xml'
   nav {
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-wrap: wrap;
     gap: var(--space-sm);
+    margin-inline-start: calc(-1 * var(--space-sm));
   }
 
   a {
@@ -94,9 +100,7 @@ const rssUrl = '/rss.xml'
   }
 
   .socials {
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm);
+    display: none;
   }
 
   .icon-link {
@@ -113,10 +117,14 @@ const rssUrl = '/rss.xml'
   @media (min-width: 768px) {
     nav {
       flex-wrap: nowrap;
+      justify-content: flex-end;
       gap: var(--space-md);
+      margin-inline-start: 0;
     }
 
     .socials {
+      display: flex;
+      align-items: center;
       gap: var(--space-md);
     }
   }

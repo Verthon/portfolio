@@ -178,6 +178,9 @@ components:
     textColor: '{colors.text-color}'
     rounded: '{rounded.xs}'
     padding: 4px
+  wordmark:
+    textColor: '{colors.heading-color}'
+    typography: '{typography.body-lg}'
   nav-item:
     textColor: '{colors.text-color}'
     typography: '{typography.body-md}'
@@ -405,6 +408,18 @@ box-shadow: Safari doesn't clip one to a wrapped link's line fragments, so the
 wash bled to the viewport edges. This gives a highlighter-pen effect that survives both
 themes. Reproduce it exactly; do not substitute a conventional underlined blue
 link.
+
+**Site header** order, in DOM and tab order: `sordyl.dev` wordmark (link to `/`,
+`aria-current="page"` on the home page), section links, social icons, theme
+select. From 768px it is one row with the wordmark on the left and everything else
+on the right. Below 768px it is two rows: wordmark and theme select, then the
+section links. The social icons are hidden there because the footer carries them.
+The theme control is the native `<select>`, not an icon toggle (decided
+2026-10-24). No hamburger while there are 5 or fewer top-level links: at that
+count NN/g recommends visible links
+([Hamburger Menus and Hidden Navigation](https://www.nngroup.com/articles/hamburger-menus/)),
+and a hamburger would need client JS. A planned `/about` link makes four, and row 2
+at 320px may then wrap, so re-measure when it ships.
 
 **Article card** has no border, no background, no shadow — it is a max-width
 block with a metadata row (`0.75rem`, `dark-300`), a `1.125rem` title in the
