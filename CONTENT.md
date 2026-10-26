@@ -75,3 +75,7 @@ render.
 
 Rewrote or materially changed a published post? Set `last_updated` — it is the
 only thing that moves `dateModified` and the sitemap's `lastmod`.
+Material means new or rewritten text, new code, or changed links. A typo fix
+or a re-check that changed nothing keeps the old date: Google ignores a bumped
+date with no new content, and repeated bumps make it stop trusting `lastmod`
+([Illyes, 2023](https://developers.google.com/search/blog/2023/06/sitemaps-lastmod-ping)).
