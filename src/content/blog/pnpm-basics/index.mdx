@@ -1,8 +1,9 @@
 ---
 title: Pnpm basics - how to transition quickly
-description: 'Understanding pnpm basics, steps to migrate and approach for testing its execution speed comparing to the npm'
+description: 'How pnpm differs from npm, why its strict node_modules catches undeclared imports, including ones an AI agent writes, and how to migrate.'
 tags: testing
 date: 2024-08-11
+last_updated: 2026-10-26
 excerpt: Learn what pnpm is, approach for testing the speed differences between pnpm and npm. Article will cover also the migration plan and its execution.
 article_type: regular
 ---
@@ -89,9 +90,24 @@ Let's take a look at how `pnpm` solves this problem:
 - your app will break if you attempt to import `lodash` like in the npm example
 - `@testing-library/jest-dom` will still have `lodash` to function properly. It will be stored in the `node_modules/.pnpm` directory
 
+<Heading tag="h3" id="when-an-agent-writes-the-import" linkLabel="Link to heading: When an agent writes the import">When an agent writes the import</Heading>
+
+An AI agent can write the same `lodash` import.  
+If `import lodash from 'lodash'` resolves, no error tells the agent that `lodash` is not your dependency. The code works and the agent moves on.
+
+With npm it breaks later, when `@testing-library/jest-dom` drops `lodash`. That already happened in [version 6.7.0](https://www.npmjs.com/package/@testing-library/jest-dom/v/6.7.0?activeTab=dependencies).  
+With pnpm it fails on the first run. Here is the same import with `@testing-library/jest-dom@6.6.0`, the last version that still ships `lodash`:
+
+```
+$ node index.js
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'lodash' imported from .../pnpm-app/index.js
+```
+
+The agent sees this error while it is still working and can add `lodash` to `package.json` itself. pnpm's default layout is what blocks it, see [`node-modules` settings](https://pnpm.io/settings/node-modules).
+
 <Heading tag="h3" id="how-to-migrate" linkLabel="Link to heading: How to migrate">How to migrate</Heading>
 
-1. install pnpm with the [corepack](https://nodejs.org/api/corepack.html)
+1. install pnpm, see the [official installation docs](https://pnpm.io/installation)
 2. rm -rf node_modules
 3. rm `package-lock.json` - pnpm will create its own lock-file `pnpm-lock.yaml`
 4. pnpm install
