@@ -1,6 +1,6 @@
 [build]
 publish = "dist"
-command = "npm run build"
+command = "pnpm run build"
 
 [[redirects]]
   from = "/ph/static/*"
